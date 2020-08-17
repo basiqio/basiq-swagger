@@ -1959,9 +1959,6 @@
         "product"
       ],
       "properties": {
-        "meta": {
-          "$ref": "#/definitions/Meta"
-        },
         "product": {
           "description": "Product name.",
           "type": "string",
@@ -2484,6 +2481,7 @@
       "type": "object",
       "required": [
         "assets",
+        "liabilities",
         "netPosition",
         "creditLimit",
         "regularIncome",
@@ -2492,11 +2490,11 @@
       ],
       "properties": {
         "assets": {
-          "description": "Total of account based liabilities split into credit and loan liabilities",
+          "description": "Total of cash based assets",
           "type": "string",
-          "x-go-name": "Liabilities",
+          "x-go-name": "Assets",
           "x-nullable": true,
-          "example": "-323946.20"
+          "example": "59983.11"
         },
         "creditLimit": {
           "description": "Total credit limit across all credit cards and overdrafts",
@@ -2510,6 +2508,13 @@
           "type": "string",
           "x-go-name": "Expenses",
           "example": "-12046.00"
+        },
+        "liabilities": {
+          "description": "Total of account based liabilities split into credit and loan liabilities",
+          "type": "string",
+          "x-go-name": "Liabilities",
+          "x-nullable": true,
+          "example": "-323946.20"
         },
         "netPosition": {
           "description": "Total assets minus total liabilities",
@@ -2763,7 +2768,7 @@
       },
       "x-go-package": "github.com/basiqio/connect-api/internal/affordability/internal/models"
     },
-    "ChangeHistoryData": {
+    "ChangeHistoryAffordabilityData": {
       "type": "object",
       "required": [
         "direction",
@@ -2802,7 +2807,7 @@
           "example": "Transfer Platnm Homeloan 346454"
         }
       },
-      "x-go-name": "LoanChangeHistoryData",
+      "x-go-name": "LoanChangeHistoryAffordabilityData",
       "x-go-package": "github.com/basiqio/connect-api/internal/affordability/internal/models"
     },
     "ChangeHistoryExpensesClass": {
@@ -4463,7 +4468,7 @@
           "description": "List of account transactions changes",
           "type": "array",
           "items": {
-            "$ref": "#/definitions/ChangeHistoryData"
+            "$ref": "#/definitions/ChangeHistoryAffordabilityData"
           },
           "x-go-name": "ChangeHistory"
         },
