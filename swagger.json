@@ -1983,13 +1983,13 @@
       ],
       "properties": {
         "product": {
-          "description": "As defined by the institution",
+          "description": "Identifies the Product as defined by institution",
           "type": "string",
           "x-go-name": "Product",
           "example": "Hooli Transaction"
         },
         "type": {
-          "description": "Values as defined in class object Account Type in Accounts",
+          "description": "Identifies the Account type defined by institution",
           "type": "string",
           "x-go-name": "AccountType",
           "example": "transaction"
@@ -2212,7 +2212,8 @@
         "availableFunds",
         "lastUpdated",
         "status",
-        "links"
+        "links",
+        "transactionIntervals"
       ],
       "properties": {
         "accountNo": {
@@ -2275,6 +2276,14 @@
           ],
           "x-go-name": "Status",
           "example": "available"
+        },
+        "transactionIntervals": {
+          "description": "An array of date intervals indicating the coverage of the transaction data relating to the account.\nWill return a single element for accounts sourced from a single bank connection.\nWill return multiple elements in cases where there have been multiple PDF/CSV uploads for an account.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AccountTransactionInterval"
+          },
+          "x-go-name": "TransactionIntervals"
         },
         "type": {
           "description": "Type always \"account\".",
