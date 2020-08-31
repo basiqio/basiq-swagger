@@ -5293,7 +5293,8 @@
                 "description": "Application-specific error code, expressed as a string value.",
                 "type": "string",
                 "enum": [
-                  "unauthorized-access"
+                  "unauthorized-access",
+                  "invalid-authorization-token"
                 ],
                 "x-go-name": "Code",
                 "example": "unauthorized-access"
