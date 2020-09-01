@@ -1,0 +1,94 @@
+<!-- HTML for static distribution bundle build -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Swagger UI</title>
+    <link rel="stylesheet" type="text/css" href="./swagger-ui.css">
+    <link rel="icon" type="image/png" href="./favicon-32x32.png" sizes="32x32"/>
+    <link rel="icon" type="image/png" href="./favicon-16x16.png" sizes="16x16"/>
+    <style>
+        html {
+            box-sizing: border-box;
+            overflow: -moz-scrollbars-vertical;
+            overflow-y: scroll;
+        }
+
+        *,
+        *:before,
+        *:after {
+            box-sizing: inherit;
+        }
+
+        body {
+            margin: 0;
+            background: #fafafa;
+        }
+
+        .swagger-ui .topbar .download-url-wrapper input[type=text] {
+            border: 2px solid #77889a;
+        }
+
+        .swagger-ui .topbar .download-url-wrapper .download-url-button {
+            background: #77889a;
+        }
+
+        .swagger-ui img {
+            display: none;
+        }
+
+        .swagger-ui .topbar {
+            background-color: #EDEDED;
+            border-bottom: 2px solid #C1C1C1;
+        }
+
+        .swagger-ui .topbar .download-url-wrapper .select-label {
+            color: #3B4151;
+        }
+
+        .swagger-ui .topbar .topbar-wrapper {
+            background-repeat: no-repeat;
+            padding: 10px;
+            background-size: contain;
+            background-image: url("../logo.svg");
+        }
+    </style>
+</head>
+
+<body>
+<div id="swagger-ui"></div>
+
+<script src="./swagger-ui-bundle.js" charset="UTF-8"></script>
+<script src="./swagger-ui-standalone-preset.js" charset="UTF-8"></script>
+<script>
+    window.onload = function () {
+        // Begin Swagger UI call region
+        const ui = SwaggerUIBundle({
+            urls: {{swagger-versions}},
+            dom_id: '#swagger-ui',
+            deepLinking: true,
+            presets: [
+                SwaggerUIBundle.presets.apis,
+                SwaggerUIStandalonePreset
+            ],
+            plugins: [
+                SwaggerUIBundle.plugins.DownloadUrl
+            ],
+            layout: "StandaloneLayout",
+            requestInterceptor: (req) => {
+                req.headers.Authorization = "Bearer " + req.headers.Authorization;
+                return req
+            },
+            onComplete: function (e) {
+                version = document.querySelectorAll(".main .version")[0].innerHTML.replace(/(\<!--.*?\-->)/g, "").trim();
+                document.querySelectorAll(".info hgroup")[0].innerHTML += "<br/>" +
+                    '<a target="_blank" href="basiq-sdk-' + version + '.zip">Basiq Golang Client SDK (' + version + ')</a>';
+            }
+        });
+        // End Swagger UI call region
+
+        window.ui = ui;
+    }
+</script>
+</body>
+</html>
