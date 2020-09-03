@@ -10,6 +10,68 @@
   },
   "host": "au-api.basiq.io",
   "paths": {
+    "/token": {
+      "post": {
+        "description": "Use this endpoint to retrieve token that will be passed as authorization header for Basiq API",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Token"
+        ],
+        "operationId": "postToken",
+        "parameters": [
+          {
+            "name": "TokenPostRequest",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/TokenPostRequest"
+            }
+          },
+          {
+            "type": "string",
+            "name": "basiq-version",
+            "in": "header",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Authorization",
+            "in": "header",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Return token object that will be used for Basiq API requests. ",
+            "schema": {
+              "$ref": "#/definitions/TokenPostResponse"
+            }
+          },
+          "400": {
+            "description": "Returns error that server cannot or will not process the request due to something that is perceived to be a client error.",
+            "schema": {
+              "$ref": "#/definitions/BadRequestError"
+            }
+          },
+          "404": {
+            "description": "Returns error indicating that server can't find requested resource.",
+            "schema": {
+              "$ref": "#/definitions/NotFoundError"
+            }
+          },
+          "500": {
+            "description": "Returns error response code indicates that the server encountered an unexpected condition that prevented it from fulfilling the request.",
+            "schema": {
+              "$ref": "#/definitions/InternalServerError"
+            }
+          }
+        }
+      }
+    },
     "/jobs/{jobId}": {
       "get": {
         "description": "\u003cb\u003eTracking the status of a job\u003c/b\u003e\u003cbr/\u003e\nEvery step of the job has a status property that depicts its current state.\u003cbr/\u003e\n\u003cb\u003eFind out what steps have been completed\u003c/b\u003e\u003cbr/\u003e\nDepending on the job being executed, some jobs will have multiple steps which need to be executed, for e.g. refreshing a connection requires the following steps to be completed:\n\u003col\u003e\u003cli\u003eEstablish successful authentication with institution\u003c/li\u003e\n\u003cli\u003eFetch latest list of accounts\u003c/li\u003e\n\u003cli\u003eFetch latest list of transactions\u003c/li\u003e\u003c/ol\u003e\nYou can keep track of the steps that have been completed by observing the results array property. As each step is successfully completed, its status will be updated and a result object with the link to the affected resource will be present. In the event that a step has failed, the result object will contain an embedded error object.",
@@ -88,7 +150,7 @@
           }
         ],
         "responses": {
-          "200": {
+          "201": {
             "description": "Returns the user object if the creation succeeded.",
             "schema": {
               "$ref": "#/definitions/UserPostResponse"
@@ -738,14 +800,9 @@
             "required": true
           },
           {
-            "enum": [
-              "id",
-              "status",
-              "institution.id"
-            ],
             "type": "string",
             "x-go-name": "Filter",
-            "description": "Connections filters.",
+            "description": "Connections filters, id, status, institution.id. e.g institution.id.eq('AU00000')",
             "name": "filter",
             "in": "query"
           }
@@ -1959,9 +2016,6 @@
         "product"
       ],
       "properties": {
-        "meta": {
-          "$ref": "#/definitions/Meta"
-        },
         "product": {
           "description": "Product name.",
           "type": "string",
@@ -1986,13 +2040,13 @@
       ],
       "properties": {
         "product": {
-          "description": "As defined by the institution",
+          "description": "Identifies the Product as defined by institution",
           "type": "string",
           "x-go-name": "Product",
           "example": "Hooli Transaction"
         },
         "type": {
-          "description": "Values as defined in class object Account Type in Accounts",
+          "description": "Identifies the Account type defined by institution",
           "type": "string",
           "x-go-name": "AccountType",
           "example": "transaction"
@@ -2215,7 +2269,8 @@
         "availableFunds",
         "lastUpdated",
         "status",
-        "links"
+        "links",
+        "transactionIntervals"
       ],
       "properties": {
         "accountNo": {
@@ -2278,6 +2333,14 @@
           ],
           "x-go-name": "Status",
           "example": "available"
+        },
+        "transactionIntervals": {
+          "description": "An array of date intervals indicating the coverage of the transaction data relating to the account.\nWill return a single element for accounts sourced from a single bank connection.\nWill return multiple elements in cases where there have been multiple PDF/CSV uploads for an account.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AccountTransactionInterval"
+          },
+          "x-go-name": "TransactionIntervals"
         },
         "type": {
           "description": "Type always \"account\".",
@@ -2484,6 +2547,7 @@
       "type": "object",
       "required": [
         "assets",
+        "liabilities",
         "netPosition",
         "creditLimit",
         "regularIncome",
@@ -2492,11 +2556,11 @@
       ],
       "properties": {
         "assets": {
-          "description": "Total of account based liabilities split into credit and loan liabilities",
+          "description": "Total of cash based assets",
           "type": "string",
-          "x-go-name": "Liabilities",
+          "x-go-name": "Assets",
           "x-nullable": true,
-          "example": "-323946.20"
+          "example": "59983.11"
         },
         "creditLimit": {
           "description": "Total credit limit across all credit cards and overdrafts",
@@ -2510,6 +2574,13 @@
           "type": "string",
           "x-go-name": "Expenses",
           "example": "-12046.00"
+        },
+        "liabilities": {
+          "description": "Total of account based liabilities split into credit and loan liabilities",
+          "type": "string",
+          "x-go-name": "Liabilities",
+          "x-nullable": true,
+          "example": "-323946.20"
         },
         "netPosition": {
           "description": "Total assets minus total liabilities",
@@ -2763,7 +2834,7 @@
       },
       "x-go-package": "github.com/basiqio/connect-api/internal/affordability/internal/models"
     },
-    "ChangeHistoryData": {
+    "ChangeHistoryAffordabilityData": {
       "type": "object",
       "required": [
         "direction",
@@ -2802,7 +2873,7 @@
           "example": "Transfer Platnm Homeloan 346454"
         }
       },
-      "x-go-name": "LoanChangeHistoryData",
+      "x-go-name": "LoanChangeHistoryAffordabilityData",
       "x-go-package": "github.com/basiqio/connect-api/internal/affordability/internal/models"
     },
     "ChangeHistoryExpensesClass": {
@@ -2926,12 +2997,11 @@
           "$ref": "#/definitions/ConnectionProfile"
         },
         "status": {
-          "description": "Indicates the connection status, available only for SERVER_SCOPE.\nPossible values include:\n\u003cul\u003e\n\u003cli\u003eactive - the connection is valid (is working!) \u003c/li\u003e\n\u003cli\u003einvalid - the connection is no longer valid and requires the user to update their logon details \u003c/li\u003e\n\u003cli\u003edeleted - the connection is deleted\u003c/li\u003e\n\u003cli\u003einvalid - the connection is invalid\u003c/li\u003e\n\u003c/ul\u003e",
+          "description": "Indicates the connection status, available only for SERVER_SCOPE.\nPossible values include:\n\u003cul\u003e\n\u003cli\u003epending - the connection is in this status briefly until credentials are verified\u003c/li\u003e\n\u003cli\u003eactive - the connection is valid (is working!) and the credentials have been verified (the jobs steps will continue) \u003c/li\u003e\n\u003cli\u003einvalid -  the connection is no longer valid and requires the user to update their logon details. Invalid connections cannot refreshed until the password is updated. \u003c/li\u003e\n\u003c/ul\u003e",
           "type": "string",
           "enum": [
             "active",
             "pending",
-            "deleted",
             "invalid"
           ],
           "x-go-name": "Status",
@@ -3104,7 +3174,6 @@
           "enum": [
             "active",
             "pending",
-            "deleted",
             "invalid"
           ],
           "x-go-name": "Status",
@@ -4465,7 +4534,7 @@
           "description": "List of account transactions changes",
           "type": "array",
           "items": {
-            "$ref": "#/definitions/ChangeHistoryData"
+            "$ref": "#/definitions/ChangeHistoryAffordabilityData"
           },
           "x-go-name": "ChangeHistory"
         },
@@ -5293,7 +5362,8 @@
                 "description": "Application-specific error code, expressed as a string value.",
                 "type": "string",
                 "enum": [
-                  "unauthorized-access"
+                  "unauthorized-access",
+                  "invalid-authorization-token"
                 ],
                 "x-go-name": "Code",
                 "example": "unauthorized-access"
@@ -6556,6 +6626,46 @@
         }
       },
       "x-go-package": "github.com/basiqio/connect-institution-connector/internal/pkg/institutions/api"
+    },
+    "TokenPostRequest": {
+      "type": "object",
+      "properties": {
+        "scope": {
+          "description": "Valid scopes are: CLIENT_ACCESS and SERVER_ACCESS",
+          "type": "string",
+          "x-go-name": "Scope",
+          "example": "CLIENT_ACCESS"
+        }
+      },
+      "x-go-package": "github.com/basiqio/partners-lambda/internal/token/internal/models"
+    },
+    "TokenPostResponse": {
+      "type": "object",
+      "required": [
+        "access_token",
+        "token_type",
+        "expires_in"
+      ],
+      "properties": {
+        "access_token": {
+          "type": "string",
+          "x-go-name": "AccessToken",
+          "example": "access_token"
+        },
+        "expires_in": {
+          "description": "Expires in seconds",
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "ExpiresIn",
+          "example": 3600
+        },
+        "token_type": {
+          "type": "string",
+          "x-go-name": "TokenType",
+          "example": "Bearer"
+        }
+      },
+      "x-go-package": "github.com/basiqio/partners-lambda/internal/token/internal/models"
     }
   },
   "securityDefinitions": {
