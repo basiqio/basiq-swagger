@@ -2016,6 +2016,9 @@
         "product"
       ],
       "properties": {
+        "meta": {
+          "$ref": "#/definitions/Meta"
+        },
         "product": {
           "description": "Product name.",
           "type": "string",
@@ -2441,6 +2444,18 @@
     "AffordabilityPostRequest": {
       "type": "object",
       "properties": {
+        "accounts": {
+          "description": "The list of accounts to be included in the affordability otherwise all the user accounts will be included in the report",
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "x-go-name": "Accounts",
+          "example": [
+            "s55bf3",
+            "s55bf4"
+          ]
+        },
         "fromMonth": {
           "description": "The first/start month to be included in the affordability output e.g. \"fromMonth\":\"2019-05\". Resulting affordability resource will be based on data between fromMonth and toMonth.",
           "type": "string",
@@ -3418,9 +3433,49 @@
       },
       "x-go-package": "github.com/basiqio/connect-api/internal/affordability/internal/models"
     },
+    "ExpensesLinks": {
+      "type": "object",
+      "required": [
+        "self",
+        "accounts"
+      ],
+      "properties": {
+        "accounts": {
+          "description": "Links of accounts",
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "x-go-name": "Accounts",
+          "example": [
+            "https://au-api.basiq.io/users/25c8d1ed77/accounts/s55bf5",
+            "https://au-api.basiq.io/users/25c8d1ed77/accounts/s55bf4"
+          ]
+        },
+        "self": {
+          "description": "Link to the requested expenses resource",
+          "type": "string",
+          "x-go-name": "Self",
+          "example": "https://au-api.basiq.io/users/25c8d1ed77/expenses/s55bf4"
+        }
+      },
+      "x-go-package": "github.com/basiqio/connect-api/internal/affordability/internal/models"
+    },
     "ExpensesPostRequest": {
       "type": "object",
       "properties": {
+        "accounts": {
+          "description": "The list of accounts to be included in the expenses otherwise all the user accounts will be included in the report",
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "x-go-name": "Accounts",
+          "example": [
+            "s55bf3",
+            "s55bf4"
+          ]
+        },
         "fromMonth": {
           "description": "The first/start month to be included in the expense output e.g. \"fromMonth\":\"2019-05\". Resulting expenses resource will be based on data between fromMonth and toMonth.",
           "type": "string",
@@ -3473,6 +3528,9 @@
           "type": "string",
           "x-go-name": "ID",
           "example": "s55bf3"
+        },
+        "links": {
+          "$ref": "#/definitions/ExpensesLinks"
         },
         "loanInterests": {
           "$ref": "#/definitions/ClassResourceExpenses"
@@ -3576,9 +3634,22 @@
       "required": [
         "self",
         "income",
-        "expenses"
+        "expenses",
+        "accounts"
       ],
       "properties": {
+        "accounts": {
+          "description": "Links of accounts",
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "x-go-name": "Accounts",
+          "example": [
+            "https://au-api.basiq.io/users/25c8d1ed77/accounts/s55bf5",
+            "https://au-api.basiq.io/users/25c8d1ed77/accounts/s55bf4"
+          ]
+        },
         "expenses": {
           "description": "Link to the expenses",
           "type": "string",
@@ -3869,9 +3940,22 @@
     "IncomeLinks": {
       "type": "object",
       "required": [
-        "self"
+        "self",
+        "accounts"
       ],
       "properties": {
+        "accounts": {
+          "description": "Links of accounts",
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "x-go-name": "Accounts",
+          "example": [
+            "https://au-api.basiq.io/users/25c8d1ed77/accounts/s55bf5",
+            "https://au-api.basiq.io/users/25c8d1ed77/accounts/s55bf4"
+          ]
+        },
         "self": {
           "description": "Link to the requested income resource",
           "type": "string",
@@ -3884,6 +3968,18 @@
     "IncomePostRequest": {
       "type": "object",
       "properties": {
+        "accounts": {
+          "description": "The list of accounts to be included in the income otherwise all the user accounts will be included in the report",
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "x-go-name": "Accounts",
+          "example": [
+            "s55bf3",
+            "s55bf4"
+          ]
+        },
         "fromMonth": {
           "description": "The first/start month to be included in the affordability output e.g. \"fromMonth\":\"2019-05\". Resulting income resource will be based on data between fromMonth and toMonth",
           "type": "string",
