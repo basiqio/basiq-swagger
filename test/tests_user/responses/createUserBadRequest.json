@@ -1,0 +1,13 @@
+{
+  "type": "list",
+  "correlationId": "ef351da5-12b1-4ba0-be8c-59d9b2e388e8",
+  "data": [
+    {
+      "type": "error",
+      "code": "parameter-not-supplied",
+      "title": "Required parameter not supplied",
+      "detail": "One of 'email' or 'mobile' is required.",
+      "source": {}
+    }
+  ]
+}
