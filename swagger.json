@@ -3598,6 +3598,9 @@
                 "x-go-name": "Detail",
                 "example": "Access to this resource is forbidden."
               },
+              "source": {
+                "$ref": "#/definitions/Source"
+              },
               "title": {
                 "description": "Title of the error",
                 "type": "string",
