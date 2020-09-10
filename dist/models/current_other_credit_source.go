@@ -23,8 +23,7 @@ type CurrentOtherCreditSource struct {
 
 	// Most recent irregular income payment date
 	// Required: true
-	// Format: date-time
-	Date *strfmt.DateTime `json:"date"`
+	Date *string `json:"date"`
 
 	// Description of the other credit series e.g. 'former regular income'
 	// Required: true
@@ -65,10 +64,6 @@ func (m *CurrentOtherCreditSource) validateAmount(formats strfmt.Registry) error
 func (m *CurrentOtherCreditSource) validateDate(formats strfmt.Registry) error {
 
 	if err := validate.Required("date", "body", m.Date); err != nil {
-		return err
-	}
-
-	if err := validate.FormatOf("date", "body", "date-time", m.Date.String(), formats); err != nil {
 		return err
 	}
 

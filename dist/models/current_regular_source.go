@@ -23,8 +23,7 @@ type CurrentRegularSource struct {
 
 	// Most recent regular income payment date
 	// Required: true
-	// Format: date-time
-	Date *strfmt.DateTime `json:"date"`
+	Date *string `json:"date"`
 
 	// Predicted next occurrence for regular income (note: where the pattern has recently ceased there would be no predicted next occurrence)
 	// Required: true
@@ -65,10 +64,6 @@ func (m *CurrentRegularSource) validateAmount(formats strfmt.Registry) error {
 func (m *CurrentRegularSource) validateDate(formats strfmt.Registry) error {
 
 	if err := validate.Required("date", "body", m.Date); err != nil {
-		return err
-	}
-
-	if err := validate.FormatOf("date", "body", "date-time", m.Date.String(), formats); err != nil {
 		return err
 	}
 

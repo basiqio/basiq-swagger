@@ -24,8 +24,7 @@ type ConnectionsData struct {
 	ID *string `json:"id"`
 
 	// Connection last used date, available only for SERVER_SCOPE.
-	// Format: date-time
-	LastUsed strfmt.DateTime `json:"lastUsed,omitempty"`
+	LastUsed string `json:"lastUsed,omitempty"`
 
 	// Connection status, available only for SERVER_SCOPE.
 	// Enum: [active pending invalid]
@@ -49,10 +48,6 @@ func (m *ConnectionsData) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateLastUsed(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -81,19 +76,6 @@ func (m *ConnectionsData) Validate(formats strfmt.Registry) error {
 func (m *ConnectionsData) validateID(formats strfmt.Registry) error {
 
 	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ConnectionsData) validateLastUsed(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.LastUsed) { // not required
-		return nil
-	}
-
-	if err := validate.FormatOf("lastUsed", "body", "date-time", m.LastUsed.String(), formats); err != nil {
 		return err
 	}
 

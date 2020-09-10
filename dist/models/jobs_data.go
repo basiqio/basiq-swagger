@@ -23,8 +23,7 @@ type JobsData struct {
 
 	// The date time when the job was created.
 	// Required: true
-	// Format: date-time
-	Created *strfmt.DateTime `json:"created"`
+	Created *string `json:"created"`
 
 	// A string that uniquely identifies the job.
 	// Required: true
@@ -39,8 +38,7 @@ type JobsData struct {
 
 	// The date time when the job was last updated.
 	// Required: true
-	// Format: date-time
-	Updated *strfmt.DateTime `json:"updated"`
+	Updated *string `json:"updated"`
 
 	// institution
 	// Required: true
@@ -90,10 +88,6 @@ func (m *JobsData) validateCreated(formats strfmt.Registry) error {
 		return err
 	}
 
-	if err := validate.FormatOf("created", "body", "date-time", m.Created.String(), formats); err != nil {
-		return err
-	}
-
 	return nil
 }
 
@@ -134,10 +128,6 @@ func (m *JobsData) validateSteps(formats strfmt.Registry) error {
 func (m *JobsData) validateUpdated(formats strfmt.Registry) error {
 
 	if err := validate.Required("updated", "body", m.Updated); err != nil {
-		return err
-	}
-
-	if err := validate.FormatOf("updated", "body", "date-time", m.Updated.String(), formats); err != nil {
 		return err
 	}
 

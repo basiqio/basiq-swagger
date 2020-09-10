@@ -1,0 +1,9 @@
+{
+  "type": "list",
+  "count": 0,
+  "size": 0,
+  "data": [],
+  "links": {
+    "self": "https://au-api.basiq.io/users/dd41fa66-32fc-4e01-8a1f-3b9402414071/transactions"
+  }
+}

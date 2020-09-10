@@ -22,16 +22,15 @@ type GetConnectionLinks struct {
 	// Accounts reference url.
 	Accounts string `json:"accounts,omitempty"`
 
+	// User reference url.
+	Institution string `json:"institution,omitempty"`
+
 	// Connection self reference url.
 	// Required: true
 	Self *string `json:"self"`
 
 	// Transactions reference url.
 	Transactions string `json:"transactions,omitempty"`
-
-	// User reference url.
-	// Required: true
-	User *string `json:"user"`
 }
 
 // Validate validates this get connection links
@@ -39,10 +38,6 @@ func (m *GetConnectionLinks) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateSelf(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateUser(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -55,15 +50,6 @@ func (m *GetConnectionLinks) Validate(formats strfmt.Registry) error {
 func (m *GetConnectionLinks) validateSelf(formats strfmt.Registry) error {
 
 	if err := validate.Required("self", "body", m.Self); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *GetConnectionLinks) validateUser(formats strfmt.Registry) error {
-
-	if err := validate.Required("user", "body", m.User); err != nil {
 		return err
 	}
 

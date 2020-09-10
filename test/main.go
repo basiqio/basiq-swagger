@@ -9,6 +9,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/onsi/gomega"
 	"io/ioutil"
+	"os"
 	"testing"
 	"time"
 )
@@ -31,7 +32,11 @@ var TokenHolder InMemoryToken
 func init() {
 	TokenHolder = InMemoryToken{}
 	Cfg = Config{}
-	ReadFile(&Cfg)
+	err := ReadFile(&Cfg)
+	if err != nil {
+		fmt.Printf("Error initializing tests. Error: %s", err)
+		os.Exit(2)
+	}
 	Client = client2.New(httptransport.New(client2.DefaultHost, client2.DefaultBasePath, nil), strfmt.Default)
 }
 

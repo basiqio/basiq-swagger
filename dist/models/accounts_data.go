@@ -42,8 +42,7 @@ type AccountsData struct {
 
 	// Account last updated date and time.
 	// Required: true
-	// Format: date-time
-	LastUpdated *strfmt.DateTime `json:"lastUpdated"`
+	LastUpdated *string `json:"lastUpdated"`
 
 	// Account name.
 	// Required: true
@@ -179,10 +178,6 @@ func (m *AccountsData) validateID(formats strfmt.Registry) error {
 func (m *AccountsData) validateLastUpdated(formats strfmt.Registry) error {
 
 	if err := validate.Required("lastUpdated", "body", m.LastUpdated); err != nil {
-		return err
-	}
-
-	if err := validate.FormatOf("lastUpdated", "body", "date-time", m.LastUpdated.String(), formats); err != nil {
 		return err
 	}
 

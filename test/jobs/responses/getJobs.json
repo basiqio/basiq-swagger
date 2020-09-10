@@ -1,0 +1,52 @@
+{
+  "type": "list",
+  "size": 1,
+  "data": [
+    {
+      "type": "job",
+      "id": "b1ef29c9-3f8c-45c9-a823-d819605989c6",
+      "created": "2020-09-09T11:06:52Z",
+      "updated": "2020-09-09T11:07:39Z",
+      "institution": {
+        "type": "institution",
+        "id": "AU00000",
+        "links": {
+          "self": "https://au-api.basiq.io/institutions/AU00000"
+        }
+      },
+      "steps": [
+        {
+          "title": "verify-credentials",
+          "status": "success",
+          "result": {
+            "type": "link",
+            "url": "/users/8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5/connections/64011b56-988a-4c2c-bfca-16c836cec23f"
+          }
+        },
+        {
+          "title": "retrieve-accounts",
+          "status": "success",
+          "result": {
+            "type": "link",
+            "url": "/users/8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5/accounts?filter=institution.id.eq('AU00000')"
+          }
+        },
+        {
+          "title": "retrieve-transactions",
+          "status": "success",
+          "result": {
+            "type": "link",
+            "url": "/users/8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5/transactions?filter=institution.id.eq('AU00000')"
+          }
+        }
+      ],
+      "links": {
+        "self": "https://au-api.basiq.io/jobs/b1ef29c9-3f8c-45c9-a823-d819605989c6",
+        "source": "https://au-api.basiq.io/users/8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5/connections/64011b56-988a-4c2c-bfca-16c836cec23f"
+      }
+    }
+  ],
+  "links": {
+    "self": "https://au-api.basiq.io/users/8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5/jobs"
+  }
+}

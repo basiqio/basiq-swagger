@@ -19,8 +19,7 @@ type AuthLinksPostResponseResource struct {
 
 	// The date time of auth link expiry.
 	// Required: true
-	// Format: date-time
-	ExpiresAt *strfmt.DateTime `json:"expiresAt"`
+	ExpiresAt *string `json:"expiresAt"`
 
 	// A user's mobile phone, used as for authentication.
 	// Required: true
@@ -71,10 +70,6 @@ func (m *AuthLinksPostResponseResource) Validate(formats strfmt.Registry) error 
 func (m *AuthLinksPostResponseResource) validateExpiresAt(formats strfmt.Registry) error {
 
 	if err := validate.Required("expiresAt", "body", m.ExpiresAt); err != nil {
-		return err
-	}
-
-	if err := validate.FormatOf("expiresAt", "body", "date-time", m.ExpiresAt.String(), formats); err != nil {
 		return err
 	}
 

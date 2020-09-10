@@ -26,8 +26,7 @@ type ConnectionGetResponseResource struct {
 	ID *string `json:"id"`
 
 	// UTC Date and Time of when the connection was last used, in RFC 3339 format, available only for SERVER_SCOPE.
-	// Format: date-time
-	LastUsed strfmt.DateTime `json:"lastUsed,omitempty"`
+	LastUsed string `json:"lastUsed,omitempty"`
 
 	// Indicates the connection status, available only for SERVER_SCOPE.
 	// Possible values include:
@@ -66,10 +65,6 @@ func (m *ConnectionGetResponseResource) Validate(formats strfmt.Registry) error 
 		res = append(res, err)
 	}
 
-	if err := m.validateLastUsed(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.validateStatus(formats); err != nil {
 		res = append(res, err)
 	}
@@ -103,19 +98,6 @@ func (m *ConnectionGetResponseResource) Validate(formats strfmt.Registry) error 
 func (m *ConnectionGetResponseResource) validateID(formats strfmt.Registry) error {
 
 	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ConnectionGetResponseResource) validateLastUsed(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.LastUsed) { // not required
-		return nil
-	}
-
-	if err := validate.FormatOf("lastUsed", "body", "date-time", m.LastUsed.String(), formats); err != nil {
 		return err
 	}
 

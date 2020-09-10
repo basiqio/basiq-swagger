@@ -58,8 +58,7 @@ type AccountResponseResource struct {
 
 	// Timestamp of last update, UTC, RFC 3339 format e.g. "2017-09-28T13:39:33Z"
 	// Required: true
-	// Format: date-time
-	LastUpdated *strfmt.DateTime `json:"lastUpdated"`
+	LastUpdated *string `json:"lastUpdated"`
 
 	// Account name as defined by institution or user.
 	// Required: true
@@ -235,10 +234,6 @@ func (m *AccountResponseResource) validateInstitution(formats strfmt.Registry) e
 func (m *AccountResponseResource) validateLastUpdated(formats strfmt.Registry) error {
 
 	if err := validate.Required("lastUpdated", "body", m.LastUpdated); err != nil {
-		return err
-	}
-
-	if err := validate.FormatOf("lastUpdated", "body", "date-time", m.LastUpdated.String(), formats); err != nil {
 		return err
 	}
 

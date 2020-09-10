@@ -36,8 +36,7 @@ type AffordabilityResponse struct {
 
 	// Date the report was generated.
 	// Required: true
-	// Format: date-time
-	GeneratedDate *strfmt.DateTime `json:"generatedDate"`
+	GeneratedDate *string `json:"generatedDate"`
 
 	// Uniquely identifies the affordability report.
 	// Required: true
@@ -147,10 +146,6 @@ func (m *AffordabilityResponse) validateFromMonth(formats strfmt.Registry) error
 func (m *AffordabilityResponse) validateGeneratedDate(formats strfmt.Registry) error {
 
 	if err := validate.Required("generatedDate", "body", m.GeneratedDate); err != nil {
-		return err
-	}
-
-	if err := validate.FormatOf("generatedDate", "body", "date-time", m.GeneratedDate.String(), formats); err != nil {
 		return err
 	}
 

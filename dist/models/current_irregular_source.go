@@ -23,8 +23,7 @@ type CurrentIrregularSource struct {
 
 	// Most recent irregular income payment date
 	// Required: true
-	// Format: date-time
-	Date *strfmt.DateTime `json:"date"`
+	Date *string `json:"date"`
 }
 
 // Validate validates this current irregular source
@@ -57,10 +56,6 @@ func (m *CurrentIrregularSource) validateAmount(formats strfmt.Registry) error {
 func (m *CurrentIrregularSource) validateDate(formats strfmt.Registry) error {
 
 	if err := validate.Required("date", "body", m.Date); err != nil {
-		return err
-	}
-
-	if err := validate.FormatOf("date", "body", "date-time", m.Date.String(), formats); err != nil {
 		return err
 	}
 

@@ -23,10 +23,6 @@ type AcccountsResponseResource struct {
 	// Required: true
 	Data []*AccountResponseResource `json:"data"`
 
-	// Size of the all the accounts.
-	// Required: true
-	Size *int64 `json:"size"`
-
 	// Type of the response, always "list".
 	// Required: true
 	Type *string `json:"type"`
@@ -41,10 +37,6 @@ func (m *AcccountsResponseResource) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateData(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateSize(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -82,15 +74,6 @@ func (m *AcccountsResponseResource) validateData(formats strfmt.Registry) error 
 			}
 		}
 
-	}
-
-	return nil
-}
-
-func (m *AcccountsResponseResource) validateSize(formats strfmt.Registry) error {
-
-	if err := validate.Required("size", "body", m.Size); err != nil {
-		return err
 	}
 
 	return nil
