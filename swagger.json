@@ -2173,7 +2173,6 @@
         "lastUpdated": {
           "description": "Timestamp of last update, UTC, RFC 3339 format e.g. \"2017-09-28T13:39:33Z\"",
           "type": "string",
-          "format": "date-time",
           "x-go-name": "LastUpdated",
           "example": "2019-09-28T13:39:33Z"
         },
@@ -2314,7 +2313,6 @@
         "lastUpdated": {
           "description": "Account last updated date and time.",
           "type": "string",
-          "format": "date-time",
           "x-go-name": "LastUpdated",
           "example": "2017-09-28T11:15:09.756Z"
         },
@@ -2358,7 +2356,6 @@
       "type": "object",
       "required": [
         "type",
-        "size",
         "data",
         "links"
       ],
@@ -2373,13 +2370,6 @@
         },
         "links": {
           "$ref": "#/definitions/ResourceLink"
-        },
-        "size": {
-          "description": "Size of the all the accounts.",
-          "type": "integer",
-          "format": "int64",
-          "x-go-name": "Size",
-          "example": 100
         },
         "type": {
           "description": "Type of the response, always \"list\".",
@@ -2524,7 +2514,6 @@
         "generatedDate": {
           "description": "Date the report was generated.",
           "type": "string",
-          "format": "date-time",
           "x-go-name": "GeneratedDate",
           "example": "2020-03-26T06:56:44"
         },
@@ -2673,7 +2662,6 @@
         "expiresAt": {
           "description": "The date time of auth link expiry.",
           "type": "string",
-          "format": "date-time",
           "x-go-name": "ExpiresAt",
           "example": "2019-11-21T04:08:50Z"
         },
@@ -2714,7 +2702,6 @@
         "expiresAt": {
           "description": "The date time of auth link expiry.",
           "type": "string",
-          "format": "date-time",
           "x-go-name": "ExpiresAt",
           "example": "2019-11-21T04:08:50Z"
         },
@@ -2931,7 +2918,6 @@
         "date": {
           "description": "Date income received",
           "type": "string",
-          "format": "date-time",
           "x-go-name": "Date",
           "example": "2018-10-13T20:03:37"
         },
@@ -3001,7 +2987,6 @@
         "lastUsed": {
           "description": "UTC Date and Time of when the connection was last used, in RFC 3339 format, available only for SERVER_SCOPE.",
           "type": "string",
-          "format": "date-time",
           "x-go-name": "LastUsed",
           "example": "2020-06-22T11:15:09Z"
         },
@@ -3176,7 +3161,6 @@
         "lastUsed": {
           "description": "Connection last used date, available only for SERVER_SCOPE.",
           "type": "string",
-          "format": "date-time",
           "x-go-name": "LastUsed",
           "example": "2020-06-22T11:15:09Z"
         },
@@ -3330,7 +3314,6 @@
         "date": {
           "description": "Most recent irregular income payment date",
           "type": "string",
-          "format": "date-time",
           "x-go-name": "Date",
           "example": "2018-10-13T20:03:37"
         }
@@ -3354,7 +3337,6 @@
         "date": {
           "description": "Most recent irregular income payment date",
           "type": "string",
-          "format": "date-time",
           "x-go-name": "Date",
           "example": "2019-10-29T00:00:00"
         },
@@ -3384,7 +3366,6 @@
         "date": {
           "description": "Most recent regular income payment date",
           "type": "string",
-          "format": "date-time",
           "x-go-name": "Date",
           "example": "2018-11-30T09:23:37"
         },
@@ -4298,7 +4279,6 @@
         "created": {
           "description": "The date time when the job was created.",
           "type": "string",
-          "format": "date-time",
           "x-go-name": "Created",
           "example": "2020-06-10T09:59:00Z"
         },
@@ -4328,7 +4308,6 @@
         "updated": {
           "description": "The date time when the job was last updated.",
           "type": "string",
-          "format": "date-time",
           "x-go-name": "Updated",
           "example": "2020-06-10T09:59:00Z"
         }
@@ -4350,7 +4329,6 @@
         "created": {
           "description": "The date time when the job was created.",
           "type": "string",
-          "format": "date-time",
           "x-go-name": "Created",
           "example": "2020-06-10T09:59:00Z"
         },
@@ -4383,7 +4361,6 @@
         "updated": {
           "description": "The date time when the job was last updated.",
           "type": "string",
-          "format": "date-time",
           "x-go-name": "Updated",
           "example": "2020-06-10T09:59:00Z"
         }
