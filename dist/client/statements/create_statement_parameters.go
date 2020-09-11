@@ -65,7 +65,7 @@ type CreateStatementParams struct {
 
 	*/
 	InstitutionID string
-	/*Statements
+	/*Statement
 	  Official PDF bank statement for the specified institution to be uploaded. Csv files conforming to our file specification are also accepted
 
 	*/
@@ -122,15 +122,15 @@ func (o *CreateStatementParams) SetInstitutionID(institutionID string) {
 	o.InstitutionID = institutionID
 }
 
-// WithStatement adds the statements to the create statement params
-func (o *CreateStatementParams) WithStatement(statements runtime.NamedReadCloser) *CreateStatementParams {
-	o.SetStatement(statements)
+// WithStatement adds the statement to the create statement params
+func (o *CreateStatementParams) WithStatement(statement runtime.NamedReadCloser) *CreateStatementParams {
+	o.SetStatement(statement)
 	return o
 }
 
-// SetStatement adds the statements to the create statement params
-func (o *CreateStatementParams) SetStatement(statements runtime.NamedReadCloser) {
-	o.Statement = statements
+// SetStatement adds the statement to the create statement params
+func (o *CreateStatementParams) SetStatement(statement runtime.NamedReadCloser) {
+	o.Statement = statement
 }
 
 // WithUserID adds the userID to the create statement params
@@ -161,8 +161,8 @@ func (o *CreateStatementParams) WriteToRequest(r runtime.ClientRequest, reg strf
 		}
 	}
 
-	// form file param statements
-	if err := r.SetFileParam("statements", o.Statement); err != nil {
+	// form file param statement
+	if err := r.SetFileParam("statement", o.Statement); err != nil {
 		return err
 	}
 

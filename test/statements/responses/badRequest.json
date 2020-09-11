@@ -1,0 +1,12 @@
+{
+  "type": "list",
+  "correlationId": "0d68bb88-d40c-4c5f-8416-c07021f07123",
+  "data": [
+    {
+      "type": "error",
+      "code": "invalid-content",
+      "title": "Invalid request content",
+      "detail": "Statement is not valid"
+    }
+  ]
+}
