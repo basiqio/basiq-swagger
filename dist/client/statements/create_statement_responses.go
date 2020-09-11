@@ -75,20 +75,20 @@ func NewCreateStatementAccepted() *CreateStatementAccepted {
 Returns a job details if a valid job ID was provided.
 */
 type CreateStatementAccepted struct {
-	Payload *models.JobData
+	Payload *models.StatementUploadResource
 }
 
 func (o *CreateStatementAccepted) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}/statements][%d] createStatementAccepted  %+v", 202, o.Payload)
 }
 
-func (o *CreateStatementAccepted) GetPayload() *models.JobData {
+func (o *CreateStatementAccepted) GetPayload() *models.StatementUploadResource {
 	return o.Payload
 }
 
 func (o *CreateStatementAccepted) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.JobData)
+	o.Payload = new(models.StatementUploadResource)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

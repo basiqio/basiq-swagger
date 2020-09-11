@@ -1605,7 +1605,7 @@
             "type": "file",
             "x-go-name": "Statement",
             "description": "Official PDF bank statement for the specified institution to be uploaded. Csv files conforming to our file specification are also accepted",
-            "name": "statements",
+            "name": "statement",
             "in": "formData",
             "required": true
           }
@@ -1614,7 +1614,7 @@
           "202": {
             "description": "Returns a job details if a valid job ID was provided.",
             "schema": {
-              "$ref": "#/definitions/JobData"
+              "$ref": "#/definitions/StatementUploadResource"
             }
           },
           "400": {
@@ -5128,6 +5128,34 @@
           "type": "string",
           "x-go-name": "Pointer",
           "example": "users/userId"
+        }
+      },
+      "x-go-package": "github.com/basiqio/connect-api/internal/connect/internal/models"
+    },
+    "StatementUploadResource": {
+      "description": "Object containing details for statement upload.",
+      "type": "object",
+      "title": "StatementUploadResource",
+      "required": [
+        "type",
+        "id",
+        "links"
+      ],
+      "properties": {
+        "id": {
+          "description": "Job identification.",
+          "type": "string",
+          "x-go-name": "ID",
+          "example": "29523951"
+        },
+        "links": {
+          "$ref": "#/definitions/ResourceLink"
+        },
+        "type": {
+          "description": "Type, always \"job\".",
+          "type": "string",
+          "x-go-name": "Type",
+          "example": "job"
         }
       },
       "x-go-package": "github.com/basiqio/connect-api/internal/connect/internal/models"
