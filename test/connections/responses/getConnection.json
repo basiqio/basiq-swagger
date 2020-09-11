@@ -1,0 +1,125 @@
+{
+  "type": "connection",
+  "id": "64011b56-988a-4c2c-bfca-16c836cec23f",
+  "status": "active",
+  "lastUsed": "2020-09-09T11:06:59Z",
+  "profile": {
+    "fullName": "Max Wentworth-Smith",
+    "firstName": "Max",
+    "lastName": "Wentworth-Smith",
+    "middleName": "",
+    "phoneNumbers": [
+      "040534555 ### 991"
+    ],
+    "emailAddresses": [
+      "maxsmith@gmail.com"
+    ],
+    "physicalAddresses": [
+      {
+        "addressLine1": "91 Fisher Road",
+        "addressLine2": null,
+        "addressLine3": null,
+        "postcode": "2099",
+        "city": "Dee Why",
+        "state": "NSW",
+        "country": "Australia",
+        "countryCode": "AU",
+        "formattedAddress": "13/91 Fisher Rd, Dee Why NSW 2099, Australia"
+      }
+    ]
+  },
+  "institution": {
+    "type": "institution",
+    "id": "AU00000",
+    "links": {
+      "self": "https://au-api.basiq.io/institutions/AU00000"
+    }
+  },
+  "accounts": {
+    "type": "list",
+    "data": [
+      {
+        "type": "account",
+        "id": "14aa946c-6f87-44b7-bab9-d192d6261471",
+        "accountNo": "3",
+        "name": "Savings 123890",
+        "currency": "AUD",
+        "class": {
+          "type": "savings",
+          "product": "Hooli Saver"
+        },
+        "balance": "38383.73",
+        "availableFunds": "38383.73",
+        "lastUpdated": "2020-09-09T11:07:04Z",
+        "status": "available",
+        "links": {
+          "self": "https://au-api.basiq.io/users/8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5/accounts/14aa946c-6f87-44b7-bab9-d192d6261471",
+          "transactions": "https://au-api.basiq.io/users/8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5/transactions?filter=account.id.eq('14aa946c-6f87-44b7-bab9-d192d6261471')"
+        }
+      },
+      {
+        "type": "account",
+        "id": "1dd139d5-c88c-446b-b6df-1d6252db4d59",
+        "accountNo": "4",
+        "name": "Mortgage 746833",
+        "currency": "AUD",
+        "class": {
+          "type": "mortgage",
+          "product": "Hooli Home Loan"
+        },
+        "balance": "-299292.25",
+        "availableFunds": "100707.75",
+        "lastUpdated": "2020-09-09T11:07:04Z",
+        "status": "available",
+        "links": {
+          "self": "https://au-api.basiq.io/users/8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5/accounts/1dd139d5-c88c-446b-b6df-1d6252db4d59",
+          "transactions": "https://au-api.basiq.io/users/8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5/transactions?filter=account.id.eq('1dd139d5-c88c-446b-b6df-1d6252db4d59')"
+        }
+      },
+      {
+        "type": "account",
+        "id": "9a66a1fb-a93a-47ff-abb0-84814d3aa229",
+        "accountNo": "1",
+        "name": "Credit Card 13000",
+        "currency": "AUD",
+        "class": {
+          "type": "credit-card",
+          "product": "Hooli Visa"
+        },
+        "balance": "-6081.50",
+        "availableFunds": "13918.50",
+        "lastUpdated": "2020-09-09T11:07:04Z",
+        "status": "available",
+        "links": {
+          "self": "https://au-api.basiq.io/users/8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5/accounts/9a66a1fb-a93a-47ff-abb0-84814d3aa229",
+          "transactions": "https://au-api.basiq.io/users/8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5/transactions?filter=account.id.eq('9a66a1fb-a93a-47ff-abb0-84814d3aa229')"
+        }
+      },
+      {
+        "type": "account",
+        "id": "9b1f13ca-56fa-4c7e-8688-2e2eab896acc",
+        "accountNo": "2",
+        "name": "Transaction 14000",
+        "currency": "AUD",
+        "class": {
+          "type": "transaction",
+          "product": "Hooli Transaction"
+        },
+        "balance": "34076.00",
+        "availableFunds": "34076.00",
+        "lastUpdated": "2020-09-09T11:07:04Z",
+        "status": "available",
+        "links": {
+          "self": "https://au-api.basiq.io/users/8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5/accounts/9b1f13ca-56fa-4c7e-8688-2e2eab896acc",
+          "transactions": "https://au-api.basiq.io/users/8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5/transactions?filter=account.id.eq('9b1f13ca-56fa-4c7e-8688-2e2eab896acc')"
+        }
+      }
+    ]
+  },
+  "links": {
+    "self": "https://au-api.basiq.io/users/8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5/connections/64011b56-988a-4c2c-bfca-16c836cec23f",
+    "user": "https://au-api.basiq.io/users/8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5",
+    "accounts": "https://au-api.basiq.io/users/8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5/accounts?filter=institution.id.eq('AU00000')",
+    "transactions": "https://au-api.basiq.io/users/8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5/transactions?filter=institution.id.eq('AU00000')"
+  }
+}

@@ -51,7 +51,7 @@ type ConnectionGetResponseResource struct {
 
 	// links
 	// Required: true
-	Links *GetConnectionLinks `json:"links"`
+	Links *GetConnectionsLinks `json:"links"`
 
 	// profile
 	Profile *ConnectionProfile `json:"profile,omitempty"`

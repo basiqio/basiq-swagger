@@ -1,0 +1,27 @@
+{
+  "type": "list",
+  "data": [
+    {
+      "type": "connection",
+      "id": "64011b56-988a-4c2c-bfca-16c836cec23f",
+      "status": "active",
+      "lastUsed": "2020-09-09T11:06:59Z",
+      "institution": {
+        "type": "institution",
+        "id": "AU00000",
+        "links": {
+          "self": "https://au-api.basiq.io/institutions/AU00000"
+        }
+      },
+      "links": {
+        "self": "https://au-api.basiq.io/users/8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5/connections/64011b56-988a-4c2c-bfca-16c836cec23f",
+        "accounts": "https://au-api.basiq.io/users/8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5/accounts?filter=institution.id.eq('AU00000')",
+        "transactions": "https://au-api.basiq.io/users/8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5/transactions?filter=institution.id.eq('AU00000')",
+        "institution": "https://au-api.basiq.io/institutions/AU00000"
+      }
+    }
+  ],
+  "links": {
+    "self": "https://au-api.basiq.io/users/8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5/connections"
+  }
+}

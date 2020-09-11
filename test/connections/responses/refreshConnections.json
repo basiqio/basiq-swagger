@@ -1,0 +1,12 @@
+{
+  "type": "list",
+  "data": [
+    {
+      "type": "job",
+      "id": "92791915-6f34-4895-80e5-9ea1a2273ec6",
+      "links": {
+        "self": "https://au-api.basiq.io/jobs/92791915-6f34-4895-80e5-9ea1a2273ec6"
+      }
+    }
+  ]
+}
