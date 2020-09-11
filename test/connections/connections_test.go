@@ -186,6 +186,52 @@ func TestUpdateConnection(t *testing.T) {
 	test.AssertJson(t, s, string(e))
 }
 
+func TestPendingConnection(t *testing.T) {
+	token := httptransport.BearerToken(test.TokenHolder.GetToken(t))
+
+	userID := setupUser(t)
+	defer cleanupUser(t, userID)
+
+	loginID := "Wentworth-Smith"
+	password := "whislter"
+	institutionID := "AU00000"
+	institution := models.InstitutionModel{ID: &institutionID}
+
+	connCreateParams := &connections.PostConnectionParams{
+		UserID:                  userID,
+		UserConnectionsPostData: &models.UserConnectionsPostData{Password: &password, LoginID: &loginID, Institution: &institution},
+		Context:                 context.TODO(),
+	}
+
+	_, err := test.Client.Connections.PostConnection(connCreateParams, token)
+
+	if err != nil {
+		t.Fatalf("Error posting connection, Error: %v", err)
+	}
+
+	// get connections
+	getConnParams := &connections.GetConnectionsParams{UserID: userID,
+		Context: context.TODO(),
+	}
+
+	connectionsRsp, err := test.Client.Connections.GetConnections(getConnParams, httptransport.BearerToken(test.TokenHolder.GetToken(t)))
+
+	e, err := json.Marshal(connectionsRsp.GetPayload())
+	if err != nil {
+		t.Fatalf("Error: %v", err)
+	}
+
+	// pending connection
+	s := strings.Replace(test.GetJsonResponse("./responses/getNewPostedConnection.json", t),
+		"0e14a8f3-7e86-4c4b-b90c-8c315c0e1500",
+		*connectionsRsp.GetPayload().ConnectionsData[0].ID, 2)
+	s = strings.Replace(s, "81a8babb-4a94-4cb5-a3e6-e4b3ce434e05", userID, 4)
+	s = strings.Replace(s, "2020-09-11T06:28:39Z", connectionsRsp.GetPayload().ConnectionsData[0].LastUsed, 1)
+
+	test.AssertJson(t, s, string(e))
+
+}
+
 func TestDeleteConnection(t *testing.T) {
 	token := httptransport.BearerToken(test.TokenHolder.GetToken(t))
 
