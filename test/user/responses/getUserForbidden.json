@@ -1,0 +1,13 @@
+{
+  "type": "list",
+  "correlationId": "bf4ac637-4e5c-4c87-aa1c-6158beb129a3",
+  "data": [
+    {
+      "type": "error",
+      "code": "access-denied",
+      "title": "Access denied.",
+      "detail": "Token has expired",
+      "source": null
+    }
+  ]
+}

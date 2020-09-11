@@ -3661,8 +3661,7 @@
       "type": "object",
       "title": "GetConnectionLinks",
       "required": [
-        "self",
-        "user"
+        "self"
       ],
       "properties": {
         "accounts": {
@@ -3683,11 +3682,11 @@
           "x-go-name": "Transactions",
           "example": "https://au-api.basiq.io/users/cd6fbd92/transactions?filter=institution.id.eq('AU00000')"
         },
-        "user": {
+        "institution": {
           "description": "User reference url.",
           "type": "string",
-          "x-go-name": "User",
-          "example": "https://au-api.basiq.io/users/cd6fbd92"
+          "x-go-name": "Institution",
+          "example": "https://au-api.basiq.io/institutions/AU00000"
         }
       },
       "x-go-package": "github.com/basiqio/connect-api/internal/connect/internal/models"

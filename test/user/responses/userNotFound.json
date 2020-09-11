@@ -1,0 +1,12 @@
+{
+  "type": "list",
+  "correlationId": "886fee38-a7a7-472f-82d1-18f2e00f07b6",
+  "data": [
+    {
+      "type": "error",
+      "code": "resource-not-found",
+      "title": "Requested resource is not found",
+      "detail": "Requested user does not exist."
+    }
+  ]
+}

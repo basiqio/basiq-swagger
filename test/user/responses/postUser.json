@@ -1,0 +1,9 @@
+{
+  "type": "user",
+  "id": "86c79d8c-5033-46b3-b16e-d6cee4200fb3",
+  "email": "gavin1224@hooli.com",
+  "mobile": "+61410888999",
+  "links": {
+    "self": "https://au-api.basiq.io/users/86c79d8c-5033-46b3-b16e-d6cee4200fb3"
+  }
+}

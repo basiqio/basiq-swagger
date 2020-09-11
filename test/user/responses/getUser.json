@@ -1,0 +1,89 @@
+{
+  "accounts": {
+    "count": 8,
+    "data": [
+      {
+        "id": "14aa946c-6f87-44b7-bab9-d192d6261471",
+        "links": {
+          "self": "https://au-api.basiq.io/users/8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5/accounts/14aa946c-6f87-44b7-bab9-d192d6261471"
+        },
+        "type": "account"
+      },
+      {
+        "id": "1dd139d5-c88c-446b-b6df-1d6252db4d59",
+        "links": {
+          "self": "https://au-api.basiq.io/users/8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5/accounts/1dd139d5-c88c-446b-b6df-1d6252db4d59"
+        },
+        "type": "account"
+      },
+      {
+        "id": "24c742dc-bba6-4bc2-8298-fe731a17be68",
+        "links": {
+          "self": "https://au-api.basiq.io/users/8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5/accounts/24c742dc-bba6-4bc2-8298-fe731a17be68"
+        },
+        "type": "account"
+      },
+      {
+        "id": "5b8183d2-6b7d-4dd7-8e5b-ac993622faf9",
+        "links": {
+          "self": "https://au-api.basiq.io/users/8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5/accounts/5b8183d2-6b7d-4dd7-8e5b-ac993622faf9"
+        },
+        "type": "account"
+      },
+      {
+        "id": "9a66a1fb-a93a-47ff-abb0-84814d3aa229",
+        "links": {
+          "self": "https://au-api.basiq.io/users/8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5/accounts/9a66a1fb-a93a-47ff-abb0-84814d3aa229"
+        },
+        "type": "account"
+      },
+      {
+        "id": "9b1f13ca-56fa-4c7e-8688-2e2eab896acc",
+        "links": {
+          "self": "https://au-api.basiq.io/users/8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5/accounts/9b1f13ca-56fa-4c7e-8688-2e2eab896acc"
+        },
+        "type": "account"
+      },
+      {
+        "id": "dd62af17-ae77-46de-b7e2-07dd12939a68",
+        "links": {
+          "self": "https://au-api.basiq.io/users/8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5/accounts/dd62af17-ae77-46de-b7e2-07dd12939a68"
+        },
+        "type": "account"
+      },
+      {
+        "id": "f58d4d6a-61c6-4893-96da-249fe09eb2ad",
+        "links": {
+          "self": "https://au-api.basiq.io/users/8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5/accounts/f58d4d6a-61c6-4893-96da-249fe09eb2ad"
+        },
+        "type": "account"
+      }
+    ],
+    "type": "list"
+  },
+  "connections": {
+    "count": 1,
+    "data": [
+      {
+        "id": "64011b56-988a-4c2c-bfca-16c836cec23f",
+        "links": {
+          "self": "https://au-api.basiq.io/users/8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5/connections/64011b56-988a-4c2c-bfca-16c836cec23f"
+        },
+        "type": "connection"
+      }
+    ],
+    "type": "list"
+  },
+  "email": "gavin@hooli.com",
+  "id": "8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5",
+  "links": {
+    "accounts": "https://au-api.basiq.io/users/8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5/accounts",
+    "auth_link": null,
+    "connections": "https://au-api.basiq.io/users/8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5/connections",
+    "self": "https://au-api.basiq.io/users/8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5",
+    "transactions": "https://au-api.basiq.io/users/8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5/transactions"
+  },
+  "mobile": "+61410888666",
+  "name": "",
+  "type": "user"
+}

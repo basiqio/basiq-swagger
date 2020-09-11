@@ -1,0 +1,10 @@
+{
+  "type": "auth_link",
+  "userId": "8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5",
+  "expiresAt": "2020-09-13T06:11:35Z",
+  "mobile": "+61480019683",
+  "links": {
+    "self": "https://au-api.basiq.io/users/8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5/auth_link",
+    "public": "https://connect.basiq.io/4ed963fe-b84c-4007-b93d-6137d5dfb87d"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "type": "account",
+  "id": "f58d4d6a-61c6-4893-96da-249fe09eb2ad",
+  "accountNo": "0136640.00",
+  "name": "ANZ BUSINESS ONLINE SAVER",
+  "currency": "AUD",
+  "class": {
+    "type": "savings",
+    "product": "ANZ BUSINESS ONLINE SAVER"
+  },
+  "balance": "0.00",
+  "availableFunds": "0.00",
+  "lastUpdated": "2018-11-16T12:59:59Z",
+  "transactionIntervals": [
+    {
+      "from": "2018-08-17",
+      "to": "2018-11-16"
+    }
+  ],
+  "institution": "AU00601",
+  "accountHolder": "EAT REPEAT PTY LTD",
+  "connection": "79630a12-09cf-402c-9e9b-b3f837dc80c4",
+  "status": "available",
+  "links": {
+    "self": "https://au-api.basiq.io/users/8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5/accounts/f58d4d6a-61c6-4893-96da-249fe09eb2ad",
+    "transactions": "https://au-api.basiq.io/users/8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5/transactions?filter=account.id.eq('f58d4d6a-61c6-4893-96da-249fe09eb2ad')",
+    "connection": null,
+    "institution": "https://au-api.basiq.io/institutions/AU00601"
+  }
+}

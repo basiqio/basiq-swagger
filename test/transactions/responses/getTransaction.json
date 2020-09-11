@@ -1,0 +1,22 @@
+{
+  "type": "transaction",
+  "id": "bf3cb262-ccf0-4ad3-aaf3-20395fa1d75b",
+  "status": "posted",
+  "description": "Savings Interest CR Bal @0%%",
+  "amount": "89.63",
+  "account": "14aa946c-6f87-44b7-bab9-d192d6261471",
+  "balance": "38383.73",
+  "direction": "credit",
+  "class": "interest",
+  "institution": "AU00000",
+  "connection": "8dc10b7f-266a-4a72-af2b-7c6eb117a11d",
+  "transactionDate": "",
+  "postDate": "2020-08-28T00:00:00Z",
+  "subClass": null,
+  "links": {
+    "self": "https://au-api.basiq.io/users/8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5/transactions/bf3cb262-ccf0-4ad3-aaf3-20395fa1d75b",
+    "account": "https://au-api.basiq.io/users/8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5/accounts/14aa946c-6f87-44b7-bab9-d192d6261471",
+    "institution": "https://au-api.basiq.io/institutions/AU00000",
+    "connection": null
+  }
+}
