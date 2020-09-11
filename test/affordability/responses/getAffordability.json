@@ -1,0 +1,267 @@
+{
+  "type": "affordability",
+  "id": "91b42a5b-2f9a-479d-9014-cdc211155f74",
+  "fromMonth": "2019-08",
+  "toMonth": "2020-08",
+  "coverageDays": 393,
+  "generatedDate": "2020-08-31T08:30:49",
+  "summary": {
+    "assets": "72933.73",
+    "liabilities": "-303190.86",
+    "netPosition": "-230257.13",
+    "creditLimit": "20000.00",
+    "expenses": "-11197.00",
+    "savings": "595.00",
+    "regularIncome": {
+      "previous3Months": {
+        "avgMonthly": "18098.00"
+      }
+    }
+  },
+  "assets": [
+    {
+      "currency": "AUD",
+      "balance": "38383.73",
+      "availableFunds": "38383.73",
+      "institution": "Hooli",
+      "type": "account",
+      "account": {
+        "product": "Hooli Saver",
+        "type": "savings"
+      },
+      "previous6Months": {
+        "minBalance": "35298.67",
+        "maxBalance": "38383.73"
+      }
+    },
+    {
+      "currency": "AUD",
+      "balance": "34550.00",
+      "availableFunds": "34550.00",
+      "institution": "Hooli",
+      "type": "account",
+      "account": {
+        "product": "Hooli Transaction",
+        "type": "transaction"
+      },
+      "previous6Months": {
+        "minBalance": "20179.44",
+        "maxBalance": "46628.81"
+      }
+    }
+  ],
+  "liabilities": {
+    "loan": [
+      {
+        "currency": "AUD",
+        "balance": "-299292.25",
+        "availableFunds": "100707.75",
+        "institution": "Hooli",
+        "account": {
+          "type": "mortgage",
+          "product": "Hooli Home Loan"
+        },
+        "previousMonth": {
+          "totalCredits": "5768.00",
+          "totalDebits": "-4341.50",
+          "totalInterestCharged": "-4341.50",
+          "totalRepayments": "5768.00"
+        },
+        "changeHistory": [
+          {
+            "direction": "debit",
+            "amount": "-4258.25",
+            "date": "2019-08-17",
+            "source": "Mortgage Interest Payment 746833"
+          },
+          {
+            "direction": "credit",
+            "amount": "5768.00",
+            "date": "2019-08-29",
+            "source": "Transfer Platnm Homeloan 346454"
+          },
+          {
+            "direction": "debit",
+            "amount": "-4266.00",
+            "date": "2019-09-17",
+            "source": "Mortgage Interest Payment 746833"
+          },
+          {
+            "direction": "credit",
+            "amount": "5768.00",
+            "date": "2019-09-28",
+            "source": "Transfer Platnm Homeloan 346454"
+          },
+          {
+            "direction": "debit",
+            "amount": "-4273.25",
+            "date": "2019-10-17",
+            "source": "Mortgage Interest Payment 746833"
+          },
+          {
+            "direction": "credit",
+            "amount": "5768.00",
+            "date": "2019-10-29",
+            "source": "Transfer Platnm Homeloan 346454"
+          },
+          {
+            "direction": "debit",
+            "amount": "-4281.00",
+            "date": "2019-11-17",
+            "source": "Mortgage Interest Payment 746833"
+          },
+          {
+            "direction": "credit",
+            "amount": "5768.00",
+            "date": "2019-11-28",
+            "source": "Transfer Platnm Homeloan 346454"
+          },
+          {
+            "direction": "debit",
+            "amount": "-4288.25",
+            "date": "2019-12-17",
+            "source": "Mortgage Interest Payment 746833"
+          },
+          {
+            "direction": "credit",
+            "amount": "5768.00",
+            "date": "2019-12-29",
+            "source": "Transfer Platnm Homeloan 346454"
+          },
+          {
+            "direction": "debit",
+            "amount": "-4295.75",
+            "date": "2020-01-17",
+            "source": "Mortgage Interest Payment 746833"
+          },
+          {
+            "direction": "credit",
+            "amount": "5768.00",
+            "date": "2020-01-29",
+            "source": "Transfer Platnm Homeloan 346454"
+          },
+          {
+            "direction": "debit",
+            "amount": "-4303.50",
+            "date": "2020-02-17",
+            "source": "Mortgage Interest Payment 746833"
+          },
+          {
+            "direction": "credit",
+            "amount": "5768.00",
+            "date": "2020-02-28",
+            "source": "Transfer Platnm Homeloan 346454"
+          },
+          {
+            "direction": "debit",
+            "amount": "-4310.75",
+            "date": "2020-03-18",
+            "source": "Mortgage Interest Payment 746833"
+          },
+          {
+            "direction": "credit",
+            "amount": "5768.00",
+            "date": "2020-03-30",
+            "source": "Transfer Platnm Homeloan 346454"
+          },
+          {
+            "direction": "debit",
+            "amount": "-4318.50",
+            "date": "2020-04-18",
+            "source": "Mortgage Interest Payment 746833"
+          },
+          {
+            "direction": "credit",
+            "amount": "5768.00",
+            "date": "2020-04-29",
+            "source": "Transfer Platnm Homeloan 346454"
+          },
+          {
+            "direction": "debit",
+            "amount": "-4325.75",
+            "date": "2020-05-18",
+            "source": "Mortgage Interest Payment 746833"
+          },
+          {
+            "direction": "credit",
+            "amount": "5768.00",
+            "date": "2020-05-30",
+            "source": "Transfer Platnm Homeloan 346454"
+          },
+          {
+            "direction": "debit",
+            "amount": "-4333.25",
+            "date": "2020-06-18",
+            "source": "Mortgage Interest Payment 746833"
+          },
+          {
+            "direction": "credit",
+            "amount": "5768.00",
+            "date": "2020-06-30",
+            "source": "Transfer Platnm Homeloan 346454"
+          },
+          {
+            "direction": "debit",
+            "amount": "-4341.50",
+            "date": "2020-07-19",
+            "source": "Mortgage Interest Payment 746833"
+          },
+          {
+            "direction": "credit",
+            "amount": "5768.00",
+            "date": "2020-07-28",
+            "source": "Transfer Platnm Homeloan 346454"
+          },
+          {
+            "direction": "debit",
+            "amount": "-4348.25",
+            "date": "2020-08-16",
+            "source": "Mortgage Interest Payment 746833"
+          },
+          {
+            "direction": "credit",
+            "amount": "5768.00",
+            "date": "2020-08-28",
+            "source": "Transfer Platnm Homeloan 346454"
+          }
+        ],
+        "previous6Months": {
+          "arrears": "false"
+        }
+      }
+    ],
+    "credit": [
+      {
+        "currency": "AUD",
+        "balance": "-3898.61",
+        "availableFunds": "16101.39",
+        "institution": "Hooli",
+        "creditLimit": "20000.00",
+        "account": {
+          "type": "credit-card",
+          "product": "Hooli Visa"
+        },
+        "previousMonth": {
+          "totalCredits": "9555.30",
+          "totalDebits": "-14650.47",
+          "minBalance": "3613.43",
+          "maxBalance": "-9266.66"
+        },
+        "previous6Months": {
+          "cashAdvances": "-3588.20"
+        }
+      }
+    ]
+  },
+  "links": {
+    "self": "https://au-api.basiq.io/users/8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5/affordability/91b42a5b-2f9a-479d-9014-cdc211155f74",
+    "income": "https://au-api.basiq.io/users/8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5/income/bdfd2a1f-0678-433f-9481-bf431a9cc419",
+    "expenses": "https://au-api.basiq.io/users/8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5/expenses/53f49ba4-3186-4948-88a9-5bd1801a1e7e",
+    "accounts": [
+      "https://au-api.basiq.io/users/8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5/accounts/14aa946c-6f87-44b7-bab9-d192d6261471",
+      "https://au-api.basiq.io/users/8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5/accounts/1dd139d5-c88c-446b-b6df-1d6252db4d59",
+      "https://au-api.basiq.io/users/8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5/accounts/9a66a1fb-a93a-47ff-abb0-84814d3aa229",
+      "https://au-api.basiq.io/users/8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5/accounts/9b1f13ca-56fa-4c7e-8688-2e2eab896acc"
+    ]
+  }
+}

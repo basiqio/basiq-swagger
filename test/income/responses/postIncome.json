@@ -1,0 +1,173 @@
+{
+  "type": "income",
+  "id": "c4c4466d-55e1-42b5-88cf-7b04f32af485",
+  "fromMonth": "2018-11",
+  "toMonth": "2019-10",
+  "coverageDays": 352,
+  "summary": {
+    "regularIncomeAvg": "0.00",
+    "regularIncomeYTD": "0.00",
+    "regularIncomeYear": null,
+    "irregularIncomeAvg": "0.00"
+  },
+  "regular": [],
+  "irregular": [],
+  "otherCredit": [
+    {
+      "source": "savings interest cr bal",
+      "frequency": "other",
+      "ageDays": 335,
+      "amountAvg": "110.85",
+      "noOccurrences": 12,
+      "avgMonthlyOccurence": "1",
+      "current": {
+        "date": "2019-10-28T00:00:00",
+        "amount": "92.99",
+        "otherCreditLabel": "regular income small amount"
+      },
+      "changeHistory": [
+        {
+          "source": "SAVINGS INTEREST CR BAL @0%%",
+          "date": "2018-11-27T00:00:00",
+          "amount": "89.63"
+        },
+        {
+          "source": "SAVINGS INTEREST CR BAL @0%%",
+          "date": "2018-12-28T00:00:00",
+          "amount": "109.91"
+        },
+        {
+          "source": "SAVINGS INTEREST CR BAL @0%%",
+          "date": "2019-01-28T00:00:00",
+          "amount": "111.79"
+        },
+        {
+          "source": "SAVINGS INTEREST CR BAL @0%%",
+          "date": "2019-02-27T00:00:00",
+          "amount": "89.63"
+        },
+        {
+          "source": "SAVINGS INTEREST CR BAL @0%%",
+          "date": "2019-03-30T00:00:00",
+          "amount": "113.67"
+        },
+        {
+          "source": "SAVINGS INTEREST CR BAL @0%%",
+          "date": "2019-04-29T00:00:00",
+          "amount": "115.55"
+        },
+        {
+          "source": "SAVINGS INTEREST CR BAL @0%%",
+          "date": "2019-05-30T00:00:00",
+          "amount": "89.63"
+        },
+        {
+          "source": "SAVINGS INTEREST CR BAL @0%%",
+          "date": "2019-06-30T00:00:00",
+          "amount": "117.43"
+        },
+        {
+          "source": "SAVINGS INTEREST CR BAL @0%%",
+          "date": "2019-07-28T00:00:00",
+          "amount": "119.31"
+        },
+        {
+          "source": "SAVINGS INTEREST CR BAL @0%%",
+          "date": "2019-08-28T00:00:00",
+          "amount": "89.63"
+        },
+        {
+          "source": "SAVINGS INTEREST CR BAL @0%%",
+          "date": "2019-09-27T00:00:00",
+          "amount": "121.19"
+        },
+        {
+          "source": "SAVINGS INTEREST CR BAL @0%%",
+          "date": "2019-10-28T00:00:00",
+          "amount": "92.99"
+        }
+      ]
+    },
+    {
+      "source": "acc to",
+      "frequency": "other",
+      "ageDays": 334,
+      "amountAvg": "500.00",
+      "noOccurrences": 12,
+      "avgMonthlyOccurence": "1",
+      "current": {
+        "date": "2019-10-11T00:00:00",
+        "amount": "500.00",
+        "otherCreditLabel": "monthly transfer credits"
+      },
+      "changeHistory": [
+        {
+          "source": "TFR ACC14000 TO 12389",
+          "date": "2018-11-11T00:00:00",
+          "amount": "500.00"
+        },
+        {
+          "source": "TFR ACC14000 TO 12389",
+          "date": "2018-12-11T00:00:00",
+          "amount": "500.00"
+        },
+        {
+          "source": "TFR ACC14000 TO 12389",
+          "date": "2019-01-11T00:00:00",
+          "amount": "500.00"
+        },
+        {
+          "source": "TFR ACC14000 TO 12389",
+          "date": "2019-02-11T00:00:00",
+          "amount": "500.00"
+        },
+        {
+          "source": "TFR ACC14000 TO 12389",
+          "date": "2019-03-13T00:00:00",
+          "amount": "500.00"
+        },
+        {
+          "source": "TFR ACC14000 TO 12389",
+          "date": "2019-04-13T00:00:00",
+          "amount": "500.00"
+        },
+        {
+          "source": "TFR ACC14000 TO 12389",
+          "date": "2019-05-13T00:00:00",
+          "amount": "500.00"
+        },
+        {
+          "source": "TFR ACC14000 TO 12389",
+          "date": "2019-06-13T00:00:00",
+          "amount": "500.00"
+        },
+        {
+          "source": "TFR ACC14000 TO 12389",
+          "date": "2019-07-14T00:00:00",
+          "amount": "500.00"
+        },
+        {
+          "source": "TFR ACC14000 TO 12389",
+          "date": "2019-08-11T00:00:00",
+          "amount": "500.00"
+        },
+        {
+          "source": "TFR ACC14000 TO 12389",
+          "date": "2019-09-11T00:00:00",
+          "amount": "500.00"
+        },
+        {
+          "source": "TFR ACC14000 TO 12389",
+          "date": "2019-10-11T00:00:00",
+          "amount": "500.00"
+        }
+      ]
+    }
+  ],
+  "links": {
+    "self": "https://au-api.basiq.io/users/8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5/income/c4c4466d-55e1-42b5-88cf-7b04f32af485",
+    "accounts": [
+      "https://au-api.basiq.io/users/8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5/accounts/14aa946c-6f87-44b7-bab9-d192d6261471"
+    ]
+  }
+}
