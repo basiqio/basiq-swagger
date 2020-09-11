@@ -2271,8 +2271,7 @@
         "availableFunds",
         "lastUpdated",
         "status",
-        "links",
-        "transactionIntervals"
+        "links"
       ],
       "properties": {
         "accountNo": {
@@ -2317,7 +2316,7 @@
           "example": "2017-09-28T11:15:09.756Z"
         },
         "links": {
-          "$ref": "#/definitions/AccountLinks"
+          "$ref": "#/definitions/ConnectionAccountLinks"
         },
         "name": {
           "description": "Account name.",
@@ -2335,19 +2334,33 @@
           "x-go-name": "Status",
           "example": "available"
         },
-        "transactionIntervals": {
-          "description": "An array of date intervals indicating the coverage of the transaction data relating to the account.\nWill return a single element for accounts sourced from a single bank connection.\nWill return multiple elements in cases where there have been multiple PDF/CSV uploads for an account.",
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/AccountTransactionInterval"
-          },
-          "x-go-name": "TransactionIntervals"
-        },
         "type": {
           "description": "Type always \"account\".",
           "type": "string",
           "x-go-name": "Type",
           "example": "account"
+        }
+      },
+      "x-go-package": "github.com/basiqio/connect-api/internal/connect/internal/models"
+    },
+    "ConnectionAccountLinks": {
+      "type": "object",
+      "required": [
+        "self",
+        "transactions"
+      ],
+      "properties": {
+        "self": {
+          "description": "self link to the requested account",
+          "type": "string",
+          "x-go-name": "Self",
+          "example": "https://au-api.basiq.io/users/cd6fbd92/accounts/319ae910"
+        },
+        "transactions": {
+          "description": "transactions link to the transactions associated with this account",
+          "type": "string",
+          "x-go-name": "Transactions",
+          "example": "https://au-api.basiq.io/users/ea3a81/transactions?filter=account.id.eq('s55bf3')"
         }
       },
       "x-go-package": "github.com/basiqio/connect-api/internal/connect/internal/models"
@@ -2991,7 +3004,7 @@
           "example": "2020-06-22T11:15:09Z"
         },
         "links": {
-          "$ref": "#/definitions/GetConnectionLinks"
+          "$ref": "#/definitions/GetConnectionsLinks"
         },
         "profile": {
           "$ref": "#/definitions/ConnectionProfile"
@@ -3012,6 +3025,42 @@
           "type": "string",
           "x-go-name": "Type",
           "example": "connection"
+        }
+      },
+      "x-go-package": "github.com/basiqio/connect-api/internal/connect/internal/models"
+    },
+    "GetConnectionsLinks": {
+      "description": "Object containing links to resources.",
+      "type": "object",
+      "title": "GetConnectionLinks",
+      "required": [
+        "self",
+        "user"
+      ],
+      "properties": {
+        "accounts": {
+          "description": "Accounts reference url.",
+          "type": "string",
+          "x-go-name": "Accounts",
+          "example": "https://au-api.basiq.io/users/cd6fbd92/accounts?filter=institution.id.eq('AU00000')"
+        },
+        "self": {
+          "description": "Connection self reference url.",
+          "type": "string",
+          "x-go-name": "Self",
+          "example": "https://au-api.basiq.io/users/cd6fbd92/connections/29523951"
+        },
+        "transactions": {
+          "description": "Transactions reference url.",
+          "type": "string",
+          "x-go-name": "Transactions",
+          "example": "https://au-api.basiq.io/users/cd6fbd92/transactions?filter=institution.id.eq('AU00000')"
+        },
+        "user": {
+          "description": "User reference url.",
+          "type": "string",
+          "x-go-name": "User",
+          "example": "https://au-api.basiq.io/users/cd6fbd92"
         }
       },
       "x-go-package": "github.com/basiqio/connect-api/internal/connect/internal/models"

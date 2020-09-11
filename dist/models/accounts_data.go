@@ -7,7 +7,6 @@ package models
 
 import (
 	"encoding/json"
-	"strconv"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
@@ -53,12 +52,6 @@ type AccountsData struct {
 	// Enum: [available unavailable]
 	Status *string `json:"status"`
 
-	// An array of date intervals indicating the coverage of the transaction data relating to the account.
-	// Will return a single element for accounts sourced from a single bank connection.
-	// Will return multiple elements in cases where there have been multiple PDF/CSV uploads for an account.
-	// Required: true
-	TransactionIntervals []*AccountTransactionInterval `json:"transactionIntervals"`
-
 	// Type always "account".
 	// Required: true
 	Type *string `json:"type"`
@@ -69,7 +62,7 @@ type AccountsData struct {
 
 	// links
 	// Required: true
-	Links *AccountLinks `json:"links"`
+	Links *ConnectionAccountLinks `json:"links"`
 }
 
 // Validate validates this accounts data
@@ -105,10 +98,6 @@ func (m *AccountsData) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateStatus(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateTransactionIntervals(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -231,31 +220,6 @@ func (m *AccountsData) validateStatus(formats strfmt.Registry) error {
 	// value enum
 	if err := m.validateStatusEnum("status", "body", *m.Status); err != nil {
 		return err
-	}
-
-	return nil
-}
-
-func (m *AccountsData) validateTransactionIntervals(formats strfmt.Registry) error {
-
-	if err := validate.Required("transactionIntervals", "body", m.TransactionIntervals); err != nil {
-		return err
-	}
-
-	for i := 0; i < len(m.TransactionIntervals); i++ {
-		if swag.IsZero(m.TransactionIntervals[i]) { // not required
-			continue
-		}
-
-		if m.TransactionIntervals[i] != nil {
-			if err := m.TransactionIntervals[i].Validate(formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("transactionIntervals" + "." + strconv.Itoa(i))
-				}
-				return err
-			}
-		}
-
 	}
 
 	return nil
