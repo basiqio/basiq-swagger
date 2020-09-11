@@ -1,0 +1,2 @@
+"accountId","institution_id","accountNo","accountHolder","accCurrency","accBalance","accAvailableFunds","accLastUpdated","accType","accProduct","transactionId","txnPostDate","txnDescription","txnBalance","txnAmount","txnDirection","transactionCode","mccCode","sortRand","user_id"
+55c2e031-6a10-4da3-a9f9-ee284e0ad546,AU00201,5.52031610439928E+019,david smith,AUD,1234.56,789,2019/12/01,savings,Orange Everyday,25386819-e848-409f-a01e-5e80e6d24fd,2019/07/06,Testing - 1,211.02,-15,debit,txCode-431501,txMccCode-60206,0,04418b84-74ec-4466-8981-f3e6db60ae57
