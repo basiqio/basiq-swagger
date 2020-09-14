@@ -6,8 +6,9 @@ import (
 )
 
 type Config struct {
-	ApiKey       string `json:"ApiKey"`
-	ExpiredToken string `json:"ExpiredToken"`
+	ApiKey        string `json:"ApiKey"`
+	DeletedApiKey string `json:"DeletedApiKey"`
+	ExpiredToken  string `json:"ExpiredToken"`
 }
 
 func ReadFile(cfg *Config) error {
