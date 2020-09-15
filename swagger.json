@@ -1992,12 +1992,6 @@
               "$ref": "#/definitions/BadRequestError"
             }
           },
-          "401": {
-            "description": "Returns error that indicates unauthorized access.",
-            "schema": {
-              "$ref": "#/definitions/UnauthorizedError"
-            }
-          },
           "500": {
             "description": "Returns error response code indicates that the server encountered an unexpected condition that prevented it from fulfilling the request.",
             "schema": {
