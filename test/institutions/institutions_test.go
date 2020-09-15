@@ -61,3 +61,52 @@ func TestGetInstitutionsUnauthorized(t *testing.T) {
 		t.Fatal("Error model should be returned")
 	}
 }
+
+func TestGetInstitution(t *testing.T) {
+	institutionParams := &institutions.GetInstitutionParams{
+		InstitutionID: "AU00000",
+		Context:       context.TODO(),
+	}
+
+	institutionResponse, err := test.Client.Institutions.GetInstitution(institutionParams, httptransport.BearerToken(test.TokenHolder.GetToken(t)))
+	if err != nil {
+		t.Fatalf("Error getting institution: %v", err)
+	}
+
+	e, err := json.Marshal(institutionResponse.GetPayload())
+	if err != nil {
+		t.Fatalf("Error: %v", err)
+	}
+
+	s := test.GetJsonResponse("./responses/getInstitution.json", t)
+
+	test.AssertJson(t, s, string(e))
+}
+
+func TestGetInstitutionNotFound(t *testing.T) {
+	institutionParams := &institutions.GetInstitutionParams{
+		InstitutionID: "YU00000",
+		Context:       context.TODO(),
+	}
+
+	_, err := test.Client.Institutions.GetInstitution(institutionParams, httptransport.BearerToken(test.TokenHolder.GetToken(t)))
+	if err != nil {
+		notFound, ok := err.(*institutions.GetInstitutionNotFound)
+		if !ok {
+			t.Fatal("Not found error not returned.")
+		}
+
+		errorModel, err := json.Marshal(notFound.GetPayload())
+		if err != nil {
+			t.Fatalf("Cannot marshal error model. Error: %v", err)
+		}
+		s := strings.Replace(
+			test.GetJsonResponse("./responses/getInstitutionNotFound.json", t), "1c16f75c-36fb-421f-98a5-bf18a0b6583c",
+			*notFound.GetPayload().CorrelationID,
+			2)
+
+		test.AssertJson(t, s, string(errorModel))
+	} else {
+		t.Fatal("Error model should be returned")
+	}
+}
