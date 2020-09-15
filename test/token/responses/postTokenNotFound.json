@@ -1,0 +1,12 @@
+{
+  "correlationId": "1c16f75c-36fb-421f-98a5-bf18a0b6583c",
+  "data": [
+    {
+      "code": "parameter-not-valid",
+      "detail": "Unable to authenticate. Please, check your API key",
+      "title": "We have encountered an error",
+      "type": "error"
+    }
+  ],
+  "type": "list"
+}

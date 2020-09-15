@@ -1,0 +1,16 @@
+{
+  "correlationId": "1c16f75c-36fb-421f-98a5-bf18a0b6583c",
+  "data": [
+    {
+      "code": "parameter-not-valid",
+      "detail": "Basiq-version must be specified in HTTP request header",
+      "title": "Required parameter not valid",
+      "type": "error",
+      "source": {
+        "parameter": "basiq-version",
+        "pointer": "header/basiq-version"
+      }
+    }
+  ],
+  "type": "list"
+}
