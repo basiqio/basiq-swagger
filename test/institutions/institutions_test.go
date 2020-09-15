@@ -12,7 +12,7 @@ import (
 )
 
 func TestGetInstitutions(t *testing.T) {
-	filter := "institution.country.in('Yugoslavia')"
+	filter := "institution.country.in('Yugoslavia')" // Filter will return OK response with empty list. Avoids large json.
 	institutionsParams := &institutions.GetInstitutionsParams{
 		Filter:  &filter,
 		Context: context.TODO(),
@@ -109,4 +109,26 @@ func TestGetInstitutionNotFound(t *testing.T) {
 	} else {
 		t.Fatal("Error model should be returned")
 	}
+}
+
+func TestGetPublicInstitutions(t *testing.T) {
+	filter := "institution.country.in('Yugoslavia')"
+	institutionsParams := &institutions.GetPublicInstitutionsParams{
+		Filter:  &filter,
+		Context: context.TODO(),
+	}
+
+	institutionsResponse, err := test.Client.Institutions.GetPublicInstitutions(institutionsParams, httptransport.PassThroughAuth)
+	if err != nil {
+		t.Fatalf("Error getting institutions: %v", err)
+	}
+
+	e, err := json.Marshal(institutionsResponse.GetPayload())
+	if err != nil {
+		t.Fatalf("Error: %v", err)
+	}
+
+	s := test.GetJsonResponse("./responses/getPublicInstitutions.json", t)
+
+	test.AssertJson(t, s, string(e))
 }

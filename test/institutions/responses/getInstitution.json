@@ -1,12 +1,4 @@
 {
-  "data": [],
-  "totalCount": 0,
-  "links": {
-    "self": "https://au-api.basiq.io/institutions"
-  },
-  "type": "list"
-}
-{
   "authorization": "user",
   "country": "Australia",
   "type": "institution",
