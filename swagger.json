@@ -4673,7 +4673,7 @@
           "$ref": "#/definitions/Previous6MonthsLoan"
         },
         "previousMonth": {
-          "$ref": "#/definitions/PreviousMonthDataLiabilities"
+          "$ref": "#/definitions/PreviousMonthDataLoanLiabilities"
         }
       },
       "x-go-package": "github.com/basiqio/connect-api/internal/affordability/internal/models"
@@ -5024,6 +5024,38 @@
           "type": "string",
           "x-go-name": "TotalDebits",
           "example": "-8287.10"
+        }
+      },
+      "x-go-package": "github.com/basiqio/connect-api/internal/affordability/internal/models"
+    },
+    "PreviousMonthDataLoanLiabilities": {
+      "type": "object",
+      "required": [
+        "totalCredits",
+        "totalDebits",
+        "totalInterestCharged",
+        "totalRepayments"
+      ],
+      "properties": {
+        "totalCredits": {
+          "type": "string",
+          "x-go-name": "TotalCredits",
+          "example": "0.00"
+        },
+        "totalDebits": {
+          "type": "string",
+          "x-go-name": "TotalDebits",
+          "example": "-8287.10"
+        },
+        "totalInterestCharged": {
+          "type": "string",
+          "x-go-name": "TotalInterestCharged",
+          "example": "-4303.50"
+        },
+        "totalRepayments": {
+          "type": "string",
+          "x-go-name": "TotalRepayments",
+          "example": "5768.00"
         }
       },
       "x-go-package": "github.com/basiqio/connect-api/internal/affordability/internal/models"
