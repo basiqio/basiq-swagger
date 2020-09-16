@@ -49,7 +49,7 @@ type LoanLiabilities struct {
 
 	// previous month
 	// Required: true
-	PreviousMonth *PreviousMonthDataLiabilities `json:"previousMonth"`
+	PreviousMonth *PreviousMonthDataLoanLiabilities `json:"previousMonth"`
 }
 
 // Validate validates this loan liabilities
