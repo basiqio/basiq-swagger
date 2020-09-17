@@ -23,6 +23,9 @@ import (
 // swagger:model ExpensesResponse
 type ExpensesResponse struct {
 
+	// Number of days covered by the report
+	CoverageDays int64 `json:"coverageDays,omitempty"`
+
 	// First 'month' occurrence of expenses categorised going back as far as 13 months.
 	// Required: true
 	FromMonth *string `json:"fromMonth"`
@@ -61,6 +64,10 @@ type ExpensesResponse struct {
 	// loan interests
 	// Required: true
 	LoanInterests *ClassResourceExpenses `json:"loanInterests"`
+
+	// loan repayments
+	// Required: true
+	LoanRepayments *ClassResourceExpenses `json:"loanRepayments"`
 }
 
 // Validate validates this expenses response
@@ -104,6 +111,10 @@ func (m *ExpensesResponse) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateLoanInterests(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateLoanRepayments(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -256,6 +267,24 @@ func (m *ExpensesResponse) validateLoanInterests(formats strfmt.Registry) error 
 		if err := m.LoanInterests.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("loanInterests")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *ExpensesResponse) validateLoanRepayments(formats strfmt.Registry) error {
+
+	if err := validate.Required("loanRepayments", "body", m.LoanRepayments); err != nil {
+		return err
+	}
+
+	if m.LoanRepayments != nil {
+		if err := m.LoanRepayments.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("loanRepayments")
 			}
 			return err
 		}

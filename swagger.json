@@ -2941,12 +2941,12 @@
       "description": "Average monthly amount for given class for defined period",
       "type": "object",
       "required": [
-        "averageMonthly",
+        "avgMonthly",
         "summary",
         "changeHistory"
       ],
       "properties": {
-        "averageMonthly": {
+        "avgMonthly": {
           "description": "Average amount monthly",
           "type": "string",
           "x-go-name": "AverageMonthly",
@@ -3292,7 +3292,7 @@
         "account",
         "institution",
         "previousMonth",
-        "previous6months",
+        "previous6Months",
         "creditLimit"
       ],
       "properties": {
@@ -3332,7 +3332,7 @@
           "x-go-name": "Institution",
           "example": "Hooli"
         },
-        "previous6months": {
+        "previous6Months": {
           "$ref": "#/definitions/Previous6MonthsCreditLiabilities"
         },
         "previousMonth": {
@@ -3529,6 +3529,7 @@
         "cashWithdrawals",
         "bankFees",
         "loanInterests",
+        "loanRepayments",
         "externalTransfers"
       ],
       "properties": {
@@ -3537,6 +3538,13 @@
         },
         "cashWithdrawals": {
           "$ref": "#/definitions/ClassResourceExpenses"
+        },
+        "coverageDays": {
+          "description": "Number of days covered by the report",
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "CoverageDays",
+          "example": 392
         },
         "externalTransfers": {
           "$ref": "#/definitions/ClassResourceExpenses"
@@ -3557,6 +3565,9 @@
           "$ref": "#/definitions/ExpensesLinks"
         },
         "loanInterests": {
+          "$ref": "#/definitions/ClassResourceExpenses"
+        },
+        "loanRepayments": {
           "$ref": "#/definitions/ClassResourceExpenses"
         },
         "payments": {
@@ -4629,7 +4640,7 @@
         "institution",
         "previousMonth",
         "changeHistory",
-        "previous6months"
+        "previous6Months"
       ],
       "properties": {
         "account": {
@@ -4669,7 +4680,7 @@
           "x-go-name": "Institution",
           "example": "Hooli"
         },
-        "previous6months": {
+        "previous6Months": {
           "$ref": "#/definitions/Previous6MonthsLoan"
         },
         "previousMonth": {
