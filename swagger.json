@@ -4043,7 +4043,7 @@
         "id",
         "fromMonth",
         "toMonth",
-        "incomeSummary"
+        "summary"
       ],
       "properties": {
         "coverageDays": {
@@ -4065,9 +4065,6 @@
           "x-go-name": "ID",
           "example": "s55bf4"
         },
-        "incomeSummary": {
-          "$ref": "#/definitions/IncomeSummary"
-        },
         "irregular": {
           "description": "Required true",
           "type": "array",
@@ -4080,7 +4077,12 @@
           "$ref": "#/definitions/IncomeLinks"
         },
         "otherCredit": {
-          "$ref": "#/definitions/OtherCreditSource"
+          "description": "Required true",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/OtherCreditSource"
+          },
+          "x-go-name": "OtherCreditSource"
         },
         "regular": {
           "description": "Required true",
@@ -4089,6 +4091,9 @@
             "$ref": "#/definitions/RegularSource"
           },
           "x-go-name": "RegularSources"
+        },
+        "summary": {
+          "$ref": "#/definitions/IncomeSummary"
         },
         "toMonth": {
           "description": "End month (usually the current month) for the period for which the Income summary is generated.",
