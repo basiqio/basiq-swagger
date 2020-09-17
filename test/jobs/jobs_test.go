@@ -30,23 +30,25 @@ func TestGetJob(t *testing.T) {
 	test.AssertJson(t, s, string(e))
 }
 
-func TestGetJobs(t *testing.T) {
-	jobsParams := &jobs.GetUserJobsParams{
-		UserID:  "8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5",
-		Context: context.TODO(),
-	}
+// TODO This test needs to be done differently because the GET jobs are getting back jobs only for the previous 7 days
 
-	jobsRsp, err := test.Client.Jobs.GetUserJobs(jobsParams, httptransport.BearerToken(test.TokenHolder.GetToken(t)))
-	if err != nil {
-		t.Fatalf("Error getting user jobs: %v", err)
-	}
-
-	e, err := json.Marshal(jobsRsp.GetPayload())
-	if err != nil {
-		t.Fatalf("Error: %v", err)
-	}
-
-	s := test.GetJsonResponse("./responses/getJobs.json", t)
-
-	test.AssertJson(t, s, string(e))
-}
+//func TestGetJobs(t *testing.T) {
+//	jobsParams := &jobs.GetUserJobsParams{
+//		UserID:  "8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5",
+//		Context: context.TODO(),
+//	}
+//
+//	jobsRsp, err := test.Client.Jobs.GetUserJobs(jobsParams, httptransport.BearerToken(test.TokenHolder.GetToken(t)))
+//	if err != nil {
+//		t.Fatalf("Error getting user jobs: %v", err)
+//	}
+//
+//	e, err := json.Marshal(jobsRsp.GetPayload())
+//	if err != nil {
+//		t.Fatalf("Error: %v", err)
+//	}
+//
+//	s := test.GetJsonResponse("./responses/getJobs.json", t)
+//
+//	test.AssertJson(t, s, string(e))
+//}
