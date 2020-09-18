@@ -2,7 +2,7 @@
   "data": [],
   "totalCount": 0,
   "links": {
-    "self": "https://au-api.basiq.io/institutions"
+    "self": "https://au-api.basiq.io/public/institutions"
   },
   "type": "list"
 }
