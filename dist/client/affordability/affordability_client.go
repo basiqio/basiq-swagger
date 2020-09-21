@@ -29,7 +29,7 @@ type Client struct {
 type ClientService interface {
 	GetAffordability(params *GetAffordabilityParams, authInfo runtime.ClientAuthInfoWriter) (*GetAffordabilityOK, error)
 
-	PostAffordability(params *PostAffordabilityParams, authInfo runtime.ClientAuthInfoWriter) (*PostAffordabilityOK, *PostAffordabilityCreated, error)
+	PostAffordability(params *PostAffordabilityParams, authInfo runtime.ClientAuthInfoWriter) (*PostAffordabilityOK, *PostAffordabilityCreated, *PostAffordabilityNoContent, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -72,7 +72,7 @@ func (a *Client) GetAffordability(params *GetAffordabilityParams, authInfo runti
 /*
   PostAffordability uses this to create a new affordability report
 */
-func (a *Client) PostAffordability(params *PostAffordabilityParams, authInfo runtime.ClientAuthInfoWriter) (*PostAffordabilityOK, *PostAffordabilityCreated, error) {
+func (a *Client) PostAffordability(params *PostAffordabilityParams, authInfo runtime.ClientAuthInfoWriter) (*PostAffordabilityOK, *PostAffordabilityCreated, *PostAffordabilityNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPostAffordabilityParams()
@@ -92,13 +92,15 @@ func (a *Client) PostAffordability(params *PostAffordabilityParams, authInfo run
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, nil, err
+		return nil, nil, nil, err
 	}
 	switch value := result.(type) {
 	case *PostAffordabilityOK:
-		return value, nil, nil
+		return value, nil, nil, nil
 	case *PostAffordabilityCreated:
-		return nil, value, nil
+		return nil, value, nil, nil
+	case *PostAffordabilityNoContent:
+		return nil, nil, value, nil
 	}
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for affordability: API contract not enforced by server. Client expected to get an error, but got: %T", result)
