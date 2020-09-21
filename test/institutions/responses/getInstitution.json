@@ -1,0 +1,102 @@
+{
+  "authorization": "user",
+  "country": "Australia",
+  "type": "institution",
+  "id": "AU00000",
+  "institutionType": "Test Bank",
+  "loginIdCaption": "Login",
+  "name": "Hooli Bank",
+  "passwordCaption": "Password",
+  "serviceName": "Personal Online Banking",
+  "serviceType": "Personal Banking",
+  "shortName": "Hooli",
+  "stage": "beta",
+  "tier": "4",
+  "features": {
+    "accounts": {
+      "balance": [
+        "web"
+      ],
+      "currency": [
+        "web"
+      ],
+      "accountHolder": [
+        "web"
+      ],
+      "name": [
+        "web"
+      ],
+      "accountNo": [
+        "web"
+      ],
+      "availableFunds": [
+        "web"
+      ],
+      "lastUpdated": [
+        "web"
+      ],
+      "meta": [
+        "web"
+      ]
+    },
+    "profile": {
+      "emailAddresses": [
+        "web"
+      ],
+      "firstName": [
+        "web"
+      ],
+      "fullName": [
+        "web"
+      ],
+      "lastName": [
+        "web"
+      ],
+      "middleName": [],
+      "phoneNumbers": [
+        "web"
+      ],
+      "physicalAddresses": []
+    },
+    "transactions": {
+      "class": [
+        "web"
+      ],
+      "amount": [
+        "web"
+      ],
+      "balance": [
+        "web"
+      ],
+      "date": [
+        "web"
+      ],
+      "description": [
+        "web"
+      ],
+      "status": [
+        "web"
+      ]
+    }
+  },
+  "links": {
+    "self": "https://au-api.basiq.io/institutions/AU00000"
+  },
+  "logo": {
+    "type": "image",
+    "links": {
+      "full": "https://d388vpyfrt4zrj.cloudfront.net/AU00000-full.svg",
+      "square": "https://d388vpyfrt4zrj.cloudfront.net/AU00000.svg"
+    }
+  },
+  "stats": {
+    "averageDurationMs": {
+      "retrieveAccounts": 3820,
+      "retrieveMeta": 12487,
+      "retrieveTransactions": 7127,
+      "total": 31588,
+      "verifyCredentials": 8154
+    }
+  },
+  "status": "under-maintenance"
+}

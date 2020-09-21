@@ -35,12 +35,6 @@ func (o *GetPublicInstitutionsReader) ReadResponse(response runtime.ClientRespon
 			return nil, err
 		}
 		return nil, result
-	case 401:
-		result := NewGetPublicInstitutionsUnauthorized()
-		if err := result.readResponse(response, consumer, o.formats); err != nil {
-			return nil, err
-		}
-		return nil, result
 	case 500:
 		result := NewGetPublicInstitutionsInternalServerError()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -110,39 +104,6 @@ func (o *GetPublicInstitutionsBadRequest) GetPayload() *models.BadRequestError {
 func (o *GetPublicInstitutionsBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.BadRequestError)
-
-	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
-		return err
-	}
-
-	return nil
-}
-
-// NewGetPublicInstitutionsUnauthorized creates a GetPublicInstitutionsUnauthorized with default headers values
-func NewGetPublicInstitutionsUnauthorized() *GetPublicInstitutionsUnauthorized {
-	return &GetPublicInstitutionsUnauthorized{}
-}
-
-/*GetPublicInstitutionsUnauthorized handles this case with default header values.
-
-Returns error that indicates unauthorized access.
-*/
-type GetPublicInstitutionsUnauthorized struct {
-	Payload *models.UnauthorizedError
-}
-
-func (o *GetPublicInstitutionsUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /public/institutions][%d] getPublicInstitutionsUnauthorized  %+v", 401, o.Payload)
-}
-
-func (o *GetPublicInstitutionsUnauthorized) GetPayload() *models.UnauthorizedError {
-	return o.Payload
-}
-
-func (o *GetPublicInstitutionsUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
-
-	o.Payload = new(models.UnauthorizedError)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

@@ -8,7 +8,7 @@ mkdir -p $BUILD_DIR
 
 swagger generate client -f ./swagger.json -A ./basiq-"$RELEASE_VERSION" -t "$BUILD_DIR"
 
-go test ./test/...
+go test ./test/... -count 1
 
 if [ $? -eq 0 ]; then
   echo "Done generating $RELEASE_VERSION swagger sdk. Check $BUILD_DIR directory."

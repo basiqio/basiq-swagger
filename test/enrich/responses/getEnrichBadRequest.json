@@ -1,0 +1,15 @@
+{
+  "correlationId": "1c16f75c-36fb-421f-98a5-bf18a0b6583c",
+  "data": [
+    {
+      "code": "parameter-not-supplied",
+      "detail": "Missing",
+      "title": "Required parameter not supplied",
+      "type": "error",
+      "source": {
+        "parameter": "institution"
+      }
+    }
+  ],
+  "type": "list"
+}

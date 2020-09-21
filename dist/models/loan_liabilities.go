@@ -43,13 +43,13 @@ type LoanLiabilities struct {
 	// Required: true
 	Account *AccountHolder `json:"account"`
 
-	// previous6months
+	// previous6 months
 	// Required: true
-	Previous6months *Previous6MonthsLoan `json:"previous6months"`
+	Previous6Months *Previous6MonthsLoan `json:"previous6Months"`
 
 	// previous month
 	// Required: true
-	PreviousMonth *PreviousMonthDataLiabilities `json:"previousMonth"`
+	PreviousMonth *PreviousMonthDataLoanLiabilities `json:"previousMonth"`
 }
 
 // Validate validates this loan liabilities
@@ -80,7 +80,7 @@ func (m *LoanLiabilities) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validatePrevious6months(formats); err != nil {
+	if err := m.validatePrevious6Months(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -173,16 +173,16 @@ func (m *LoanLiabilities) validateAccount(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *LoanLiabilities) validatePrevious6months(formats strfmt.Registry) error {
+func (m *LoanLiabilities) validatePrevious6Months(formats strfmt.Registry) error {
 
-	if err := validate.Required("previous6months", "body", m.Previous6months); err != nil {
+	if err := validate.Required("previous6Months", "body", m.Previous6Months); err != nil {
 		return err
 	}
 
-	if m.Previous6months != nil {
-		if err := m.Previous6months.Validate(formats); err != nil {
+	if m.Previous6Months != nil {
+		if err := m.Previous6Months.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("previous6months")
+				return ve.ValidateName("previous6Months")
 			}
 			return err
 		}

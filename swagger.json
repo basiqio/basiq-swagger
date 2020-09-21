@@ -1992,12 +1992,6 @@
               "$ref": "#/definitions/BadRequestError"
             }
           },
-          "401": {
-            "description": "Returns error that indicates unauthorized access.",
-            "schema": {
-              "$ref": "#/definitions/UnauthorizedError"
-            }
-          },
           "500": {
             "description": "Returns error response code indicates that the server encountered an unexpected condition that prevented it from fulfilling the request.",
             "schema": {
@@ -2947,12 +2941,12 @@
       "description": "Average monthly amount for given class for defined period",
       "type": "object",
       "required": [
-        "averageMonthly",
+        "avgMonthly",
         "summary",
         "changeHistory"
       ],
       "properties": {
-        "averageMonthly": {
+        "avgMonthly": {
           "description": "Average amount monthly",
           "type": "string",
           "x-go-name": "AverageMonthly",
@@ -3298,7 +3292,7 @@
         "account",
         "institution",
         "previousMonth",
-        "previous6months",
+        "previous6Months",
         "creditLimit"
       ],
       "properties": {
@@ -3338,7 +3332,7 @@
           "x-go-name": "Institution",
           "example": "Hooli"
         },
-        "previous6months": {
+        "previous6Months": {
           "$ref": "#/definitions/Previous6MonthsCreditLiabilities"
         },
         "previousMonth": {
@@ -3535,6 +3529,7 @@
         "cashWithdrawals",
         "bankFees",
         "loanInterests",
+        "loanRepayments",
         "externalTransfers"
       ],
       "properties": {
@@ -3543,6 +3538,13 @@
         },
         "cashWithdrawals": {
           "$ref": "#/definitions/ClassResourceExpenses"
+        },
+        "coverageDays": {
+          "description": "Number of days covered by the report",
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "CoverageDays",
+          "example": 392
         },
         "externalTransfers": {
           "$ref": "#/definitions/ClassResourceExpenses"
@@ -3563,6 +3565,9 @@
           "$ref": "#/definitions/ExpensesLinks"
         },
         "loanInterests": {
+          "$ref": "#/definitions/ClassResourceExpenses"
+        },
+        "loanRepayments": {
           "$ref": "#/definitions/ClassResourceExpenses"
         },
         "payments": {
@@ -4038,7 +4043,7 @@
         "id",
         "fromMonth",
         "toMonth",
-        "incomeSummary"
+        "summary"
       ],
       "properties": {
         "coverageDays": {
@@ -4060,9 +4065,6 @@
           "x-go-name": "ID",
           "example": "s55bf4"
         },
-        "incomeSummary": {
-          "$ref": "#/definitions/IncomeSummary"
-        },
         "irregular": {
           "description": "Required true",
           "type": "array",
@@ -4075,7 +4077,12 @@
           "$ref": "#/definitions/IncomeLinks"
         },
         "otherCredit": {
-          "$ref": "#/definitions/OtherCreditSource"
+          "description": "Required true",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/OtherCreditSource"
+          },
+          "x-go-name": "OtherCreditSource"
         },
         "regular": {
           "description": "Required true",
@@ -4084,6 +4091,9 @@
             "$ref": "#/definitions/RegularSource"
           },
           "x-go-name": "RegularSources"
+        },
+        "summary": {
+          "$ref": "#/definitions/IncomeSummary"
         },
         "toMonth": {
           "description": "End month (usually the current month) for the period for which the Income summary is generated.",
@@ -4635,7 +4645,7 @@
         "institution",
         "previousMonth",
         "changeHistory",
-        "previous6months"
+        "previous6Months"
       ],
       "properties": {
         "account": {
@@ -4675,11 +4685,11 @@
           "x-go-name": "Institution",
           "example": "Hooli"
         },
-        "previous6months": {
+        "previous6Months": {
           "$ref": "#/definitions/Previous6MonthsLoan"
         },
         "previousMonth": {
-          "$ref": "#/definitions/PreviousMonthDataLiabilities"
+          "$ref": "#/definitions/PreviousMonthDataLoanLiabilities"
         }
       },
       "x-go-package": "github.com/basiqio/connect-api/internal/affordability/internal/models"
@@ -5030,6 +5040,38 @@
           "type": "string",
           "x-go-name": "TotalDebits",
           "example": "-8287.10"
+        }
+      },
+      "x-go-package": "github.com/basiqio/connect-api/internal/affordability/internal/models"
+    },
+    "PreviousMonthDataLoanLiabilities": {
+      "type": "object",
+      "required": [
+        "totalCredits",
+        "totalDebits",
+        "totalInterestCharged",
+        "totalRepayments"
+      ],
+      "properties": {
+        "totalCredits": {
+          "type": "string",
+          "x-go-name": "TotalCredits",
+          "example": "0.00"
+        },
+        "totalDebits": {
+          "type": "string",
+          "x-go-name": "TotalDebits",
+          "example": "-8287.10"
+        },
+        "totalInterestCharged": {
+          "type": "string",
+          "x-go-name": "TotalInterestCharged",
+          "example": "-4303.50"
+        },
+        "totalRepayments": {
+          "type": "string",
+          "x-go-name": "TotalRepayments",
+          "example": "5768.00"
         }
       },
       "x-go-package": "github.com/basiqio/connect-api/internal/affordability/internal/models"
