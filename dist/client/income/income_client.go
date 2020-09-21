@@ -29,7 +29,7 @@ type Client struct {
 type ClientService interface {
 	GetIncome(params *GetIncomeParams, authInfo runtime.ClientAuthInfoWriter) (*GetIncomeOK, error)
 
-	PostIncome(params *PostIncomeParams, authInfo runtime.ClientAuthInfoWriter) (*PostIncomeOK, error)
+	PostIncome(params *PostIncomeParams, authInfo runtime.ClientAuthInfoWriter) (*PostIncomeOK, *PostIncomeNoContent, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -72,7 +72,7 @@ func (a *Client) GetIncome(params *GetIncomeParams, authInfo runtime.ClientAuthI
 /*
   PostIncome uses this to create a new income report
 */
-func (a *Client) PostIncome(params *PostIncomeParams, authInfo runtime.ClientAuthInfoWriter) (*PostIncomeOK, error) {
+func (a *Client) PostIncome(params *PostIncomeParams, authInfo runtime.ClientAuthInfoWriter) (*PostIncomeOK, *PostIncomeNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPostIncomeParams()
@@ -92,15 +92,16 @@ func (a *Client) PostIncome(params *PostIncomeParams, authInfo runtime.ClientAut
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
-	success, ok := result.(*PostIncomeOK)
-	if ok {
-		return success, nil
+	switch value := result.(type) {
+	case *PostIncomeOK:
+		return value, nil, nil
+	case *PostIncomeNoContent:
+		return nil, value, nil
 	}
-	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for postIncome: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	msg := fmt.Sprintf("unexpected success response for income: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

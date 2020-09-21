@@ -35,6 +35,12 @@ func (o *PostAffordabilityReader) ReadResponse(response runtime.ClientResponse, 
 			return nil, err
 		}
 		return result, nil
+	case 204:
+		result := NewPostAffordabilityNoContent()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 400:
 		result := NewPostAffordabilityBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -115,6 +121,27 @@ func (o *PostAffordabilityCreated) Error() string {
 }
 
 func (o *PostAffordabilityCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	return nil
+}
+
+// NewPostAffordabilityNoContent creates a PostAffordabilityNoContent with default headers values
+func NewPostAffordabilityNoContent() *PostAffordabilityNoContent {
+	return &PostAffordabilityNoContent{}
+}
+
+/*PostAffordabilityNoContent handles this case with default header values.
+
+Returns no content if there are none transactions for the requested period.
+*/
+type PostAffordabilityNoContent struct {
+}
+
+func (o *PostAffordabilityNoContent) Error() string {
+	return fmt.Sprintf("[POST /users/{userId}/affordability][%d] postAffordabilityNoContent ", 204)
+}
+
+func (o *PostAffordabilityNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }

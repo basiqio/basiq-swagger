@@ -29,7 +29,7 @@ type Client struct {
 type ClientService interface {
 	GetExpenses(params *GetExpensesParams, authInfo runtime.ClientAuthInfoWriter) (*GetExpensesOK, error)
 
-	PostExpenses(params *PostExpensesParams, authInfo runtime.ClientAuthInfoWriter) (*PostExpensesOK, error)
+	PostExpenses(params *PostExpensesParams, authInfo runtime.ClientAuthInfoWriter) (*PostExpensesOK, *PostExpensesNoContent, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -72,7 +72,7 @@ func (a *Client) GetExpenses(params *GetExpensesParams, authInfo runtime.ClientA
 /*
   PostExpenses uses this to create a new expenses report
 */
-func (a *Client) PostExpenses(params *PostExpensesParams, authInfo runtime.ClientAuthInfoWriter) (*PostExpensesOK, error) {
+func (a *Client) PostExpenses(params *PostExpensesParams, authInfo runtime.ClientAuthInfoWriter) (*PostExpensesOK, *PostExpensesNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPostExpensesParams()
@@ -92,15 +92,16 @@ func (a *Client) PostExpenses(params *PostExpensesParams, authInfo runtime.Clien
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
-	success, ok := result.(*PostExpensesOK)
-	if ok {
-		return success, nil
+	switch value := result.(type) {
+	case *PostExpensesOK:
+		return value, nil, nil
+	case *PostExpensesNoContent:
+		return nil, value, nil
 	}
-	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for postExpenses: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	msg := fmt.Sprintf("unexpected success response for expenses: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

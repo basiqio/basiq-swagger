@@ -29,6 +29,12 @@ func (o *PostExpensesReader) ReadResponse(response runtime.ClientResponse, consu
 			return nil, err
 		}
 		return result, nil
+	case 204:
+		result := NewPostExpensesNoContent()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 400:
 		result := NewPostExpensesBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -88,6 +94,27 @@ func (o *PostExpensesOK) readResponse(response runtime.ClientResponse, consumer 
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
+
+	return nil
+}
+
+// NewPostExpensesNoContent creates a PostExpensesNoContent with default headers values
+func NewPostExpensesNoContent() *PostExpensesNoContent {
+	return &PostExpensesNoContent{}
+}
+
+/*PostExpensesNoContent handles this case with default header values.
+
+Returns no content if there are none transactions for the requested period.
+*/
+type PostExpensesNoContent struct {
+}
+
+func (o *PostExpensesNoContent) Error() string {
+	return fmt.Sprintf("[POST /users/{userId}/expenses][%d] postExpensesNoContent ", 204)
+}
+
+func (o *PostExpensesNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }
