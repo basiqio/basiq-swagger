@@ -47,7 +47,7 @@ func TestPostAffordability(t *testing.T) {
 		Context:                  context.TODO(),
 	}
 
-	affordabilityPostRsp, _, err := test.Client.Affordability.PostAffordability(affordabilityPostParams, token)
+	affordabilityPostRsp, _, _, err := test.Client.Affordability.PostAffordability(affordabilityPostParams, token)
 
 	if err != nil {
 		t.Fatalf("Cannot post affordability. Error: %v", err)
@@ -77,12 +77,15 @@ func TestPostAffordabilityEmptyResponse(t *testing.T) {
 		Context:                  context.TODO(),
 	}
 
-	_, _, err := test.Client.Affordability.PostAffordability(affordabilityPostParams, token)
+	_, _, postAffordabilityNoContent, err := test.Client.Affordability.PostAffordability(affordabilityPostParams, token)
 
-	if err == nil {
+	if err != nil {
 		t.Fatalf("Response 204 should be returned . Error: %v", err)
 	}
-	// todo check to 204 error rsp
+
+	if postAffordabilityNoContent == nil {
+		t.Fatalf("Response should be 204")
+	}
 }
 
 func TestPostAffordabilityBadRequest(t *testing.T) {
@@ -94,7 +97,7 @@ func TestPostAffordabilityBadRequest(t *testing.T) {
 		Context:                  context.TODO(),
 	}
 
-	_, _, err := test.Client.Affordability.PostAffordability(affordabilityPostParams, token)
+	_, _, _, err := test.Client.Affordability.PostAffordability(affordabilityPostParams, token)
 
 	if err != nil {
 		badRequest, ok := err.(*affordability.PostAffordabilityBadRequest)

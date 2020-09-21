@@ -47,7 +47,7 @@ func TestPostExpenses(t *testing.T) {
 		Context:             context.TODO(),
 	}
 
-	expensesRsp, err := test.Client.Expenses.PostExpenses(expensesPostParams, token)
+	expensesRsp, _, err := test.Client.Expenses.PostExpenses(expensesPostParams, token)
 
 	if err != nil {
 		t.Fatalf("Cannot post expenses. Error: %v", err)
@@ -64,6 +64,26 @@ func TestPostExpenses(t *testing.T) {
 	test.AssertJson(t, s, string(e))
 }
 
+func TestPostAffordabilityEmptyResponse(t *testing.T) {
+	token := httptransport.BearerToken(test.TokenHolder.GetToken(t))
+	userID := "8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5"
+	accountID := "14aa946c-6f87-44b7-bab9-d192d6261471"
+	expensesPostParams := &expenses.PostExpensesParams{UserID: userID,
+		ExpensesPostRequest: &models.ExpensesPost{FromMonth: "2015-11", ToMonth: "2016-10", Accounts: []string{accountID}},
+		Context:             context.TODO(),
+	}
+
+	_, postExpensesNoContent, err := test.Client.Expenses.PostExpenses(expensesPostParams, token)
+
+	if err != nil {
+		t.Fatalf("Response 204 should be returned . Error: %v", err)
+	}
+
+	if postExpensesNoContent == nil {
+		t.Fatalf("Response should be 204")
+	}
+}
+
 func TestPostExpensesBadRequest(t *testing.T) {
 	token := httptransport.BearerToken(test.TokenHolder.GetToken(t))
 	userID := "8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5"
@@ -73,7 +93,7 @@ func TestPostExpensesBadRequest(t *testing.T) {
 		Context:             context.TODO(),
 	}
 
-	_, err := test.Client.Expenses.PostExpenses(expensesPostParams, token)
+	_, _, err := test.Client.Expenses.PostExpenses(expensesPostParams, token)
 
 	if err != nil {
 		badRequest, ok := err.(*expenses.PostExpensesBadRequest)

@@ -47,7 +47,7 @@ func TestPostIncome(t *testing.T) {
 		Context:           context.TODO(),
 	}
 
-	incomeRsp, err := test.Client.Income.PostIncome(incomePostParams, token)
+	incomeRsp, _, err := test.Client.Income.PostIncome(incomePostParams, token)
 
 	if err != nil {
 		t.Fatalf("Cannot post income. Error: %v", err)
@@ -64,6 +64,26 @@ func TestPostIncome(t *testing.T) {
 	test.AssertJson(t, s, string(e))
 }
 
+func TestPostAffordabilityEmptyResponse(t *testing.T) {
+	token := httptransport.BearerToken(test.TokenHolder.GetToken(t))
+	userID := "8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5"
+	accountID := "14aa946c-6f87-44b7-bab9-d192d6261471"
+	incomePostParams := &income.PostIncomeParams{UserID: userID,
+		IncomePostRequest: &models.IncomePost{FromMonth: "2015-11", ToMonth: "2016-10", Accounts: []string{accountID}},
+		Context:           context.TODO(),
+	}
+
+	_, postIncomeNoContent, err := test.Client.Income.PostIncome(incomePostParams, token)
+
+	if err != nil {
+		t.Fatalf("Response 204 should be returned . Error: %v", err)
+	}
+
+	if postIncomeNoContent == nil {
+		t.Fatalf("Response should be 204")
+	}
+}
+
 func TestPostIncomeBadRequest(t *testing.T) {
 	token := httptransport.BearerToken(test.TokenHolder.GetToken(t))
 	userID := "8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5"
@@ -73,7 +93,7 @@ func TestPostIncomeBadRequest(t *testing.T) {
 		Context:           context.TODO(),
 	}
 
-	_, err := test.Client.Income.PostIncome(incomePostParams, token)
+	_, _, err := test.Client.Income.PostIncome(incomePostParams, token)
 
 	if err != nil {
 		badRequest, ok := err.(*income.PostIncomeBadRequest)
