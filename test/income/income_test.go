@@ -33,6 +33,7 @@ func TestGetIncome(t *testing.T) {
 	}
 
 	s := test.GetJsonResponse("./responses/getIncome.json", t)
+	s = strings.Replace(s, "46137f25-af96-40d0-883f-16fd871b7f23", *incomeRsp.GetPayload().ID, 1)
 
 	test.AssertJson(t, s, string(e))
 }
@@ -58,6 +59,7 @@ func TestPostIncome(t *testing.T) {
 	}
 
 	s := test.GetJsonResponse("./responses/postIncome.json", t)
+	s = strings.Replace(s, "c4c4466d-55e1-42b5-88cf-7b04f32af485", *incomeRsp.GetPayload().ID, 2)
 
 	test.AssertJson(t, s, string(e))
 }

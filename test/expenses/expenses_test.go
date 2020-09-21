@@ -33,6 +33,7 @@ func TestGetExpenses(t *testing.T) {
 	}
 
 	s := test.GetJsonResponse("./responses/getExpenses.json", t)
+	s = strings.Replace(s, "55275323-6dec-4458-938e-9f7d21edba00", *expensesRsp.GetPayload().ID, 2)
 
 	test.AssertJson(t, s, string(e))
 }
@@ -58,6 +59,7 @@ func TestPostExpenses(t *testing.T) {
 	}
 
 	s := test.GetJsonResponse("./responses/postExpenses.json", t)
+	s = strings.Replace(s, "fc0b93d6-6acd-45aa-a0db-1141ef5a2307", *expensesRsp.GetPayload().ID, 2)
 
 	test.AssertJson(t, s, string(e))
 }

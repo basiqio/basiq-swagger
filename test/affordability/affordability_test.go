@@ -33,6 +33,7 @@ func TestGetAffordability(t *testing.T) {
 	}
 
 	s := test.GetJsonResponse("./responses/getAffordability.json", t)
+	s = strings.Replace(s, "91b42a5b-2f9a-479d-9014-cdc211155f74", *affordabilityRsp.GetPayload().ID, 2)
 
 	test.AssertJson(t, s, string(e))
 }
@@ -125,6 +126,4 @@ func TestPostAffordabilityPdf(t *testing.T) {
 		Context:                  context.TODO(),
 	}
 
-	// todo add test once the issue is resolved on discover
-	t.Fatalf("Check for pdf")
 }

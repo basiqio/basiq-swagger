@@ -152,6 +152,12 @@
     }
   ],
   "links": {
+    "accounts": [
+      "https://au-api.basiq.io/users/8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5/accounts/14aa946c-6f87-44b7-bab9-d192d6261471",
+      "https://au-api.basiq.io/users/8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5/accounts/1dd139d5-c88c-446b-b6df-1d6252db4d59",
+      "https://au-api.basiq.io/users/8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5/accounts/9a66a1fb-a93a-47ff-abb0-84814d3aa229",
+      "https://au-api.basiq.io/users/8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5/accounts/9b1f13ca-56fa-4c7e-8688-2e2eab896acc"
+    ],
     "self": "https://au-api.basiq.io/users/8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5/income/46137f25-af96-40d0-883f-16fd871b7f23"
   }
 }
