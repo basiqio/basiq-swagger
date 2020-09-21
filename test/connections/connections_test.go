@@ -4,7 +4,6 @@ import (
 	"context"
 	"encoding/json"
 	"github.com/basiqio/basiq-swagger/dist/client/connections"
-	"github.com/basiqio/basiq-swagger/dist/client/users"
 	"github.com/basiqio/basiq-swagger/dist/models"
 	"github.com/basiqio/basiq-swagger/test"
 	httptransport "github.com/go-openapi/runtime/client"
@@ -83,8 +82,8 @@ func TestGetConnection(t *testing.T) {
 func TestCreateConnection(t *testing.T) {
 	token := httptransport.BearerToken(test.TokenHolder.GetToken(t))
 
-	userID := setupUser(t)
-	defer cleanupUser(t, userID)
+	userID := test.SetupUser(t)
+	defer test.CleanupUser(t, userID)
 
 	loginID := "Wentworth-Smith"
 	password := "whislter"
@@ -189,8 +188,8 @@ func TestUpdateConnection(t *testing.T) {
 func TestPendingConnection(t *testing.T) {
 	token := httptransport.BearerToken(test.TokenHolder.GetToken(t))
 
-	userID := setupUser(t)
-	defer cleanupUser(t, userID)
+	userID := test.SetupUser(t)
+	defer test.CleanupUser(t, userID)
 
 	loginID := "Wentworth-Smith"
 	password := "whislter"
@@ -229,14 +228,13 @@ func TestPendingConnection(t *testing.T) {
 	s = strings.Replace(s, "2020-09-11T06:28:39Z", connectionsRsp.GetPayload().ConnectionsData[0].LastUsed, 1)
 
 	test.AssertJson(t, s, string(e))
-
 }
 
 func TestDeleteConnection(t *testing.T) {
 	token := httptransport.BearerToken(test.TokenHolder.GetToken(t))
 
-	userID := setupUser(t)
-	defer cleanupUser(t, userID)
+	userID := test.SetupUser(t)
+	defer test.CleanupUser(t, userID)
 
 	loginID := "Wentworth-Smith"
 	password := "whislter"
@@ -271,36 +269,4 @@ func TestDeleteConnection(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Error deleting connection, Error: %v", err)
 	}
-}
-
-func cleanupUser(t *testing.T, userId string) {
-	userDeleteRequest := &users.DeleteUserParams{
-		UserID:  userId,
-		Context: context.TODO(),
-	}
-
-	_, err := test.Client.Users.DeleteUser(userDeleteRequest, httptransport.BearerToken(test.TokenHolder.GetToken(t)))
-	if err != nil {
-		t.Fatalf("Error deleting user: %v", err)
-	}
-}
-
-func setupUser(t *testing.T) string {
-	userEmail := "gavin1224@hooli.com"
-	userMobile := "+61410888999"
-
-	userPostRequest := &users.CreateUserParams{
-		User: &models.UserPost{
-			Email:  userEmail,
-			Mobile: userMobile,
-		},
-		Context: context.TODO(),
-	}
-
-	userResponse, err := test.Client.Users.CreateUser(userPostRequest, httptransport.BearerToken(test.TokenHolder.GetToken(t)))
-
-	if err != nil {
-		t.Fatal("Error creating user")
-	}
-	return *userResponse.GetPayload().ID
 }

@@ -5,6 +5,8 @@ import (
 	"fmt"
 	client2 "github.com/basiqio/basiq-swagger/dist/client"
 	token2 "github.com/basiqio/basiq-swagger/dist/client/token"
+	"github.com/basiqio/basiq-swagger/dist/client/users"
+	"github.com/basiqio/basiq-swagger/dist/models"
 	httptransport "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 	"github.com/onsi/gomega"
@@ -82,4 +84,36 @@ func AssertJson(t *testing.T, expected, actual string) {
 		fmt.Printf("%v\n%v\n", expected, actual)
 		t.Fatalf("Responses are not the same.")
 	}
+}
+
+func CleanupUser(t *testing.T, userId string) {
+	userDeleteRequest := &users.DeleteUserParams{
+		UserID:  userId,
+		Context: context.TODO(),
+	}
+
+	_, err := Client.Users.DeleteUser(userDeleteRequest, httptransport.BearerToken(TokenHolder.GetToken(t)))
+	if err != nil {
+		t.Fatalf("Error deleting user: %v", err)
+	}
+}
+
+func SetupUser(t *testing.T) string {
+	userEmail := "gavin1224@hooli.com"
+	userMobile := "+61410888999"
+
+	userPostRequest := &users.CreateUserParams{
+		User: &models.UserPost{
+			Email:  userEmail,
+			Mobile: userMobile,
+		},
+		Context: context.TODO(),
+	}
+
+	userResponse, err := Client.Users.CreateUser(userPostRequest, httptransport.BearerToken(TokenHolder.GetToken(t)))
+
+	if err != nil {
+		t.Fatal("Error creating user")
+	}
+	return *userResponse.GetPayload().ID
 }
