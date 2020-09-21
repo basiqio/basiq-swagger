@@ -29,6 +29,12 @@ func (o *PostIncomeReader) ReadResponse(response runtime.ClientResponse, consume
 			return nil, err
 		}
 		return result, nil
+	case 204:
+		result := NewPostIncomeNoContent()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return result, nil
 	case 400:
 		result := NewPostIncomeBadRequest()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -88,6 +94,27 @@ func (o *PostIncomeOK) readResponse(response runtime.ClientResponse, consumer ru
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
+
+	return nil
+}
+
+// NewPostIncomeNoContent creates a PostIncomeNoContent with default headers values
+func NewPostIncomeNoContent() *PostIncomeNoContent {
+	return &PostIncomeNoContent{}
+}
+
+/*PostIncomeNoContent handles this case with default header values.
+
+Returns no content if there are none transactions for the requested period.
+*/
+type PostIncomeNoContent struct {
+}
+
+func (o *PostIncomeNoContent) Error() string {
+	return fmt.Sprintf("[POST /users/{userId}/income][%d] postIncomeNoContent ", 204)
+}
+
+func (o *PostIncomeNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	return nil
 }
