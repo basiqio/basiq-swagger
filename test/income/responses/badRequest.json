@@ -1,0 +1,15 @@
+{
+  "type": "list",
+  "correlationId": "fbf82ac8-be3d-463f-b502-5f0749637ae1",
+  "data": [
+    {
+      "type": "error",
+      "code": "parameter-not-valid",
+      "title": "Parameter value is not valid",
+      "detail": "Maximum length of fromDate - toDate interval is 12 months",
+      "source": {
+        "parameter": "toDate, fromDate"
+      }
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "type": "affordability",
+  "id": "17245135-ccd2-4b66-8b34-bef1a8342827",
+  "fromMonth": "2018-11",
+  "toMonth": "2019-10",
+  "coverageDays": 352,
+  "generatedDate": "2020-09-11T18:45:56",
+  "summary": {
+    "assets": "38383.73",
+    "liabilities": null,
+    "netPosition": "38383.73",
+    "creditLimit": null,
+    "expenses": "0.00",
+    "savings": "602.00",
+    "regularIncome": {
+      "previous3Months": {
+        "avgMonthly": "0.00"
+      }
+    }
+  },
+  "assets": [
+    {
+      "currency": "AUD",
+      "balance": "38383.73",
+      "availableFunds": "38383.73",
+      "institution": "Hooli",
+      "type": "account",
+      "account": {
+        "product": "Hooli Saver",
+        "type": "savings"
+      },
+      "previous6Months": {
+        "minBalance": "29297.61",
+        "maxBalance": "32427.79"
+      }
+    }
+  ],
+  "liabilities": {
+    "loan": [],
+    "credit": []
+  },
+  "links": {
+    "self": "selfLink",
+    "income": "incomeLink",
+    "expenses": "expensesLink",
+    "accounts": [
+      "https://au-api.basiq.io/users/8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5/accounts/14aa946c-6f87-44b7-bab9-d192d6261471"
+    ]
+  }
+}

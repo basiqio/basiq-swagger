@@ -3,9 +3,12 @@ package jobs
 import (
 	"context"
 	"encoding/json"
+	"github.com/basiqio/basiq-swagger/dist/client/connections"
 	"github.com/basiqio/basiq-swagger/dist/client/jobs"
+	"github.com/basiqio/basiq-swagger/dist/models"
 	"github.com/basiqio/basiq-swagger/test"
 	httptransport "github.com/go-openapi/runtime/client"
+	"strings"
 	"testing"
 )
 
@@ -30,25 +33,48 @@ func TestGetJob(t *testing.T) {
 	test.AssertJson(t, s, string(e))
 }
 
-// TODO This test needs to be done differently because the GET jobs are getting back jobs only for the previous 7 days
+func TestGetJobs(t *testing.T) {
+	token := httptransport.BearerToken(test.TokenHolder.GetToken(t))
+	userID := test.SetupUser(t)
+	defer test.CleanupUser(t, userID)
 
-//func TestGetJobs(t *testing.T) {
-//	jobsParams := &jobs.GetUserJobsParams{
-//		UserID:  "8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5",
-//		Context: context.TODO(),
-//	}
-//
-//	jobsRsp, err := test.Client.Jobs.GetUserJobs(jobsParams, httptransport.BearerToken(test.TokenHolder.GetToken(t)))
-//	if err != nil {
-//		t.Fatalf("Error getting user jobs: %v", err)
-//	}
-//
-//	e, err := json.Marshal(jobsRsp.GetPayload())
-//	if err != nil {
-//		t.Fatalf("Error: %v", err)
-//	}
-//
-//	s := test.GetJsonResponse("./responses/getJobs.json", t)
-//
-//	test.AssertJson(t, s, string(e))
-//}
+	loginID := "Wentworth-Smith"
+	password := "whislter"
+	institutionID := "AU00000"
+	institution := models.InstitutionModel{ID: &institutionID}
+
+	connCreateParams := &connections.PostConnectionParams{
+		UserID:                  userID,
+		UserConnectionsPostData: &models.UserConnectionsPostData{Password: &password, LoginID: &loginID, Institution: &institution},
+		Context:                 context.TODO(),
+	}
+
+	connectionPostRsp, err := test.Client.Connections.PostConnection(connCreateParams, token)
+
+	if err != nil {
+		t.Fatalf("Error posting connection, Error: %v", err)
+	}
+
+	jobsParams := &jobs.GetUserJobsParams{
+		UserID:  userID,
+		Context: context.TODO(),
+	}
+
+	jobsRsp, err := test.Client.Jobs.GetUserJobs(jobsParams, token)
+	if err != nil {
+		t.Fatalf("Error getting user jobs: %v", err)
+	}
+
+	e, err := json.Marshal(jobsRsp.GetPayload())
+	if err != nil {
+		t.Fatalf("Error: %v", err)
+	}
+
+	s := test.GetJsonResponse("./responses/getJobs.json", t)
+	s = strings.Replace(s, "5b3532e0-23c7-48cb-b7a4-ff37f46c3eb1", userID, 5)
+	s = strings.Replace(s, "a826e470-83d5-482a-b19f-bb44985c14bb", *connectionPostRsp.GetPayload().ID, 2)
+	s = strings.Replace(s, "2020-09-21T11:19:11Z", *jobsRsp.GetPayload().Data[0].Created, 1)
+	s = strings.Replace(s, "2020-09-21T11:19:11Z", *jobsRsp.GetPayload().Data[0].Updated, 1)
+	s = strings.Replace(s, "{source}", jobsRsp.GetPayload().Data[0].Links.Source, 1)
+	test.AssertJson(t, s, string(e))
+}

@@ -1,0 +1,163 @@
+{
+  "type": "income",
+  "id": "46137f25-af96-40d0-883f-16fd871b7f23",
+  "fromMonth": "2019-05",
+  "toMonth": "2019-09",
+  "coverageDays": 152,
+  "summary": {
+    "regularIncomeAvg": "17098.00",
+    "regularIncomeYTD": "85490.00",
+    "regularIncomeYear": null,
+    "irregularIncomeAvg": "201.00"
+  },
+  "regular": [
+    {
+      "source": "payroll wfrms",
+      "frequency": "monthly",
+      "ageDays": 120,
+      "irregularity": {
+        "stability": "1.0",
+        "gaps": []
+      },
+      "previous3Months": {
+        "amountAvg": "17098.00",
+        "amountAvgMonthly": "17098.00",
+        "variance": "0.00"
+      },
+      "current": {
+        "date": "2019-09-27T00:00:00",
+        "amount": "17098.00",
+        "nextDate": "2019-10-27T00:00:00"
+      },
+      "changeHistory": [
+        {
+          "source": "PAYROLL WFRMS 15439393",
+          "date": "2019-05-30T00:00:00",
+          "amount": "17098.00"
+        },
+        {
+          "source": "PAYROLL WFRMS 15439393",
+          "date": "2019-06-30T00:00:00",
+          "amount": "17098.00"
+        },
+        {
+          "source": "PAYROLL WFRMS 15439393",
+          "date": "2019-07-28T00:00:00",
+          "amount": "17098.00"
+        },
+        {
+          "source": "PAYROLL WFRMS 15439393",
+          "date": "2019-08-28T00:00:00",
+          "amount": "17098.00"
+        },
+        {
+          "source": "PAYROLL WFRMS 15439393",
+          "date": "2019-09-27T00:00:00",
+          "amount": "17098.00"
+        }
+      ]
+    }
+  ],
+  "irregular": [
+    {
+      "source": "wage manly maths tutor s",
+      "frequency": "irregular",
+      "ageDays": 123,
+      "amountAvg": "201.00",
+      "noOccurrences": 7,
+      "avgMonthlyOccurence": "1.5",
+      "current": {
+        "date": "2019-09-15T00:00:00",
+        "amount": "201.00"
+      },
+      "changeHistory": [
+        {
+          "source": "MANLY MATHS TUTOR WAGES",
+          "date": "2019-05-15T00:00:00",
+          "amount": "201.00"
+        },
+        {
+          "source": "MANLY MATHS TUTOR WAGES",
+          "date": "2019-07-16T00:00:00",
+          "amount": "201.00"
+        },
+        {
+          "source": "MANLY MATHS TUTOR WAGES",
+          "date": "2019-07-20T00:00:00",
+          "amount": "201.00"
+        },
+        {
+          "source": "MANLY MATHS TUTOR WAGES",
+          "date": "2019-08-13T00:00:00",
+          "amount": "201.00"
+        },
+        {
+          "source": "MANLY MATHS TUTOR WAGES",
+          "date": "2019-08-17T00:00:00",
+          "amount": "201.00"
+        },
+        {
+          "source": "MANLY MATHS TUTOR WAGES",
+          "date": "2019-09-13T00:00:00",
+          "amount": "201.00"
+        },
+        {
+          "source": "MANLY MATHS TUTOR WAGES",
+          "date": "2019-09-15T00:00:00",
+          "amount": "201.00"
+        }
+      ]
+    }
+  ],
+  "otherCredit": [
+    {
+      "source": "savings interest cr bal",
+      "frequency": "other",
+      "ageDays": 120,
+      "amountAvg": "117.43",
+      "noOccurrences": 5,
+      "avgMonthlyOccurence": "1",
+      "current": {
+        "date": "2019-09-28T00:00:00",
+        "amount": "121.19",
+        "otherCreditLabel": "regular income small amount"
+      },
+      "changeHistory": [
+        {
+          "source": "SAVINGS INTEREST CR BAL @0%%",
+          "date": "2019-05-31T00:00:00",
+          "amount": "89.63"
+        },
+        {
+          "source": "SAVINGS INTEREST CR BAL @0%%",
+          "date": "2019-07-01T00:00:00",
+          "amount": "117.43"
+        },
+        {
+          "source": "SAVINGS INTEREST CR BAL @0%%",
+          "date": "2019-07-29T00:00:00",
+          "amount": "119.31"
+        },
+        {
+          "source": "SAVINGS INTEREST CR BAL @0%%",
+          "date": "2019-08-29T00:00:00",
+          "amount": "89.63"
+        },
+        {
+          "source": "SAVINGS INTEREST CR BAL @0%%",
+          "date": "2019-09-28T00:00:00",
+          "amount": "121.19"
+        }
+      ]
+    }
+  ],
+  "links": {
+    "accounts": [
+      "https://au-api.basiq.io/users/8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5/accounts/14aa946c-6f87-44b7-bab9-d192d6261471",
+      "https://au-api.basiq.io/users/8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5/accounts/1dd139d5-c88c-446b-b6df-1d6252db4d59",
+      "https://au-api.basiq.io/users/8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5/accounts/9a66a1fb-a93a-47ff-abb0-84814d3aa229",
+      "https://au-api.basiq.io/users/8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5/accounts/9b1f13ca-56fa-4c7e-8688-2e2eab896acc"
+    ],
+    "self": "https://au-api.basiq.io/users/8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5/income/46137f25-af96-40d0-883f-16fd871b7f23"
+  }
+}
