@@ -251,7 +251,7 @@ Please check the changelog for more details on API changes
 
 
 ###How to Contribute
-Report an issue 
+Report an issue: https://github.com/basiqio/basiq-swagger/issues/new/choose
 
 ###Usage
 Link to Swagger file https://github.com/basiqio/basiq-swagger
