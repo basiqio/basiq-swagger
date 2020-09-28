@@ -1,0 +1,16 @@
+---
+name: Bug report
+about: Create a report to help us improve
+title: ''
+labels: ''
+assignees: ''
+
+---
+
+## Problem statement
+Please remove the sections that don't apply
+## Swagger specification
+## Steps to reproduce
+## Environment
+swagger version: x.x.x  
+go version: x.x.x
