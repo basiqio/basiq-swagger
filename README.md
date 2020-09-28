@@ -1,9 +1,15 @@
 # Basiq-swagger
 Basiq API documentation.
 
-###Install packages
+### Installation
+The main step is to create a client using Swagger, and with a client you call all Basiq endpoints.
 
+###Install packages
 To build sdk use ./build.sh script. Before building the sdk make sure you have goswagger installed (https://goswagger.io).
+
+Installation of the goswagger tool:
+
+go get -u github.com/go-swagger/go-swagger/cmd/swagger 
 
 For this generation to compile you need to have some packages in your GOPATH:
 
@@ -14,8 +20,6 @@ For this generation to compile you need to have some packages in your GOPATH:
 
 #### Quick start
 To run these examples just create main.go in the root of the project. 
-
-The main thing here is to create is a client and with a client you call all Basiq endpoints.
 
 #### Example GET Token:
 ```
@@ -241,7 +245,15 @@ func main() {
 }
 ```
 
+
+###Changelog
+Please check the changelog for more details on API changes
+
+
+###How to Contribute
+Report an issue 
+
 ###Usage
-Link to Swagger file
+Link to Swagger file https://github.com/basiqio/basiq-swagger
 
 Links to API docs: https://api.basiq.io/reference
