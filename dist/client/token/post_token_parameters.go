@@ -14,8 +14,6 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
-
-	"github.com/basiqio/basiq-swagger/dist/models"
 )
 
 // NewPostTokenParams creates a new PostTokenParams object
@@ -64,10 +62,10 @@ type PostTokenParams struct {
 
 	/*Authorization*/
 	Authorization string
-	/*TokenPostRequest*/
-	TokenPostRequest *models.TokenPostRequest
 	/*BasiqVersion*/
 	BasiqVersion string
+	/*Scope*/
+	Scope *string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -118,17 +116,6 @@ func (o *PostTokenParams) SetAuthorization(authorization string) {
 	o.Authorization = authorization
 }
 
-// WithTokenPostRequest adds the tokenPostRequest to the post token params
-func (o *PostTokenParams) WithTokenPostRequest(tokenPostRequest *models.TokenPostRequest) *PostTokenParams {
-	o.SetTokenPostRequest(tokenPostRequest)
-	return o
-}
-
-// SetTokenPostRequest adds the tokenPostRequest to the post token params
-func (o *PostTokenParams) SetTokenPostRequest(tokenPostRequest *models.TokenPostRequest) {
-	o.TokenPostRequest = tokenPostRequest
-}
-
 // WithBasiqVersion adds the basiqVersion to the post token params
 func (o *PostTokenParams) WithBasiqVersion(basiqVersion string) *PostTokenParams {
 	o.SetBasiqVersion(basiqVersion)
@@ -138,6 +125,17 @@ func (o *PostTokenParams) WithBasiqVersion(basiqVersion string) *PostTokenParams
 // SetBasiqVersion adds the basiqVersion to the post token params
 func (o *PostTokenParams) SetBasiqVersion(basiqVersion string) {
 	o.BasiqVersion = basiqVersion
+}
+
+// WithScope adds the scope to the post token params
+func (o *PostTokenParams) WithScope(scope *string) *PostTokenParams {
+	o.SetScope(scope)
+	return o
+}
+
+// SetScope adds the scope to the post token params
+func (o *PostTokenParams) SetScope(scope *string) {
+	o.Scope = scope
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -153,15 +151,25 @@ func (o *PostTokenParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Reg
 		return err
 	}
 
-	if o.TokenPostRequest != nil {
-		if err := r.SetBodyParam(o.TokenPostRequest); err != nil {
-			return err
-		}
-	}
-
 	// header param basiq-version
 	if err := r.SetHeaderParam("basiq-version", o.BasiqVersion); err != nil {
 		return err
+	}
+
+	if o.Scope != nil {
+
+		// form param scope
+		var frScope string
+		if o.Scope != nil {
+			frScope = *o.Scope
+		}
+		fScope := frScope
+		if fScope != "" {
+			if err := r.SetFormParam("scope", fScope); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	if len(res) > 0 {
