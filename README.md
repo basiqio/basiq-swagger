@@ -4,7 +4,7 @@ Basiq API documentation.
 ### Installation
 The main step is to create a client using Swagger, and with a client you call all Basiq endpoints.
 
-###Install packages
+### Install packages
 To build sdk use ./build.sh script. Before building the sdk make sure you have goswagger installed (https://goswagger.io).
 
 Installation of the goswagger tool:
@@ -53,7 +53,7 @@ func main() {
 }
 ```
 
-####Example POST User:
+#### Example POST User:
 ```
 import (
 	"context"
@@ -87,7 +87,7 @@ func main() {
 }
 ```
 
-####Example POST AuthLinks: 
+#### Example POST AuthLinks: 
 ```
 import (
 	"context"
@@ -117,7 +117,7 @@ func main() {
 }
 ```
 
-####Example GET AuthLinks: 
+#### Example GET AuthLinks: 
 
 ```
 import (
@@ -147,7 +147,7 @@ func main() {
 }
 ```
 
-####Example GET transactions:
+#### Example GET transactions:
 ```
 import (
 	"context"
@@ -176,7 +176,7 @@ func main() {
 }
 ```
 
-####Example POST affordability:
+#### Example POST affordability:
 ```
 import (
 	"context"
@@ -214,7 +214,7 @@ Adding filter params for POST affordability example:
    	}
 ```
 
-####Example GET affordability
+#### Example GET affordability
 ```
 import (
 	"context"
@@ -246,14 +246,14 @@ func main() {
 ```
 
 
-###Changelog
+### Changelog
 Please check the changelog for more details on API changes
 
 
-###How to Contribute
+### How to Contribute
 Report an issue: https://github.com/basiqio/basiq-swagger/issues/new/choose
 
-###Usage
+### Usage
 Link to Swagger file https://github.com/basiqio/basiq-swagger
 
 Links to API docs: https://api.basiq.io/reference
