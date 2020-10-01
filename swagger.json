@@ -6289,9 +6289,23 @@
     "Features": {
       "description": "Features stucture that describes institution features per data source",
       "type": "object",
+      "required": [
+        "login"
+      ],
       "properties": {
         "accounts": {
           "$ref": "#/definitions/AccountsFeatures"
+        },
+        "login": {
+          "description": "Login holds list of data source identifiers which are capable to do complete login step.\nThis feature is applicable only on web sources.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SourceName"
+          },
+          "x-go-name": "Login",
+          "example": [
+            "web"
+          ]
         },
         "profile": {
           "$ref": "#/definitions/ProfileFeatures"
