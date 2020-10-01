@@ -13,6 +13,9 @@
   "stage": "beta",
   "tier": "4",
   "features": {
+    "login": [
+      "web"
+    ],
     "accounts": {
       "balance": [
         "web"
