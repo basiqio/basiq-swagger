@@ -12,10 +12,39 @@ import (
 	httptransport "github.com/go-openapi/runtime/client"
 )
 
-func TestPostToken(t *testing.T) {
+func TestPostTokenClientAccess(t *testing.T) {
+	scope := "CLIENT_ACCESS"
 	tokenParams := &token.PostTokenParams{
 		Authorization: "Basic " + test.Cfg.ApiKey,
 		BasiqVersion:  "2.0",
+		Scope:         &scope,
+		Context:       context.TODO(),
+	}
+
+	tokenResponse, err := test.Client.Token.PostToken(tokenParams, httptransport.PassThroughAuth)
+	if err != nil {
+		t.Fatalf("Error getting token: %v", err)
+	}
+
+	e, err := json.Marshal(tokenResponse.GetPayload())
+	if err != nil {
+		t.Fatalf("Error: %v", err)
+	}
+
+	s := strings.Replace(
+		test.GetJsonResponse("./responses/postToken.json", t), "eyJh...vH4g",
+		*tokenResponse.GetPayload().AccessToken,
+		2)
+
+	test.AssertJson(t, s, string(e))
+}
+
+func TestPostTokenServerAccess(t *testing.T) {
+	scope := "SERVER_ACCESS"
+	tokenParams := &token.PostTokenParams{
+		Authorization: "Basic " + test.Cfg.ApiKey,
+		BasiqVersion:  "2.0",
+		Scope:         &scope,
 		Context:       context.TODO(),
 	}
 

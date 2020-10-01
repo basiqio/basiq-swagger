@@ -25,11 +25,9 @@
         "operationId": "postToken",
         "parameters": [
           {
-            "name": "TokenPostRequest",
-            "in": "body",
-            "schema": {
-              "$ref": "#/definitions/TokenPostRequest"
-            }
+            "in": "formData",
+            "name": "scope",
+            "type": "string"
           },
           {
             "type": "string",
@@ -6831,18 +6829,6 @@
       },
       "x-go-package": "github.com/basiqio/connect-institution-connector/internal/pkg/institutions/api"
     },
-    "TokenPostRequest": {
-      "type": "object",
-      "properties": {
-        "scope": {
-          "description": "Valid scopes are: CLIENT_ACCESS and SERVER_ACCESS",
-          "type": "string",
-          "x-go-name": "Scope",
-          "example": "CLIENT_ACCESS"
-        }
-      },
-      "x-go-package": "github.com/basiqio/partners-lambda/internal/token/internal/models"
-    },
     "TokenPostResponse": {
       "type": "object",
       "required": [
@@ -6875,6 +6861,7 @@
   "securityDefinitions": {
     "api_key": {
       "type": "apiKey",
+      "description": "Format: Bearer token",
       "name": "Authorization",
       "in": "header"
     }
