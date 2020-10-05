@@ -6,8 +6,10 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
 // SubClass sub class
@@ -16,14 +18,47 @@ import (
 type SubClass struct {
 
 	// code
-	Code string `json:"code,omitempty"`
+	// Required: true
+	Code *string `json:"code"`
 
 	// title
-	Title string `json:"title,omitempty"`
+	// Required: true
+	Title *string `json:"title"`
 }
 
 // Validate validates this sub class
 func (m *SubClass) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateCode(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateTitle(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *SubClass) validateCode(formats strfmt.Registry) error {
+
+	if err := validate.Required("code", "body", m.Code); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *SubClass) validateTitle(formats strfmt.Registry) error {
+
+	if err := validate.Required("title", "body", m.Title); err != nil {
+		return err
+	}
+
 	return nil
 }
 

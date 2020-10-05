@@ -600,6 +600,73 @@
         }
       }
     },
+    "/users/{userId}/affordability/{snapshotId}/transactions": {
+      "get": {
+        "produces": [
+          "application/json",
+          "application/csv"
+        ],
+        "tags": [
+          "Affordability"
+        ],
+        "summary": "Returns a paginated list with a data property that contains an array of transactions from the affordability snapshot.",
+        "operationId": "getAffordabilitySnapshotTransactions",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "The identifier of the user.",
+            "name": "userId",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "The identifier of the affordability report to be retrieved.",
+            "name": "snapshotId",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "description": "This represents the maximum number of transactions that may be included in the response (maximum of 500). Note that by default 500 transactions are returned if this value is not specified.",
+            "name": "limit",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a affordability resource transactions JSON or CSV file, if the operation succeeded.",
+            "schema": {
+              "$ref": "#/definitions/AffordabilityTransactionsResponse"
+            }
+          },
+          "400": {
+            "description": "Returns error that server cannot or will not process the request due to something that is perceived to be a client error.",
+            "schema": {
+              "$ref": "#/definitions/BadRequestError"
+            }
+          },
+          "403": {
+            "description": "Error that access is forbidden and tied to the application logic, such as insufficient rights to a resource.",
+            "schema": {
+              "$ref": "#/definitions/ForbiddenAccessError"
+            }
+          },
+          "404": {
+            "description": "Returns error indicating that server can't find requested resource.",
+            "schema": {
+              "$ref": "#/definitions/NotFoundError"
+            }
+          },
+          "500": {
+            "description": "Returns error response code indicates that the server encountered an unexpected condition that prevented it from fulfilling the request.",
+            "schema": {
+              "$ref": "#/definitions/InternalServerError"
+            }
+          }
+        }
+      }
+    },
     "/users/{userId}/auth_link": {
       "get": {
         "description": "Returns the latest/last auth_link generated for the specified user. Returns an error otherwise.",
@@ -2616,6 +2683,93 @@
           "x-go-name": "Savings",
           "x-nullable": true,
           "example": "93.00"
+        }
+      },
+      "x-go-package": "github.com/basiqio/connect-api/internal/affordability/internal/models"
+    },
+    "AffordabilityTransactionLinks": {
+      "type": "object",
+      "required": [
+        "account",
+        "institution"
+      ],
+      "properties": {
+        "account": {
+          "description": "Url of the account.",
+          "type": "string",
+          "x-go-name": "Account",
+          "example": "https://au-api.basiq.io/users/6a52015e/accounts/31eb30a0"
+        },
+        "institution": {
+          "description": "Url of the institution.",
+          "type": "string",
+          "x-go-name": "Institution",
+          "example": "https://au-api.basiq.io/institutions/AU00000"
+        }
+      },
+      "x-go-package": "github.com/basiqio/connect-api/internal/affordability/internal/models"
+    },
+    "AffordabilityTransactionsGetLinks": {
+      "type": "object",
+      "required": [
+        "self"
+      ],
+      "properties": {
+        "next": {
+          "description": "Url to next result.",
+          "type": "string",
+          "x-go-name": "Next",
+          "example": "https://au-api.basiq.io/users/115dc708/affordability/9dedbb28/transactions?next=9b7d9a64"
+        },
+        "self": {
+          "description": "Self reference url.",
+          "type": "string",
+          "x-go-name": "Self",
+          "example": "https://au-api.basiq.io/users/115dc708/affordability/9dedbb28/transactions"
+        }
+      },
+      "x-go-package": "github.com/basiqio/connect-api/internal/affordability/internal/models"
+    },
+    "AffordabilityTransactionsResponse": {
+      "description": "Container object, containing affordability snapshot transactions.",
+      "type": "object",
+      "title": "AffordabilityTransactionsResponse",
+      "required": [
+        "type",
+        "count",
+        "size",
+        "data",
+        "links"
+      ],
+      "properties": {
+        "count": {
+          "description": "Count of the transactions in the response.",
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Count",
+          "example": 100
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TransactionDataAffordability"
+          },
+          "x-go-name": "Data"
+        },
+        "links": {
+          "$ref": "#/definitions/AffordabilityTransactionsGetLinks"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Size",
+          "example": 500
+        },
+        "type": {
+          "description": "Always \"list\".",
+          "type": "string",
+          "x-go-name": "Type",
+          "example": "list"
         }
       },
       "x-go-package": "github.com/basiqio/connect-api/internal/affordability/internal/models"
@@ -5299,14 +5453,20 @@
     },
     "SubClass": {
       "type": "object",
+      "required": [
+        "title",
+        "code"
+      ],
       "properties": {
         "code": {
           "type": "string",
-          "x-go-name": "Code"
+          "x-go-name": "Code",
+          "example": "0801050199"
         },
         "title": {
           "type": "string",
-          "x-go-name": "Title"
+          "x-go-name": "Title",
+          "example": "Formal child care services nec"
         }
       },
       "x-go-package": "github.com/basiqio/connect-api/internal/connect/internal/models"
@@ -5435,6 +5595,125 @@
         }
       },
       "x-go-package": "github.com/basiqio/connect-api/internal/connect/internal/models"
+    },
+    "TransactionDataAffordability": {
+      "type": "object",
+      "required": [
+        "type",
+        "id",
+        "status",
+        "description",
+        "amount",
+        "account",
+        "balance",
+        "direction",
+        "class",
+        "institution",
+        "subClass",
+        "transactionDate",
+        "postDate",
+        "links"
+      ],
+      "properties": {
+        "account": {
+          "description": "The id of the account resource the transaction belongs to.",
+          "type": "string",
+          "x-go-name": "Account",
+          "example": "d3de1ca1"
+        },
+        "amount": {
+          "description": "Transaction amount. Outgoing funds are expressed as negative values.",
+          "type": "string",
+          "x-go-name": "Amount",
+          "example": "123.12"
+        },
+        "balance": {
+          "description": "Value of the account balance at time the transaction was completed.",
+          "type": "string",
+          "x-go-name": "Balance",
+          "example": "123.12"
+        },
+        "class": {
+          "description": "Describes the class(type) of transaction.",
+          "type": "string",
+          "enum": [
+            "bank-fee",
+            "payment",
+            "cash-withdrawal",
+            "transfer",
+            "loan-interest",
+            "refund",
+            "direct-cedit",
+            "interest",
+            "loan-repayment"
+          ],
+          "x-go-name": "Class",
+          "example": "payment"
+        },
+        "description": {
+          "description": "The transaction description as submitted by the institution..",
+          "type": "string",
+          "x-go-name": "Description",
+          "example": "DEBIT Only About Children Seaforth"
+        },
+        "direction": {
+          "description": "Identifies if the transaction is of debit or credit type.",
+          "type": "string",
+          "enum": [
+            "debit",
+            "credit"
+          ],
+          "x-go-name": "Direction",
+          "example": "credit"
+        },
+        "id": {
+          "description": "Uniquely identifies the transaction.",
+          "type": "string",
+          "x-go-name": "Id",
+          "example": "d3de1ca1"
+        },
+        "institution": {
+          "description": "The id of the institution resource the transaction originated from.",
+          "type": "string",
+          "x-go-name": "Institution",
+          "example": "AU00000"
+        },
+        "links": {
+          "$ref": "#/definitions/AffordabilityTransactionLinks"
+        },
+        "postDate": {
+          "description": "Date the transaction was posted as provided by the institution (this is the same date that appears on a bank statement). This value is null if the record is pending. e.g. \"2017-11-10T21:46:44Z\" or 2017-11-10T00:00:00Z.",
+          "type": "string",
+          "x-go-name": "PostDate",
+          "example": "2018-11-02T00:00:00Z"
+        },
+        "status": {
+          "description": "Identifies if a transaction is pending or posted. A pending transaction is an approved debit or credit transaction that has not been fully processed yet (i.e. has not been posted). Find out more about pending transaction and how to deal with them within your app. Note that pending transactions are not available for all institutions.",
+          "type": "string",
+          "enum": [
+            "pending",
+            "posted"
+          ],
+          "x-go-name": "Status",
+          "example": "pending"
+        },
+        "subClass": {
+          "$ref": "#/definitions/SubClass"
+        },
+        "transactionDate": {
+          "description": "Date that the user executed the transaction as provided by the institution. Note that not all transactions provide this value (varies by institution) e.g. \"2017-11-10T00:00:00Z\"",
+          "type": "string",
+          "x-go-name": "TransactionDate",
+          "example": "2018-11-02T00:00:00Z"
+        },
+        "type": {
+          "description": "Value is \"transaction\".",
+          "type": "string",
+          "x-go-name": "Type",
+          "example": "transaction"
+        }
+      },
+      "x-go-package": "github.com/basiqio/connect-api/internal/affordability/internal/models"
     },
     "TransactionLinks": {
       "type": "object",
