@@ -29,6 +29,8 @@ type Client struct {
 type ClientService interface {
 	GetAffordability(params *GetAffordabilityParams, authInfo runtime.ClientAuthInfoWriter) (*GetAffordabilityOK, error)
 
+	GetAffordabilitySnapshotTransactions(params *GetAffordabilitySnapshotTransactionsParams, authInfo runtime.ClientAuthInfoWriter) (*GetAffordabilitySnapshotTransactionsOK, error)
+
 	PostAffordability(params *PostAffordabilityParams, authInfo runtime.ClientAuthInfoWriter) (*PostAffordabilityOK, *PostAffordabilityCreated, *PostAffordabilityNoContent, error)
 
 	SetTransport(transport runtime.ClientTransport)
@@ -66,6 +68,41 @@ func (a *Client) GetAffordability(params *GetAffordabilityParams, authInfo runti
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for getAffordability: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  GetAffordabilitySnapshotTransactions returns a paginated list with a data property that contains an array of transactions from the affordability snapshot
+*/
+func (a *Client) GetAffordabilitySnapshotTransactions(params *GetAffordabilitySnapshotTransactionsParams, authInfo runtime.ClientAuthInfoWriter) (*GetAffordabilitySnapshotTransactionsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetAffordabilitySnapshotTransactionsParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getAffordabilitySnapshotTransactions",
+		Method:             "GET",
+		PathPattern:        "/users/{userId}/affordability/{snapshotId}/transactions",
+		ProducesMediaTypes: []string{"application/csv", "application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetAffordabilitySnapshotTransactionsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetAffordabilitySnapshotTransactionsOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for getAffordabilitySnapshotTransactions: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
