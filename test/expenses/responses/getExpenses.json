@@ -1,14 +1,14 @@
 {
   "type": "expenses",
-  "id": "55275323-6dec-4458-938e-9f7d21edba00",
+  "id": "2c399774-48fc-4ba5-a219-d7d01c943e4f",
   "fromMonth": "2019-05",
   "toMonth": "2019-09",
   "coverageDays": 152,
   "payments": [
     {
       "division": "Alcoholic beverages",
-      "avgMonthly": "-201.00",
-      "percentageTotal": 1.36,
+      "avgMonthly": "-55.00",
+      "percentageTotal": 0.48,
       "subCategory": [
         {
           "summary": "monthly",
@@ -23,23 +23,19 @@
           "changeHistory": [
             {
               "date": "2019-05",
-              "amount": "-303.00"
-            },
-            {
-              "date": "2019-06",
-              "amount": "-123.00"
+              "amount": "-174.00"
             },
             {
               "date": "2019-07",
-              "amount": "-178.00"
+              "amount": "-10.00"
             },
             {
               "date": "2019-08",
-              "amount": "-310.00"
+              "amount": "-65.00"
             },
             {
               "date": "2019-09",
-              "amount": "-103.00"
+              "amount": "-28.00"
             }
           ]
         }
@@ -47,8 +43,8 @@
     },
     {
       "division": "Clothing and footwear",
-      "avgMonthly": "-237.00",
-      "percentageTotal": 1.6,
+      "avgMonthly": "-99.00",
+      "percentageTotal": 0.85,
       "subCategory": [
         {
           "summary": "monthly",
@@ -62,75 +58,24 @@
           },
           "changeHistory": [
             {
+              "date": "2019-05",
+              "amount": "-45.00"
+            },
+            {
               "date": "2019-06",
-              "amount": "-298.00"
+              "amount": "-30.00"
             },
             {
               "date": "2019-07",
-              "amount": "-157.00"
+              "amount": "-24.00"
             },
             {
               "date": "2019-08",
-              "amount": "-112.00"
+              "amount": "-145.00"
             },
             {
               "date": "2019-09",
-              "amount": "-94.00"
-            }
-          ]
-        },
-        {
-          "summary": "monthly",
-          "category": {
-            "expenseClass": {
-              "classCode": "0603010101",
-              "classTitle": "Dry cleaning and laundering of clothes",
-              "divisionCode": "06",
-              "divisionTitle": "Clothing and footwear"
-            }
-          },
-          "changeHistory": [
-            {
-              "date": "2019-06",
-              "amount": "-221.00"
-            }
-          ]
-        },
-        {
-          "summary": "monthly",
-          "category": {
-            "expenseClass": {
-              "classCode": "0602010099",
-              "classTitle": "Footwear nec",
-              "divisionCode": "06",
-              "divisionTitle": "Clothing and footwear"
-            }
-          },
-          "changeHistory": [
-            {
-              "date": "2019-05",
-              "amount": "-56.00"
-            },
-            {
-              "date": "2019-07",
-              "amount": "-234.00"
-            }
-          ]
-        },
-        {
-          "summary": "monthly",
-          "category": {
-            "expenseClass": {
-              "classCode": "0603010301",
-              "classTitle": "Footwear repairs and alterations",
-              "divisionCode": "06",
-              "divisionTitle": "Clothing and footwear"
-            }
-          },
-          "changeHistory": [
-            {
-              "date": "2019-09",
-              "amount": "-25.00"
+              "amount": "-254.00"
             }
           ]
         }
@@ -138,8 +83,8 @@
     },
     {
       "division": "Communication",
-      "avgMonthly": "-62.00",
-      "percentageTotal": 0.42,
+      "avgMonthly": "-70.00",
+      "percentageTotal": 0.6,
       "subCategory": [
         {
           "summary": "monthly",
@@ -153,8 +98,24 @@
           },
           "changeHistory": [
             {
+              "date": "2019-05",
+              "amount": "-42.00"
+            },
+            {
+              "date": "2019-06",
+              "amount": "-42.00"
+            },
+            {
+              "date": "2019-07",
+              "amount": "-138.00"
+            },
+            {
               "date": "2019-08",
-              "amount": "-5.00"
+              "amount": "-26.00"
+            },
+            {
+              "date": "2019-09",
+              "amount": "-12.00"
             }
           ]
         },
@@ -171,76 +132,15 @@
           "changeHistory": [
             {
               "date": "2019-05",
-              "amount": "-40.00"
+              "amount": "-30.00"
             },
             {
               "date": "2019-06",
-              "amount": "-40.00"
+              "amount": "-30.00"
             },
             {
               "date": "2019-07",
-              "amount": "-40.00"
-            },
-            {
-              "date": "2019-08",
-              "amount": "-40.00"
-            },
-            {
-              "date": "2019-09",
-              "amount": "-40.00"
-            }
-          ]
-        },
-        {
-          "summary": "monthly",
-          "category": {
-            "expenseClass": {
-              "classCode": "1102010199",
-              "classTitle": "Postal charges nec",
-              "divisionCode": "11",
-              "divisionTitle": "Communication"
-            }
-          },
-          "changeHistory": [
-            {
-              "date": "2019-05",
-              "amount": "-58.00"
-            },
-            {
-              "date": "2019-06",
-              "amount": "-19.00"
-            },
-            {
-              "date": "2019-09",
-              "amount": "-32.00"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "division": "Current housing costs (selected dwelling)",
-      "avgMonthly": "-104.00",
-      "percentageTotal": 0.7,
-      "subCategory": [
-        {
-          "summary": "monthly",
-          "category": {
-            "expenseClass": {
-              "classCode": "0101030101",
-              "classTitle": "Water and sewerage rates and charges (selected dwelling)",
-              "divisionCode": "01",
-              "divisionTitle": "Current housing costs (selected dwelling)"
-            }
-          },
-          "changeHistory": [
-            {
-              "date": "2019-06",
-              "amount": "-174.00"
-            },
-            {
-              "date": "2019-09",
-              "amount": "-348.00"
+              "amount": "-30.00"
             }
           ]
         }
@@ -248,8 +148,8 @@
     },
     {
       "division": "Domestic fuel and power",
-      "avgMonthly": "-331.00",
-      "percentageTotal": 2.25,
+      "avgMonthly": "-190.00",
+      "percentageTotal": 1.65,
       "subCategory": [
         {
           "summary": "monthly",
@@ -264,76 +164,23 @@
           "changeHistory": [
             {
               "date": "2019-05",
-              "amount": "-202.00"
+              "amount": "-301.00"
             },
             {
               "date": "2019-06",
-              "amount": "-724.00"
+              "amount": "-26.00"
             },
             {
               "date": "2019-07",
-              "amount": "-78.00"
+              "amount": "-294.00"
             },
             {
               "date": "2019-08",
-              "amount": "-191.00"
+              "amount": "-26.00"
             },
             {
               "date": "2019-09",
-              "amount": "-480.00"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "division": "Education",
-      "avgMonthly": "-888.00",
-      "percentageTotal": 6.03,
-      "subCategory": [
-        {
-          "summary": "monthly",
-          "category": {
-            "expenseClass": {
-              "classCode": "1301010000",
-              "classTitle": "Education fees for primary and secondary schools nfd",
-              "divisionCode": "13",
-              "divisionTitle": "Education"
-            }
-          },
-          "changeHistory": [
-            {
-              "date": "2019-06",
-              "amount": "-20.00"
-            },
-            {
-              "date": "2019-07",
-              "amount": "-1474.00"
-            },
-            {
-              "date": "2019-08",
-              "amount": "-1474.00"
-            },
-            {
-              "date": "2019-09",
-              "amount": "-1423.00"
-            }
-          ]
-        },
-        {
-          "summary": "monthly",
-          "category": {
-            "expenseClass": {
-              "classCode": "1302010199",
-              "classTitle": "Higher education institution fees nec",
-              "divisionCode": "13",
-              "divisionTitle": "Education"
-            }
-          },
-          "changeHistory": [
-            {
-              "date": "2019-07",
-              "amount": "-104.00"
+              "amount": "-315.00"
             }
           ]
         }
@@ -341,30 +188,9 @@
     },
     {
       "division": "Food and non-alcoholic beverages",
-      "avgMonthly": "-6551.00",
-      "percentageTotal": 44.5,
+      "avgMonthly": "-237.00",
+      "percentageTotal": 2.06,
       "subCategory": [
-        {
-          "summary": "monthly",
-          "category": {
-            "expenseClass": {
-              "classCode": "0301030101",
-              "classTitle": "Cakes, tarts and puddings (fresh or frozen)",
-              "divisionCode": "03",
-              "divisionTitle": "Food and non-alcoholic beverages"
-            }
-          },
-          "changeHistory": [
-            {
-              "date": "2019-06",
-              "amount": "-15.00"
-            },
-            {
-              "date": "2019-09",
-              "amount": "-12.00"
-            }
-          ]
-        },
         {
           "summary": "monthly",
           "category": {
@@ -378,23 +204,23 @@
           "changeHistory": [
             {
               "date": "2019-05",
-              "amount": "-1072.00"
+              "amount": "-205.00"
             },
             {
               "date": "2019-06",
-              "amount": "-1843.00"
+              "amount": "-182.00"
             },
             {
               "date": "2019-07",
-              "amount": "-765.00"
+              "amount": "-128.00"
             },
             {
               "date": "2019-08",
-              "amount": "-655.00"
+              "amount": "-89.00"
             },
             {
               "date": "2019-09",
-              "amount": "-1714.00"
+              "amount": "-122.00"
             }
           ]
         },
@@ -411,77 +237,23 @@
           "changeHistory": [
             {
               "date": "2019-05",
-              "amount": "-2288.00"
+              "amount": "-142.00"
             },
             {
               "date": "2019-06",
-              "amount": "-5714.00"
+              "amount": "-70.00"
             },
             {
               "date": "2019-07",
-              "amount": "-7283.00"
+              "amount": "-78.00"
             },
             {
               "date": "2019-08",
-              "amount": "-6155.00"
+              "amount": "-175.00"
             },
             {
               "date": "2019-09",
-              "amount": "-4943.00"
-            }
-          ]
-        },
-        {
-          "summary": "monthly",
-          "category": {
-            "expenseClass": {
-              "classCode": "0311010101",
-              "classTitle": "Meals in restaurants, hotels, clubs and related",
-              "divisionCode": "03",
-              "divisionTitle": "Food and non-alcoholic beverages"
-            }
-          },
-          "changeHistory": [
-            {
-              "date": "2019-05",
-              "amount": "-22.00"
-            },
-            {
-              "date": "2019-06",
-              "amount": "-113.00"
-            }
-          ]
-        },
-        {
-          "summary": "monthly",
-          "category": {
-            "expenseClass": {
-              "classCode": "0302000000",
-              "classTitle": "Meat (excluding fish and seafood) nfd",
-              "divisionCode": "03",
-              "divisionTitle": "Food and non-alcoholic beverages"
-            }
-          },
-          "changeHistory": [
-            {
-              "date": "2019-05",
-              "amount": "-86.00"
-            },
-            {
-              "date": "2019-06",
-              "amount": "-80.00"
-            },
-            {
-              "date": "2019-07",
-              "amount": "-230.00"
-            },
-            {
-              "date": "2019-08",
-              "amount": "-181.00"
-            },
-            {
-              "date": "2019-09",
-              "amount": "-20.00"
+              "amount": "-9.00"
             }
           ]
         }
@@ -489,30 +261,9 @@
     },
     {
       "division": "Household furnishings and equipment",
-      "avgMonthly": "-596.00",
-      "percentageTotal": 4.05,
+      "avgMonthly": "-305.00",
+      "percentageTotal": 2.65,
       "subCategory": [
-        {
-          "summary": "monthly",
-          "category": {
-            "expenseClass": {
-              "classCode": "0704019999",
-              "classTitle": "Glassware, tableware, cutlery and household utensils nec",
-              "divisionCode": "07",
-              "divisionTitle": "Household furnishings and equipment"
-            }
-          },
-          "changeHistory": [
-            {
-              "date": "2019-05",
-              "amount": "-118.00"
-            },
-            {
-              "date": "2019-09",
-              "amount": "-19.00"
-            }
-          ]
-        },
         {
           "summary": "monthly",
           "category": {
@@ -526,15 +277,11 @@
           "changeHistory": [
             {
               "date": "2019-05",
-              "amount": "-85.00"
+              "amount": "-60.00"
             },
             {
-              "date": "2019-08",
-              "amount": "-69.00"
-            },
-            {
-              "date": "2019-09",
-              "amount": "-42.00"
+              "date": "2019-06",
+              "amount": "-30.00"
             }
           ]
         },
@@ -551,23 +298,23 @@
           "changeHistory": [
             {
               "date": "2019-05",
-              "amount": "-353.00"
+              "amount": "-245.00"
             },
             {
               "date": "2019-06",
-              "amount": "-768.00"
+              "amount": "-88.00"
             },
             {
               "date": "2019-07",
-              "amount": "-566.00"
+              "amount": "-65.00"
             },
             {
               "date": "2019-08",
-              "amount": "-166.00"
+              "amount": "-115.00"
             },
             {
               "date": "2019-09",
-              "amount": "-138.00"
+              "amount": "-313.00"
             }
           ]
         },
@@ -584,36 +331,15 @@
           "changeHistory": [
             {
               "date": "2019-05",
-              "amount": "-32.00"
+              "amount": "-65.00"
             },
             {
               "date": "2019-06",
-              "amount": "-44.00"
+              "amount": "-30.00"
             },
             {
-              "date": "2019-08",
-              "amount": "-229.00"
-            }
-          ]
-        },
-        {
-          "summary": "monthly",
-          "category": {
-            "expenseClass": {
-              "classCode": "0701010303",
-              "classTitle": "Other lounge/dining furniture",
-              "divisionCode": "07",
-              "divisionTitle": "Household furnishings and equipment"
-            }
-          },
-          "changeHistory": [
-            {
-              "date": "2019-06",
-              "amount": "-89.00"
-            },
-            {
-              "date": "2019-07",
-              "amount": "-117.00"
+              "date": "2019-09",
+              "amount": "-191.00"
             }
           ]
         },
@@ -629,78 +355,8 @@
           },
           "changeHistory": [
             {
-              "date": "2019-05",
-              "amount": "-30.00"
-            },
-            {
               "date": "2019-06",
-              "amount": "-133.00"
-            },
-            {
-              "date": "2019-08",
-              "amount": "-9.00"
-            },
-            {
-              "date": "2019-09",
-              "amount": "-11.00"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "division": "Household services and operation",
-      "avgMonthly": "-86.00",
-      "percentageTotal": 0.58,
-      "subCategory": [
-        {
-          "summary": "monthly",
-          "category": {
-            "expenseClass": {
-              "classCode": "0801070101",
-              "classTitle": "Hire of tools",
-              "divisionCode": "08",
-              "divisionTitle": "Household services and operation"
-            }
-          },
-          "changeHistory": [
-            {
-              "date": "2019-07",
-              "amount": "-5.00"
-            }
-          ]
-        },
-        {
-          "summary": "monthly",
-          "category": {
-            "expenseClass": {
-              "classCode": "0801080199",
-              "classTitle": "Household appliance repairs insurance nec",
-              "divisionCode": "08",
-              "divisionTitle": "Household services and operation"
-            }
-          },
-          "changeHistory": [
-            {
-              "date": "2019-07",
-              "amount": "-412.00"
-            }
-          ]
-        },
-        {
-          "summary": "monthly",
-          "category": {
-            "expenseClass": {
-              "classCode": "0801060301",
-              "classTitle": "Repair and maintenance of audiovisual equipment and personal computers",
-              "divisionCode": "08",
-              "divisionTitle": "Household services and operation"
-            }
-          },
-          "changeHistory": [
-            {
-              "date": "2019-07",
-              "amount": "-16.00"
+              "amount": "-339.00"
             }
           ]
         }
@@ -708,59 +364,9 @@
     },
     {
       "division": "Medical care and health expenses",
-      "avgMonthly": "-1022.00",
-      "percentageTotal": 6.94,
+      "avgMonthly": "-180.00",
+      "percentageTotal": 1.56,
       "subCategory": [
-        {
-          "summary": "monthly",
-          "category": {
-            "expenseClass": {
-              "classCode": "0902010503",
-              "classTitle": "Chiropractic fees",
-              "divisionCode": "09",
-              "divisionTitle": "Medical care and health expenses"
-            }
-          },
-          "changeHistory": [
-            {
-              "date": "2019-06",
-              "amount": "-904.00"
-            },
-            {
-              "date": "2019-07",
-              "amount": "-870.00"
-            },
-            {
-              "date": "2019-08",
-              "amount": "-885.00"
-            },
-            {
-              "date": "2019-09",
-              "amount": "-281.00"
-            }
-          ]
-        },
-        {
-          "summary": "monthly",
-          "category": {
-            "expenseClass": {
-              "classCode": "0902010301",
-              "classTitle": "Dental fees",
-              "divisionCode": "09",
-              "divisionTitle": "Medical care and health expenses"
-            }
-          },
-          "changeHistory": [
-            {
-              "date": "2019-05",
-              "amount": "-631.00"
-            },
-            {
-              "date": "2019-06",
-              "amount": "-661.00"
-            }
-          ]
-        },
         {
           "summary": "monthly",
           "category": {
@@ -774,11 +380,15 @@
           "changeHistory": [
             {
               "date": "2019-06",
-              "amount": "-643.00"
+              "amount": "-315.00"
+            },
+            {
+              "date": "2019-08",
+              "amount": "-130.00"
             },
             {
               "date": "2019-09",
-              "amount": "-74.00"
+              "amount": "-220.00"
             }
           ]
         },
@@ -794,12 +404,37 @@
           },
           "changeHistory": [
             {
-              "date": "2019-06",
-              "amount": "-16.00"
+              "date": "2019-05",
+              "amount": "-27.00"
             },
             {
               "date": "2019-07",
-              "amount": "-212.00"
+              "amount": "-24.00"
+            },
+            {
+              "date": "2019-08",
+              "amount": "-63.00"
+            },
+            {
+              "date": "2019-09",
+              "amount": "-12.00"
+            }
+          ]
+        },
+        {
+          "summary": "monthly",
+          "category": {
+            "expenseClass": {
+              "classCode": "0902010401",
+              "classTitle": "Optician's fees (including spectacles)",
+              "divisionCode": "09",
+              "divisionTitle": "Medical care and health expenses"
+            }
+          },
+          "changeHistory": [
+            {
+              "date": "2019-07",
+              "amount": "-120.00"
             }
           ]
         }
@@ -807,8 +442,8 @@
     },
     {
       "division": "Personal care",
-      "avgMonthly": "-11.00",
-      "percentageTotal": 0.07,
+      "avgMonthly": "-84.00",
+      "percentageTotal": 0.72,
       "subCategory": [
         {
           "summary": "monthly",
@@ -822,8 +457,24 @@
           },
           "changeHistory": [
             {
+              "date": "2019-05",
+              "amount": "-47.00"
+            },
+            {
+              "date": "2019-06",
+              "amount": "-191.00"
+            },
+            {
               "date": "2019-07",
-              "amount": "-51.00"
+              "amount": "-15.00"
+            },
+            {
+              "date": "2019-08",
+              "amount": "-82.00"
+            },
+            {
+              "date": "2019-09",
+              "amount": "-86.00"
             }
           ]
         }
@@ -831,63 +482,9 @@
     },
     {
       "division": "Recreation",
-      "avgMonthly": "-569.00",
-      "percentageTotal": 3.86,
+      "avgMonthly": "-1184.00",
+      "percentageTotal": 10.29,
       "subCategory": [
-        {
-          "summary": "monthly",
-          "category": {
-            "expenseClass": {
-              "classCode": "1201051001",
-              "classTitle": "Camping equipment",
-              "divisionCode": "12",
-              "divisionTitle": "Recreation"
-            }
-          },
-          "changeHistory": [
-            {
-              "date": "2019-05",
-              "amount": "-107.00"
-            },
-            {
-              "date": "2019-06",
-              "amount": "-48.00"
-            },
-            {
-              "date": "2019-08",
-              "amount": "-25.00"
-            },
-            {
-              "date": "2019-09",
-              "amount": "-163.00"
-            }
-          ]
-        },
-        {
-          "summary": "monthly",
-          "category": {
-            "expenseClass": {
-              "classCode": "1202050101",
-              "classTitle": "Cinema fees and charges",
-              "divisionCode": "12",
-              "divisionTitle": "Recreation"
-            }
-          },
-          "changeHistory": [
-            {
-              "date": "2019-07",
-              "amount": "-212.00"
-            },
-            {
-              "date": "2019-08",
-              "amount": "-8.00"
-            },
-            {
-              "date": "2019-09",
-              "amount": "-95.00"
-            }
-          ]
-        },
         {
           "summary": "monthly",
           "category": {
@@ -900,58 +497,24 @@
           },
           "changeHistory": [
             {
-              "date": "2019-07",
-              "amount": "-215.00"
-            },
-            {
-              "date": "2019-08",
-              "amount": "-202.00"
-            },
-            {
-              "date": "2019-09",
-              "amount": "-165.00"
-            }
-          ]
-        },
-        {
-          "summary": "monthly",
-          "category": {
-            "expenseClass": {
-              "classCode": "1202990399",
-              "classTitle": "Culture and recreation lessons (excluding sports lessons) nec",
-              "divisionCode": "12",
-              "divisionTitle": "Recreation"
-            }
-          },
-          "changeHistory": [
-            {
-              "date": "2019-07",
-              "amount": "-341.00"
-            },
-            {
-              "date": "2019-08",
-              "amount": "-49.00"
-            }
-          ]
-        },
-        {
-          "summary": "monthly",
-          "category": {
-            "expenseClass": {
-              "classCode": "1202040101",
-              "classTitle": "Health and fitness studio charges",
-              "divisionCode": "12",
-              "divisionTitle": "Recreation"
-            }
-          },
-          "changeHistory": [
-            {
               "date": "2019-05",
-              "amount": "-191.00"
+              "amount": "-90.00"
             },
             {
               "date": "2019-06",
-              "amount": "-104.00"
+              "amount": "-450.00"
+            },
+            {
+              "date": "2019-07",
+              "amount": "-152.00"
+            },
+            {
+              "date": "2019-08",
+              "amount": "-37.00"
+            },
+            {
+              "date": "2019-09",
+              "amount": "-10.00"
             }
           ]
         },
@@ -967,8 +530,24 @@
           },
           "changeHistory": [
             {
+              "date": "2019-05",
+              "amount": "-448.00"
+            },
+            {
+              "date": "2019-06",
+              "amount": "-1025.00"
+            },
+            {
+              "date": "2019-07",
+              "amount": "-599.00"
+            },
+            {
+              "date": "2019-08",
+              "amount": "-227.00"
+            },
+            {
               "date": "2019-09",
-              "amount": "-51.00"
+              "amount": "-2265.00"
             }
           ]
         },
@@ -984,8 +563,8 @@
           },
           "changeHistory": [
             {
-              "date": "2019-05",
-              "amount": "-157.00"
+              "date": "2019-09",
+              "amount": "-87.00"
             }
           ]
         },
@@ -1001,24 +580,8 @@
           },
           "changeHistory": [
             {
-              "date": "2019-05",
-              "amount": "-81.00"
-            },
-            {
               "date": "2019-06",
-              "amount": "-11.00"
-            },
-            {
-              "date": "2019-07",
-              "amount": "-51.00"
-            },
-            {
-              "date": "2019-08",
-              "amount": "-88.00"
-            },
-            {
-              "date": "2019-09",
-              "amount": "-9.00"
+              "amount": "-15.00"
             }
           ]
         },
@@ -1026,16 +589,16 @@
           "summary": "monthly",
           "category": {
             "expenseClass": {
-              "classCode": "1202999901",
-              "classTitle": "Pay TV fees",
+              "classCode": "1201050201",
+              "classTitle": "Photographic film and chemicals (including developing)",
               "divisionCode": "12",
               "divisionTitle": "Recreation"
             }
           },
           "changeHistory": [
             {
-              "date": "2019-07",
-              "amount": "-118.00"
+              "date": "2019-09",
+              "amount": "-48.00"
             }
           ]
         },
@@ -1052,7 +615,11 @@
           "changeHistory": [
             {
               "date": "2019-06",
-              "amount": "-107.00"
+              "amount": "-200.00"
+            },
+            {
+              "date": "2019-09",
+              "amount": "-200.00"
             }
           ]
         },
@@ -1068,63 +635,12 @@
           },
           "changeHistory": [
             {
-              "date": "2019-09",
-              "amount": "-76.00"
-            }
-          ]
-        },
-        {
-          "summary": "monthly",
-          "category": {
-            "expenseClass": {
-              "classCode": "1202999908",
-              "classTitle": "Theme parks, agricultural shows, and zoos",
-              "divisionCode": "12",
-              "divisionTitle": "Recreation"
-            }
-          },
-          "changeHistory": [
-            {
-              "date": "2019-05",
-              "amount": "-52.00"
+              "date": "2019-07",
+              "amount": "-82.00"
             },
             {
               "date": "2019-08",
-              "amount": "-96.00"
-            }
-          ]
-        },
-        {
-          "summary": "monthly",
-          "category": {
-            "expenseClass": {
-              "classCode": "1201050901",
-              "classTitle": "Toys",
-              "divisionCode": "12",
-              "divisionTitle": "Recreation"
-            }
-          },
-          "changeHistory": [
-            {
-              "date": "2019-06",
-              "amount": "-8.00"
-            }
-          ]
-        },
-        {
-          "summary": "monthly",
-          "category": {
-            "expenseClass": {
-              "classCode": "1202050402",
-              "classTitle": "Zoo fees and charges",
-              "divisionCode": "12",
-              "divisionTitle": "Recreation"
-            }
-          },
-          "changeHistory": [
-            {
-              "date": "2019-06",
-              "amount": "-48.00"
+              "amount": "-61.00"
             }
           ]
         }
@@ -1132,42 +648,9 @@
     },
     {
       "division": "Transport",
-      "avgMonthly": "-1350.00",
-      "percentageTotal": 9.16,
+      "avgMonthly": "-169.00",
+      "percentageTotal": 1.47,
       "subCategory": [
-        {
-          "summary": "monthly",
-          "category": {
-            "expenseClass": {
-              "classCode": "1001089999",
-              "classTitle": "Fares (excluding holidays and public transport) nec",
-              "divisionCode": "10",
-              "divisionTitle": "Transport"
-            }
-          },
-          "changeHistory": [
-            {
-              "date": "2019-05",
-              "amount": "-52.00"
-            },
-            {
-              "date": "2019-06",
-              "amount": "-21.00"
-            },
-            {
-              "date": "2019-07",
-              "amount": "-52.00"
-            },
-            {
-              "date": "2019-08",
-              "amount": "-52.00"
-            },
-            {
-              "date": "2019-09",
-              "amount": "-52.00"
-            }
-          ]
-        },
         {
           "summary": "monthly",
           "category": {
@@ -1180,8 +663,8 @@
           },
           "changeHistory": [
             {
-              "date": "2019-05",
-              "amount": "-43.00"
+              "date": "2019-08",
+              "amount": "-7.00"
             }
           ]
         },
@@ -1197,24 +680,37 @@
           },
           "changeHistory": [
             {
-              "date": "2019-05",
-              "amount": "-615.00"
-            },
-            {
               "date": "2019-06",
-              "amount": "-311.00"
+              "amount": "-63.00"
             },
             {
               "date": "2019-07",
-              "amount": "-350.00"
+              "amount": "-43.00"
             },
             {
               "date": "2019-08",
-              "amount": "-3800.00"
+              "amount": "-79.00"
             },
             {
               "date": "2019-09",
-              "amount": "-561.00"
+              "amount": "-42.00"
+            }
+          ]
+        },
+        {
+          "summary": "monthly",
+          "category": {
+            "expenseClass": {
+              "classCode": "1001070000",
+              "classTitle": "Public transport fares nfd",
+              "divisionCode": "10",
+              "divisionTitle": "Transport"
+            }
+          },
+          "changeHistory": [
+            {
+              "date": "2019-05",
+              "amount": "-10.00"
             }
           ]
         },
@@ -1230,33 +726,24 @@
           },
           "changeHistory": [
             {
+              "date": "2019-05",
+              "amount": "-60.00"
+            },
+            {
               "date": "2019-06",
-              "amount": "-53.00"
+              "amount": "-70.00"
             },
             {
               "date": "2019-07",
-              "amount": "-46.00"
+              "amount": "-60.00"
+            },
+            {
+              "date": "2019-08",
+              "amount": "-89.00"
             },
             {
               "date": "2019-09",
-              "amount": "-97.00"
-            }
-          ]
-        },
-        {
-          "summary": "monthly",
-          "category": {
-            "expenseClass": {
-              "classCode": "1001059901",
-              "classTitle": "Vehicle parts purchased separately nec",
-              "divisionCode": "10",
-              "divisionTitle": "Transport"
-            }
-          },
-          "changeHistory": [
-            {
-              "date": "2019-06",
-              "amount": "-17.00"
+              "amount": "-63.00"
             }
           ]
         },
@@ -1272,24 +759,16 @@
           },
           "changeHistory": [
             {
-              "date": "2019-05",
-              "amount": "-298.00"
-            },
-            {
               "date": "2019-06",
-              "amount": "-24.00"
+              "amount": "-32.00"
             },
             {
               "date": "2019-07",
-              "amount": "-14.00"
+              "amount": "-37.00"
             },
             {
               "date": "2019-08",
-              "amount": "-367.00"
-            },
-            {
-              "date": "2019-09",
-              "amount": "-10.00"
+              "amount": "-199.00"
             }
           ]
         }
@@ -1297,8 +776,8 @@
     },
     {
       "division": "Miscellaneous goods and services",
-      "avgMonthly": "-2551.00",
-      "percentageTotal": 17.33,
+      "avgMonthly": "-3933.00",
+      "percentageTotal": 34.2,
       "subCategory": [
         {
           "summary": "monthly",
@@ -1312,29 +791,8 @@
           },
           "changeHistory": [
             {
-              "date": "2019-05",
-              "amount": "-7929.00"
-            }
-          ]
-        },
-        {
-          "summary": "monthly",
-          "category": {
-            "expenseClass": {
-              "classCode": "1502990299",
-              "classTitle": "Cash gifts, donations to charity nec",
-              "divisionCode": "15",
-              "divisionTitle": "Miscellaneous goods and services"
-            }
-          },
-          "changeHistory": [
-            {
-              "date": "2019-05",
-              "amount": "-271.00"
-            },
-            {
-              "date": "2019-06",
-              "amount": "-1001.00"
+              "date": "2019-08",
+              "amount": "-176.00"
             }
           ]
         },
@@ -1350,12 +808,12 @@
           },
           "changeHistory": [
             {
-              "date": "2019-05",
-              "amount": "-22.00"
+              "date": "2019-07",
+              "amount": "-1833.00"
             },
             {
               "date": "2019-09",
-              "amount": "-2257.00"
+              "amount": "-722.00"
             }
           ]
         },
@@ -1371,8 +829,20 @@
           },
           "changeHistory": [
             {
-              "date": "2019-07",
-              "amount": "-11.00"
+              "date": "2019-05",
+              "amount": "-99.00"
+            },
+            {
+              "date": "2019-06",
+              "amount": "-37.00"
+            },
+            {
+              "date": "2019-08",
+              "amount": "-1015.00"
+            },
+            {
+              "date": "2019-09",
+              "amount": "-86.00"
             }
           ]
         },
@@ -1380,8 +850,8 @@
           "summary": "monthly",
           "category": {
             "expenseClass": {
-              "classCode": "1502999903",
-              "classTitle": "Hire services nec",
+              "classCode": "1502050000",
+              "classTitle": "Fees nfd",
               "divisionCode": "15",
               "divisionTitle": "Miscellaneous goods and services"
             }
@@ -1389,7 +859,7 @@
           "changeHistory": [
             {
               "date": "2019-06",
-              "amount": "-43.00"
+              "amount": "-7780.00"
             }
           ]
         },
@@ -1405,8 +875,8 @@
           },
           "changeHistory": [
             {
-              "date": "2019-08",
-              "amount": "-752.00"
+              "date": "2019-07",
+              "amount": "-261.00"
             }
           ]
         },
@@ -1414,24 +884,16 @@
           "summary": "monthly",
           "category": {
             "expenseClass": {
-              "classCode": "1501999900",
-              "classTitle": "Miscellaneous goods nfd",
+              "classCode": "1501999999",
+              "classTitle": "Miscellaneous goods nec",
               "divisionCode": "15",
               "divisionTitle": "Miscellaneous goods and services"
             }
           },
           "changeHistory": [
             {
-              "date": "2019-05",
-              "amount": "-54.00"
-            },
-            {
-              "date": "2019-07",
-              "amount": "-46.00"
-            },
-            {
               "date": "2019-09",
-              "amount": "-73.00"
+              "amount": "-36.00"
             }
           ]
         },
@@ -1448,11 +910,23 @@
           "changeHistory": [
             {
               "date": "2019-05",
-              "amount": "-13.00"
+              "amount": "-1052.00"
+            },
+            {
+              "date": "2019-06",
+              "amount": "-659.00"
+            },
+            {
+              "date": "2019-07",
+              "amount": "-2655.00"
+            },
+            {
+              "date": "2019-08",
+              "amount": "-2655.00"
             },
             {
               "date": "2019-09",
-              "amount": "-5.00"
+              "amount": "-745.00"
             }
           ]
         },
@@ -1460,24 +934,16 @@
           "summary": "monthly",
           "category": {
             "expenseClass": {
-              "classCode": "1502990701",
-              "classTitle": "Non-holiday accommodation",
+              "classCode": "1502990601",
+              "classTitle": "Personal advertising and related",
               "divisionCode": "15",
               "divisionTitle": "Miscellaneous goods and services"
             }
           },
           "changeHistory": [
             {
-              "date": "2019-05",
-              "amount": "-286.00"
-            },
-            {
-              "date": "2019-08",
-              "amount": "-13.00"
-            },
-            {
               "date": "2019-09",
-              "amount": "-126.00"
+              "amount": "-20.00"
             }
           ]
         },
@@ -1493,12 +959,16 @@
           },
           "changeHistory": [
             {
-              "date": "2019-07",
-              "amount": "-11.00"
+              "date": "2019-05",
+              "amount": "-18.00"
             },
             {
-              "date": "2019-09",
-              "amount": "-11.00"
+              "date": "2019-07",
+              "amount": "-15.00"
+            },
+            {
+              "date": "2019-08",
+              "amount": "-59.00"
             }
           ]
         }
@@ -1506,8 +976,8 @@
     },
     {
       "division": "Other payment",
-      "avgMonthly": "-171.00",
-      "percentageTotal": 1.16,
+      "avgMonthly": "-4998.00",
+      "percentageTotal": 43.47,
       "subCategory": [
         {
           "summary": "monthly",
@@ -1522,125 +992,38 @@
           "changeHistory": [
             {
               "date": "2019-05",
-              "amount": "-118.00"
+              "amount": "-6124.00"
             },
             {
               "date": "2019-06",
-              "amount": "-285.00"
+              "amount": "-4447.00"
+            },
+            {
+              "date": "2019-07",
+              "amount": "-4706.00"
             },
             {
               "date": "2019-08",
-              "amount": "-443.00"
+              "amount": "-5459.00"
             },
             {
               "date": "2019-09",
-              "amount": "-19.00"
+              "amount": "-4587.00"
             }
           ]
         }
       ]
     }
   ],
-  "cashWithdrawals": {
-    "avgMonthly": "-574.00",
-    "summary": "monthly",
-    "changeHistory": [
-      {
-        "date": "2019-05",
-        "amount": "-1654.00"
-      },
-      {
-        "date": "2019-06",
-        "amount": "-101.00"
-      },
-      {
-        "date": "2019-08",
-        "amount": "-750.00"
-      },
-      {
-        "date": "2019-09",
-        "amount": "-400.00"
-      }
-    ]
-  },
+  "cashWithdrawals": null,
   "bankFees": null,
-  "loanInterests": {
-    "avgMonthly": "-4196.00",
-    "summary": "monthly",
-    "changeHistory": [
-      {
-        "date": "2019-05",
-        "amount": "-4236.00"
-      },
-      {
-        "date": "2019-06",
-        "amount": "-4244.00"
-      },
-      {
-        "date": "2019-07",
-        "amount": "-4252.00"
-      },
-      {
-        "date": "2019-08",
-        "amount": "-4259.00"
-      },
-      {
-        "date": "2019-09",
-        "amount": "-4266.00"
-      }
-    ]
-  },
-  "loanRepayments": {
-    "avgMonthly": "5693.00",
-    "summary": "monthly",
-    "changeHistory": [
-      {
-        "date": "2019-05",
-        "amount": "5768.00"
-      },
-      {
-        "date": "2019-07",
-        "amount": "11536.00"
-      },
-      {
-        "date": "2019-08",
-        "amount": "5768.00"
-      },
-      {
-        "date": "2019-09",
-        "amount": "5768.00"
-      }
-    ]
-  },
-  "externalTransfers": {
-    "avgMonthly": "-6012.00",
-    "summary": "monthly",
-    "changeHistory": [
-      {
-        "date": "2019-05",
-        "amount": "-3875.00"
-      },
-      {
-        "date": "2019-07",
-        "amount": "-7728.00"
-      },
-      {
-        "date": "2019-08",
-        "amount": "-3853.00"
-      },
-      {
-        "date": "2019-09",
-        "amount": "-15000.00"
-      }
-    ]
-  },
+  "loanInterests": null,
+  "loanRepayments": null,
+  "externalTransfers": null,
   "links": {
-    "self": "https://au-api.basiq.io/users/8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5/expenses/55275323-6dec-4458-938e-9f7d21edba00",
+    "self": "https://au-api.basiq.io/users/8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5/expenses/2c399774-48fc-4ba5-a219-d7d01c943e4f",
     "accounts": [
-      "https://au-api.basiq.io/users/8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5/accounts/14aa946c-6f87-44b7-bab9-d192d6261471",
-      "https://au-api.basiq.io/users/8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5/accounts/1dd139d5-c88c-446b-b6df-1d6252db4d59",
-      "https://au-api.basiq.io/users/8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5/accounts/9a66a1fb-a93a-47ff-abb0-84814d3aa229",
-      "https://au-api.basiq.io/users/8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5/accounts/9b1f13ca-56fa-4c7e-8688-2e2eab896acc"
+      "https://au-api.basiq.io/users/8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5/accounts/24c742dc-bba6-4bc2-8298-fe731a17be68"
     ]
   }
 }

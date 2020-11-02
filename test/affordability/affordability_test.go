@@ -14,7 +14,7 @@ import (
 func TestGetAffordability(t *testing.T) {
 	token := httptransport.BearerToken(test.TokenHolder.GetToken(t))
 	userID := "8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5"
-	snapshotID := "91b42a5b-2f9a-479d-9014-cdc211155f74"
+	snapshotID := "1b67ed91-dc97-4074-a574-c30aba852549"
 
 	affordabilityParams := &affordability.GetAffordabilityParams{UserID: userID,
 		SnapshotID: snapshotID,
@@ -33,7 +33,7 @@ func TestGetAffordability(t *testing.T) {
 	}
 
 	s := test.GetJsonResponse("./responses/getAffordability.json", t)
-	s = strings.Replace(s, "91b42a5b-2f9a-479d-9014-cdc211155f74", *affordabilityRsp.GetPayload().ID, 2)
+	s = strings.Replace(s, "1b67ed91-dc97-4074-a574-c30aba852549", *affordabilityRsp.GetPayload().ID, 2)
 
 	test.AssertJson(t, s, string(e))
 }

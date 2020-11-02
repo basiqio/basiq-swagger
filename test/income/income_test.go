@@ -14,7 +14,7 @@ import (
 func TestGetIncome(t *testing.T) {
 	token := httptransport.BearerToken(test.TokenHolder.GetToken(t))
 	userID := "8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5"
-	snapshotID := "46137f25-af96-40d0-883f-16fd871b7f23"
+	snapshotID := "1d797858-5fac-4fa2-acff-e68a4cda4257"
 
 	incomeGetParams := &income.GetIncomeParams{UserID: userID,
 		SnapshotID: snapshotID,
@@ -33,7 +33,7 @@ func TestGetIncome(t *testing.T) {
 	}
 
 	s := test.GetJsonResponse("./responses/getIncome.json", t)
-	s = strings.Replace(s, "46137f25-af96-40d0-883f-16fd871b7f23", *incomeRsp.GetPayload().ID, 1)
+	s = strings.Replace(s, "1d797858-5fac-4fa2-acff-e68a4cda4257", *incomeRsp.GetPayload().ID, 1)
 
 	test.AssertJson(t, s, string(e))
 }
@@ -59,7 +59,7 @@ func TestPostIncome(t *testing.T) {
 	}
 
 	s := test.GetJsonResponse("./responses/postIncome.json", t)
-	s = strings.Replace(s, "c4c4466d-55e1-42b5-88cf-7b04f32af485", *incomeRsp.GetPayload().ID, 2)
+	s = strings.Replace(s, "1d797858-5fac-4fa2-acff-e68a4cda4257", *incomeRsp.GetPayload().ID, 2)
 
 	test.AssertJson(t, s, string(e))
 }

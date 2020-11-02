@@ -1,9 +1,9 @@
 {
   "type": "expenses",
-  "id": "fc0b93d6-6acd-45aa-a0db-1141ef5a2307",
+  "id": "2c399774-48fc-4ba5-a219-d7d01c943e4f",
   "fromMonth": "2019-05",
   "toMonth": "2019-09",
-  "coverageDays": 153,
+  "coverageDays": 152,
   "payments": [
     {
       "division": "Alcoholic beverages",
@@ -43,8 +43,8 @@
     },
     {
       "division": "Clothing and footwear",
-      "avgMonthly": "-98.00",
-      "percentageTotal": 0.86,
+      "avgMonthly": "-99.00",
+      "percentageTotal": 0.85,
       "subCategory": [
         {
           "summary": "monthly",
@@ -83,7 +83,7 @@
     },
     {
       "division": "Communication",
-      "avgMonthly": "-69.00",
+      "avgMonthly": "-70.00",
       "percentageTotal": 0.6,
       "subCategory": [
         {
@@ -148,7 +148,7 @@
     },
     {
       "division": "Domestic fuel and power",
-      "avgMonthly": "-189.00",
+      "avgMonthly": "-190.00",
       "percentageTotal": 1.65,
       "subCategory": [
         {
@@ -188,8 +188,8 @@
     },
     {
       "division": "Food and non-alcoholic beverages",
-      "avgMonthly": "-234.00",
-      "percentageTotal": 2.04,
+      "avgMonthly": "-237.00",
+      "percentageTotal": 2.06,
       "subCategory": [
         {
           "summary": "monthly",
@@ -203,16 +203,12 @@
           },
           "changeHistory": [
             {
-              "date": "2019-04",
-              "amount": "-10.00"
-            },
-            {
               "date": "2019-05",
-              "amount": "-246.00"
+              "amount": "-205.00"
             },
             {
               "date": "2019-06",
-              "amount": "-130.00"
+              "amount": "-182.00"
             },
             {
               "date": "2019-07",
@@ -265,8 +261,8 @@
     },
     {
       "division": "Household furnishings and equipment",
-      "avgMonthly": "-287.00",
-      "percentageTotal": 2.51,
+      "avgMonthly": "-305.00",
+      "percentageTotal": 2.65,
       "subCategory": [
         {
           "summary": "monthly",
@@ -301,12 +297,8 @@
           },
           "changeHistory": [
             {
-              "date": "2019-04",
-              "amount": "-80.00"
-            },
-            {
               "date": "2019-05",
-              "amount": "-165.00"
+              "amount": "-245.00"
             },
             {
               "date": "2019-06",
@@ -372,8 +364,8 @@
     },
     {
       "division": "Medical care and health expenses",
-      "avgMonthly": "-179.00",
-      "percentageTotal": 1.57,
+      "avgMonthly": "-180.00",
+      "percentageTotal": 1.56,
       "subCategory": [
         {
           "summary": "monthly",
@@ -450,7 +442,7 @@
     },
     {
       "division": "Personal care",
-      "avgMonthly": "-83.00",
+      "avgMonthly": "-84.00",
       "percentageTotal": 0.72,
       "subCategory": [
         {
@@ -490,8 +482,8 @@
     },
     {
       "division": "Recreation",
-      "avgMonthly": "-1171.00",
-      "percentageTotal": 10.27,
+      "avgMonthly": "-1184.00",
+      "percentageTotal": 10.29,
       "subCategory": [
         {
           "summary": "monthly",
@@ -538,20 +530,16 @@
           },
           "changeHistory": [
             {
-              "date": "2019-04",
-              "amount": "-26.00"
-            },
-            {
               "date": "2019-05",
-              "amount": "-423.00"
+              "amount": "-448.00"
             },
             {
               "date": "2019-06",
-              "amount": "-1045.00"
+              "amount": "-1025.00"
             },
             {
               "date": "2019-07",
-              "amount": "-579.00"
+              "amount": "-599.00"
             },
             {
               "date": "2019-08",
@@ -660,7 +648,7 @@
     },
     {
       "division": "Transport",
-      "avgMonthly": "-168.00",
+      "avgMonthly": "-169.00",
       "percentageTotal": 1.47,
       "subCategory": [
         {
@@ -776,11 +764,11 @@
             },
             {
               "date": "2019-07",
-              "amount": "-49.00"
+              "amount": "-37.00"
             },
             {
               "date": "2019-08",
-              "amount": "-187.00"
+              "amount": "-199.00"
             }
           ]
         }
@@ -788,8 +776,8 @@
     },
     {
       "division": "Miscellaneous goods and services",
-      "avgMonthly": "-3907.00",
-      "percentageTotal": 34.27,
+      "avgMonthly": "-3933.00",
+      "percentageTotal": 34.2,
       "subCategory": [
         {
           "summary": "monthly",
@@ -922,23 +910,23 @@
           "changeHistory": [
             {
               "date": "2019-05",
-              "amount": "-1094.00"
+              "amount": "-1052.00"
             },
             {
               "date": "2019-06",
-              "amount": "-625.00"
+              "amount": "-659.00"
             },
             {
               "date": "2019-07",
-              "amount": "-2666.00"
+              "amount": "-2655.00"
             },
             {
               "date": "2019-08",
-              "amount": "-2820.00"
+              "amount": "-2655.00"
             },
             {
               "date": "2019-09",
-              "amount": "-563.00"
+              "amount": "-745.00"
             }
           ]
         },
@@ -988,8 +976,8 @@
     },
     {
       "division": "Other payment",
-      "avgMonthly": "-4966.00",
-      "percentageTotal": 43.55,
+      "avgMonthly": "-4998.00",
+      "percentageTotal": 43.47,
       "subCategory": [
         {
           "summary": "monthly",
@@ -1012,11 +1000,11 @@
             },
             {
               "date": "2019-07",
-              "amount": "-5706.00"
+              "amount": "-4706.00"
             },
             {
               "date": "2019-08",
-              "amount": "-4459.00"
+              "amount": "-5459.00"
             },
             {
               "date": "2019-09",
@@ -1033,7 +1021,7 @@
   "loanRepayments": null,
   "externalTransfers": null,
   "links": {
-    "self": "https://au-api.basiq.io/users/8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5/expenses/fc0b93d6-6acd-45aa-a0db-1141ef5a2307",
+    "self": "https://au-api.basiq.io/users/8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5/expenses/2c399774-48fc-4ba5-a219-d7d01c943e4f",
     "accounts": [
       "https://au-api.basiq.io/users/8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5/accounts/24c742dc-bba6-4bc2-8298-fe731a17be68"
     ]
