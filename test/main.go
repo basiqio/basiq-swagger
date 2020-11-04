@@ -45,9 +45,8 @@ func init() {
 func (token *InMemoryToken) GetToken(t *testing.T) string {
 	if token.timeElapsed == nil || int64(time.Now().Sub(*token.timeElapsed).Seconds()) >= token.expiresIn {
 		tokenReq := token2.NewPostTokenParamsWithContext(context.TODO())
-		tokenReq.SetAuthorization("Basic " + Cfg.ApiKey)
 		tokenReq.SetBasiqVersion("2.0")
-		tokenOK, err := Client.Token.PostToken(tokenReq, nil)
+		tokenOK, err := Client.Token.PostToken(tokenReq, httptransport.APIKeyAuth("Authorization", "header", "Basic "+Cfg.ApiKey))
 
 		if err != nil {
 			t.Fatalf("Error getting token : %v", err)

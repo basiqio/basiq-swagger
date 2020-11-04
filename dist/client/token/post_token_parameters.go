@@ -60,8 +60,6 @@ for the post token operation typically these are written to a http.Request
 */
 type PostTokenParams struct {
 
-	/*Authorization*/
-	Authorization string
 	/*BasiqVersion*/
 	BasiqVersion string
 	/*Scope*/
@@ -105,17 +103,6 @@ func (o *PostTokenParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithAuthorization adds the authorization to the post token params
-func (o *PostTokenParams) WithAuthorization(authorization string) *PostTokenParams {
-	o.SetAuthorization(authorization)
-	return o
-}
-
-// SetAuthorization adds the authorization to the post token params
-func (o *PostTokenParams) SetAuthorization(authorization string) {
-	o.Authorization = authorization
-}
-
 // WithBasiqVersion adds the basiqVersion to the post token params
 func (o *PostTokenParams) WithBasiqVersion(basiqVersion string) *PostTokenParams {
 	o.SetBasiqVersion(basiqVersion)
@@ -145,11 +132,6 @@ func (o *PostTokenParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Reg
 		return err
 	}
 	var res []error
-
-	// header param Authorization
-	if err := r.SetHeaderParam("Authorization", o.Authorization); err != nil {
-		return err
-	}
 
 	// header param basiq-version
 	if err := r.SetHeaderParam("basiq-version", o.BasiqVersion); err != nil {
