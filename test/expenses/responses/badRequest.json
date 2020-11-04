@@ -6,7 +6,7 @@
       "type": "error",
       "code": "parameter-not-valid",
       "title": "Parameter value is not valid",
-      "detail": "Maximum length of fromDate - toDate interval is 12 months",
+      "detail": "maximum length of fromMonth - toMonth interval is 12 months",
       "source": {
         "parameter": "toDate, fromDate"
       }
