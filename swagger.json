@@ -12,6 +12,11 @@
   "paths": {
     "/token": {
       "post": {
+        "security": [
+          {
+            "api_key": []
+          }
+        ],
         "description": "Use this endpoint to retrieve token that will be passed as authorization header for Basiq API",
         "consumes": [
           "application/x-www-form-urlencoded"
@@ -32,12 +37,6 @@
           {
             "type": "string",
             "name": "basiq-version",
-            "in": "header",
-            "required": true
-          },
-          {
-            "type": "string",
-            "name": "Authorization",
             "in": "header",
             "required": true
           }
@@ -72,6 +71,14 @@
     },
     "/jobs/{jobId}": {
       "get": {
+        "security": [
+          {
+            "application": [
+              "SERVER_ACCESS",
+              "CLIENT_ACCESS"
+            ]
+          }
+        ],
         "description": "\u003cb\u003eTracking the status of a job\u003c/b\u003e\u003cbr/\u003e\nEvery step of the job has a status property that depicts its current state.\u003cbr/\u003e\n\u003cb\u003eFind out what steps have been completed\u003c/b\u003e\u003cbr/\u003e\nDepending on the job being executed, some jobs will have multiple steps which need to be executed, for e.g. refreshing a connection requires the following steps to be completed:\n\u003col\u003e\u003cli\u003eEstablish successful authentication with institution\u003c/li\u003e\n\u003cli\u003eFetch latest list of accounts\u003c/li\u003e\n\u003cli\u003eFetch latest list of transactions\u003c/li\u003e\u003c/ol\u003e\nYou can keep track of the steps that have been completed by observing the results array property. As each step is successfully completed, its status will be updated and a result object with the link to the affected resource will be present. In the event that a step has failed, the result object will contain an embedded error object.",
         "produces": [
           "application/json"
@@ -126,6 +133,13 @@
     },
     "/users": {
       "post": {
+        "security": [
+          {
+            "application": [
+              "SERVER_ACCESS"
+            ]
+          }
+        ],
         "consumes": [
           "application/json"
         ],
@@ -183,6 +197,14 @@
     },
     "/users/{userId}": {
       "get": {
+        "security": [
+          {
+            "application": [
+              "SERVER_ACCESS",
+              "CLIENT_ACCESS"
+            ]
+          }
+        ],
         "produces": [
           "application/json"
         ],
@@ -240,6 +262,13 @@
         }
       },
       "post": {
+        "security": [
+          {
+            "application": [
+              "SERVER_ACCESS"
+            ]
+          }
+        ],
         "consumes": [
           "application/json"
         ],
@@ -302,6 +331,13 @@
         }
       },
       "delete": {
+        "security": [
+          {
+            "application": [
+              "SERVER_ACCESS"
+            ]
+          }
+        ],
         "description": "Permanently deletes a user along with all of their associated connection details. All data associated with this user will deleted. You need only supply the unique user identifier that was returned upon user creation.",
         "tags": [
           "Users"
@@ -356,6 +392,13 @@
     },
     "/users/{userId}/accounts": {
       "get": {
+        "security": [
+          {
+            "application": [
+              "SERVER_ACCESS"
+            ]
+          }
+        ],
         "description": "Returns a list with a data property that contains an array of accounts. Each entry in the array is a separate object. If no data is returned, the resulting array will be empty. Otherwise, this call returns an error in the event of1 a failure.",
         "produces": [
           "application/json"
@@ -410,6 +453,13 @@
     },
     "/users/{userId}/accounts/{accountId}": {
       "get": {
+        "security": [
+          {
+            "application": [
+              "SERVER_ACCESS"
+            ]
+          }
+        ],
         "description": "Returns an account if a valid account ID was provided. Returns an error otherwise.",
         "produces": [
           "application/json"
@@ -471,6 +521,13 @@
     },
     "/users/{userId}/affordability": {
       "post": {
+        "security": [
+          {
+            "application": [
+              "SERVER_ACCESS"
+            ]
+          }
+        ],
         "consumes": [
           "application/json"
         ],
@@ -541,6 +598,13 @@
     },
     "/users/{userId}/affordability/{snapshotId}": {
       "get": {
+        "security": [
+          {
+            "application": [
+              "SERVER_ACCESS"
+            ]
+          }
+        ],
         "produces": [
           "application/json",
           "application/pdf"
@@ -602,6 +666,13 @@
     },
     "/users/{userId}/affordability/{snapshotId}/transactions": {
       "get": {
+        "security": [
+          {
+            "application": [
+              "SERVER_ACCESS"
+            ]
+          }
+        ],
         "produces": [
           "application/json",
           "application/csv"
@@ -669,6 +740,13 @@
     },
     "/users/{userId}/auth_link": {
       "get": {
+        "security": [
+          {
+            "application": [
+              "SERVER_ACCESS"
+            ]
+          }
+        ],
         "description": "Returns the latest/last auth_link generated for the specified user. Returns an error otherwise.",
         "produces": [
           "application/json"
@@ -733,6 +811,13 @@
         }
       },
       "post": {
+        "security": [
+          {
+            "application": [
+              "SERVER_ACCESS"
+            ]
+          }
+        ],
         "description": "Create a new auth_link object by making a POST request to the auth_link endpoint. The new auth_link will effectively delete previous auth-links for that User/applicant, rendering the previous URL(s) invalid. The 'mobile' attribute is optional. If it is specified this number will take preference over the User object mobile number for 2FA SMS verification.\n\nReturns a created auth_link resource, if the operation succeeded. Returns an error if the post failed (e.g. not supplying required properties).",
         "consumes": [
           "application/json"
@@ -801,6 +886,14 @@
         }
       },
       "delete": {
+        "security": [
+          {
+            "application": [
+              "SERVER_ACCESS",
+              "CLIENT_ACCESS"
+            ]
+          }
+        ],
         "description": "\u003cblockquote\u003eNote that this action cannot be undone.\u003c/blockquote\u003e\n\n\u003cblockquote\u003eThe auth_link is a URL that directs a User to Basiq's hosted consent workflow to link banks and securely share data. When the user selects 'I have disclosed all my accounts' the auth_link is automatically deleted.\u003c/blockquote\u003e\n\nReturns an empty body if the delete succeeded. Otherwise, this call returns an error in the event of a failure.",
         "tags": [
           "AuthLinks"
@@ -849,6 +942,13 @@
     },
     "/users/{userId}/connections": {
       "get": {
+        "security": [
+          {
+            "application": [
+              "SERVER_ACCESS"
+            ]
+          }
+        ],
         "description": "Returns a list with a data property that contains an array of connections. Each entry in the array is a separate object. If no data is returned, the resulting array will be empty.",
         "produces": [
           "application/json"
@@ -915,6 +1015,14 @@
         }
       },
       "post": {
+        "security": [
+          {
+            "application": [
+              "SERVER_ACCESS",
+              "CLIENT_ACCESS"
+            ]
+          }
+        ],
         "description": "When a new connection request is made the server will create a job that will process the following steps:\n\u003ctable\u003e\n\u003cthead\u003e\n\u003ctr\u003e\u003ctd\u003e#\u003c/td\u003e\u003ctd\u003eStep\u003c/td\u003e\u003ctd\u003eDescription\u003c/td\u003e\u003c/tr\u003e\n\u003c/thead\u003e\n\u003ctr\u003e\n\u003ctd\u003e1\u003c/td\u003e\n\u003ctd\u003e\nverify-credentials\n\u003c/td\u003e\n\u003ctd\u003e\nThe server will attempt to authenticate with the target institution using the supplied credentials.\n\u003c/td\u003e\n\u003ctr\u003e\n\u003ctd\u003e2\u003c/td\u003e\n\u003ctd\u003e\nretrieve-accounts\n\u003c/td\u003e\n\u003ctd\u003e\nThe server will retrieve the complete list of accounts and their details e.g. account number, name and balances.\n\u003c/td\u003e\n\u003ctr\u003e\n\u003ctd\u003e3\u003c/td\u003e\n\u003ctd\u003e\nretrieve-transactions\n\u003c/td\u003e\n\u003ctd\u003e\nThe server will fetch the associated transactions for each of the accounts.\n\u003c/td\u003e\n\u003c/tr\u003e\n\u003c/table\u003e\n\u003cbr/\u003e\nNote that the time it takes to complete the processes above will vary depending on the volume of data along with the general latency between our servers and the financial institution. As a rough guide this entire process could take anywhere between 3 - 30 secs.",
         "consumes": [
           "application/json"
@@ -997,6 +1105,13 @@
     },
     "/users/{userId}/connections/refresh": {
       "post": {
+        "security": [
+          {
+            "application": [
+              "SERVER_ACCESS"
+            ]
+          }
+        ],
         "produces": [
           "application/json"
         ],
@@ -1050,6 +1165,14 @@
     },
     "/users/{userId}/connections/{connectionId}": {
       "get": {
+        "security": [
+          {
+            "application": [
+              "SERVER_ACCESS",
+              "CLIENT_ACCESS"
+            ]
+          }
+        ],
         "description": "This request will return back a connection object with most of the fields that were submitted when the connection was first created. The connection object will also return a list of URLs to the associated account, transaction and institution objects.\nThe status property of the connection object identifies the state of the connection. Use this to work out if the connection is still valid, or whether to take further action (e.g. if the connection credentials are no longer valid you may ask the user to re-submit their details).\n\u003cbr/\u003e\nNote that due to security the loginId, password, securityCode are never returned.\nProfile data represents the name, phone, email and address of the logged in user or data sharer. Only data made available by institution can be returned. An institution may offer the option for a customer to hide all personal data or add 2FA to access the data - in this case no data would be returned for all data points. Note, that when a Connection is deleted - the profile data will also be deleted. If a phone number or email address is masked by the institution - the string will be shown exactly as it is provided by the institution.",
         "produces": [
           "application/json"
@@ -1121,6 +1244,14 @@
         }
       },
       "post": {
+        "security": [
+          {
+            "application": [
+              "SERVER_ACCESS",
+              "CLIENT_ACCESS"
+            ]
+          }
+        ],
         "consumes": [
           "application/json"
         ],
@@ -1209,6 +1340,13 @@
         }
       },
       "delete": {
+        "security": [
+          {
+            "application": [
+              "SERVER_ACCESS"
+            ]
+          }
+        ],
         "description": "Once the connection has been deleted, all of the associated financial data e.g. accounts and transactions can still be accessed via the users end-point.\nNote that this action cannot be undone.",
         "produces": [
           "application/json"
@@ -1273,6 +1411,13 @@
     },
     "/users/{userId}/connections/{connectionId}/refresh": {
       "post": {
+        "security": [
+          {
+            "application": [
+              "SERVER_ACCESS"
+            ]
+          }
+        ],
         "description": "Similar to when a connection is first created, the refresh resource will initiate the following series of steps to retrieve the latest financial data from the target institution:\n\u003ctable\u003e\n\u003cthead\u003e\n\u003ctr\u003e\u003ctd\u003e#\u003c/td\u003e\u003ctd\u003eStep\u003c/td\u003e\u003ctd\u003eDescription\u003c/td\u003e\u003c/tr\u003e\n\u003c/thead\u003e\n\u003ctr\u003e\u003ctd\u003e1\u003c/td\u003e\u003ctd\u003everify-credentials\u003c/td\u003e\u003ctd\u003eThe server will attempt to authenticate with the target institution using the supplied credentials.\u003c/td\u003e\u003c/tr\u003e\n\u003ctr\u003e\u003ctd\u003e2\u003c/td\u003e\u003ctd\u003eretrieve-accounts\u003c/td\u003e\u003ctd\u003e\nThe server will retrieve the complete list of accounts and their details e.g. account number, name and balances.\u003c/td\u003e\u003c/tr\u003e\n\u003ctr\u003e\u003ctd\u003e3\u003c/td\u003e\u003ctd\u003eretrieve-transactions\u003c/td\u003e\u003ctd\u003eThe server will fetch the associated transactions for each of the accounts.\u003c/td\u003e\u003c/tr\u003e\n\u003c/table\u003e",
         "produces": [
           "application/json"
@@ -1340,6 +1485,13 @@
     },
     "/users/{userId}/expenses": {
       "post": {
+        "security": [
+          {
+            "application": [
+              "SERVER_ACCESS"
+            ]
+          }
+        ],
         "consumes": [
           "application/json"
         ],
@@ -1406,6 +1558,13 @@
     },
     "/users/{userId}/expenses/{snapshotId}": {
       "get": {
+        "security": [
+          {
+            "application": [
+              "SERVER_ACCESS"
+            ]
+          }
+        ],
         "produces": [
           "application/json",
           "text/csv"
@@ -1467,6 +1626,13 @@
     },
     "/users/{userId}/income": {
       "post": {
+        "security": [
+          {
+            "application": [
+              "SERVER_ACCESS"
+            ]
+          }
+        ],
         "consumes": [
           "application/json"
         ],
@@ -1533,6 +1699,13 @@
     },
     "/users/{userId}/income/{snapshotId}": {
       "get": {
+        "security": [
+          {
+            "application": [
+              "SERVER_ACCESS"
+            ]
+          }
+        ],
         "produces": [
           "application/json"
         ],
@@ -1593,6 +1766,13 @@
     },
     "/users/{userId}/jobs": {
       "get": {
+        "security": [
+          {
+            "application": [
+              "SERVER_ACCESS"
+            ]
+          }
+        ],
         "description": "\u003cb\u003eTracking the status of a job\u003c/b\u003e\u003cbr/\u003e\nEvery step of the job has a status property that depicts its current state.\u003cbr/\u003e\n\u003cb\u003eFind out what steps have been completed\u003c/b\u003e\u003cbr/\u003e\nDepending on the job being executed, some jobs will have multiple steps which need to be executed, for e.g. refreshing a connection requires the following steps to be completed:\n\u003col\u003e\u003cli\u003eEstablish successful authentication with institution\u003c/li\u003e\n\u003cli\u003eFetch latest list of accounts\u003c/li\u003e\n\u003cli\u003eFetch latest list of transactions\u003c/li\u003e\u003c/ol\u003e\nYou can keep track of the steps that have been completed by observing the results array property. As each step is successfully completed, its status will be updated and a result object with the link to the affected resource will be present. In the event that a step has failed, the result object will contain an embedded error object.",
         "produces": [
           "application/json"
@@ -1647,6 +1827,14 @@
     },
     "/users/{userId}/statements": {
       "post": {
+        "security": [
+          {
+            "application": [
+              "SERVER_ACCESS",
+              "CLIENT_ACCESS"
+            ]
+          }
+        ],
         "description": "\u003cblockquote\u003eThe endpoint also accepts csv files conforming to our file specification. Contact us directly for more details.\u003c/blockquote\u003e\n\nCreate a new statement by uploading an official pdf bank statement or csv file statement. When a new statement request is made, the server will create a job that will process the following steps:\n\u003ctable\u003e\n\u003cthead\u003e\u003ctr\u003e\u003ctd\u003e#\u003c/td\u003e\u003ctd\u003eStep\u003c/td\u003e\u003ctd\u003eDescription\u003c/td\u003e\u003c/tr\u003e\u003c/thead\u003e\n\u003ctbody\u003e\n\u003ctr\u003e\u003ctd\u003e1\u003c/td\u003e\u003ctd\u003everify-credentials\u003c/td\u003e\u003ctd\u003eThe server will verify the file, validate the statement layout and attempt to parse the target statement\u003c/td\u003e\u003c/tr\u003e\n\u003ctr\u003e\u003ctd\u003e2\u003c/td\u003e\u003ctd\u003eretrieve-accounts\u003c/td\u003e\u003ctd\u003eThe server will retrieve the complete list of accounts and their details e.g. account number, name and balances\u003c/td\u003e\u003c/tr\u003e\n\u003ctr\u003e\u003ctd\u003e3\u003c/td\u003e\u003ctd\u003eretrieve-transactions\u003c/td\u003e\u003ctd\u003eThe server will fetch the associated transactions for each of the accounts\u003c/td\u003e\u003c/tr\u003e\n\u003c/tbody\u003e\n\u003c/table\u003e\n\nYou can check the status of each step by querying the job resource (returned when the statement is created).",
         "consumes": [
           "multipart/form-data"
@@ -1726,6 +1914,13 @@
     },
     "/users/{userId}/transactions": {
       "get": {
+        "security": [
+          {
+            "application": [
+              "SERVER_ACCESS"
+            ]
+          }
+        ],
         "description": "The transactions are returned sorted by account and then posted date descending order - with pending transactions appearing first. Transactions are paginated in chunks of 500. Absence of next link means that there are no more pages to retrieve.",
         "produces": [
           "application/json"
@@ -1806,6 +2001,13 @@
     },
     "/users/{userId}/transactions/{transactionId}": {
       "get": {
+        "security": [
+          {
+            "application": [
+              "SERVER_ACCESS"
+            ]
+          }
+        ],
         "description": "You need only supply the unique transaction identifier.",
         "produces": [
           "application/json"
@@ -1873,6 +2075,14 @@
     },
     "/enrich": {
       "get": {
+        "security": [
+          {
+            "application": [
+              "SERVER_ACCESS",
+              "CLIENT_ACCESS"
+            ]
+          }
+        ],
         "produces": [
           "application/json"
         ],
@@ -1933,6 +2143,14 @@
     },
     "/institutions": {
       "get": {
+        "security": [
+          {
+            "application": [
+              "SERVER_ACCESS",
+              "CLIENT_ACCESS"
+            ]
+          }
+        ],
         "description": "NOTE: This end point requires authentication.",
         "produces": [
           "application/json"
@@ -1981,6 +2199,14 @@
     },
     "/institutions/{institutionID}": {
       "get": {
+        "security": [
+          {
+            "application": [
+              "SERVER_ACCESS",
+              "CLIENT_ACCESS"
+            ]
+          }
+        ],
         "description": "NOTE: This end point requires authentication.",
         "produces": [
           "application/json"
@@ -7154,14 +7380,17 @@
   "securityDefinitions": {
     "api_key": {
       "type": "apiKey",
-      "description": "Format: Bearer token",
       "name": "Authorization",
       "in": "header"
+    },
+    "application": {
+      "type": "oauth2",
+      "flow": "application",
+      "tokenUrl": "https://au-api.basiq.io/token",
+      "scopes": {
+        "SERVER_ACCESS": "Server access scope",
+        "CLIENT_ACCESS": "Client access scope"
+      }
     }
-  },
-  "security": [
-    {
-      "api_key": []
-    }
-  ]
+  }
 }

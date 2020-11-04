@@ -3,6 +3,7 @@ package institutions
 import (
 	"context"
 	"encoding/json"
+	"strconv"
 	"strings"
 	"testing"
 
@@ -79,6 +80,26 @@ func TestGetInstitution(t *testing.T) {
 	}
 
 	s := test.GetJsonResponse("./responses/getInstitution.json", t)
+	s = strings.Replace(
+		s, "3820",
+		strconv.Itoa(int(institutionResponse.GetPayload().Stats.AverageDurationMs.RetrieveAccounts)),
+		1)
+	s = strings.Replace(
+		s, "12487",
+		strconv.Itoa(int(institutionResponse.GetPayload().Stats.AverageDurationMs.RetrieveMeta)),
+		1)
+	s = strings.Replace(
+		s, "7127",
+		strconv.Itoa(int(institutionResponse.GetPayload().Stats.AverageDurationMs.RetrieveTransactions)),
+		1)
+	s = strings.Replace(
+		s, "31588",
+		strconv.Itoa(int(institutionResponse.GetPayload().Stats.AverageDurationMs.Total)),
+		1)
+	s = strings.Replace(
+		s, "8154",
+		strconv.Itoa(int(institutionResponse.GetPayload().Stats.AverageDurationMs.VerifyCredentials)),
+		1)
 
 	test.AssertJson(t, s, string(e))
 }
@@ -118,7 +139,7 @@ func TestGetPublicInstitutions(t *testing.T) {
 		Context: context.TODO(),
 	}
 
-	institutionsResponse, err := test.Client.Institutions.GetPublicInstitutions(institutionsParams, httptransport.PassThroughAuth)
+	institutionsResponse, err := test.Client.Institutions.GetPublicInstitutions(institutionsParams)
 	if err != nil {
 		t.Fatalf("Error getting institutions: %v", err)
 	}

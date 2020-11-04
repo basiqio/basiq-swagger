@@ -31,7 +31,7 @@ type ClientService interface {
 
 	GetInstitutions(params *GetInstitutionsParams, authInfo runtime.ClientAuthInfoWriter) (*GetInstitutionsOK, error)
 
-	GetPublicInstitutions(params *GetPublicInstitutionsParams, authInfo runtime.ClientAuthInfoWriter) (*GetPublicInstitutionsOK, error)
+	GetPublicInstitutions(params *GetPublicInstitutionsParams) (*GetPublicInstitutionsOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -113,7 +113,7 @@ func (a *Client) GetInstitutions(params *GetInstitutionsParams, authInfo runtime
 /*
   GetPublicInstitutions retrieves publically availiable no authentication required institutions list
 */
-func (a *Client) GetPublicInstitutions(params *GetPublicInstitutionsParams, authInfo runtime.ClientAuthInfoWriter) (*GetPublicInstitutionsOK, error) {
+func (a *Client) GetPublicInstitutions(params *GetPublicInstitutionsParams) (*GetPublicInstitutionsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetPublicInstitutionsParams()
@@ -128,7 +128,6 @@ func (a *Client) GetPublicInstitutions(params *GetPublicInstitutionsParams, auth
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetPublicInstitutionsReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	})

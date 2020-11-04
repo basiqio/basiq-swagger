@@ -38,9 +38,9 @@ func main() {
 	client := client2.New(httptransport.New(client2.DefaultHost, client2.DefaultBasePath, nil), strfmt.Default)
 
 	tokenReq := token2.NewPostTokenParamsWithContext(context.TODO())
-	tokenReq.SetAuthorization("Basic " + apiKey)
 	tokenReq.SetBasiqVersion("2.0")
-	tokenResponse, err := client.Token.PostToken(tokenReq, nil)
+	auth := httptransport.APIKeyAuth("Authorization", "header", "Basic "+ apiKey)  
+	tokenResponse, err := client.Token.PostToken(tokenReq, apiKey)
 
 	if err != nil {
 		log.Printf("Error getting token: %v", err)

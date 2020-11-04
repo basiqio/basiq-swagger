@@ -15,13 +15,12 @@ import (
 func TestPostTokenClientAccess(t *testing.T) {
 	scope := "CLIENT_ACCESS"
 	tokenParams := &token.PostTokenParams{
-		Authorization: "Basic " + test.Cfg.ApiKey,
-		BasiqVersion:  "2.0",
-		Scope:         &scope,
-		Context:       context.TODO(),
+		BasiqVersion: "2.0",
+		Scope:        &scope,
+		Context:      context.TODO(),
 	}
 
-	tokenResponse, err := test.Client.Token.PostToken(tokenParams, httptransport.PassThroughAuth)
+	tokenResponse, err := test.Client.Token.PostToken(tokenParams, httptransport.APIKeyAuth("Authorization", "header", "Basic "+test.Cfg.ApiKey))
 	if err != nil {
 		t.Fatalf("Error getting token: %v", err)
 	}
@@ -42,13 +41,12 @@ func TestPostTokenClientAccess(t *testing.T) {
 func TestPostTokenServerAccess(t *testing.T) {
 	scope := "SERVER_ACCESS"
 	tokenParams := &token.PostTokenParams{
-		Authorization: "Basic " + test.Cfg.ApiKey,
-		BasiqVersion:  "2.0",
-		Scope:         &scope,
-		Context:       context.TODO(),
+		BasiqVersion: "2.0",
+		Scope:        &scope,
+		Context:      context.TODO(),
 	}
 
-	tokenResponse, err := test.Client.Token.PostToken(tokenParams, httptransport.PassThroughAuth)
+	tokenResponse, err := test.Client.Token.PostToken(tokenParams, httptransport.APIKeyAuth("Authorization", "header", "Basic "+test.Cfg.ApiKey))
 	if err != nil {
 		t.Fatalf("Error getting token: %v", err)
 	}
@@ -68,12 +66,12 @@ func TestPostTokenServerAccess(t *testing.T) {
 
 func TestPostTokenBadRequest(t *testing.T) {
 	tokenParams := &token.PostTokenParams{
-		Authorization: "Basic " + test.Cfg.ApiKey,
-		BasiqVersion:  "",
-		Context:       context.TODO(),
+		BasiqVersion: "",
+		Context:      context.TODO(),
 	}
 
-	_, err := test.Client.Token.PostToken(tokenParams, httptransport.PassThroughAuth)
+	_, err := test.Client.Token.PostToken(tokenParams, httptransport.APIKeyAuth("Authorization", "header", "Basic "+test.Cfg.ApiKey))
+
 	if err != nil {
 		badRequest, ok := err.(*token.PostTokenBadRequest)
 		if !ok {
@@ -97,12 +95,12 @@ func TestPostTokenBadRequest(t *testing.T) {
 
 func TestPostTokenNotFound(t *testing.T) {
 	tokenParams := &token.PostTokenParams{
-		Authorization: "Basic " + test.Cfg.DeletedApiKey,
-		BasiqVersion:  "2.0",
-		Context:       context.TODO(),
+		BasiqVersion: "2.0",
+		Context:      context.TODO(),
 	}
 
-	_, err := test.Client.Token.PostToken(tokenParams, httptransport.PassThroughAuth)
+	_, err := test.Client.Token.PostToken(tokenParams, httptransport.APIKeyAuth("Authorization", "header", "Basic "+test.Cfg.DeletedApiKey))
+
 	if err != nil {
 		fmt.Println(test.Cfg.DeletedApiKey)
 		fmt.Println(err.Error())
