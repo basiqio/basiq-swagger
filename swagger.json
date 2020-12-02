@@ -1789,6 +1789,12 @@
             "name": "userId",
             "in": "path",
             "required": true
+          },
+          {
+            "type": "string",
+            "description": "Connection identification filter. e.g. connection.id.eq('ab63cd')",
+            "name": "filter",
+            "in": "query"
           }
         ],
         "responses": {
@@ -3377,6 +3383,12 @@
         },
         "institution": {
           "$ref": "#/definitions/ConnectionInstitution"
+        },
+        "createdDate": {
+          "description": "Created date of the connection, available only for SERVER_SCOPE.",
+          "type": "string",
+          "x-go-name": "CreatedDate",
+          "example": "2019-07-29T07:34:09Z"
         },
         "lastUsed": {
           "description": "UTC Date and Time of when the connection was last used, in RFC 3339 format, available only for SERVER_SCOPE.",
