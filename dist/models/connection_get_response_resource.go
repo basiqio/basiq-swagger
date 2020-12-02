@@ -21,6 +21,9 @@ import (
 // swagger:model ConnectionGetResponseResource
 type ConnectionGetResponseResource struct {
 
+	// Created date of the connection, available only for SERVER_SCOPE.
+	CreatedDate string `json:"createdDate,omitempty"`
+
 	// A string that uniquely identifies the user connection.
 	// Required: true
 	ID *string `json:"id"`

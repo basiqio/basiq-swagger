@@ -60,6 +60,11 @@ for the get user jobs operation typically these are written to a http.Request
 */
 type GetUserJobsParams struct {
 
+	/*Filter
+	  Connection identification filter. e.g. connection.id.eq('ab63cd')
+
+	*/
+	Filter *string
 	/*UserID
 	  User identifier
 
@@ -104,6 +109,17 @@ func (o *GetUserJobsParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithFilter adds the filter to the get user jobs params
+func (o *GetUserJobsParams) WithFilter(filter *string) *GetUserJobsParams {
+	o.SetFilter(filter)
+	return o
+}
+
+// SetFilter adds the filter to the get user jobs params
+func (o *GetUserJobsParams) SetFilter(filter *string) {
+	o.Filter = filter
+}
+
 // WithUserID adds the userID to the get user jobs params
 func (o *GetUserJobsParams) WithUserID(userID string) *GetUserJobsParams {
 	o.SetUserID(userID)
@@ -122,6 +138,22 @@ func (o *GetUserJobsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.R
 		return err
 	}
 	var res []error
+
+	if o.Filter != nil {
+
+		// query param filter
+		var qrFilter string
+		if o.Filter != nil {
+			qrFilter = *o.Filter
+		}
+		qFilter := qrFilter
+		if qFilter != "" {
+			if err := r.SetQueryParam("filter", qFilter); err != nil {
+				return err
+			}
+		}
+
+	}
 
 	// path param userId
 	if err := r.SetPathParam("userId", o.UserID); err != nil {
