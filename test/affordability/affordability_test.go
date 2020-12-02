@@ -14,7 +14,7 @@ import (
 func TestGetAffordability(t *testing.T) {
 	token := httptransport.BearerToken(test.TokenHolder.GetToken(t))
 	userID := "8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5"
-	snapshotID := "1b67ed91-dc97-4074-a574-c30aba852549"
+	snapshotID := "6a394b8a-6b90-4590-aa40-aa7775f35f1a"
 
 	affordabilityParams := &affordability.GetAffordabilityParams{UserID: userID,
 		SnapshotID: snapshotID,
