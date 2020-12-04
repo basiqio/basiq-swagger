@@ -43,7 +43,7 @@ func TestPostAffordability(t *testing.T) {
 	userID := "8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5"
 	accountID := "14aa946c-6f87-44b7-bab9-d192d6261471"
 	affordabilityPostParams := &affordability.PostAffordabilityParams{UserID: userID,
-		AffordabilityPostRequest: &models.AffordabilityPost{FromMonth: "2018-11", ToMonth: "2019-10", Accounts: []string{accountID}},
+		AffordabilityPostRequest: &models.AffordabilityPostRequest{FromMonth: "2018-11", ToMonth: "2019-10", Accounts: []string{accountID}},
 		Context:                  context.TODO(),
 	}
 
@@ -73,7 +73,7 @@ func TestPostAffordabilityEmptyResponse(t *testing.T) {
 	userID := "8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5"
 	accountID := "14aa946c-6f87-44b7-bab9-d192d6261471"
 	affordabilityPostParams := &affordability.PostAffordabilityParams{UserID: userID,
-		AffordabilityPostRequest: &models.AffordabilityPost{FromMonth: "2015-11", ToMonth: "2016-10", Accounts: []string{accountID}},
+		AffordabilityPostRequest: &models.AffordabilityPostRequest{FromMonth: "2015-11", ToMonth: "2016-10", Accounts: []string{accountID}},
 		Context:                  context.TODO(),
 	}
 
@@ -93,7 +93,7 @@ func TestPostAffordabilityBadRequest(t *testing.T) {
 	userID := "8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5"
 	accountID := "14aa946c-6f87-44b7-bab9-d192d6261471"
 	affordabilityPostParams := &affordability.PostAffordabilityParams{UserID: userID,
-		AffordabilityPostRequest: &models.AffordabilityPost{FromMonth: "2015-11", ToMonth: "2020-10", Accounts: []string{accountID}},
+		AffordabilityPostRequest: &models.AffordabilityPostRequest{FromMonth: "2015-11", ToMonth: "2020-10", Accounts: []string{accountID}},
 		Context:                  context.TODO(),
 	}
 
@@ -125,7 +125,7 @@ func TestPostAffordabilityPdf(t *testing.T) {
 	userID := "8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5"
 	accountID := "14aa946c-6f87-44b7-bab9-d192d6261471"
 	_ = &affordability.PostAffordabilityParams{UserID: userID,
-		AffordabilityPostRequest: &models.AffordabilityPost{FromMonth: "2018-11", ToMonth: "2019-10", Accounts: []string{accountID}},
+		AffordabilityPostRequest: &models.AffordabilityPostRequest{FromMonth: "2018-11", ToMonth: "2019-10", Accounts: []string{accountID}},
 		Context:                  context.TODO(),
 	}
 

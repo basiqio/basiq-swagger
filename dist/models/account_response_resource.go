@@ -40,6 +40,10 @@ type AccountResponseResource struct {
 	// Required: true
 	Balance *string `json:"balance"`
 
+	// class
+	// Required: true
+	Class *AccountClass `json:"class"`
+
 	// The id of the connection resource that was used to retrieve the account.
 	// Required: true
 	Connection *string `json:"connection"`
@@ -60,6 +64,10 @@ type AccountResponseResource struct {
 	// Required: true
 	LastUpdated *string `json:"lastUpdated"`
 
+	// links
+	// Required: true
+	Links *AccountLinks `json:"links"`
+
 	// Account name as defined by institution or user.
 	// Required: true
 	Name *string `json:"name"`
@@ -79,14 +87,6 @@ type AccountResponseResource struct {
 	// Always "account".
 	// Required: true
 	Type *string `json:"type"`
-
-	// class
-	// Required: true
-	Class *ConnectionAccountClass `json:"class"`
-
-	// links
-	// Required: true
-	Links *AccountLinks `json:"links"`
 }
 
 // Validate validates this account response resource
@@ -106,6 +106,10 @@ func (m *AccountResponseResource) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateBalance(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateClass(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -129,6 +133,10 @@ func (m *AccountResponseResource) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateLinks(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateName(formats); err != nil {
 		res = append(res, err)
 	}
@@ -142,14 +150,6 @@ func (m *AccountResponseResource) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateType(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateClass(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateLinks(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -195,6 +195,24 @@ func (m *AccountResponseResource) validateBalance(formats strfmt.Registry) error
 	return nil
 }
 
+func (m *AccountResponseResource) validateClass(formats strfmt.Registry) error {
+
+	if err := validate.Required("class", "body", m.Class); err != nil {
+		return err
+	}
+
+	if m.Class != nil {
+		if err := m.Class.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("class")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *AccountResponseResource) validateConnection(formats strfmt.Registry) error {
 
 	if err := validate.Required("connection", "body", m.Connection); err != nil {
@@ -235,6 +253,24 @@ func (m *AccountResponseResource) validateLastUpdated(formats strfmt.Registry) e
 
 	if err := validate.Required("lastUpdated", "body", m.LastUpdated); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *AccountResponseResource) validateLinks(formats strfmt.Registry) error {
+
+	if err := validate.Required("links", "body", m.Links); err != nil {
+		return err
+	}
+
+	if m.Links != nil {
+		if err := m.Links.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("links")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -321,42 +357,6 @@ func (m *AccountResponseResource) validateType(formats strfmt.Registry) error {
 
 	if err := validate.Required("type", "body", m.Type); err != nil {
 		return err
-	}
-
-	return nil
-}
-
-func (m *AccountResponseResource) validateClass(formats strfmt.Registry) error {
-
-	if err := validate.Required("class", "body", m.Class); err != nil {
-		return err
-	}
-
-	if m.Class != nil {
-		if err := m.Class.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("class")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *AccountResponseResource) validateLinks(formats strfmt.Registry) error {
-
-	if err := validate.Required("links", "body", m.Links); err != nil {
-		return err
-	}
-
-	if m.Links != nil {
-		if err := m.Links.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("links")
-			}
-			return err
-		}
 	}
 
 	return nil

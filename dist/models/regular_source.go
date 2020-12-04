@@ -28,18 +28,14 @@ type RegularSource struct {
 	// Required: true
 	ChangeHistory []*ChangeHistoryIncome `json:"changeHistory"`
 
+	// current
+	// Required: true
+	Current *CurrentRegularSource `json:"current"`
+
 	// Enum detailing frequency regular income
 	// Required: true
 	// Enum: [daily weekly bi-weekly monthly bi-monthly quarterly half-year yearly]
 	Frequency *string `json:"frequency"`
-
-	// Source regular income (cleaned transaction description).
-	// Required: true
-	Source *string `json:"source"`
-
-	// current
-	// Required: true
-	Current *CurrentRegularSource `json:"current"`
 
 	// irregularity
 	// Required: true
@@ -48,6 +44,10 @@ type RegularSource struct {
 	// previous3 months
 	// Required: true
 	Previous3Months *Previous3MonthsIncome `json:"previous3Months"`
+
+	// Source regular income (cleaned transaction description).
+	// Required: true
+	Source *string `json:"source"`
 }
 
 // Validate validates this regular source
@@ -62,15 +62,11 @@ func (m *RegularSource) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateFrequency(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateSource(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.validateCurrent(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateFrequency(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -79,6 +75,10 @@ func (m *RegularSource) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validatePrevious3Months(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSource(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -117,6 +117,24 @@ func (m *RegularSource) validateChangeHistory(formats strfmt.Registry) error {
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *RegularSource) validateCurrent(formats strfmt.Registry) error {
+
+	if err := validate.Required("current", "body", m.Current); err != nil {
+		return err
+	}
+
+	if m.Current != nil {
+		if err := m.Current.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("current")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -183,33 +201,6 @@ func (m *RegularSource) validateFrequency(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *RegularSource) validateSource(formats strfmt.Registry) error {
-
-	if err := validate.Required("source", "body", m.Source); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *RegularSource) validateCurrent(formats strfmt.Registry) error {
-
-	if err := validate.Required("current", "body", m.Current); err != nil {
-		return err
-	}
-
-	if m.Current != nil {
-		if err := m.Current.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("current")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
 func (m *RegularSource) validateIrregularity(formats strfmt.Registry) error {
 
 	if err := validate.Required("irregularity", "body", m.Irregularity); err != nil {
@@ -241,6 +232,15 @@ func (m *RegularSource) validatePrevious3Months(formats strfmt.Registry) error {
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *RegularSource) validateSource(formats strfmt.Registry) error {
+
+	if err := validate.Required("source", "body", m.Source); err != nil {
+		return err
 	}
 
 	return nil

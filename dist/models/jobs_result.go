@@ -26,7 +26,7 @@ type JobsResult struct {
 	Code string `json:"code,omitempty"`
 
 	// In case of failed job, displays details of the error.
-	Detail string `json:"details,omitempty"`
+	Details string `json:"details,omitempty"`
 
 	// In case of failed job, displays error title.
 	Title string `json:"title,omitempty"`

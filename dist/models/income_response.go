@@ -35,13 +35,20 @@ type IncomeResponse struct {
 	ID *string `json:"id"`
 
 	// Required true
-	IrregularSources []*IrregularSource `json:"irregular"`
+	Irregular []*IrregularSource `json:"irregular"`
+
+	// links
+	Links *IncomeLinks `json:"links,omitempty"`
 
 	// Required true
-	OtherCreditSource []*OtherCreditSource `json:"otherCredit"`
+	OtherCredit []*OtherCreditSource `json:"otherCredit"`
 
 	// Required true
-	RegularSources []*RegularSource `json:"regular"`
+	Regular []*RegularSource `json:"regular"`
+
+	// summary
+	// Required: true
+	Summary *IncomeSummary `json:"summary"`
 
 	// End month (usually the current month) for the period for which the Income summary is generated.
 	// Required: true
@@ -50,13 +57,6 @@ type IncomeResponse struct {
 	// Always "income".
 	// Required: true
 	Type *string `json:"type"`
-
-	// links
-	Links *IncomeLinks `json:"links,omitempty"`
-
-	// summary
-	// Required: true
-	Summary *IncomeSummary `json:"summary"`
 }
 
 // Validate validates this income response
@@ -71,15 +71,23 @@ func (m *IncomeResponse) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateIrregularSources(formats); err != nil {
+	if err := m.validateIrregular(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateOtherCreditSource(formats); err != nil {
+	if err := m.validateLinks(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateRegularSources(formats); err != nil {
+	if err := m.validateOtherCredit(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateRegular(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSummary(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -88,14 +96,6 @@ func (m *IncomeResponse) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateType(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateLinks(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateSummary(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -123,19 +123,19 @@ func (m *IncomeResponse) validateID(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *IncomeResponse) validateIrregularSources(formats strfmt.Registry) error {
+func (m *IncomeResponse) validateIrregular(formats strfmt.Registry) error {
 
-	if swag.IsZero(m.IrregularSources) { // not required
+	if swag.IsZero(m.Irregular) { // not required
 		return nil
 	}
 
-	for i := 0; i < len(m.IrregularSources); i++ {
-		if swag.IsZero(m.IrregularSources[i]) { // not required
+	for i := 0; i < len(m.Irregular); i++ {
+		if swag.IsZero(m.Irregular[i]) { // not required
 			continue
 		}
 
-		if m.IrregularSources[i] != nil {
-			if err := m.IrregularSources[i].Validate(formats); err != nil {
+		if m.Irregular[i] != nil {
+			if err := m.Irregular[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("irregular" + "." + strconv.Itoa(i))
 				}
@@ -143,74 +143,6 @@ func (m *IncomeResponse) validateIrregularSources(formats strfmt.Registry) error
 			}
 		}
 
-	}
-
-	return nil
-}
-
-func (m *IncomeResponse) validateOtherCreditSource(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.OtherCreditSource) { // not required
-		return nil
-	}
-
-	for i := 0; i < len(m.OtherCreditSource); i++ {
-		if swag.IsZero(m.OtherCreditSource[i]) { // not required
-			continue
-		}
-
-		if m.OtherCreditSource[i] != nil {
-			if err := m.OtherCreditSource[i].Validate(formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("otherCredit" + "." + strconv.Itoa(i))
-				}
-				return err
-			}
-		}
-
-	}
-
-	return nil
-}
-
-func (m *IncomeResponse) validateRegularSources(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.RegularSources) { // not required
-		return nil
-	}
-
-	for i := 0; i < len(m.RegularSources); i++ {
-		if swag.IsZero(m.RegularSources[i]) { // not required
-			continue
-		}
-
-		if m.RegularSources[i] != nil {
-			if err := m.RegularSources[i].Validate(formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("regular" + "." + strconv.Itoa(i))
-				}
-				return err
-			}
-		}
-
-	}
-
-	return nil
-}
-
-func (m *IncomeResponse) validateToMonth(formats strfmt.Registry) error {
-
-	if err := validate.Required("toMonth", "body", m.ToMonth); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *IncomeResponse) validateType(formats strfmt.Registry) error {
-
-	if err := validate.Required("type", "body", m.Type); err != nil {
-		return err
 	}
 
 	return nil
@@ -234,6 +166,56 @@ func (m *IncomeResponse) validateLinks(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *IncomeResponse) validateOtherCredit(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.OtherCredit) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.OtherCredit); i++ {
+		if swag.IsZero(m.OtherCredit[i]) { // not required
+			continue
+		}
+
+		if m.OtherCredit[i] != nil {
+			if err := m.OtherCredit[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("otherCredit" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *IncomeResponse) validateRegular(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Regular) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.Regular); i++ {
+		if swag.IsZero(m.Regular[i]) { // not required
+			continue
+		}
+
+		if m.Regular[i] != nil {
+			if err := m.Regular[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("regular" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
 func (m *IncomeResponse) validateSummary(formats strfmt.Registry) error {
 
 	if err := validate.Required("summary", "body", m.Summary); err != nil {
@@ -247,6 +229,24 @@ func (m *IncomeResponse) validateSummary(formats strfmt.Registry) error {
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *IncomeResponse) validateToMonth(formats strfmt.Registry) error {
+
+	if err := validate.Required("toMonth", "body", m.ToMonth); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *IncomeResponse) validateType(formats strfmt.Registry) error {
+
+	if err := validate.Required("type", "body", m.Type); err != nil {
+		return err
 	}
 
 	return nil

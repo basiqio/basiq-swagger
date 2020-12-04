@@ -42,14 +42,6 @@ type AffordabilityResponse struct {
 	// Required: true
 	ID *string `json:"id"`
 
-	// End month (usually the current month) for the period for which the Affordability summary is generated.
-	// Required: true
-	ToMonth *string `json:"toMonth"`
-
-	// Always "affordability".
-	// Required: true
-	Type *string `json:"type"`
-
 	// liabilities
 	// Required: true
 	Liabilities *LiabilitiesData `json:"liabilities"`
@@ -61,6 +53,14 @@ type AffordabilityResponse struct {
 	// summary
 	// Required: true
 	Summary *AffordabilitySummary `json:"summary"`
+
+	// End month (usually the current month) for the period for which the Affordability summary is generated.
+	// Required: true
+	ToMonth *string `json:"toMonth"`
+
+	// Always "affordability".
+	// Required: true
+	Type *string `json:"type"`
 }
 
 // Validate validates this affordability response
@@ -83,14 +83,6 @@ func (m *AffordabilityResponse) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateToMonth(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateType(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.validateLiabilities(formats); err != nil {
 		res = append(res, err)
 	}
@@ -100,6 +92,14 @@ func (m *AffordabilityResponse) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateSummary(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateToMonth(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateType(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -161,24 +161,6 @@ func (m *AffordabilityResponse) validateID(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *AffordabilityResponse) validateToMonth(formats strfmt.Registry) error {
-
-	if err := validate.Required("toMonth", "body", m.ToMonth); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *AffordabilityResponse) validateType(formats strfmt.Registry) error {
-
-	if err := validate.Required("type", "body", m.Type); err != nil {
-		return err
-	}
-
-	return nil
-}
-
 func (m *AffordabilityResponse) validateLiabilities(formats strfmt.Registry) error {
 
 	if err := validate.Required("liabilities", "body", m.Liabilities); err != nil {
@@ -228,6 +210,24 @@ func (m *AffordabilityResponse) validateSummary(formats strfmt.Registry) error {
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *AffordabilityResponse) validateToMonth(formats strfmt.Registry) error {
+
+	if err := validate.Required("toMonth", "body", m.ToMonth); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *AffordabilityResponse) validateType(formats strfmt.Registry) error {
+
+	if err := validate.Required("type", "body", m.Type); err != nil {
+		return err
 	}
 
 	return nil

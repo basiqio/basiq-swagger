@@ -17,6 +17,10 @@ import (
 // swagger:model CreditLiabilities
 type CreditLiabilities struct {
 
+	// account
+	// Required: true
+	Account *AccountHolder `json:"account"`
+
 	// The available funds at the time of the query.
 	// Required: true
 	AvailableFunds *string `json:"availableFunds"`
@@ -37,10 +41,6 @@ type CreditLiabilities struct {
 	// Required: true
 	Institution *string `json:"institution"`
 
-	// account
-	// Required: true
-	Account *AccountHolder `json:"account"`
-
 	// previous6 months
 	// Required: true
 	Previous6Months *Previous6MonthsCreditLiabilities `json:"previous6Months"`
@@ -53,6 +53,10 @@ type CreditLiabilities struct {
 // Validate validates this credit liabilities
 func (m *CreditLiabilities) Validate(formats strfmt.Registry) error {
 	var res []error
+
+	if err := m.validateAccount(formats); err != nil {
+		res = append(res, err)
+	}
 
 	if err := m.validateAvailableFunds(formats); err != nil {
 		res = append(res, err)
@@ -74,10 +78,6 @@ func (m *CreditLiabilities) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateAccount(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.validatePrevious6Months(formats); err != nil {
 		res = append(res, err)
 	}
@@ -89,6 +89,24 @@ func (m *CreditLiabilities) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *CreditLiabilities) validateAccount(formats strfmt.Registry) error {
+
+	if err := validate.Required("account", "body", m.Account); err != nil {
+		return err
+	}
+
+	if m.Account != nil {
+		if err := m.Account.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("account")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -132,24 +150,6 @@ func (m *CreditLiabilities) validateInstitution(formats strfmt.Registry) error {
 
 	if err := validate.Required("institution", "body", m.Institution); err != nil {
 		return err
-	}
-
-	return nil
-}
-
-func (m *CreditLiabilities) validateAccount(formats strfmt.Registry) error {
-
-	if err := validate.Required("account", "body", m.Account); err != nil {
-		return err
-	}
-
-	if m.Account != nil {
-		if err := m.Account.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("account")
-			}
-			return err
-		}
 	}
 
 	return nil

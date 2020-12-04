@@ -29,9 +29,16 @@ type JobsData struct {
 	// Required: true
 	ID *string `json:"id"`
 
+	// institution
+	// Required: true
+	Institution *JobsInstitution `json:"institution"`
+
+	// links
+	Links *JobsLinks `json:"links,omitempty"`
+
 	// List of steps that need to be completed.
 	// Required: true
-	Steps []*Step `json:"steps"`
+	Steps []*JobsStep `json:"steps"`
 
 	// Value is "job".
 	Type string `json:"type,omitempty"`
@@ -39,13 +46,6 @@ type JobsData struct {
 	// The date time when the job was last updated.
 	// Required: true
 	Updated *string `json:"updated"`
-
-	// institution
-	// Required: true
-	Institution *JobsInstitution `json:"institution"`
-
-	// links
-	Links *JobsLinks `json:"links,omitempty"`
 }
 
 // Validate validates this jobs data
@@ -60,19 +60,19 @@ func (m *JobsData) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateSteps(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateUpdated(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.validateInstitution(formats); err != nil {
 		res = append(res, err)
 	}
 
 	if err := m.validateLinks(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSteps(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateUpdated(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -94,40 +94,6 @@ func (m *JobsData) validateCreated(formats strfmt.Registry) error {
 func (m *JobsData) validateID(formats strfmt.Registry) error {
 
 	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *JobsData) validateSteps(formats strfmt.Registry) error {
-
-	if err := validate.Required("steps", "body", m.Steps); err != nil {
-		return err
-	}
-
-	for i := 0; i < len(m.Steps); i++ {
-		if swag.IsZero(m.Steps[i]) { // not required
-			continue
-		}
-
-		if m.Steps[i] != nil {
-			if err := m.Steps[i].Validate(formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("steps" + "." + strconv.Itoa(i))
-				}
-				return err
-			}
-		}
-
-	}
-
-	return nil
-}
-
-func (m *JobsData) validateUpdated(formats strfmt.Registry) error {
-
-	if err := validate.Required("updated", "body", m.Updated); err != nil {
 		return err
 	}
 
@@ -165,6 +131,40 @@ func (m *JobsData) validateLinks(formats strfmt.Registry) error {
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *JobsData) validateSteps(formats strfmt.Registry) error {
+
+	if err := validate.Required("steps", "body", m.Steps); err != nil {
+		return err
+	}
+
+	for i := 0; i < len(m.Steps); i++ {
+		if swag.IsZero(m.Steps[i]) { // not required
+			continue
+		}
+
+		if m.Steps[i] != nil {
+			if err := m.Steps[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("steps" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *JobsData) validateUpdated(formats strfmt.Registry) error {
+
+	if err := validate.Required("updated", "body", m.Updated); err != nil {
+		return err
 	}
 
 	return nil

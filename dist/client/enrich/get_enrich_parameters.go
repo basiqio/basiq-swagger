@@ -80,7 +80,7 @@ type GetEnrichParams struct {
 	  Transaction Description
 
 	*/
-	Query string
+	Q string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -153,15 +153,15 @@ func (o *GetEnrichParams) SetInstitution(institution string) {
 	o.Institution = institution
 }
 
-// WithQuery adds the q to the get enrich params
-func (o *GetEnrichParams) WithQuery(q string) *GetEnrichParams {
-	o.SetQuery(q)
+// WithQ adds the q to the get enrich params
+func (o *GetEnrichParams) WithQ(q string) *GetEnrichParams {
+	o.SetQ(q)
 	return o
 }
 
-// SetQuery adds the q to the get enrich params
-func (o *GetEnrichParams) SetQuery(q string) {
-	o.Query = q
+// SetQ adds the q to the get enrich params
+func (o *GetEnrichParams) SetQ(q string) {
+	o.Q = q
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -214,7 +214,7 @@ func (o *GetEnrichParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Reg
 	}
 
 	// query param q
-	qrQ := o.Query
+	qrQ := o.Q
 	qQ := qrQ
 	if qQ != "" {
 		if err := r.SetQueryParam("q", qQ); err != nil {

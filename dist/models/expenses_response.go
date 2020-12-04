@@ -23,8 +23,20 @@ import (
 // swagger:model ExpensesResponse
 type ExpensesResponse struct {
 
+	// bank fees
+	// Required: true
+	BankFees *ClassResourceExpenses `json:"bankFees"`
+
+	// cash withdrawals
+	// Required: true
+	CashWithdrawals *ClassResourceExpenses `json:"cashWithdrawals"`
+
 	// Number of days covered by the report
 	CoverageDays int64 `json:"coverageDays,omitempty"`
+
+	// external transfers
+	// Required: true
+	ExternalTransfers *ClassResourceExpenses `json:"externalTransfers"`
 
 	// First 'month' occurrence of expenses categorised going back as far as 13 months.
 	// Required: true
@@ -33,6 +45,17 @@ type ExpensesResponse struct {
 	// Uniquely identifies the expenses report.
 	// Required: true
 	ID *string `json:"id"`
+
+	// links
+	Links *ExpensesLinks `json:"links,omitempty"`
+
+	// loan interests
+	// Required: true
+	LoanInterests *ClassResourceExpenses `json:"loanInterests"`
+
+	// loan repayments
+	// Required: true
+	LoanRepayments *ClassResourceExpenses `json:"loanRepayments"`
 
 	// payments
 	// Required: true
@@ -45,54 +68,11 @@ type ExpensesResponse struct {
 	// Value of this resource is "expenses".
 	// Required: true
 	Type *string `json:"type"`
-
-	// bank fees
-	// Required: true
-	BankFees *ClassResourceExpenses `json:"bankFees"`
-
-	// cash withdrawals
-	// Required: true
-	CashWithdrawals *ClassResourceExpenses `json:"cashWithdrawals"`
-
-	// external transfers
-	// Required: true
-	ExternalTransfers *ClassResourceExpenses `json:"externalTransfers"`
-
-	// links
-	Links *ExpensesLinks `json:"links,omitempty"`
-
-	// loan interests
-	// Required: true
-	LoanInterests *ClassResourceExpenses `json:"loanInterests"`
-
-	// loan repayments
-	// Required: true
-	LoanRepayments *ClassResourceExpenses `json:"loanRepayments"`
 }
 
 // Validate validates this expenses response
 func (m *ExpensesResponse) Validate(formats strfmt.Registry) error {
 	var res []error
-
-	if err := m.validateFromMonth(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validatePayments(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateToMonth(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateType(formats); err != nil {
-		res = append(res, err)
-	}
 
 	if err := m.validateBankFees(formats); err != nil {
 		res = append(res, err)
@@ -103,6 +83,14 @@ func (m *ExpensesResponse) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateExternalTransfers(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateFromMonth(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateID(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -118,70 +106,21 @@ func (m *ExpensesResponse) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validatePayments(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateToMonth(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateType(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-	return nil
-}
-
-func (m *ExpensesResponse) validateFromMonth(formats strfmt.Registry) error {
-
-	if err := validate.Required("fromMonth", "body", m.FromMonth); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ExpensesResponse) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ExpensesResponse) validatePayments(formats strfmt.Registry) error {
-
-	if err := validate.Required("payments", "body", m.Payments); err != nil {
-		return err
-	}
-
-	for i := 0; i < len(m.Payments); i++ {
-		if swag.IsZero(m.Payments[i]) { // not required
-			continue
-		}
-
-		if m.Payments[i] != nil {
-			if err := m.Payments[i].Validate(formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("payments" + "." + strconv.Itoa(i))
-				}
-				return err
-			}
-		}
-
-	}
-
-	return nil
-}
-
-func (m *ExpensesResponse) validateToMonth(formats strfmt.Registry) error {
-
-	if err := validate.Required("toMonth", "body", m.ToMonth); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ExpensesResponse) validateType(formats strfmt.Registry) error {
-
-	if err := validate.Required("type", "body", m.Type); err != nil {
-		return err
-	}
-
 	return nil
 }
 
@@ -239,6 +178,24 @@ func (m *ExpensesResponse) validateExternalTransfers(formats strfmt.Registry) er
 	return nil
 }
 
+func (m *ExpensesResponse) validateFromMonth(formats strfmt.Registry) error {
+
+	if err := validate.Required("fromMonth", "body", m.FromMonth); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ExpensesResponse) validateID(formats strfmt.Registry) error {
+
+	if err := validate.Required("id", "body", m.ID); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *ExpensesResponse) validateLinks(formats strfmt.Registry) error {
 
 	if swag.IsZero(m.Links) { // not required
@@ -288,6 +245,49 @@ func (m *ExpensesResponse) validateLoanRepayments(formats strfmt.Registry) error
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *ExpensesResponse) validatePayments(formats strfmt.Registry) error {
+
+	if err := validate.Required("payments", "body", m.Payments); err != nil {
+		return err
+	}
+
+	for i := 0; i < len(m.Payments); i++ {
+		if swag.IsZero(m.Payments[i]) { // not required
+			continue
+		}
+
+		if m.Payments[i] != nil {
+			if err := m.Payments[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("payments" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *ExpensesResponse) validateToMonth(formats strfmt.Registry) error {
+
+	if err := validate.Required("toMonth", "body", m.ToMonth); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ExpensesResponse) validateType(formats strfmt.Registry) error {
+
+	if err := validate.Required("type", "body", m.Type); err != nil {
+		return err
 	}
 
 	return nil

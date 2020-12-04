@@ -63,7 +63,7 @@ for the update user operation typically these are written to a http.Request
 type UpdateUserParams struct {
 
 	/*User*/
-	User *models.UserPostData
+	User *models.UpdateUser
 	/*UserID
 	  The identifier of the user to be retrieved.
 
@@ -109,13 +109,13 @@ func (o *UpdateUserParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithUser adds the user to the update user params
-func (o *UpdateUserParams) WithUser(user *models.UserPostData) *UpdateUserParams {
+func (o *UpdateUserParams) WithUser(user *models.UpdateUser) *UpdateUserParams {
 	o.SetUser(user)
 	return o
 }
 
 // SetUser adds the user to the update user params
-func (o *UpdateUserParams) SetUser(user *models.UserPostData) {
+func (o *UpdateUserParams) SetUser(user *models.UpdateUser) {
 	o.User = user
 }
 

@@ -14,28 +14,28 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// UserGetConnection UserGetConnection
+// GetUserAccount UserGetAccount
 //
-// Container object containing connection data.
+// Container object containing account data.
 //
-// swagger:model UserGetConnection
-type UserGetConnection struct {
+// swagger:model GetUserAccount
+type GetUserAccount struct {
 
 	// Count of accounts.
 	// Required: true
 	Count *int64 `json:"count"`
 
-	// Connections data.
+	// Accounts data.
 	// Required: true
-	Data []*UserGetConnectionData `json:"data"`
+	Data []*GetUserAccountData `json:"data"`
 
 	// Always "list".
 	// Required: true
 	Type *string `json:"type"`
 }
 
-// Validate validates this user get connection
-func (m *UserGetConnection) Validate(formats strfmt.Registry) error {
+// Validate validates this get user account
+func (m *GetUserAccount) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateCount(formats); err != nil {
@@ -56,7 +56,7 @@ func (m *UserGetConnection) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *UserGetConnection) validateCount(formats strfmt.Registry) error {
+func (m *GetUserAccount) validateCount(formats strfmt.Registry) error {
 
 	if err := validate.Required("count", "body", m.Count); err != nil {
 		return err
@@ -65,7 +65,7 @@ func (m *UserGetConnection) validateCount(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *UserGetConnection) validateData(formats strfmt.Registry) error {
+func (m *GetUserAccount) validateData(formats strfmt.Registry) error {
 
 	if err := validate.Required("data", "body", m.Data); err != nil {
 		return err
@@ -90,7 +90,7 @@ func (m *UserGetConnection) validateData(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *UserGetConnection) validateType(formats strfmt.Registry) error {
+func (m *GetUserAccount) validateType(formats strfmt.Registry) error {
 
 	if err := validate.Required("type", "body", m.Type); err != nil {
 		return err
@@ -100,7 +100,7 @@ func (m *UserGetConnection) validateType(formats strfmt.Registry) error {
 }
 
 // MarshalBinary interface implementation
-func (m *UserGetConnection) MarshalBinary() ([]byte, error) {
+func (m *GetUserAccount) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -108,8 +108,8 @@ func (m *UserGetConnection) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *UserGetConnection) UnmarshalBinary(b []byte) error {
-	var res UserGetConnection
+func (m *GetUserAccount) UnmarshalBinary(b []byte) error {
+	var res GetUserAccount
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

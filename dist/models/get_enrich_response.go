@@ -24,22 +24,22 @@ type GetEnrichResponse struct {
 	// Enum: [direct-credit refund interest payment cash-withdrawal bank-fee transfer loan-interest loan-repayment]
 	Class *string `json:"class"`
 
+	// data
+	// Required: true
+	Data *EnrichData `json:"data"`
+
 	// Direction of transaction
 	// Required: true
 	// Enum: [credit debit unknown]
 	Direction *string `json:"direction"`
 
-	// Always "enrich"
-	// Required: true
-	Type *string `json:"type"`
-
-	// data
-	// Required: true
-	Data *EnrichData `json:"data"`
-
 	// links
 	// Required: true
 	Links *ResourceLink `json:"links"`
+
+	// Always "enrich"
+	// Required: true
+	Type *string `json:"type"`
 }
 
 // Validate validates this get enrich response
@@ -50,19 +50,19 @@ func (m *GetEnrichResponse) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateDirection(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateType(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.validateData(formats); err != nil {
 		res = append(res, err)
 	}
 
+	if err := m.validateDirection(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateLinks(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateType(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -136,6 +136,24 @@ func (m *GetEnrichResponse) validateClass(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *GetEnrichResponse) validateData(formats strfmt.Registry) error {
+
+	if err := validate.Required("data", "body", m.Data); err != nil {
+		return err
+	}
+
+	if m.Data != nil {
+		if err := m.Data.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("data")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 var getEnrichResponseTypeDirectionPropEnum []interface{}
 
 func init() {
@@ -182,33 +200,6 @@ func (m *GetEnrichResponse) validateDirection(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *GetEnrichResponse) validateType(formats strfmt.Registry) error {
-
-	if err := validate.Required("type", "body", m.Type); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *GetEnrichResponse) validateData(formats strfmt.Registry) error {
-
-	if err := validate.Required("data", "body", m.Data); err != nil {
-		return err
-	}
-
-	if m.Data != nil {
-		if err := m.Data.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("data")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
 func (m *GetEnrichResponse) validateLinks(formats strfmt.Registry) error {
 
 	if err := validate.Required("links", "body", m.Links); err != nil {
@@ -222,6 +213,15 @@ func (m *GetEnrichResponse) validateLinks(formats strfmt.Registry) error {
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *GetEnrichResponse) validateType(formats strfmt.Registry) error {
+
+	if err := validate.Required("type", "body", m.Type); err != nil {
+		return err
 	}
 
 	return nil

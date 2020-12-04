@@ -19,29 +19,25 @@ import (
 // swagger:model AccountsFeatures
 type AccountsFeatures struct {
 
-	// AccountBalance holds list of data source identifiers which are capable to fetch account balance.
-	// Required: true
-	AccountBalance []SourceName `json:"balance"`
-
-	// AccountCurrency holds list of data source identifiers which are capable to fetch account currency.
-	// Required: true
-	AccountCurrency []SourceName `json:"currency"`
-
 	// AccountHolder holds list of data source identifiers which are capable to fetch account holder.
 	// Required: true
 	AccountHolder []SourceName `json:"accountHolder"`
 
-	// AccountName holds list of data source identifiers which are capable to fetch account name.
-	// Required: true
-	AccountName []SourceName `json:"name"`
-
 	// AccountNumber holds list of data source identifiers which are capable to fetch account number.
 	// Required: true
-	AccountNumber []SourceName `json:"accountNo"`
+	AccountNo []SourceName `json:"accountNo"`
 
 	// AvailableFunds holds list of data source identifiers which are capable to fetch available funds.
 	// Required: true
 	AvailableFunds []SourceName `json:"availableFunds"`
+
+	// AccountBalance holds list of data source identifiers which are capable to fetch account balance.
+	// Required: true
+	Balance []SourceName `json:"balance"`
+
+	// AccountCurrency holds list of data source identifiers which are capable to fetch account currency.
+	// Required: true
+	Currency []SourceName `json:"currency"`
 
 	// LastUpdated holds list of data source identifiers which are capable to fetch account last updated date.
 	// Required: true
@@ -50,33 +46,33 @@ type AccountsFeatures struct {
 	// Meta holds list of data source identifiers which are capable to fetch account meta data (e.g. mortgage data).
 	// Required: true
 	Meta []SourceName `json:"meta"`
+
+	// AccountName holds list of data source identifiers which are capable to fetch account name.
+	// Required: true
+	Name []SourceName `json:"name"`
 }
 
 // Validate validates this accounts features
 func (m *AccountsFeatures) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateAccountBalance(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateAccountCurrency(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.validateAccountHolder(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateAccountName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateAccountNumber(formats); err != nil {
+	if err := m.validateAccountNo(formats); err != nil {
 		res = append(res, err)
 	}
 
 	if err := m.validateAvailableFunds(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateBalance(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateCurrency(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -88,49 +84,13 @@ func (m *AccountsFeatures) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateName(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-	return nil
-}
-
-func (m *AccountsFeatures) validateAccountBalance(formats strfmt.Registry) error {
-
-	if err := validate.Required("balance", "body", m.AccountBalance); err != nil {
-		return err
-	}
-
-	for i := 0; i < len(m.AccountBalance); i++ {
-
-		if err := m.AccountBalance[i].Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("balance" + "." + strconv.Itoa(i))
-			}
-			return err
-		}
-
-	}
-
-	return nil
-}
-
-func (m *AccountsFeatures) validateAccountCurrency(formats strfmt.Registry) error {
-
-	if err := validate.Required("currency", "body", m.AccountCurrency); err != nil {
-		return err
-	}
-
-	for i := 0; i < len(m.AccountCurrency); i++ {
-
-		if err := m.AccountCurrency[i].Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("currency" + "." + strconv.Itoa(i))
-			}
-			return err
-		}
-
-	}
-
 	return nil
 }
 
@@ -154,35 +114,15 @@ func (m *AccountsFeatures) validateAccountHolder(formats strfmt.Registry) error 
 	return nil
 }
 
-func (m *AccountsFeatures) validateAccountName(formats strfmt.Registry) error {
+func (m *AccountsFeatures) validateAccountNo(formats strfmt.Registry) error {
 
-	if err := validate.Required("name", "body", m.AccountName); err != nil {
+	if err := validate.Required("accountNo", "body", m.AccountNo); err != nil {
 		return err
 	}
 
-	for i := 0; i < len(m.AccountName); i++ {
+	for i := 0; i < len(m.AccountNo); i++ {
 
-		if err := m.AccountName[i].Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("name" + "." + strconv.Itoa(i))
-			}
-			return err
-		}
-
-	}
-
-	return nil
-}
-
-func (m *AccountsFeatures) validateAccountNumber(formats strfmt.Registry) error {
-
-	if err := validate.Required("accountNo", "body", m.AccountNumber); err != nil {
-		return err
-	}
-
-	for i := 0; i < len(m.AccountNumber); i++ {
-
-		if err := m.AccountNumber[i].Validate(formats); err != nil {
+		if err := m.AccountNo[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("accountNo" + "." + strconv.Itoa(i))
 			}
@@ -205,6 +145,46 @@ func (m *AccountsFeatures) validateAvailableFunds(formats strfmt.Registry) error
 		if err := m.AvailableFunds[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("availableFunds" + "." + strconv.Itoa(i))
+			}
+			return err
+		}
+
+	}
+
+	return nil
+}
+
+func (m *AccountsFeatures) validateBalance(formats strfmt.Registry) error {
+
+	if err := validate.Required("balance", "body", m.Balance); err != nil {
+		return err
+	}
+
+	for i := 0; i < len(m.Balance); i++ {
+
+		if err := m.Balance[i].Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("balance" + "." + strconv.Itoa(i))
+			}
+			return err
+		}
+
+	}
+
+	return nil
+}
+
+func (m *AccountsFeatures) validateCurrency(formats strfmt.Registry) error {
+
+	if err := validate.Required("currency", "body", m.Currency); err != nil {
+		return err
+	}
+
+	for i := 0; i < len(m.Currency); i++ {
+
+		if err := m.Currency[i].Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("currency" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
@@ -245,6 +225,26 @@ func (m *AccountsFeatures) validateMeta(formats strfmt.Registry) error {
 		if err := m.Meta[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("meta" + "." + strconv.Itoa(i))
+			}
+			return err
+		}
+
+	}
+
+	return nil
+}
+
+func (m *AccountsFeatures) validateName(formats strfmt.Registry) error {
+
+	if err := validate.Required("name", "body", m.Name); err != nil {
+		return err
+	}
+
+	for i := 0; i < len(m.Name); i++ {
+
+		if err := m.Name[i].Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("name" + "." + strconv.Itoa(i))
 			}
 			return err
 		}

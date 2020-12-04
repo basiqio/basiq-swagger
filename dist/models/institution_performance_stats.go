@@ -17,7 +17,7 @@ import (
 type InstitutionPerformanceStats struct {
 
 	// average duration ms
-	AverageDurationMs *AverageDurationMs `json:"averageDurationMs,omitempty"`
+	AverageDurationMs *InstitutionPerformanceStatsAverageDurationMs `json:"averageDurationMs,omitempty"`
 }
 
 // Validate validates this institution performance stats
@@ -70,11 +70,11 @@ func (m *InstitutionPerformanceStats) UnmarshalBinary(b []byte) error {
 	return nil
 }
 
-// AverageDurationMs AverageDurationMs average connector duration in milliseconds per segments.
+// InstitutionPerformanceStatsAverageDurationMs AverageDurationMs average connector duration in milliseconds per segments.
 // When durations are not known for institution this field will be `null`.
 //
-// swagger:model AverageDurationMs
-type AverageDurationMs struct {
+// swagger:model InstitutionPerformanceStatsAverageDurationMs
+type InstitutionPerformanceStatsAverageDurationMs struct {
 
 	// Connector average duration in milliseconds of <b>fetch accounts</b> step for institution
 	RetrieveAccounts int64 `json:"retrieveAccounts,omitempty"`
@@ -92,13 +92,13 @@ type AverageDurationMs struct {
 	VerifyCredentials int64 `json:"verifyCredentials,omitempty"`
 }
 
-// Validate validates this average duration ms
-func (m *AverageDurationMs) Validate(formats strfmt.Registry) error {
+// Validate validates this institution performance stats average duration ms
+func (m *InstitutionPerformanceStatsAverageDurationMs) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
 // MarshalBinary interface implementation
-func (m *AverageDurationMs) MarshalBinary() ([]byte, error) {
+func (m *InstitutionPerformanceStatsAverageDurationMs) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -106,8 +106,8 @@ func (m *AverageDurationMs) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *AverageDurationMs) UnmarshalBinary(b []byte) error {
-	var res AverageDurationMs
+func (m *InstitutionPerformanceStatsAverageDurationMs) UnmarshalBinary(b []byte) error {
+	var res InstitutionPerformanceStatsAverageDurationMs
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

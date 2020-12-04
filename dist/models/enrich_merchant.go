@@ -21,12 +21,12 @@ type EnrichMerchant struct {
 	// Required: true
 	BusinessName *string `json:"businessName"`
 
+	// phone number
+	PhoneNumber *EnrichPhoneNumber `json:"phoneNumber,omitempty"`
+
 	// Merchant Website
 	// Required: true
 	Website *string `json:"website"`
-
-	// phone number
-	PhoneNumber *EnrichPhoneNumber `json:"phoneNumber,omitempty"`
 }
 
 // Validate validates this enrich merchant
@@ -37,11 +37,11 @@ func (m *EnrichMerchant) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateWebsite(formats); err != nil {
+	if err := m.validatePhoneNumber(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validatePhoneNumber(formats); err != nil {
+	if err := m.validateWebsite(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -54,15 +54,6 @@ func (m *EnrichMerchant) Validate(formats strfmt.Registry) error {
 func (m *EnrichMerchant) validateBusinessName(formats strfmt.Registry) error {
 
 	if err := validate.Required("businessName", "body", m.BusinessName); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *EnrichMerchant) validateWebsite(formats strfmt.Registry) error {
-
-	if err := validate.Required("website", "body", m.Website); err != nil {
 		return err
 	}
 
@@ -82,6 +73,15 @@ func (m *EnrichMerchant) validatePhoneNumber(formats strfmt.Registry) error {
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *EnrichMerchant) validateWebsite(formats strfmt.Registry) error {
+
+	if err := validate.Required("website", "body", m.Website); err != nil {
+		return err
 	}
 
 	return nil

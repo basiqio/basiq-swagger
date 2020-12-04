@@ -37,13 +37,13 @@ type AffordabilitySummary struct {
 	// Required: true
 	NetPosition *string `json:"netPosition"`
 
-	// Average of monthly savings calculated for the whole period of data retrieved (e.g. 13 months)
-	// Required: true
-	Savings *string `json:"savings"`
-
 	// regular income
 	// Required: true
 	RegularIncome *AffordabilityRegularIncomeData `json:"regularIncome"`
+
+	// Average of monthly savings calculated for the whole period of data retrieved (e.g. 13 months)
+	// Required: true
+	Savings *string `json:"savings"`
 }
 
 // Validate validates this affordability summary
@@ -70,11 +70,11 @@ func (m *AffordabilitySummary) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateSavings(formats); err != nil {
+	if err := m.validateRegularIncome(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateRegularIncome(formats); err != nil {
+	if err := m.validateSavings(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -129,15 +129,6 @@ func (m *AffordabilitySummary) validateNetPosition(formats strfmt.Registry) erro
 	return nil
 }
 
-func (m *AffordabilitySummary) validateSavings(formats strfmt.Registry) error {
-
-	if err := validate.Required("savings", "body", m.Savings); err != nil {
-		return err
-	}
-
-	return nil
-}
-
 func (m *AffordabilitySummary) validateRegularIncome(formats strfmt.Registry) error {
 
 	if err := validate.Required("regularIncome", "body", m.RegularIncome); err != nil {
@@ -151,6 +142,15 @@ func (m *AffordabilitySummary) validateRegularIncome(formats strfmt.Registry) er
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *AffordabilitySummary) validateSavings(formats strfmt.Registry) error {
+
+	if err := validate.Required("savings", "body", m.Savings); err != nil {
+		return err
 	}
 
 	return nil

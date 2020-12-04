@@ -69,20 +69,20 @@ func NewGetAccountsOK() *GetAccountsOK {
 Returns a account with details.
 */
 type GetAccountsOK struct {
-	Payload *models.AcccountsResponseResource
+	Payload *models.AccountsResponseResource
 }
 
 func (o *GetAccountsOK) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/accounts][%d] getAccountsOK  %+v", 200, o.Payload)
 }
 
-func (o *GetAccountsOK) GetPayload() *models.AcccountsResponseResource {
+func (o *GetAccountsOK) GetPayload() *models.AccountsResponseResource {
 	return o.Payload
 }
 
 func (o *GetAccountsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.AcccountsResponseResource)
+	o.Payload = new(models.AccountsResponseResource)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

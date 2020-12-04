@@ -21,6 +21,9 @@ import (
 // swagger:model ConnectionGetResponseResource
 type ConnectionGetResponseResource struct {
 
+	// accounts
+	Accounts *AccountsContainer `json:"accounts,omitempty"`
+
 	// Created date of the connection, available only for SERVER_SCOPE.
 	CreatedDate string `json:"createdDate,omitempty"`
 
@@ -28,8 +31,19 @@ type ConnectionGetResponseResource struct {
 	// Required: true
 	ID *string `json:"id"`
 
+	// institution
+	// Required: true
+	Institution *ConnectionInstitution `json:"institution"`
+
 	// UTC Date and Time of when the connection was last used, in RFC 3339 format, available only for SERVER_SCOPE.
 	LastUsed string `json:"lastUsed,omitempty"`
+
+	// links
+	// Required: true
+	Links *GetConnectionsLinks `json:"links"`
+
+	// profile
+	Profile *ConnectionProfile `json:"profile,omitempty"`
 
 	// Indicates the connection status, available only for SERVER_SCOPE.
 	// Possible values include:
@@ -44,39 +58,17 @@ type ConnectionGetResponseResource struct {
 	// Type, always "connection".
 	// Required: true
 	Type *string `json:"type"`
-
-	// accounts
-	Accounts *AccountsContainer `json:"accounts,omitempty"`
-
-	// institution
-	// Required: true
-	Institution *ConnectionInstitution `json:"institution"`
-
-	// links
-	// Required: true
-	Links *GetConnectionsLinks `json:"links"`
-
-	// profile
-	Profile *ConnectionProfile `json:"profile,omitempty"`
 }
 
 // Validate validates this connection get response resource
 func (m *ConnectionGetResponseResource) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateStatus(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateType(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.validateAccounts(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateID(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -92,9 +84,35 @@ func (m *ConnectionGetResponseResource) Validate(formats strfmt.Registry) error 
 		res = append(res, err)
 	}
 
+	if err := m.validateStatus(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateType(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *ConnectionGetResponseResource) validateAccounts(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Accounts) { // not required
+		return nil
+	}
+
+	if m.Accounts != nil {
+		if err := m.Accounts.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("accounts")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -102,6 +120,60 @@ func (m *ConnectionGetResponseResource) validateID(formats strfmt.Registry) erro
 
 	if err := validate.Required("id", "body", m.ID); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *ConnectionGetResponseResource) validateInstitution(formats strfmt.Registry) error {
+
+	if err := validate.Required("institution", "body", m.Institution); err != nil {
+		return err
+	}
+
+	if m.Institution != nil {
+		if err := m.Institution.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("institution")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *ConnectionGetResponseResource) validateLinks(formats strfmt.Registry) error {
+
+	if err := validate.Required("links", "body", m.Links); err != nil {
+		return err
+	}
+
+	if m.Links != nil {
+		if err := m.Links.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("links")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *ConnectionGetResponseResource) validateProfile(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Profile) { // not required
+		return nil
+	}
+
+	if m.Profile != nil {
+		if err := m.Profile.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("profile")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -157,78 +229,6 @@ func (m *ConnectionGetResponseResource) validateType(formats strfmt.Registry) er
 
 	if err := validate.Required("type", "body", m.Type); err != nil {
 		return err
-	}
-
-	return nil
-}
-
-func (m *ConnectionGetResponseResource) validateAccounts(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.Accounts) { // not required
-		return nil
-	}
-
-	if m.Accounts != nil {
-		if err := m.Accounts.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("accounts")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *ConnectionGetResponseResource) validateInstitution(formats strfmt.Registry) error {
-
-	if err := validate.Required("institution", "body", m.Institution); err != nil {
-		return err
-	}
-
-	if m.Institution != nil {
-		if err := m.Institution.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("institution")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *ConnectionGetResponseResource) validateLinks(formats strfmt.Registry) error {
-
-	if err := validate.Required("links", "body", m.Links); err != nil {
-		return err
-	}
-
-	if m.Links != nil {
-		if err := m.Links.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("links")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *ConnectionGetResponseResource) validateProfile(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.Profile) { // not required
-		return nil
-	}
-
-	if m.Profile != nil {
-		if err := m.Profile.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("profile")
-			}
-			return err
-		}
 	}
 
 	return nil

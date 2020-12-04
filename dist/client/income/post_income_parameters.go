@@ -63,7 +63,7 @@ for the post income operation typically these are written to a http.Request
 type PostIncomeParams struct {
 
 	/*IncomePostRequest*/
-	IncomePostRequest *models.IncomePost
+	IncomePostRequest *models.IncomePostRequest
 	/*UserID
 	  The identifier of the user.
 
@@ -109,13 +109,13 @@ func (o *PostIncomeParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithIncomePostRequest adds the incomePostRequest to the post income params
-func (o *PostIncomeParams) WithIncomePostRequest(incomePostRequest *models.IncomePost) *PostIncomeParams {
+func (o *PostIncomeParams) WithIncomePostRequest(incomePostRequest *models.IncomePostRequest) *PostIncomeParams {
 	o.SetIncomePostRequest(incomePostRequest)
 	return o
 }
 
 // SetIncomePostRequest adds the incomePostRequest to the post income params
-func (o *PostIncomeParams) SetIncomePostRequest(incomePostRequest *models.IncomePost) {
+func (o *PostIncomeParams) SetIncomePostRequest(incomePostRequest *models.IncomePostRequest) {
 	o.IncomePostRequest = incomePostRequest
 }
 

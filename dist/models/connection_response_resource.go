@@ -23,13 +23,13 @@ type ConnectionResponseResource struct {
 	// Required: true
 	ID *string `json:"id"`
 
-	// Type, always "job".
-	// Required: true
-	Type *string `json:"type"`
-
 	// links
 	// Required: true
 	Links *ResourceLink `json:"links"`
+
+	// Type, always "job".
+	// Required: true
+	Type *string `json:"type"`
 }
 
 // Validate validates this connection response resource
@@ -40,11 +40,11 @@ func (m *ConnectionResponseResource) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateType(formats); err != nil {
+	if err := m.validateLinks(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateLinks(formats); err != nil {
+	if err := m.validateType(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -57,15 +57,6 @@ func (m *ConnectionResponseResource) Validate(formats strfmt.Registry) error {
 func (m *ConnectionResponseResource) validateID(formats strfmt.Registry) error {
 
 	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ConnectionResponseResource) validateType(formats strfmt.Registry) error {
-
-	if err := validate.Required("type", "body", m.Type); err != nil {
 		return err
 	}
 
@@ -85,6 +76,15 @@ func (m *ConnectionResponseResource) validateLinks(formats strfmt.Registry) erro
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *ConnectionResponseResource) validateType(formats strfmt.Registry) error {
+
+	if err := validate.Required("type", "body", m.Type); err != nil {
+		return err
 	}
 
 	return nil

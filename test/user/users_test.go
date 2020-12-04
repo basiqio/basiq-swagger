@@ -65,7 +65,7 @@ func TestUpdateUser(t *testing.T) {
 
 	userUpdateRequest := &users.UpdateUserParams{
 		UserID: "8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5",
-		User: &models.UserPostData{
+		User: &models.UpdateUser{
 			Email:  "gavin@hooli.com",
 			Mobile: "+61410888666",
 		},
@@ -91,7 +91,7 @@ func TestCreateAndDeleteUser(t *testing.T) {
 	userMobile := "+61410888999"
 
 	userPostRequest := &users.CreateUserParams{
-		User: &models.UserPost{
+		User: &models.CreateUser{
 			Email:  userEmail,
 			Mobile: userMobile,
 		},
@@ -133,7 +133,7 @@ func TestCreateBadRequest(t *testing.T) {
 	userMobile := ""
 
 	userPostRequest := &users.CreateUserParams{
-		User: &models.UserPost{
+		User: &models.CreateUser{
 			Email:  userEmail,
 			Mobile: userMobile,
 		},

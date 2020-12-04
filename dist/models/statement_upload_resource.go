@@ -23,13 +23,13 @@ type StatementUploadResource struct {
 	// Required: true
 	ID *string `json:"id"`
 
-	// Type, always "job".
-	// Required: true
-	Type *string `json:"type"`
-
 	// links
 	// Required: true
 	Links *ResourceLink `json:"links"`
+
+	// Type, always "job".
+	// Required: true
+	Type *string `json:"type"`
 }
 
 // Validate validates this statement upload resource
@@ -40,11 +40,11 @@ func (m *StatementUploadResource) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateType(formats); err != nil {
+	if err := m.validateLinks(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateLinks(formats); err != nil {
+	if err := m.validateType(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -57,15 +57,6 @@ func (m *StatementUploadResource) Validate(formats strfmt.Registry) error {
 func (m *StatementUploadResource) validateID(formats strfmt.Registry) error {
 
 	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *StatementUploadResource) validateType(formats strfmt.Registry) error {
-
-	if err := validate.Required("type", "body", m.Type); err != nil {
 		return err
 	}
 
@@ -85,6 +76,15 @@ func (m *StatementUploadResource) validateLinks(formats strfmt.Registry) error {
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *StatementUploadResource) validateType(formats strfmt.Registry) error {
+
+	if err := validate.Required("type", "body", m.Type); err != nil {
+		return err
 	}
 
 	return nil

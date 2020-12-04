@@ -19,9 +19,17 @@ import (
 // swagger:model UserGetResponse
 type UserGetResponse struct {
 
+	// accounts
+	// Required: true
+	Accounts *GetUserAccount `json:"accounts"`
+
 	// Business is ignored - it is populated when user has BusinessNumber or BusinessName
 	// swagger: ignore
 	Business string `json:"business,omitempty"`
+
+	// connections
+	// Required: true
+	Connections *GetUserConnection `json:"connections"`
 
 	// User email or empty.
 	// Required: true
@@ -31,6 +39,10 @@ type UserGetResponse struct {
 	// User identification.
 	// Required: true
 	ID *string `json:"id"`
+
+	// links
+	// Required: true
+	Links *GetUserLinks `json:"links"`
 
 	// User mobile number, or empty.
 	// Required: true
@@ -43,29 +55,29 @@ type UserGetResponse struct {
 	// Always "user".
 	// Required: true
 	Type *string `json:"type"`
-
-	// accounts
-	// Required: true
-	Accounts *UserGetAccount `json:"accounts"`
-
-	// connections
-	// Required: true
-	Connections *UserGetConnection `json:"connections"`
-
-	// links
-	// Required: true
-	Links *GetUserLinks `json:"links"`
 }
 
 // Validate validates this user get response
 func (m *UserGetResponse) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateAccounts(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateConnections(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateEmail(formats); err != nil {
 		res = append(res, err)
 	}
 
 	if err := m.validateID(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateLinks(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -81,70 +93,9 @@ func (m *UserGetResponse) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateAccounts(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateConnections(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateLinks(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-	return nil
-}
-
-func (m *UserGetResponse) validateEmail(formats strfmt.Registry) error {
-
-	if err := validate.Required("email", "body", m.Email); err != nil {
-		return err
-	}
-
-	if err := validate.FormatOf("email", "body", "email", m.Email.String(), formats); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *UserGetResponse) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *UserGetResponse) validateMobile(formats strfmt.Registry) error {
-
-	if err := validate.Required("mobile", "body", m.Mobile); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *UserGetResponse) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *UserGetResponse) validateType(formats strfmt.Registry) error {
-
-	if err := validate.Required("type", "body", m.Type); err != nil {
-		return err
-	}
-
 	return nil
 }
 
@@ -184,6 +135,28 @@ func (m *UserGetResponse) validateConnections(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *UserGetResponse) validateEmail(formats strfmt.Registry) error {
+
+	if err := validate.Required("email", "body", m.Email); err != nil {
+		return err
+	}
+
+	if err := validate.FormatOf("email", "body", "email", m.Email.String(), formats); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *UserGetResponse) validateID(formats strfmt.Registry) error {
+
+	if err := validate.Required("id", "body", m.ID); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *UserGetResponse) validateLinks(formats strfmt.Registry) error {
 
 	if err := validate.Required("links", "body", m.Links); err != nil {
@@ -197,6 +170,33 @@ func (m *UserGetResponse) validateLinks(formats strfmt.Registry) error {
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *UserGetResponse) validateMobile(formats strfmt.Registry) error {
+
+	if err := validate.Required("mobile", "body", m.Mobile); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *UserGetResponse) validateName(formats strfmt.Registry) error {
+
+	if err := validate.Required("name", "body", m.Name); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *UserGetResponse) validateType(formats strfmt.Registry) error {
+
+	if err := validate.Required("type", "body", m.Type); err != nil {
+		return err
 	}
 
 	return nil

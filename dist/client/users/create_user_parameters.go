@@ -63,7 +63,7 @@ for the create user operation typically these are written to a http.Request
 type CreateUserParams struct {
 
 	/*User*/
-	User *models.UserPost
+	User *models.CreateUser
 
 	timeout    time.Duration
 	Context    context.Context
@@ -104,13 +104,13 @@ func (o *CreateUserParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithUser adds the user to the create user params
-func (o *CreateUserParams) WithUser(user *models.UserPost) *CreateUserParams {
+func (o *CreateUserParams) WithUser(user *models.CreateUser) *CreateUserParams {
 	o.SetUser(user)
 	return o
 }
 
 // SetUser adds the user to the create user params
-func (o *CreateUserParams) SetUser(user *models.UserPost) {
+func (o *CreateUserParams) SetUser(user *models.CreateUser) {
 	o.User = user
 }
 

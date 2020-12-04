@@ -132,7 +132,7 @@ func TestRefreshConnectionsAndConnection(t *testing.T) {
 
 	s := strings.Replace(test.GetJsonResponse("./responses/refreshConnections.json", t),
 		"92791915-6f34-4895-80e5-9ea1a2273ec6",
-		*connRefreshRsp.GetPayload().ConnectionsRefreshJobs[0].ID, 2)
+		*connRefreshRsp.GetPayload().Data[0].ID, 2)
 	test.AssertJson(t, s, string(e))
 
 	connectionRefParams := &connections.RefreshConnectionParams{
@@ -223,9 +223,9 @@ func TestPendingConnection(t *testing.T) {
 	// pending connection
 	s := strings.Replace(test.GetJsonResponse("./responses/getNewPostedConnection.json", t),
 		"0e14a8f3-7e86-4c4b-b90c-8c315c0e1500",
-		*connectionsRsp.GetPayload().ConnectionsData[0].ID, 2)
+		*connectionsRsp.GetPayload().Data[0].ID, 2)
 	s = strings.Replace(s, "81a8babb-4a94-4cb5-a3e6-e4b3ce434e05", userID, 4)
-	s = strings.Replace(s, "2020-09-11T06:28:39Z", connectionsRsp.GetPayload().ConnectionsData[0].LastUsed, 1)
+	s = strings.Replace(s, "2020-09-11T06:28:39Z", connectionsRsp.GetPayload().Data[0].LastUsed, 1)
 
 	test.AssertJson(t, s, string(e))
 }
@@ -261,7 +261,7 @@ func TestDeleteConnection(t *testing.T) {
 
 	connDeleteParams := &connections.DeleteConnectionParams{
 		UserID:       userID,
-		ConnectionID: *connectionsRsp.GetPayload().ConnectionsData[0].ID,
+		ConnectionID: *connectionsRsp.GetPayload().Data[0].ID,
 		Context:      context.TODO(),
 	}
 

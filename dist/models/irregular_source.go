@@ -35,6 +35,10 @@ type IrregularSource struct {
 	// Required: true
 	ChangeHistory []*ChangeHistoryIncome `json:"changeHistory"`
 
+	// current
+	// Required: true
+	Current *CurrentIrregularSource `json:"current"`
+
 	// Frequency is "irregular"
 	// Required: true
 	Frequency *string `json:"frequency"`
@@ -46,10 +50,6 @@ type IrregularSource struct {
 	// Source irregular income (cleaned transaction description).
 	// Required: true
 	Source *string `json:"source"`
-
-	// current
-	// Required: true
-	Current *CurrentIrregularSource `json:"current"`
 }
 
 // Validate validates this irregular source
@@ -72,6 +72,10 @@ func (m *IrregularSource) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateCurrent(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateFrequency(formats); err != nil {
 		res = append(res, err)
 	}
@@ -81,10 +85,6 @@ func (m *IrregularSource) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateSource(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateCurrent(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -146,6 +146,24 @@ func (m *IrregularSource) validateChangeHistory(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *IrregularSource) validateCurrent(formats strfmt.Registry) error {
+
+	if err := validate.Required("current", "body", m.Current); err != nil {
+		return err
+	}
+
+	if m.Current != nil {
+		if err := m.Current.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("current")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *IrregularSource) validateFrequency(formats strfmt.Registry) error {
 
 	if err := validate.Required("frequency", "body", m.Frequency); err != nil {
@@ -168,24 +186,6 @@ func (m *IrregularSource) validateSource(formats strfmt.Registry) error {
 
 	if err := validate.Required("source", "body", m.Source); err != nil {
 		return err
-	}
-
-	return nil
-}
-
-func (m *IrregularSource) validateCurrent(formats strfmt.Registry) error {
-
-	if err := validate.Required("current", "body", m.Current); err != nil {
-		return err
-	}
-
-	if m.Current != nil {
-		if err := m.Current.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("current")
-			}
-			return err
-		}
 	}
 
 	return nil

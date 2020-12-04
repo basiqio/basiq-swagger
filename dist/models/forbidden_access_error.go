@@ -129,16 +129,16 @@ type ForbiddenAccessErrorDataItems0 struct {
 	// Human-readable explanation specific to this occurrence of the problem.
 	Detail string `json:"detail,omitempty"`
 
+	// source
+	// Required: true
+	Source *Source `json:"source"`
+
 	// Title of the error
 	Title string `json:"title,omitempty"`
 
 	// Type of the response, always "error"
 	// Required: true
 	Type *string `json:"type"`
-
-	// source
-	// Required: true
-	Source *Source `json:"source"`
 }
 
 // Validate validates this forbidden access error data items0
@@ -149,11 +149,11 @@ func (m *ForbiddenAccessErrorDataItems0) Validate(formats strfmt.Registry) error
 		res = append(res, err)
 	}
 
-	if err := m.validateType(formats); err != nil {
+	if err := m.validateSource(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateSource(formats); err != nil {
+	if err := m.validateType(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -209,15 +209,6 @@ func (m *ForbiddenAccessErrorDataItems0) validateCode(formats strfmt.Registry) e
 	return nil
 }
 
-func (m *ForbiddenAccessErrorDataItems0) validateType(formats strfmt.Registry) error {
-
-	if err := validate.Required("type", "body", m.Type); err != nil {
-		return err
-	}
-
-	return nil
-}
-
 func (m *ForbiddenAccessErrorDataItems0) validateSource(formats strfmt.Registry) error {
 
 	if err := validate.Required("source", "body", m.Source); err != nil {
@@ -231,6 +222,15 @@ func (m *ForbiddenAccessErrorDataItems0) validateSource(formats strfmt.Registry)
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *ForbiddenAccessErrorDataItems0) validateType(formats strfmt.Registry) error {
+
+	if err := validate.Required("type", "body", m.Type); err != nil {
+		return err
 	}
 
 	return nil

@@ -29,6 +29,10 @@ type AffordabilityTransactionsResponse struct {
 	// Required: true
 	Data []*TransactionDataAffordability `json:"data"`
 
+	// links
+	// Required: true
+	Links *AffordabilityTransactionsGetLinks `json:"links"`
+
 	// size
 	// Required: true
 	Size *int64 `json:"size"`
@@ -36,10 +40,6 @@ type AffordabilityTransactionsResponse struct {
 	// Always "list".
 	// Required: true
 	Type *string `json:"type"`
-
-	// links
-	// Required: true
-	Links *AffordabilityTransactionsGetLinks `json:"links"`
 }
 
 // Validate validates this affordability transactions response
@@ -54,15 +54,15 @@ func (m *AffordabilityTransactionsResponse) Validate(formats strfmt.Registry) er
 		res = append(res, err)
 	}
 
+	if err := m.validateLinks(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateSize(formats); err != nil {
 		res = append(res, err)
 	}
 
 	if err := m.validateType(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateLinks(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -106,24 +106,6 @@ func (m *AffordabilityTransactionsResponse) validateData(formats strfmt.Registry
 	return nil
 }
 
-func (m *AffordabilityTransactionsResponse) validateSize(formats strfmt.Registry) error {
-
-	if err := validate.Required("size", "body", m.Size); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *AffordabilityTransactionsResponse) validateType(formats strfmt.Registry) error {
-
-	if err := validate.Required("type", "body", m.Type); err != nil {
-		return err
-	}
-
-	return nil
-}
-
 func (m *AffordabilityTransactionsResponse) validateLinks(formats strfmt.Registry) error {
 
 	if err := validate.Required("links", "body", m.Links); err != nil {
@@ -137,6 +119,24 @@ func (m *AffordabilityTransactionsResponse) validateLinks(formats strfmt.Registr
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *AffordabilityTransactionsResponse) validateSize(formats strfmt.Registry) error {
+
+	if err := validate.Required("size", "body", m.Size); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *AffordabilityTransactionsResponse) validateType(formats strfmt.Registry) error {
+
+	if err := validate.Required("type", "body", m.Type); err != nil {
+		return err
 	}
 
 	return nil

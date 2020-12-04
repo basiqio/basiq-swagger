@@ -43,7 +43,7 @@ func TestPostExpenses(t *testing.T) {
 	userID := "8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5"
 	accountID := "24c742dc-bba6-4bc2-8298-fe731a17be68"
 	expensesPostParams := &expenses.PostExpensesParams{UserID: userID,
-		ExpensesPostRequest: &models.ExpensesPost{Accounts: []string{accountID}, FromMonth: "2019-05", ToMonth: "2019-09"},
+		ExpensesPostRequest: &models.ExpensesPostRequest{Accounts: []string{accountID}, FromMonth: "2019-05", ToMonth: "2019-09"},
 		Context:             context.TODO(),
 	}
 
@@ -69,7 +69,7 @@ func TestPostAffordabilityEmptyResponse(t *testing.T) {
 	userID := "8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5"
 	accountID := "14aa946c-6f87-44b7-bab9-d192d6261471"
 	expensesPostParams := &expenses.PostExpensesParams{UserID: userID,
-		ExpensesPostRequest: &models.ExpensesPost{FromMonth: "2015-11", ToMonth: "2016-10", Accounts: []string{accountID}},
+		ExpensesPostRequest: &models.ExpensesPostRequest{FromMonth: "2015-11", ToMonth: "2016-10", Accounts: []string{accountID}},
 		Context:             context.TODO(),
 	}
 
@@ -89,7 +89,7 @@ func TestPostExpensesBadRequest(t *testing.T) {
 	userID := "8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5"
 	accountID := "14aa946c-6f87-44b7-bab9-d192d6261471"
 	expensesPostParams := &expenses.PostExpensesParams{UserID: userID,
-		ExpensesPostRequest: &models.ExpensesPost{FromMonth: "2015-11", ToMonth: "2020-10", Accounts: []string{accountID}},
+		ExpensesPostRequest: &models.ExpensesPostRequest{FromMonth: "2015-11", ToMonth: "2020-10", Accounts: []string{accountID}},
 		Context:             context.TODO(),
 	}
 
