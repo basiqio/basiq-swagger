@@ -14,37 +14,37 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// AcccountsResponseResource acccounts response resource
+// AccountsResponseResource accounts response resource
 //
-// swagger:model AcccountsResponseResource
-type AcccountsResponseResource struct {
+// swagger:model AccountsResponseResource
+type AccountsResponseResource struct {
 
 	// Container object, containing account details.
 	// Required: true
 	Data []*AccountResponseResource `json:"data"`
 
-	// Type of the response, always "list".
-	// Required: true
-	Type *string `json:"type"`
-
 	// links
 	// Required: true
 	Links *ResourceLink `json:"links"`
+
+	// Type of the response, always "list".
+	// Required: true
+	Type *string `json:"type"`
 }
 
-// Validate validates this acccounts response resource
-func (m *AcccountsResponseResource) Validate(formats strfmt.Registry) error {
+// Validate validates this accounts response resource
+func (m *AccountsResponseResource) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateData(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateType(formats); err != nil {
+	if err := m.validateLinks(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateLinks(formats); err != nil {
+	if err := m.validateType(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -54,7 +54,7 @@ func (m *AcccountsResponseResource) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *AcccountsResponseResource) validateData(formats strfmt.Registry) error {
+func (m *AccountsResponseResource) validateData(formats strfmt.Registry) error {
 
 	if err := validate.Required("data", "body", m.Data); err != nil {
 		return err
@@ -79,16 +79,7 @@ func (m *AcccountsResponseResource) validateData(formats strfmt.Registry) error 
 	return nil
 }
 
-func (m *AcccountsResponseResource) validateType(formats strfmt.Registry) error {
-
-	if err := validate.Required("type", "body", m.Type); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *AcccountsResponseResource) validateLinks(formats strfmt.Registry) error {
+func (m *AccountsResponseResource) validateLinks(formats strfmt.Registry) error {
 
 	if err := validate.Required("links", "body", m.Links); err != nil {
 		return err
@@ -106,8 +97,17 @@ func (m *AcccountsResponseResource) validateLinks(formats strfmt.Registry) error
 	return nil
 }
 
+func (m *AccountsResponseResource) validateType(formats strfmt.Registry) error {
+
+	if err := validate.Required("type", "body", m.Type); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 // MarshalBinary interface implementation
-func (m *AcccountsResponseResource) MarshalBinary() ([]byte, error) {
+func (m *AccountsResponseResource) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -115,8 +115,8 @@ func (m *AcccountsResponseResource) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *AcccountsResponseResource) UnmarshalBinary(b []byte) error {
-	var res AcccountsResponseResource
+func (m *AccountsResponseResource) UnmarshalBinary(b []byte) error {
+	var res AccountsResponseResource
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

@@ -23,7 +23,7 @@ type ConnectionsRefreshResource struct {
 
 	// Job details data.
 	// Required: true
-	ConnectionsRefreshJobs []*ConnectionResponseResource `json:"data"`
+	Data []*ConnectionResponseResource `json:"data"`
 
 	// Type, always "list".
 	// Required: true
@@ -34,7 +34,7 @@ type ConnectionsRefreshResource struct {
 func (m *ConnectionsRefreshResource) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateConnectionsRefreshJobs(formats); err != nil {
+	if err := m.validateData(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -48,19 +48,19 @@ func (m *ConnectionsRefreshResource) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *ConnectionsRefreshResource) validateConnectionsRefreshJobs(formats strfmt.Registry) error {
+func (m *ConnectionsRefreshResource) validateData(formats strfmt.Registry) error {
 
-	if err := validate.Required("data", "body", m.ConnectionsRefreshJobs); err != nil {
+	if err := validate.Required("data", "body", m.Data); err != nil {
 		return err
 	}
 
-	for i := 0; i < len(m.ConnectionsRefreshJobs); i++ {
-		if swag.IsZero(m.ConnectionsRefreshJobs[i]) { // not required
+	for i := 0; i < len(m.Data); i++ {
+		if swag.IsZero(m.Data[i]) { // not required
 			continue
 		}
 
-		if m.ConnectionsRefreshJobs[i] != nil {
-			if err := m.ConnectionsRefreshJobs[i].Validate(formats); err != nil {
+		if m.Data[i] != nil {
+			if err := m.Data[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("data" + "." + strconv.Itoa(i))
 				}

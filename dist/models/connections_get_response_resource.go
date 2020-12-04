@@ -21,30 +21,30 @@ import (
 // swagger:model ConnectionsGetResponseResource
 type ConnectionsGetResponseResource struct {
 
-	// connections data
-	ConnectionsData []*ConnectionsData `json:"data"`
+	// data
+	Data []*ConnectionsData `json:"data"`
+
+	// links
+	Links *ResourceLink `json:"links,omitempty"`
 
 	// Type, always "list".
 	// Required: true
 	Type *string `json:"type"`
-
-	// links
-	Links *ResourceLink `json:"links,omitempty"`
 }
 
 // Validate validates this connections get response resource
 func (m *ConnectionsGetResponseResource) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateConnectionsData(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateType(formats); err != nil {
+	if err := m.validateData(formats); err != nil {
 		res = append(res, err)
 	}
 
 	if err := m.validateLinks(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateType(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -54,19 +54,19 @@ func (m *ConnectionsGetResponseResource) Validate(formats strfmt.Registry) error
 	return nil
 }
 
-func (m *ConnectionsGetResponseResource) validateConnectionsData(formats strfmt.Registry) error {
+func (m *ConnectionsGetResponseResource) validateData(formats strfmt.Registry) error {
 
-	if swag.IsZero(m.ConnectionsData) { // not required
+	if swag.IsZero(m.Data) { // not required
 		return nil
 	}
 
-	for i := 0; i < len(m.ConnectionsData); i++ {
-		if swag.IsZero(m.ConnectionsData[i]) { // not required
+	for i := 0; i < len(m.Data); i++ {
+		if swag.IsZero(m.Data[i]) { // not required
 			continue
 		}
 
-		if m.ConnectionsData[i] != nil {
-			if err := m.ConnectionsData[i].Validate(formats); err != nil {
+		if m.Data[i] != nil {
+			if err := m.Data[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("data" + "." + strconv.Itoa(i))
 				}
@@ -74,15 +74,6 @@ func (m *ConnectionsGetResponseResource) validateConnectionsData(formats strfmt.
 			}
 		}
 
-	}
-
-	return nil
-}
-
-func (m *ConnectionsGetResponseResource) validateType(formats strfmt.Registry) error {
-
-	if err := validate.Required("type", "body", m.Type); err != nil {
-		return err
 	}
 
 	return nil
@@ -101,6 +92,15 @@ func (m *ConnectionsGetResponseResource) validateLinks(formats strfmt.Registry) 
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *ConnectionsGetResponseResource) validateType(formats strfmt.Registry) error {
+
+	if err := validate.Required("type", "body", m.Type); err != nil {
+		return err
 	}
 
 	return nil

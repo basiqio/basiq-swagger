@@ -29,6 +29,9 @@ type TransactionsGetResource struct {
 	// Required: true
 	Data []*TransactionData `json:"data"`
 
+	// links
+	Links *TransactionsGetLinks `json:"links,omitempty"`
+
 	// size
 	// Required: true
 	Size *int64 `json:"size"`
@@ -36,9 +39,6 @@ type TransactionsGetResource struct {
 	// Value is "list".
 	// Required: true
 	Type *string `json:"type"`
-
-	// links
-	Links *TransactionsGetLinks `json:"links,omitempty"`
 }
 
 // Validate validates this transactions get resource
@@ -53,15 +53,15 @@ func (m *TransactionsGetResource) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateLinks(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateSize(formats); err != nil {
 		res = append(res, err)
 	}
 
 	if err := m.validateType(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateLinks(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -105,24 +105,6 @@ func (m *TransactionsGetResource) validateData(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *TransactionsGetResource) validateSize(formats strfmt.Registry) error {
-
-	if err := validate.Required("size", "body", m.Size); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *TransactionsGetResource) validateType(formats strfmt.Registry) error {
-
-	if err := validate.Required("type", "body", m.Type); err != nil {
-		return err
-	}
-
-	return nil
-}
-
 func (m *TransactionsGetResource) validateLinks(formats strfmt.Registry) error {
 
 	if swag.IsZero(m.Links) { // not required
@@ -136,6 +118,24 @@ func (m *TransactionsGetResource) validateLinks(formats strfmt.Registry) error {
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *TransactionsGetResource) validateSize(formats strfmt.Registry) error {
+
+	if err := validate.Required("size", "body", m.Size); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *TransactionsGetResource) validateType(formats strfmt.Registry) error {
+
+	if err := validate.Required("type", "body", m.Type); err != nil {
+		return err
 	}
 
 	return nil

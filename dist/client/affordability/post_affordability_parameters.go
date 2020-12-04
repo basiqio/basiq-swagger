@@ -63,7 +63,7 @@ for the post affordability operation typically these are written to a http.Reque
 type PostAffordabilityParams struct {
 
 	/*AffordabilityPostRequest*/
-	AffordabilityPostRequest *models.AffordabilityPost
+	AffordabilityPostRequest *models.AffordabilityPostRequest
 	/*UserID
 	  The identifier of the user.
 
@@ -109,13 +109,13 @@ func (o *PostAffordabilityParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithAffordabilityPostRequest adds the affordabilityPostRequest to the post affordability params
-func (o *PostAffordabilityParams) WithAffordabilityPostRequest(affordabilityPostRequest *models.AffordabilityPost) *PostAffordabilityParams {
+func (o *PostAffordabilityParams) WithAffordabilityPostRequest(affordabilityPostRequest *models.AffordabilityPostRequest) *PostAffordabilityParams {
 	o.SetAffordabilityPostRequest(affordabilityPostRequest)
 	return o
 }
 
 // SetAffordabilityPostRequest adds the affordabilityPostRequest to the post affordability params
-func (o *PostAffordabilityParams) SetAffordabilityPostRequest(affordabilityPostRequest *models.AffordabilityPost) {
+func (o *PostAffordabilityParams) SetAffordabilityPostRequest(affordabilityPostRequest *models.AffordabilityPostRequest) {
 	o.AffordabilityPostRequest = affordabilityPostRequest
 }
 

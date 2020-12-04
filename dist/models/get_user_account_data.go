@@ -23,13 +23,13 @@ type GetUserAccountData struct {
 	// Required: true
 	ID *string `json:"id"`
 
-	// Always "account".
-	// Required: true
-	Type *string `json:"type"`
-
 	// links
 	// Required: true
 	Links *ResourceLink `json:"links"`
+
+	// Always "account".
+	// Required: true
+	Type *string `json:"type"`
 }
 
 // Validate validates this get user account data
@@ -40,11 +40,11 @@ func (m *GetUserAccountData) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateType(formats); err != nil {
+	if err := m.validateLinks(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateLinks(formats); err != nil {
+	if err := m.validateType(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -57,15 +57,6 @@ func (m *GetUserAccountData) Validate(formats strfmt.Registry) error {
 func (m *GetUserAccountData) validateID(formats strfmt.Registry) error {
 
 	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *GetUserAccountData) validateType(formats strfmt.Registry) error {
-
-	if err := validate.Required("type", "body", m.Type); err != nil {
 		return err
 	}
 
@@ -85,6 +76,15 @@ func (m *GetUserAccountData) validateLinks(formats strfmt.Registry) error {
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *GetUserAccountData) validateType(formats strfmt.Registry) error {
+
+	if err := validate.Required("type", "body", m.Type); err != nil {
+		return err
 	}
 
 	return nil

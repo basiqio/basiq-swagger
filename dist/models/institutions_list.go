@@ -21,15 +21,15 @@ type InstitutionsList struct {
 
 	// Data contains list of institutions
 	// Required: true
-	Institutions []*Institution `json:"data"`
-
-	// TotalCount contains total count of institutions
-	// Required: true
-	TotalCount *int64 `json:"totalCount"`
+	Data []*Institution `json:"data"`
 
 	// links
 	// Required: true
 	Links *ResourceLinks `json:"links"`
+
+	// TotalCount contains total count of institutions
+	// Required: true
+	TotalCount *int64 `json:"totalCount"`
 
 	// type
 	// Required: true
@@ -40,15 +40,15 @@ type InstitutionsList struct {
 func (m *InstitutionsList) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateInstitutions(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateTotalCount(formats); err != nil {
+	if err := m.validateData(formats); err != nil {
 		res = append(res, err)
 	}
 
 	if err := m.validateLinks(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateTotalCount(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -62,19 +62,19 @@ func (m *InstitutionsList) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *InstitutionsList) validateInstitutions(formats strfmt.Registry) error {
+func (m *InstitutionsList) validateData(formats strfmt.Registry) error {
 
-	if err := validate.Required("data", "body", m.Institutions); err != nil {
+	if err := validate.Required("data", "body", m.Data); err != nil {
 		return err
 	}
 
-	for i := 0; i < len(m.Institutions); i++ {
-		if swag.IsZero(m.Institutions[i]) { // not required
+	for i := 0; i < len(m.Data); i++ {
+		if swag.IsZero(m.Data[i]) { // not required
 			continue
 		}
 
-		if m.Institutions[i] != nil {
-			if err := m.Institutions[i].Validate(formats); err != nil {
+		if m.Data[i] != nil {
+			if err := m.Data[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("data" + "." + strconv.Itoa(i))
 				}
@@ -82,15 +82,6 @@ func (m *InstitutionsList) validateInstitutions(formats strfmt.Registry) error {
 			}
 		}
 
-	}
-
-	return nil
-}
-
-func (m *InstitutionsList) validateTotalCount(formats strfmt.Registry) error {
-
-	if err := validate.Required("totalCount", "body", m.TotalCount); err != nil {
-		return err
 	}
 
 	return nil
@@ -109,6 +100,15 @@ func (m *InstitutionsList) validateLinks(formats strfmt.Registry) error {
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *InstitutionsList) validateTotalCount(formats strfmt.Registry) error {
+
+	if err := validate.Required("totalCount", "body", m.TotalCount); err != nil {
+		return err
 	}
 
 	return nil

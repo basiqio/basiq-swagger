@@ -27,6 +27,10 @@ type UserPostResponse struct {
 	// Required: true
 	ID *string `json:"id"`
 
+	// links
+	// Required: true
+	Links *ResourceLink `json:"links"`
+
 	// The end-users mobile number.
 	// Required: true
 	Mobile *string `json:"mobile"`
@@ -34,10 +38,6 @@ type UserPostResponse struct {
 	// Type of the response, always "user".
 	// Required: true
 	Type *string `json:"type"`
-
-	// links
-	// Required: true
-	Links *ResourceLink `json:"links"`
 }
 
 // Validate validates this user post response
@@ -52,15 +52,15 @@ func (m *UserPostResponse) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateLinks(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateMobile(formats); err != nil {
 		res = append(res, err)
 	}
 
 	if err := m.validateType(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateLinks(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -92,24 +92,6 @@ func (m *UserPostResponse) validateID(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *UserPostResponse) validateMobile(formats strfmt.Registry) error {
-
-	if err := validate.Required("mobile", "body", m.Mobile); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *UserPostResponse) validateType(formats strfmt.Registry) error {
-
-	if err := validate.Required("type", "body", m.Type); err != nil {
-		return err
-	}
-
-	return nil
-}
-
 func (m *UserPostResponse) validateLinks(formats strfmt.Registry) error {
 
 	if err := validate.Required("links", "body", m.Links); err != nil {
@@ -123,6 +105,24 @@ func (m *UserPostResponse) validateLinks(formats strfmt.Registry) error {
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *UserPostResponse) validateMobile(formats strfmt.Registry) error {
+
+	if err := validate.Required("mobile", "body", m.Mobile); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *UserPostResponse) validateType(formats strfmt.Registry) error {
+
+	if err := validate.Required("type", "body", m.Type); err != nil {
+		return err
 	}
 
 	return nil

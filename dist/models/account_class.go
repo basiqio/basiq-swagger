@@ -12,23 +12,30 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// AccountHolder account holder
+// AccountClass account class
 //
-// swagger:model AccountHolder
-type AccountHolder struct {
+// swagger:model AccountClass
+type AccountClass struct {
 
-	// Identifies the Product as defined by institution
+	// meta
+	Meta Meta `json:"meta,omitempty"`
+
+	// Product name.
 	// Required: true
 	Product *string `json:"product"`
 
-	// Identifies the Account type defined by institution
+	// Account type
 	// Required: true
 	Type *string `json:"type"`
 }
 
-// Validate validates this account holder
-func (m *AccountHolder) Validate(formats strfmt.Registry) error {
+// Validate validates this account class
+func (m *AccountClass) Validate(formats strfmt.Registry) error {
 	var res []error
+
+	if err := m.validateMeta(formats); err != nil {
+		res = append(res, err)
+	}
 
 	if err := m.validateProduct(formats); err != nil {
 		res = append(res, err)
@@ -44,7 +51,23 @@ func (m *AccountHolder) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *AccountHolder) validateProduct(formats strfmt.Registry) error {
+func (m *AccountClass) validateMeta(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Meta) { // not required
+		return nil
+	}
+
+	if err := m.Meta.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("meta")
+		}
+		return err
+	}
+
+	return nil
+}
+
+func (m *AccountClass) validateProduct(formats strfmt.Registry) error {
 
 	if err := validate.Required("product", "body", m.Product); err != nil {
 		return err
@@ -53,7 +76,7 @@ func (m *AccountHolder) validateProduct(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *AccountHolder) validateType(formats strfmt.Registry) error {
+func (m *AccountClass) validateType(formats strfmt.Registry) error {
 
 	if err := validate.Required("type", "body", m.Type); err != nil {
 		return err
@@ -63,7 +86,7 @@ func (m *AccountHolder) validateType(formats strfmt.Registry) error {
 }
 
 // MarshalBinary interface implementation
-func (m *AccountHolder) MarshalBinary() ([]byte, error) {
+func (m *AccountClass) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -71,8 +94,8 @@ func (m *AccountHolder) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *AccountHolder) UnmarshalBinary(b []byte) error {
-	var res AccountHolder
+func (m *AccountClass) UnmarshalBinary(b []byte) error {
+	var res AccountClass
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

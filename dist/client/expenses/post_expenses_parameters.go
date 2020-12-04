@@ -63,7 +63,7 @@ for the post expenses operation typically these are written to a http.Request
 type PostExpensesParams struct {
 
 	/*ExpensesPostRequest*/
-	ExpensesPostRequest *models.ExpensesPost
+	ExpensesPostRequest *models.ExpensesPostRequest
 	/*UserID
 	  The identifier of the user.
 
@@ -109,13 +109,13 @@ func (o *PostExpensesParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithExpensesPostRequest adds the expensesPostRequest to the post expenses params
-func (o *PostExpensesParams) WithExpensesPostRequest(expensesPostRequest *models.ExpensesPost) *PostExpensesParams {
+func (o *PostExpensesParams) WithExpensesPostRequest(expensesPostRequest *models.ExpensesPostRequest) *PostExpensesParams {
 	o.SetExpensesPostRequest(expensesPostRequest)
 	return o
 }
 
 // SetExpensesPostRequest adds the expensesPostRequest to the post expenses params
-func (o *PostExpensesParams) SetExpensesPostRequest(expensesPostRequest *models.ExpensesPost) {
+func (o *PostExpensesParams) SetExpensesPostRequest(expensesPostRequest *models.ExpensesPostRequest) {
 	o.ExpensesPostRequest = expensesPostRequest
 }
 

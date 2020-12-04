@@ -57,6 +57,10 @@ type TransactionData struct {
 	// Required: true
 	Institution *string `json:"institution"`
 
+	// links
+	// Required: true
+	Links *TransactionLinks `json:"links"`
+
 	// Date the transaction was posted as provided by the institution (this is the same date that appears on a bank statement). This value is null if the record is pending. e.g. "2017-11-10T21:46:44Z" or 2017-11-10T00:00:00Z.
 	// Required: true
 	PostDate *string `json:"postDate"`
@@ -66,6 +70,10 @@ type TransactionData struct {
 	// Enum: [pending posted]
 	Status *string `json:"status"`
 
+	// sub class
+	// Required: true
+	SubClass *SubClass `json:"subClass"`
+
 	// Date that the user executed the transaction as provided by the istitution. Note that not all transactions provide this value (varies by institution) e.g. "2017-11-10T00:00:00Z"
 	// Required: true
 	TransactionDate *string `json:"transactionDate"`
@@ -73,14 +81,6 @@ type TransactionData struct {
 	// Value is "transaction".
 	// Required: true
 	Type *string `json:"type"`
-
-	// links
-	// Required: true
-	Links *TransactionLinks `json:"links"`
-
-	// sub class
-	// Required: true
-	SubClass *SubClass `json:"subClass"`
 }
 
 // Validate validates this transaction data
@@ -123,6 +123,10 @@ func (m *TransactionData) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateLinks(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validatePostDate(formats); err != nil {
 		res = append(res, err)
 	}
@@ -131,19 +135,15 @@ func (m *TransactionData) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateSubClass(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateTransactionDate(formats); err != nil {
 		res = append(res, err)
 	}
 
 	if err := m.validateType(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateLinks(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateSubClass(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -323,6 +323,24 @@ func (m *TransactionData) validateInstitution(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *TransactionData) validateLinks(formats strfmt.Registry) error {
+
+	if err := validate.Required("links", "body", m.Links); err != nil {
+		return err
+	}
+
+	if m.Links != nil {
+		if err := m.Links.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("links")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *TransactionData) validatePostDate(formats strfmt.Registry) error {
 
 	if err := validate.Required("postDate", "body", m.PostDate); err != nil {
@@ -375,42 +393,6 @@ func (m *TransactionData) validateStatus(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *TransactionData) validateTransactionDate(formats strfmt.Registry) error {
-
-	if err := validate.Required("transactionDate", "body", m.TransactionDate); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *TransactionData) validateType(formats strfmt.Registry) error {
-
-	if err := validate.Required("type", "body", m.Type); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *TransactionData) validateLinks(formats strfmt.Registry) error {
-
-	if err := validate.Required("links", "body", m.Links); err != nil {
-		return err
-	}
-
-	if m.Links != nil {
-		if err := m.Links.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("links")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
 func (m *TransactionData) validateSubClass(formats strfmt.Registry) error {
 
 	if err := validate.Required("subClass", "body", m.SubClass); err != nil {
@@ -424,6 +406,24 @@ func (m *TransactionData) validateSubClass(formats strfmt.Registry) error {
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *TransactionData) validateTransactionDate(formats strfmt.Registry) error {
+
+	if err := validate.Required("transactionDate", "body", m.TransactionDate); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *TransactionData) validateType(formats strfmt.Registry) error {
+
+	if err := validate.Required("type", "body", m.Type); err != nil {
+		return err
 	}
 
 	return nil

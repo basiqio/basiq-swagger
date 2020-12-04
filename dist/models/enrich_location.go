@@ -22,6 +22,9 @@ type EnrichLocation struct {
 	// Address
 	FormattedAddress string `json:"formattedAddress,omitempty"`
 
+	// geometry
+	Geometry *EnrichGeometry `json:"geometry,omitempty"`
+
 	// Postal Code
 	PostalCode string `json:"postalCode,omitempty"`
 
@@ -36,9 +39,6 @@ type EnrichLocation struct {
 
 	// Suburb
 	Suburb string `json:"suburb,omitempty"`
-
-	// geometry
-	Geometry *EnrichGeometry `json:"geometry,omitempty"`
 }
 
 // Validate validates this enrich location

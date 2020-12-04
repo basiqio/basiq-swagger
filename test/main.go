@@ -102,7 +102,7 @@ func SetupUser(t *testing.T) string {
 	userMobile := "+61410888999"
 
 	userPostRequest := &users.CreateUserParams{
-		User: &models.UserPost{
+		User: &models.CreateUser{
 			Email:  userEmail,
 			Mobile: userMobile,
 		},

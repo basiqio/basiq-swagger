@@ -10,10 +10,10 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// ExpensesPost expenses post
+// ExpensesPostRequest expenses post request
 //
-// swagger:model ExpensesPost
-type ExpensesPost struct {
+// swagger:model ExpensesPostRequest
+type ExpensesPostRequest struct {
 
 	// The list of accounts to be included in the expenses otherwise all the user accounts will be included in the report
 	Accounts []string `json:"accounts"`
@@ -25,13 +25,13 @@ type ExpensesPost struct {
 	ToMonth string `json:"toMonth,omitempty"`
 }
 
-// Validate validates this expenses post
-func (m *ExpensesPost) Validate(formats strfmt.Registry) error {
+// Validate validates this expenses post request
+func (m *ExpensesPostRequest) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
 // MarshalBinary interface implementation
-func (m *ExpensesPost) MarshalBinary() ([]byte, error) {
+func (m *ExpensesPostRequest) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -39,8 +39,8 @@ func (m *ExpensesPost) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *ExpensesPost) UnmarshalBinary(b []byte) error {
-	var res ExpensesPost
+func (m *ExpensesPostRequest) UnmarshalBinary(b []byte) error {
+	var res ExpensesPostRequest
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

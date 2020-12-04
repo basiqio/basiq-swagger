@@ -10,10 +10,10 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// IncomePost income post
+// IncomePostRequest income post request
 //
-// swagger:model IncomePost
-type IncomePost struct {
+// swagger:model IncomePostRequest
+type IncomePostRequest struct {
 
 	// The list of accounts to be included in the income otherwise all the user accounts will be included in the report
 	Accounts []string `json:"accounts"`
@@ -25,13 +25,13 @@ type IncomePost struct {
 	ToMonth string `json:"toMonth,omitempty"`
 }
 
-// Validate validates this income post
-func (m *IncomePost) Validate(formats strfmt.Registry) error {
+// Validate validates this income post request
+func (m *IncomePostRequest) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
 // MarshalBinary interface implementation
-func (m *IncomePost) MarshalBinary() ([]byte, error) {
+func (m *IncomePostRequest) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -39,8 +39,8 @@ func (m *IncomePost) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *IncomePost) UnmarshalBinary(b []byte) error {
-	var res IncomePost
+func (m *IncomePostRequest) UnmarshalBinary(b []byte) error {
+	var res IncomePostRequest
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

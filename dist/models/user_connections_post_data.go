@@ -17,6 +17,10 @@ import (
 // swagger:model UserConnectionsPostData
 type UserConnectionsPostData struct {
 
+	// institution
+	// Required: true
+	Institution *InstitutionModel `json:"institution"`
+
 	// The users institution login ID
 	// Required: true
 	LoginID *string `json:"loginId"`
@@ -30,15 +34,15 @@ type UserConnectionsPostData struct {
 
 	// User's institution security code. Mandatory if required by institution's login process.
 	SecurityCode string `json:"securityCode,omitempty"`
-
-	// institution
-	// Required: true
-	Institution *InstitutionModel `json:"institution"`
 }
 
 // Validate validates this user connections post data
 func (m *UserConnectionsPostData) Validate(formats strfmt.Registry) error {
 	var res []error
+
+	if err := m.validateInstitution(formats); err != nil {
+		res = append(res, err)
+	}
 
 	if err := m.validateLoginID(formats); err != nil {
 		res = append(res, err)
@@ -48,31 +52,9 @@ func (m *UserConnectionsPostData) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateInstitution(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-	return nil
-}
-
-func (m *UserConnectionsPostData) validateLoginID(formats strfmt.Registry) error {
-
-	if err := validate.Required("loginId", "body", m.LoginID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *UserConnectionsPostData) validatePassword(formats strfmt.Registry) error {
-
-	if err := validate.Required("password", "body", m.Password); err != nil {
-		return err
-	}
-
 	return nil
 }
 
@@ -89,6 +71,24 @@ func (m *UserConnectionsPostData) validateInstitution(formats strfmt.Registry) e
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *UserConnectionsPostData) validateLoginID(formats strfmt.Registry) error {
+
+	if err := validate.Required("loginId", "body", m.LoginID); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *UserConnectionsPostData) validatePassword(formats strfmt.Registry) error {
+
+	if err := validate.Required("password", "body", m.Password); err != nil {
+		return err
 	}
 
 	return nil

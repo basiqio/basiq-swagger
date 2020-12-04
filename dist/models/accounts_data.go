@@ -31,6 +31,10 @@ type AccountsData struct {
 	// Required: true
 	Balance *string `json:"balance"`
 
+	// class
+	// Required: true
+	Class *AccountClass `json:"class"`
+
 	// Currency
 	// Required: true
 	Currency *string `json:"currency"`
@@ -42,6 +46,10 @@ type AccountsData struct {
 	// Account last updated date and time.
 	// Required: true
 	LastUpdated *string `json:"lastUpdated"`
+
+	// links
+	// Required: true
+	Links *ConnectionAccountLinks `json:"links"`
 
 	// Account name.
 	// Required: true
@@ -55,14 +63,6 @@ type AccountsData struct {
 	// Type always "account".
 	// Required: true
 	Type *string `json:"type"`
-
-	// class
-	// Required: true
-	Class *ConnectionAccountClass `json:"class"`
-
-	// links
-	// Required: true
-	Links *ConnectionAccountLinks `json:"links"`
 }
 
 // Validate validates this accounts data
@@ -81,6 +81,10 @@ func (m *AccountsData) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateClass(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateCurrency(formats); err != nil {
 		res = append(res, err)
 	}
@@ -93,6 +97,10 @@ func (m *AccountsData) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateLinks(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateName(formats); err != nil {
 		res = append(res, err)
 	}
@@ -102,14 +110,6 @@ func (m *AccountsData) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateType(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateClass(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateLinks(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -146,6 +146,24 @@ func (m *AccountsData) validateBalance(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *AccountsData) validateClass(formats strfmt.Registry) error {
+
+	if err := validate.Required("class", "body", m.Class); err != nil {
+		return err
+	}
+
+	if m.Class != nil {
+		if err := m.Class.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("class")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *AccountsData) validateCurrency(formats strfmt.Registry) error {
 
 	if err := validate.Required("currency", "body", m.Currency); err != nil {
@@ -168,6 +186,24 @@ func (m *AccountsData) validateLastUpdated(formats strfmt.Registry) error {
 
 	if err := validate.Required("lastUpdated", "body", m.LastUpdated); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *AccountsData) validateLinks(formats strfmt.Registry) error {
+
+	if err := validate.Required("links", "body", m.Links); err != nil {
+		return err
+	}
+
+	if m.Links != nil {
+		if err := m.Links.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("links")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -229,42 +265,6 @@ func (m *AccountsData) validateType(formats strfmt.Registry) error {
 
 	if err := validate.Required("type", "body", m.Type); err != nil {
 		return err
-	}
-
-	return nil
-}
-
-func (m *AccountsData) validateClass(formats strfmt.Registry) error {
-
-	if err := validate.Required("class", "body", m.Class); err != nil {
-		return err
-	}
-
-	if m.Class != nil {
-		if err := m.Class.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("class")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *AccountsData) validateLinks(formats strfmt.Registry) error {
-
-	if err := validate.Required("links", "body", m.Links); err != nil {
-		return err
-	}
-
-	if m.Links != nil {
-		if err := m.Links.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("links")
-			}
-			return err
-		}
 	}
 
 	return nil

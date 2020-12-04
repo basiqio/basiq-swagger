@@ -36,6 +36,10 @@ type OtherCreditSource struct {
 	// Required: true
 	ChangeHistory []*ChangeHistoryIncome `json:"changeHistory"`
 
+	// current
+	// Required: true
+	Current *CurrentOtherCreditSource `json:"current"`
+
 	// Frequency is "other", "irregular" or a time period e.g. "bi-weekly"
 	// Required: true
 	// Enum: [daily weekly bi-weekly monthly bi-monthly quarterly half-year yearly other irregular]
@@ -48,10 +52,6 @@ type OtherCreditSource struct {
 	// Source Other Credit income (cleaned transaction description).
 	// Required: true
 	Source *string `json:"source"`
-
-	// current
-	// Required: true
-	Current *CurrentOtherCreditSource `json:"current"`
 }
 
 // Validate validates this other credit source
@@ -74,6 +74,10 @@ func (m *OtherCreditSource) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateCurrent(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateFrequency(formats); err != nil {
 		res = append(res, err)
 	}
@@ -83,10 +87,6 @@ func (m *OtherCreditSource) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateSource(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateCurrent(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -143,6 +143,24 @@ func (m *OtherCreditSource) validateChangeHistory(formats strfmt.Registry) error
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *OtherCreditSource) validateCurrent(formats strfmt.Registry) error {
+
+	if err := validate.Required("current", "body", m.Current); err != nil {
+		return err
+	}
+
+	if m.Current != nil {
+		if err := m.Current.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("current")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -228,24 +246,6 @@ func (m *OtherCreditSource) validateSource(formats strfmt.Registry) error {
 
 	if err := validate.Required("source", "body", m.Source); err != nil {
 		return err
-	}
-
-	return nil
-}
-
-func (m *OtherCreditSource) validateCurrent(formats strfmt.Registry) error {
-
-	if err := validate.Required("current", "body", m.Current); err != nil {
-		return err
-	}
-
-	if m.Current != nil {
-		if err := m.Current.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("current")
-			}
-			return err
-		}
 	}
 
 	return nil

@@ -19,62 +19,102 @@ import (
 // swagger:model TransactionsFeatures
 type TransactionsFeatures struct {
 
+	// TransactionAmount holds list of data source identifiers which are capable to fetch transaction amount.
+	// Required: true
+	Amount []SourceName `json:"amount"`
+
+	// TransactionBalance holds list of data source identifiers which are capable to fetch account balance when transaction occured.
+	// Required: true
+	Balance []SourceName `json:"balance"`
+
 	// Class holds list of data source identifiers which are capable to fetch transaction class.
 	// Required: true
 	Class []SourceName `json:"class"`
 
-	// TransactionAmount holds list of data source identifiers which are capable to fetch transaction amount.
-	// Required: true
-	TransactionAmount []SourceName `json:"amount"`
-
-	// TransactionBalance holds list of data source identifiers which are capable to fetch account balance when transaction occured.
-	// Required: true
-	TransactionBalance []SourceName `json:"balance"`
-
 	// TransactionDate holds list of data source identifiers which are capable to fetch transaction date.
 	// Required: true
-	TransactionDate []SourceName `json:"date"`
+	Date []SourceName `json:"date"`
 
 	// TransactionDescription holds list of data source identifiers which are capable to fetch transaction description.
 	// Required: true
-	TransactionDescription []SourceName `json:"description"`
+	Description []SourceName `json:"description"`
 
 	// TransactionStatus holds list of data source identifiers which are capable to fetch transaction status.
 	// Required: true
-	TransactionStatus []SourceName `json:"status"`
+	Status []SourceName `json:"status"`
 }
 
 // Validate validates this transactions features
 func (m *TransactionsFeatures) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateAmount(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateBalance(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateClass(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateTransactionAmount(formats); err != nil {
+	if err := m.validateDate(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateTransactionBalance(formats); err != nil {
+	if err := m.validateDescription(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateTransactionDate(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateTransactionDescription(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateTransactionStatus(formats); err != nil {
+	if err := m.validateStatus(formats); err != nil {
 		res = append(res, err)
 	}
 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *TransactionsFeatures) validateAmount(formats strfmt.Registry) error {
+
+	if err := validate.Required("amount", "body", m.Amount); err != nil {
+		return err
+	}
+
+	for i := 0; i < len(m.Amount); i++ {
+
+		if err := m.Amount[i].Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("amount" + "." + strconv.Itoa(i))
+			}
+			return err
+		}
+
+	}
+
+	return nil
+}
+
+func (m *TransactionsFeatures) validateBalance(formats strfmt.Registry) error {
+
+	if err := validate.Required("balance", "body", m.Balance); err != nil {
+		return err
+	}
+
+	for i := 0; i < len(m.Balance); i++ {
+
+		if err := m.Balance[i].Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("balance" + "." + strconv.Itoa(i))
+			}
+			return err
+		}
+
+	}
+
 	return nil
 }
 
@@ -98,55 +138,15 @@ func (m *TransactionsFeatures) validateClass(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *TransactionsFeatures) validateTransactionAmount(formats strfmt.Registry) error {
+func (m *TransactionsFeatures) validateDate(formats strfmt.Registry) error {
 
-	if err := validate.Required("amount", "body", m.TransactionAmount); err != nil {
+	if err := validate.Required("date", "body", m.Date); err != nil {
 		return err
 	}
 
-	for i := 0; i < len(m.TransactionAmount); i++ {
+	for i := 0; i < len(m.Date); i++ {
 
-		if err := m.TransactionAmount[i].Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("amount" + "." + strconv.Itoa(i))
-			}
-			return err
-		}
-
-	}
-
-	return nil
-}
-
-func (m *TransactionsFeatures) validateTransactionBalance(formats strfmt.Registry) error {
-
-	if err := validate.Required("balance", "body", m.TransactionBalance); err != nil {
-		return err
-	}
-
-	for i := 0; i < len(m.TransactionBalance); i++ {
-
-		if err := m.TransactionBalance[i].Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("balance" + "." + strconv.Itoa(i))
-			}
-			return err
-		}
-
-	}
-
-	return nil
-}
-
-func (m *TransactionsFeatures) validateTransactionDate(formats strfmt.Registry) error {
-
-	if err := validate.Required("date", "body", m.TransactionDate); err != nil {
-		return err
-	}
-
-	for i := 0; i < len(m.TransactionDate); i++ {
-
-		if err := m.TransactionDate[i].Validate(formats); err != nil {
+		if err := m.Date[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("date" + "." + strconv.Itoa(i))
 			}
@@ -158,15 +158,15 @@ func (m *TransactionsFeatures) validateTransactionDate(formats strfmt.Registry) 
 	return nil
 }
 
-func (m *TransactionsFeatures) validateTransactionDescription(formats strfmt.Registry) error {
+func (m *TransactionsFeatures) validateDescription(formats strfmt.Registry) error {
 
-	if err := validate.Required("description", "body", m.TransactionDescription); err != nil {
+	if err := validate.Required("description", "body", m.Description); err != nil {
 		return err
 	}
 
-	for i := 0; i < len(m.TransactionDescription); i++ {
+	for i := 0; i < len(m.Description); i++ {
 
-		if err := m.TransactionDescription[i].Validate(formats); err != nil {
+		if err := m.Description[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("description" + "." + strconv.Itoa(i))
 			}
@@ -178,15 +178,15 @@ func (m *TransactionsFeatures) validateTransactionDescription(formats strfmt.Reg
 	return nil
 }
 
-func (m *TransactionsFeatures) validateTransactionStatus(formats strfmt.Registry) error {
+func (m *TransactionsFeatures) validateStatus(formats strfmt.Registry) error {
 
-	if err := validate.Required("status", "body", m.TransactionStatus); err != nil {
+	if err := validate.Required("status", "body", m.Status); err != nil {
 		return err
 	}
 
-	for i := 0; i < len(m.TransactionStatus); i++ {
+	for i := 0; i < len(m.Status); i++ {
 
-		if err := m.TransactionStatus[i].Validate(formats); err != nil {
+		if err := m.Status[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("status" + "." + strconv.Itoa(i))
 			}

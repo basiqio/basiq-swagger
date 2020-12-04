@@ -21,7 +21,7 @@ type ClassResourceExpenses struct {
 
 	// Average amount monthly
 	// Required: true
-	AverageMonthly *string `json:"avgMonthly"`
+	AvgMonthly *string `json:"avgMonthly"`
 
 	// change history
 	// Required: true
@@ -36,7 +36,7 @@ type ClassResourceExpenses struct {
 func (m *ClassResourceExpenses) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateAverageMonthly(formats); err != nil {
+	if err := m.validateAvgMonthly(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -54,9 +54,9 @@ func (m *ClassResourceExpenses) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *ClassResourceExpenses) validateAverageMonthly(formats strfmt.Registry) error {
+func (m *ClassResourceExpenses) validateAvgMonthly(formats strfmt.Registry) error {
 
-	if err := validate.Required("avgMonthly", "body", m.AverageMonthly); err != nil {
+	if err := validate.Required("avgMonthly", "body", m.AvgMonthly); err != nil {
 		return err
 	}
 

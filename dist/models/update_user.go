@@ -10,22 +10,25 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// TokenPostRequest token post request
+// UpdateUser update user
 //
-// swagger:model TokenPostRequest
-type TokenPostRequest struct {
+// swagger:model updateUser
+type UpdateUser struct {
 
-	// Valid scopes are: CLIENT_ACCESS and SERVER_ACCESS
-	Scope string `json:"scope,omitempty"`
+	// The end-users email address.
+	Email string `json:"email,omitempty"`
+
+	// The end-users mobile number.
+	Mobile string `json:"mobile,omitempty"`
 }
 
-// Validate validates this token post request
-func (m *TokenPostRequest) Validate(formats strfmt.Registry) error {
+// Validate validates this update user
+func (m *UpdateUser) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
 // MarshalBinary interface implementation
-func (m *TokenPostRequest) MarshalBinary() ([]byte, error) {
+func (m *UpdateUser) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -33,8 +36,8 @@ func (m *TokenPostRequest) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *TokenPostRequest) UnmarshalBinary(b []byte) error {
-	var res TokenPostRequest
+func (m *UpdateUser) UnmarshalBinary(b []byte) error {
+	var res UpdateUser
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

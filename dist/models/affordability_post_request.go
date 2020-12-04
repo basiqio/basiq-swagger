@@ -10,10 +10,10 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// AffordabilityPost affordability post
+// AffordabilityPostRequest affordability post request
 //
-// swagger:model AffordabilityPost
-type AffordabilityPost struct {
+// swagger:model AffordabilityPostRequest
+type AffordabilityPostRequest struct {
 
 	// The list of accounts to be included in the affordability otherwise all the user accounts will be included in the report
 	Accounts []string `json:"accounts"`
@@ -25,13 +25,13 @@ type AffordabilityPost struct {
 	ToMonth string `json:"toMonth,omitempty"`
 }
 
-// Validate validates this affordability post
-func (m *AffordabilityPost) Validate(formats strfmt.Registry) error {
+// Validate validates this affordability post request
+func (m *AffordabilityPostRequest) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
 // MarshalBinary interface implementation
-func (m *AffordabilityPost) MarshalBinary() ([]byte, error) {
+func (m *AffordabilityPostRequest) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -39,8 +39,8 @@ func (m *AffordabilityPost) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *AffordabilityPost) UnmarshalBinary(b []byte) error {
-	var res AffordabilityPost
+func (m *AffordabilityPostRequest) UnmarshalBinary(b []byte) error {
+	var res AffordabilityPostRequest
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

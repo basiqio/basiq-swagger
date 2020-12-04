@@ -23,8 +23,16 @@ type ConnectionsData struct {
 	// Required: true
 	ID *string `json:"id"`
 
+	// institution
+	// Required: true
+	Institution *ConnectionInstitution `json:"institution"`
+
 	// Connection last used date, available only for SERVER_SCOPE.
 	LastUsed string `json:"lastUsed,omitempty"`
+
+	// links
+	// Required: true
+	Links *GetConnectionLinks `json:"links"`
 
 	// Connection status, available only for SERVER_SCOPE.
 	// Enum: [active pending invalid]
@@ -33,14 +41,6 @@ type ConnectionsData struct {
 	// Type, always "connection".
 	// Required: true
 	Type *string `json:"type"`
-
-	// institution
-	// Required: true
-	Institution *ConnectionInstitution `json:"institution"`
-
-	// links
-	// Required: true
-	Links *GetConnectionLinks `json:"links"`
 }
 
 // Validate validates this connections data
@@ -51,19 +51,19 @@ func (m *ConnectionsData) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateStatus(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateType(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.validateInstitution(formats); err != nil {
 		res = append(res, err)
 	}
 
 	if err := m.validateLinks(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateStatus(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateType(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -77,6 +77,42 @@ func (m *ConnectionsData) validateID(formats strfmt.Registry) error {
 
 	if err := validate.Required("id", "body", m.ID); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *ConnectionsData) validateInstitution(formats strfmt.Registry) error {
+
+	if err := validate.Required("institution", "body", m.Institution); err != nil {
+		return err
+	}
+
+	if m.Institution != nil {
+		if err := m.Institution.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("institution")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *ConnectionsData) validateLinks(formats strfmt.Registry) error {
+
+	if err := validate.Required("links", "body", m.Links); err != nil {
+		return err
+	}
+
+	if m.Links != nil {
+		if err := m.Links.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("links")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -132,42 +168,6 @@ func (m *ConnectionsData) validateType(formats strfmt.Registry) error {
 
 	if err := validate.Required("type", "body", m.Type); err != nil {
 		return err
-	}
-
-	return nil
-}
-
-func (m *ConnectionsData) validateInstitution(formats strfmt.Registry) error {
-
-	if err := validate.Required("institution", "body", m.Institution); err != nil {
-		return err
-	}
-
-	if m.Institution != nil {
-		if err := m.Institution.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("institution")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *ConnectionsData) validateLinks(formats strfmt.Registry) error {
-
-	if err := validate.Required("links", "body", m.Links); err != nil {
-		return err
-	}
-
-	if m.Links != nil {
-		if err := m.Links.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("links")
-			}
-			return err
-		}
 	}
 
 	return nil

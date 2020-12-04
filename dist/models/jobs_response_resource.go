@@ -23,6 +23,10 @@ type JobsResponseResource struct {
 	// Required: true
 	Data []*JobsData `json:"data"`
 
+	// links
+	// Required: true
+	Links *ResourceLink `json:"links"`
+
 	// Size of the all the jobs.
 	// Required: true
 	Size *int64 `json:"size"`
@@ -30,10 +34,6 @@ type JobsResponseResource struct {
 	// Type of the response, always "list".
 	// Required: true
 	Type *string `json:"type"`
-
-	// links
-	// Required: true
-	Links *ResourceLink `json:"links"`
 }
 
 // Validate validates this jobs response resource
@@ -44,15 +44,15 @@ func (m *JobsResponseResource) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateLinks(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateSize(formats); err != nil {
 		res = append(res, err)
 	}
 
 	if err := m.validateType(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateLinks(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -87,24 +87,6 @@ func (m *JobsResponseResource) validateData(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *JobsResponseResource) validateSize(formats strfmt.Registry) error {
-
-	if err := validate.Required("size", "body", m.Size); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *JobsResponseResource) validateType(formats strfmt.Registry) error {
-
-	if err := validate.Required("type", "body", m.Type); err != nil {
-		return err
-	}
-
-	return nil
-}
-
 func (m *JobsResponseResource) validateLinks(formats strfmt.Registry) error {
 
 	if err := validate.Required("links", "body", m.Links); err != nil {
@@ -118,6 +100,24 @@ func (m *JobsResponseResource) validateLinks(formats strfmt.Registry) error {
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *JobsResponseResource) validateSize(formats strfmt.Registry) error {
+
+	if err := validate.Required("size", "body", m.Size); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *JobsResponseResource) validateType(formats strfmt.Registry) error {
+
+	if err := validate.Required("type", "body", m.Type); err != nil {
+		return err
 	}
 
 	return nil

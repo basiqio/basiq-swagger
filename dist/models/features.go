@@ -19,13 +19,13 @@ import (
 // swagger:model Features
 type Features struct {
 
+	// accounts
+	Accounts *AccountsFeatures `json:"accounts,omitempty"`
+
 	// Login holds list of data source identifiers which are capable to do complete login step.
 	// This feature is applicable only on web sources.
 	// Required: true
 	Login []SourceName `json:"login"`
-
-	// accounts
-	Accounts *AccountsFeatures `json:"accounts,omitempty"`
 
 	// profile
 	Profile *ProfileFeatures `json:"profile,omitempty"`
@@ -38,11 +38,11 @@ type Features struct {
 func (m *Features) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateLogin(formats); err != nil {
+	if err := m.validateAccounts(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateAccounts(formats); err != nil {
+	if err := m.validateLogin(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -57,6 +57,24 @@ func (m *Features) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *Features) validateAccounts(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Accounts) { // not required
+		return nil
+	}
+
+	if m.Accounts != nil {
+		if err := m.Accounts.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("accounts")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -75,24 +93,6 @@ func (m *Features) validateLogin(formats strfmt.Registry) error {
 			return err
 		}
 
-	}
-
-	return nil
-}
-
-func (m *Features) validateAccounts(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.Accounts) { // not required
-		return nil
-	}
-
-	if m.Accounts != nil {
-		if err := m.Accounts.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("accounts")
-			}
-			return err
-		}
 	}
 
 	return nil

@@ -14,10 +14,10 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// LoanChangeHistoryAffordabilityData loan change history affordability data
+// ChangeHistoryAffordabilityData change history affordability data
 //
-// swagger:model LoanChangeHistoryAffordabilityData
-type LoanChangeHistoryAffordabilityData struct {
+// swagger:model ChangeHistoryAffordabilityData
+type ChangeHistoryAffordabilityData struct {
 
 	// Amount loan-interest or loan-repayment
 	// Required: true
@@ -38,8 +38,8 @@ type LoanChangeHistoryAffordabilityData struct {
 	Source *string `json:"source"`
 }
 
-// Validate validates this loan change history affordability data
-func (m *LoanChangeHistoryAffordabilityData) Validate(formats strfmt.Registry) error {
+// Validate validates this change history affordability data
+func (m *ChangeHistoryAffordabilityData) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateAmount(formats); err != nil {
@@ -64,7 +64,7 @@ func (m *LoanChangeHistoryAffordabilityData) Validate(formats strfmt.Registry) e
 	return nil
 }
 
-func (m *LoanChangeHistoryAffordabilityData) validateAmount(formats strfmt.Registry) error {
+func (m *ChangeHistoryAffordabilityData) validateAmount(formats strfmt.Registry) error {
 
 	if err := validate.Required("amount", "body", m.Amount); err != nil {
 		return err
@@ -73,7 +73,7 @@ func (m *LoanChangeHistoryAffordabilityData) validateAmount(formats strfmt.Regis
 	return nil
 }
 
-func (m *LoanChangeHistoryAffordabilityData) validateDate(formats strfmt.Registry) error {
+func (m *ChangeHistoryAffordabilityData) validateDate(formats strfmt.Registry) error {
 
 	if err := validate.Required("date", "body", m.Date); err != nil {
 		return err
@@ -86,7 +86,7 @@ func (m *LoanChangeHistoryAffordabilityData) validateDate(formats strfmt.Registr
 	return nil
 }
 
-var loanChangeHistoryAffordabilityDataTypeDirectionPropEnum []interface{}
+var changeHistoryAffordabilityDataTypeDirectionPropEnum []interface{}
 
 func init() {
 	var res []string
@@ -94,28 +94,28 @@ func init() {
 		panic(err)
 	}
 	for _, v := range res {
-		loanChangeHistoryAffordabilityDataTypeDirectionPropEnum = append(loanChangeHistoryAffordabilityDataTypeDirectionPropEnum, v)
+		changeHistoryAffordabilityDataTypeDirectionPropEnum = append(changeHistoryAffordabilityDataTypeDirectionPropEnum, v)
 	}
 }
 
 const (
 
-	// LoanChangeHistoryAffordabilityDataDirectionDebit captures enum value "debit"
-	LoanChangeHistoryAffordabilityDataDirectionDebit string = "debit"
+	// ChangeHistoryAffordabilityDataDirectionDebit captures enum value "debit"
+	ChangeHistoryAffordabilityDataDirectionDebit string = "debit"
 
-	// LoanChangeHistoryAffordabilityDataDirectionCredit captures enum value "credit"
-	LoanChangeHistoryAffordabilityDataDirectionCredit string = "credit"
+	// ChangeHistoryAffordabilityDataDirectionCredit captures enum value "credit"
+	ChangeHistoryAffordabilityDataDirectionCredit string = "credit"
 )
 
 // prop value enum
-func (m *LoanChangeHistoryAffordabilityData) validateDirectionEnum(path, location string, value string) error {
-	if err := validate.EnumCase(path, location, value, loanChangeHistoryAffordabilityDataTypeDirectionPropEnum, true); err != nil {
+func (m *ChangeHistoryAffordabilityData) validateDirectionEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, changeHistoryAffordabilityDataTypeDirectionPropEnum, true); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (m *LoanChangeHistoryAffordabilityData) validateDirection(formats strfmt.Registry) error {
+func (m *ChangeHistoryAffordabilityData) validateDirection(formats strfmt.Registry) error {
 
 	if err := validate.Required("direction", "body", m.Direction); err != nil {
 		return err
@@ -129,7 +129,7 @@ func (m *LoanChangeHistoryAffordabilityData) validateDirection(formats strfmt.Re
 	return nil
 }
 
-func (m *LoanChangeHistoryAffordabilityData) validateSource(formats strfmt.Registry) error {
+func (m *ChangeHistoryAffordabilityData) validateSource(formats strfmt.Registry) error {
 
 	if err := validate.Required("source", "body", m.Source); err != nil {
 		return err
@@ -139,7 +139,7 @@ func (m *LoanChangeHistoryAffordabilityData) validateSource(formats strfmt.Regis
 }
 
 // MarshalBinary interface implementation
-func (m *LoanChangeHistoryAffordabilityData) MarshalBinary() ([]byte, error) {
+func (m *ChangeHistoryAffordabilityData) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -147,8 +147,8 @@ func (m *LoanChangeHistoryAffordabilityData) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *LoanChangeHistoryAffordabilityData) UnmarshalBinary(b []byte) error {
-	var res LoanChangeHistoryAffordabilityData
+func (m *ChangeHistoryAffordabilityData) UnmarshalBinary(b []byte) error {
+	var res ChangeHistoryAffordabilityData
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

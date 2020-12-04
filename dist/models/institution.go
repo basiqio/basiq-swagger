@@ -28,10 +28,9 @@ type Institution struct {
 	// Required: true
 	Country *string `json:"country"`
 
-	// Resource type identifier. It is always "institution" for this model.
+	// features
 	// Required: true
-	// Enum: [institution]
-	EntityType *string `json:"type"`
+	Features *Features `json:"features"`
 
 	// URL to institution forgotten password page
 	ForgottenPasswordURL string `json:"forgottenPasswordUrl,omitempty"`
@@ -42,16 +41,24 @@ type Institution struct {
 	// Min Length: 7
 	// Pattern: ^[A-Z]{2}[0-9]{5}$
 	// Unique: true
-	InstitutionID *string `json:"id"`
+	ID *string `json:"id"`
 
 	// Institution type identifier
 	// Required: true
 	// Enum: [Bank Bank (Foreign) Test Bank Credit Union Financial Services Superannuation Building Society]
 	InstitutionType *string `json:"institutionType"`
 
+	// links
+	// Required: true
+	Links *ResourceLinks `json:"links"`
+
 	// Login ID field caption that should be shown on UI
 	// Required: true
 	LoginIDCaption *string `json:"loginIdCaption"`
+
+	// logo
+	// Required: true
+	Logo *InstitutionLogoResource `json:"logo"`
 
 	// Institution name
 	// Required: true
@@ -85,23 +92,6 @@ type Institution struct {
 	// Enum: [live beta]
 	Stage *string `json:"stage"`
 
-	// Institution tier identifier
-	// Required: true
-	// Enum: [1 2 3 4]
-	Tier *string `json:"tier"`
-
-	// features
-	// Required: true
-	Features *Features `json:"features"`
-
-	// links
-	// Required: true
-	Links *ResourceLinks `json:"links"`
-
-	// logo
-	// Required: true
-	Logo *InstitutionLogoResource `json:"logo"`
-
 	// stats
 	// Required: true
 	Stats *InstitutionPerformanceStats `json:"stats"`
@@ -109,6 +99,16 @@ type Institution struct {
 	// status
 	// Required: true
 	Status FeatureCondition `json:"status"`
+
+	// Institution tier identifier
+	// Required: true
+	// Enum: [1 2 3 4]
+	Tier *string `json:"tier"`
+
+	// Resource type identifier. It is always "institution" for this model.
+	// Required: true
+	// Enum: [institution]
+	Type *string `json:"type"`
 }
 
 // Validate validates this institution
@@ -123,11 +123,11 @@ func (m *Institution) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateEntityType(formats); err != nil {
+	if err := m.validateFeatures(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateInstitutionID(formats); err != nil {
+	if err := m.validateID(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -135,7 +135,15 @@ func (m *Institution) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateLinks(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateLoginIDCaption(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateLogo(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -163,27 +171,19 @@ func (m *Institution) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateTier(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateFeatures(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateLinks(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateLogo(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.validateStats(formats); err != nil {
 		res = append(res, err)
 	}
 
 	if err := m.validateStatus(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateTier(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateType(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -245,61 +245,39 @@ func (m *Institution) validateCountry(formats strfmt.Registry) error {
 	return nil
 }
 
-var institutionTypeEntityTypePropEnum []interface{}
+func (m *Institution) validateFeatures(formats strfmt.Registry) error {
 
-func init() {
-	var res []string
-	if err := json.Unmarshal([]byte(`["institution"]`), &res); err != nil {
-		panic(err)
-	}
-	for _, v := range res {
-		institutionTypeEntityTypePropEnum = append(institutionTypeEntityTypePropEnum, v)
-	}
-}
-
-const (
-
-	// InstitutionEntityTypeInstitution captures enum value "institution"
-	InstitutionEntityTypeInstitution string = "institution"
-)
-
-// prop value enum
-func (m *Institution) validateEntityTypeEnum(path, location string, value string) error {
-	if err := validate.EnumCase(path, location, value, institutionTypeEntityTypePropEnum, true); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (m *Institution) validateEntityType(formats strfmt.Registry) error {
-
-	if err := validate.Required("type", "body", m.EntityType); err != nil {
+	if err := validate.Required("features", "body", m.Features); err != nil {
 		return err
 	}
 
-	// value enum
-	if err := m.validateEntityTypeEnum("type", "body", *m.EntityType); err != nil {
-		return err
+	if m.Features != nil {
+		if err := m.Features.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("features")
+			}
+			return err
+		}
 	}
 
 	return nil
 }
 
-func (m *Institution) validateInstitutionID(formats strfmt.Registry) error {
+func (m *Institution) validateID(formats strfmt.Registry) error {
 
-	if err := validate.Required("id", "body", m.InstitutionID); err != nil {
+	if err := validate.Required("id", "body", m.ID); err != nil {
 		return err
 	}
 
-	if err := validate.MinLength("id", "body", string(*m.InstitutionID), 7); err != nil {
+	if err := validate.MinLength("id", "body", string(*m.ID), 7); err != nil {
 		return err
 	}
 
-	if err := validate.MaxLength("id", "body", string(*m.InstitutionID), 7); err != nil {
+	if err := validate.MaxLength("id", "body", string(*m.ID), 7); err != nil {
 		return err
 	}
 
-	if err := validate.Pattern("id", "body", string(*m.InstitutionID), `^[A-Z]{2}[0-9]{5}$`); err != nil {
+	if err := validate.Pattern("id", "body", string(*m.ID), `^[A-Z]{2}[0-9]{5}$`); err != nil {
 		return err
 	}
 
@@ -364,10 +342,46 @@ func (m *Institution) validateInstitutionType(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *Institution) validateLinks(formats strfmt.Registry) error {
+
+	if err := validate.Required("links", "body", m.Links); err != nil {
+		return err
+	}
+
+	if m.Links != nil {
+		if err := m.Links.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("links")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *Institution) validateLoginIDCaption(formats strfmt.Registry) error {
 
 	if err := validate.Required("loginIdCaption", "body", m.LoginIDCaption); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *Institution) validateLogo(formats strfmt.Registry) error {
+
+	if err := validate.Required("logo", "body", m.Logo); err != nil {
+		return err
+	}
+
+	if m.Logo != nil {
+		if err := m.Logo.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("logo")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -504,6 +518,36 @@ func (m *Institution) validateStage(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *Institution) validateStats(formats strfmt.Registry) error {
+
+	if err := validate.Required("stats", "body", m.Stats); err != nil {
+		return err
+	}
+
+	if m.Stats != nil {
+		if err := m.Stats.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("stats")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *Institution) validateStatus(formats strfmt.Registry) error {
+
+	if err := m.Status.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("status")
+		}
+		return err
+	}
+
+	return nil
+}
+
 var institutionTypeTierPropEnum []interface{}
 
 func init() {
@@ -553,84 +597,40 @@ func (m *Institution) validateTier(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *Institution) validateFeatures(formats strfmt.Registry) error {
+var institutionTypeTypePropEnum []interface{}
 
-	if err := validate.Required("features", "body", m.Features); err != nil {
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["institution"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		institutionTypeTypePropEnum = append(institutionTypeTypePropEnum, v)
+	}
+}
+
+const (
+
+	// InstitutionTypeInstitution captures enum value "institution"
+	InstitutionTypeInstitution string = "institution"
+)
+
+// prop value enum
+func (m *Institution) validateTypeEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, institutionTypeTypePropEnum, true); err != nil {
 		return err
 	}
-
-	if m.Features != nil {
-		if err := m.Features.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("features")
-			}
-			return err
-		}
-	}
-
 	return nil
 }
 
-func (m *Institution) validateLinks(formats strfmt.Registry) error {
+func (m *Institution) validateType(formats strfmt.Registry) error {
 
-	if err := validate.Required("links", "body", m.Links); err != nil {
+	if err := validate.Required("type", "body", m.Type); err != nil {
 		return err
 	}
 
-	if m.Links != nil {
-		if err := m.Links.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("links")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *Institution) validateLogo(formats strfmt.Registry) error {
-
-	if err := validate.Required("logo", "body", m.Logo); err != nil {
-		return err
-	}
-
-	if m.Logo != nil {
-		if err := m.Logo.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("logo")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *Institution) validateStats(formats strfmt.Registry) error {
-
-	if err := validate.Required("stats", "body", m.Stats); err != nil {
-		return err
-	}
-
-	if m.Stats != nil {
-		if err := m.Stats.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("stats")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *Institution) validateStatus(formats strfmt.Registry) error {
-
-	if err := m.Status.Validate(formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("status")
-		}
+	// value enum
+	if err := m.validateTypeEnum("type", "body", *m.Type); err != nil {
 		return err
 	}
 

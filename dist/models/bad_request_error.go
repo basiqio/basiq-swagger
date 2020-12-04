@@ -129,15 +129,15 @@ type BadRequestErrorDataItems0 struct {
 	// Human-readable explanation specific to this occurrence of the problem.
 	Detail string `json:"detail,omitempty"`
 
+	// source
+	Source *Source `json:"source,omitempty"`
+
 	// Title of the error
 	Title string `json:"title,omitempty"`
 
 	// Type of the response, always "error"
 	// Required: true
 	Type *string `json:"type"`
-
-	// source
-	Source *Source `json:"source,omitempty"`
 }
 
 // Validate validates this bad request error data items0
@@ -148,11 +148,11 @@ func (m *BadRequestErrorDataItems0) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateType(formats); err != nil {
+	if err := m.validateSource(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateSource(formats); err != nil {
+	if err := m.validateType(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -220,15 +220,6 @@ func (m *BadRequestErrorDataItems0) validateCode(formats strfmt.Registry) error 
 	return nil
 }
 
-func (m *BadRequestErrorDataItems0) validateType(formats strfmt.Registry) error {
-
-	if err := validate.Required("type", "body", m.Type); err != nil {
-		return err
-	}
-
-	return nil
-}
-
 func (m *BadRequestErrorDataItems0) validateSource(formats strfmt.Registry) error {
 
 	if swag.IsZero(m.Source) { // not required
@@ -242,6 +233,15 @@ func (m *BadRequestErrorDataItems0) validateSource(formats strfmt.Registry) erro
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *BadRequestErrorDataItems0) validateType(formats strfmt.Registry) error {
+
+	if err := validate.Required("type", "body", m.Type); err != nil {
+		return err
 	}
 
 	return nil

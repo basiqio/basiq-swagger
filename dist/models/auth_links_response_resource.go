@@ -25,6 +25,9 @@ type AuthLinksResponseResource struct {
 	// Required: true
 	ID *string `json:"id"`
 
+	// links
+	Links *AuthLinkLinks `json:"links,omitempty"`
+
 	// A user's mobile phone, used as for authentication.
 	// Required: true
 	Mobile *string `json:"mobile"`
@@ -36,9 +39,6 @@ type AuthLinksResponseResource struct {
 	// A string that uniquely identifies the user.
 	// Required: true
 	UserID *string `json:"userId"`
-
-	// links
-	Links *AuthLinkLinks `json:"links,omitempty"`
 }
 
 // Validate validates this auth links response resource
@@ -53,6 +53,10 @@ func (m *AuthLinksResponseResource) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateLinks(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateMobile(formats); err != nil {
 		res = append(res, err)
 	}
@@ -62,10 +66,6 @@ func (m *AuthLinksResponseResource) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateUserID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateLinks(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -93,6 +93,24 @@ func (m *AuthLinksResponseResource) validateID(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *AuthLinksResponseResource) validateLinks(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Links) { // not required
+		return nil
+	}
+
+	if m.Links != nil {
+		if err := m.Links.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("links")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *AuthLinksResponseResource) validateMobile(formats strfmt.Registry) error {
 
 	if err := validate.Required("mobile", "body", m.Mobile); err != nil {
@@ -115,24 +133,6 @@ func (m *AuthLinksResponseResource) validateUserID(formats strfmt.Registry) erro
 
 	if err := validate.Required("userId", "body", m.UserID); err != nil {
 		return err
-	}
-
-	return nil
-}
-
-func (m *AuthLinksResponseResource) validateLinks(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.Links) { // not required
-		return nil
-	}
-
-	if m.Links != nil {
-		if err := m.Links.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("links")
-			}
-			return err
-		}
 	}
 
 	return nil

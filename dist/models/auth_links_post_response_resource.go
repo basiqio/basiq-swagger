@@ -21,6 +21,9 @@ type AuthLinksPostResponseResource struct {
 	// Required: true
 	ExpiresAt *string `json:"expiresAt"`
 
+	// links
+	Links *AuthLinkLinks `json:"links,omitempty"`
+
 	// A user's mobile phone, used as for authentication.
 	// Required: true
 	Mobile *string `json:"mobile"`
@@ -32,9 +35,6 @@ type AuthLinksPostResponseResource struct {
 	// A string that uniquely identifies the user.
 	// Required: true
 	UserID *string `json:"userId"`
-
-	// links
-	Links *AuthLinkLinks `json:"links,omitempty"`
 }
 
 // Validate validates this auth links post response resource
@@ -42,6 +42,10 @@ func (m *AuthLinksPostResponseResource) Validate(formats strfmt.Registry) error 
 	var res []error
 
 	if err := m.validateExpiresAt(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateLinks(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -57,10 +61,6 @@ func (m *AuthLinksPostResponseResource) Validate(formats strfmt.Registry) error 
 		res = append(res, err)
 	}
 
-	if err := m.validateLinks(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
@@ -71,6 +71,24 @@ func (m *AuthLinksPostResponseResource) validateExpiresAt(formats strfmt.Registr
 
 	if err := validate.Required("expiresAt", "body", m.ExpiresAt); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *AuthLinksPostResponseResource) validateLinks(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Links) { // not required
+		return nil
+	}
+
+	if m.Links != nil {
+		if err := m.Links.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("links")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -98,24 +116,6 @@ func (m *AuthLinksPostResponseResource) validateUserID(formats strfmt.Registry) 
 
 	if err := validate.Required("userId", "body", m.UserID); err != nil {
 		return err
-	}
-
-	return nil
-}
-
-func (m *AuthLinksPostResponseResource) validateLinks(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.Links) { // not required
-		return nil
-	}
-
-	if m.Links != nil {
-		if err := m.Links.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("links")
-			}
-			return err
-		}
 	}
 
 	return nil

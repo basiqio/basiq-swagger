@@ -29,9 +29,12 @@ type JobData struct {
 	// Required: true
 	ID *string `json:"id"`
 
+	// links
+	Links *JobsLinks `json:"links,omitempty"`
+
 	// List of steps that need to be completed.
 	// Required: true
-	Steps []*Step `json:"steps"`
+	Steps []*JobsStep `json:"steps"`
 
 	// Value is "job".
 	Type string `json:"type,omitempty"`
@@ -39,9 +42,6 @@ type JobData struct {
 	// The date time when the job was last updated.
 	// Required: true
 	Updated *string `json:"updated"`
-
-	// links
-	Links *JobsLinks `json:"links,omitempty"`
 }
 
 // Validate validates this job data
@@ -56,15 +56,15 @@ func (m *JobData) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateLinks(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateSteps(formats); err != nil {
 		res = append(res, err)
 	}
 
 	if err := m.validateUpdated(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateLinks(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -87,6 +87,24 @@ func (m *JobData) validateID(formats strfmt.Registry) error {
 
 	if err := validate.Required("id", "body", m.ID); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *JobData) validateLinks(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Links) { // not required
+		return nil
+	}
+
+	if m.Links != nil {
+		if err := m.Links.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("links")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -121,24 +139,6 @@ func (m *JobData) validateUpdated(formats strfmt.Registry) error {
 
 	if err := validate.Required("updated", "body", m.Updated); err != nil {
 		return err
-	}
-
-	return nil
-}
-
-func (m *JobData) validateLinks(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.Links) { // not required
-		return nil
-	}
-
-	if m.Links != nil {
-		if err := m.Links.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("links")
-			}
-			return err
-		}
 	}
 
 	return nil

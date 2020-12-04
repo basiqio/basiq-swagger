@@ -19,26 +19,22 @@ import (
 // swagger:model InstitutionLogoResource
 type InstitutionLogoResource struct {
 
-	// Type resource type identifier
-	// Required: true
-	// Enum: [image]
-	Type *string `json:"type"`
-
 	// colors
 	Colors *Colors `json:"colors,omitempty"`
 
 	// links
 	// Required: true
 	Links *LogoResourceLinks `json:"links"`
+
+	// Type resource type identifier
+	// Required: true
+	// Enum: [image]
+	Type *string `json:"type"`
 }
 
 // Validate validates this institution logo resource
 func (m *InstitutionLogoResource) Validate(formats strfmt.Registry) error {
 	var res []error
-
-	if err := m.validateType(formats); err != nil {
-		res = append(res, err)
-	}
 
 	if err := m.validateColors(formats); err != nil {
 		res = append(res, err)
@@ -48,9 +44,49 @@ func (m *InstitutionLogoResource) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateType(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *InstitutionLogoResource) validateColors(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Colors) { // not required
+		return nil
+	}
+
+	if m.Colors != nil {
+		if err := m.Colors.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("colors")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InstitutionLogoResource) validateLinks(formats strfmt.Registry) error {
+
+	if err := validate.Required("links", "body", m.Links); err != nil {
+		return err
+	}
+
+	if m.Links != nil {
+		if err := m.Links.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("links")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -89,42 +125,6 @@ func (m *InstitutionLogoResource) validateType(formats strfmt.Registry) error {
 	// value enum
 	if err := m.validateTypeEnum("type", "body", *m.Type); err != nil {
 		return err
-	}
-
-	return nil
-}
-
-func (m *InstitutionLogoResource) validateColors(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.Colors) { // not required
-		return nil
-	}
-
-	if m.Colors != nil {
-		if err := m.Colors.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("colors")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *InstitutionLogoResource) validateLinks(formats strfmt.Registry) error {
-
-	if err := validate.Required("links", "body", m.Links); err != nil {
-		return err
-	}
-
-	if m.Links != nil {
-		if err := m.Links.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("links")
-			}
-			return err
-		}
 	}
 
 	return nil

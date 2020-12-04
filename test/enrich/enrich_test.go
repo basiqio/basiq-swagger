@@ -18,7 +18,7 @@ func TestGetEnrich(t *testing.T) {
 		AccountType: &accountType,
 		Amount:      &amount,
 		Institution: "AU00000",
-		Query:       "Starbucks",
+		Q:           "Starbucks",
 		Context:     context.TODO(),
 	}
 
@@ -44,7 +44,7 @@ func TestGetEnrichBadRequest(t *testing.T) {
 		AccountType: &accountType,
 		Amount:      &amount,
 		Institution: "",
-		Query:       "Starbucks",
+		Q:           "Starbucks",
 		Context:     context.TODO(),
 	}
 

@@ -43,7 +43,7 @@ func TestPostIncome(t *testing.T) {
 	userID := "8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5"
 	accountID := "14aa946c-6f87-44b7-bab9-d192d6261471"
 	incomePostParams := &income.PostIncomeParams{UserID: userID,
-		IncomePostRequest: &models.IncomePost{Accounts: []string{accountID}, FromMonth: "2018-11", ToMonth: "2019-10"},
+		IncomePostRequest: &models.IncomePostRequest{Accounts: []string{accountID}, FromMonth: "2018-11", ToMonth: "2019-10"},
 		Context:           context.TODO(),
 	}
 
@@ -69,7 +69,7 @@ func TestPostAffordabilityEmptyResponse(t *testing.T) {
 	userID := "8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5"
 	accountID := "14aa946c-6f87-44b7-bab9-d192d6261471"
 	incomePostParams := &income.PostIncomeParams{UserID: userID,
-		IncomePostRequest: &models.IncomePost{FromMonth: "2015-11", ToMonth: "2016-10", Accounts: []string{accountID}},
+		IncomePostRequest: &models.IncomePostRequest{FromMonth: "2015-11", ToMonth: "2016-10", Accounts: []string{accountID}},
 		Context:           context.TODO(),
 	}
 
@@ -89,7 +89,7 @@ func TestPostIncomeBadRequest(t *testing.T) {
 	userID := "8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5"
 	accountID := "14aa946c-6f87-44b7-bab9-d192d6261471"
 	incomePostParams := &income.PostIncomeParams{UserID: userID,
-		IncomePostRequest: &models.IncomePost{FromMonth: "2015-11", ToMonth: "2020-10", Accounts: []string{accountID}},
+		IncomePostRequest: &models.IncomePostRequest{FromMonth: "2015-11", ToMonth: "2020-10", Accounts: []string{accountID}},
 		Context:           context.TODO(),
 	}
 

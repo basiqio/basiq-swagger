@@ -10,25 +10,26 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// UserPostData user post data
+// CreateUser create user
 //
-// swagger:model UserPostData
-type UserPostData struct {
+// swagger:model createUser
+type CreateUser struct {
 
-	// The end-users email address.
+	// The end-users email address. Mandatory if mobile is not supplied.
 	Email string `json:"email,omitempty"`
 
-	// The end-users mobile number.
+	// The end-users mobile number, supplied in international format.
+	// +[country-code][mobileno]. Mandatory if email is not supplied.
 	Mobile string `json:"mobile,omitempty"`
 }
 
-// Validate validates this user post data
-func (m *UserPostData) Validate(formats strfmt.Registry) error {
+// Validate validates this create user
+func (m *CreateUser) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
 // MarshalBinary interface implementation
-func (m *UserPostData) MarshalBinary() ([]byte, error) {
+func (m *CreateUser) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -36,8 +37,8 @@ func (m *UserPostData) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *UserPostData) UnmarshalBinary(b []byte) error {
-	var res UserPostData
+func (m *CreateUser) UnmarshalBinary(b []byte) error {
+	var res CreateUser
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

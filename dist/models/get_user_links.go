@@ -25,7 +25,7 @@ type GetUserLinks struct {
 
 	// Auth link, possible null.
 	// Required: true
-	AuthLinks *string `json:"auth_link"`
+	AuthLink *string `json:"auth_link"`
 
 	// Connections reference url.
 	// Required: true
@@ -48,7 +48,7 @@ func (m *GetUserLinks) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateAuthLinks(formats); err != nil {
+	if err := m.validateAuthLink(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -79,9 +79,9 @@ func (m *GetUserLinks) validateAccounts(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *GetUserLinks) validateAuthLinks(formats strfmt.Registry) error {
+func (m *GetUserLinks) validateAuthLink(formats strfmt.Registry) error {
 
-	if err := validate.Required("auth_link", "body", m.AuthLinks); err != nil {
+	if err := validate.Required("auth_link", "body", m.AuthLink); err != nil {
 		return err
 	}
 

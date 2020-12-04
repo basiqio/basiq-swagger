@@ -17,6 +17,10 @@ import (
 // swagger:model AffordabilityAssetsData
 type AffordabilityAssetsData struct {
 
+	// account
+	// Required: true
+	Account *AccountHolder `json:"account"`
+
 	// The available funds at the time of the query.
 	// Required: true
 	AvailableFunds *string `json:"availableFunds"`
@@ -33,22 +37,22 @@ type AffordabilityAssetsData struct {
 	// Required: true
 	Institution *string `json:"institution"`
 
-	// Type account
-	// Required: true
-	Type *string `json:"type"`
-
-	// account
-	// Required: true
-	Account *AccountHolder `json:"account"`
-
 	// previous6 months
 	// Required: true
 	Previous6Months *AssetsPrevious6MonthsData `json:"previous6Months"`
+
+	// Type account
+	// Required: true
+	Type *string `json:"type"`
 }
 
 // Validate validates this affordability assets data
 func (m *AffordabilityAssetsData) Validate(formats strfmt.Registry) error {
 	var res []error
+
+	if err := m.validateAccount(formats); err != nil {
+		res = append(res, err)
+	}
 
 	if err := m.validateAvailableFunds(formats); err != nil {
 		res = append(res, err)
@@ -66,21 +70,35 @@ func (m *AffordabilityAssetsData) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateType(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateAccount(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.validatePrevious6Months(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateType(formats); err != nil {
 		res = append(res, err)
 	}
 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *AffordabilityAssetsData) validateAccount(formats strfmt.Registry) error {
+
+	if err := validate.Required("account", "body", m.Account); err != nil {
+		return err
+	}
+
+	if m.Account != nil {
+		if err := m.Account.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("account")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -120,33 +138,6 @@ func (m *AffordabilityAssetsData) validateInstitution(formats strfmt.Registry) e
 	return nil
 }
 
-func (m *AffordabilityAssetsData) validateType(formats strfmt.Registry) error {
-
-	if err := validate.Required("type", "body", m.Type); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *AffordabilityAssetsData) validateAccount(formats strfmt.Registry) error {
-
-	if err := validate.Required("account", "body", m.Account); err != nil {
-		return err
-	}
-
-	if m.Account != nil {
-		if err := m.Account.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("account")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
 func (m *AffordabilityAssetsData) validatePrevious6Months(formats strfmt.Registry) error {
 
 	if err := validate.Required("previous6Months", "body", m.Previous6Months); err != nil {
@@ -160,6 +151,15 @@ func (m *AffordabilityAssetsData) validatePrevious6Months(formats strfmt.Registr
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *AffordabilityAssetsData) validateType(formats strfmt.Registry) error {
+
+	if err := validate.Required("type", "body", m.Type); err != nil {
+		return err
 	}
 
 	return nil
