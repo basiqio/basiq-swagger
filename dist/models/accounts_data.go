@@ -20,14 +20,17 @@ import (
 type AccountsData struct {
 
 	// Account number
+	// Example: 105148119695
 	// Required: true
 	AccountNo *string `json:"accountNo"`
 
 	// Account available funds, nullable.
+	// Example: 200.54
 	// Required: true
 	AvailableFunds *string `json:"availableFunds"`
 
 	// Account balance, nullable.
+	// Example: 100.12
 	// Required: true
 	Balance *string `json:"balance"`
 
@@ -36,14 +39,17 @@ type AccountsData struct {
 	Class *AccountClass `json:"class"`
 
 	// Currency
+	// Example: AUD
 	// Required: true
 	Currency *string `json:"currency"`
 
 	// Account identification.
+	// Example: 319ae910
 	// Required: true
 	ID *string `json:"id"`
 
 	// Account last updated date and time.
+	// Example: 2017-09-28T11:15:09.756Z
 	// Required: true
 	LastUpdated *string `json:"lastUpdated"`
 
@@ -52,15 +58,18 @@ type AccountsData struct {
 	Links *ConnectionAccountLinks `json:"links"`
 
 	// Account name.
+	// Example: Business account
 	// Required: true
 	Name *string `json:"name"`
 
 	// Account status.
+	// Example: available
 	// Required: true
 	// Enum: [available unavailable]
 	Status *string `json:"status"`
 
 	// Type always "account".
+	// Example: account
 	// Required: true
 	Type *string `json:"type"`
 }

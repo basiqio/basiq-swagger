@@ -16,9 +16,11 @@ import (
 type UpdateUser struct {
 
 	// The end-users email address.
+	// Example: gavin@hooli.com
 	Email string `json:"email,omitempty"`
 
 	// The end-users mobile number.
+	// Example: +61410888666
 	Mobile string `json:"mobile,omitempty"`
 }
 

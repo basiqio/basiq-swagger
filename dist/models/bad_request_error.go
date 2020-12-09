@@ -21,6 +21,7 @@ import (
 type BadRequestError struct {
 
 	// Unique identifier for this particular occurrence of the problem.
+	// Example: ac5ah5i
 	// Required: true
 	CorrelationID *string `json:"correlationId"`
 
@@ -29,6 +30,7 @@ type BadRequestError struct {
 	Data []*BadRequestErrorDataItems0 `json:"data"`
 
 	// Always "list".
+	// Example: list
 	// Required: true
 	Type *string `json:"type"`
 }
@@ -122,20 +124,24 @@ func (m *BadRequestError) UnmarshalBinary(b []byte) error {
 type BadRequestErrorDataItems0 struct {
 
 	// Application-specific error code, expressed as a string value.
+	// Example: parameter-not-valid
 	// Required: true
 	// Enum: [parameter-not-supplied parameter-not-valid unsupported-accept invalid-content institution-not-supported temporary-unavailable invalid-credentials]
 	Code *string `json:"code"`
 
 	// Human-readable explanation specific to this occurrence of the problem.
+	// Example: ID value is not valid.
 	Detail string `json:"detail,omitempty"`
 
 	// source
 	Source *Source `json:"source,omitempty"`
 
 	// Title of the error
+	// Example: Parameter not valid.
 	Title string `json:"title,omitempty"`
 
 	// Type of the response, always "error"
+	// Example: error
 	// Required: true
 	Type *string `json:"type"`
 }

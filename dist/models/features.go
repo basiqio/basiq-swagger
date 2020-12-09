@@ -24,6 +24,7 @@ type Features struct {
 
 	// Login holds list of data source identifiers which are capable to do complete login step.
 	// This feature is applicable only on web sources.
+	// Example: ["web"]
 	// Required: true
 	Login []SourceName `json:"login"`
 

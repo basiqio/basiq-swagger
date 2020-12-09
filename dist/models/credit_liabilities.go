@@ -22,22 +22,27 @@ type CreditLiabilities struct {
 	Account *AccountHolder `json:"account"`
 
 	// The available funds at the time of the query.
+	// Example: 8286.80
 	// Required: true
 	AvailableFunds *string `json:"availableFunds"`
 
 	// The balance at the time of the query.
+	// Example: -11713.20
 	// Required: true
 	Balance *string `json:"balance"`
 
 	// Total credit limit available for the specified credit facility.
+	// Example: 20000.00
 	// Required: true
 	CreditLimit *string `json:"creditLimit"`
 
 	// The currency in which the account is recorded.
+	// Example: AUD
 	// Required: true
 	Currency *string `json:"currency"`
 
 	// The name of the financial institution with whom the account is held.
+	// Example: Hooli
 	// Required: true
 	Institution *string `json:"institution"`
 

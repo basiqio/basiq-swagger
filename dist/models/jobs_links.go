@@ -20,6 +20,7 @@ import (
 type JobsLinks struct {
 
 	// URL of the resource
+	// Example: /jobs/61723
 	// Required: true
 	Self *string `json:"self"`
 

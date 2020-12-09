@@ -21,10 +21,12 @@ type AccountClass struct {
 	Meta Meta `json:"meta,omitempty"`
 
 	// Product name.
+	// Example: saver
 	// Required: true
 	Product *string `json:"product"`
 
 	// Account type
+	// Example: savings
 	// Required: true
 	Type *string `json:"type"`
 }

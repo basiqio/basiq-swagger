@@ -20,18 +20,22 @@ import (
 type GetAffordabilityLinks struct {
 
 	// Links of accounts
+	// Example: ["https://au-api.basiq.io/users/25c8d1ed77/accounts/s55bf5","https://au-api.basiq.io/users/25c8d1ed77/accounts/s55bf4"]
 	// Required: true
 	Accounts []string `json:"accounts"`
 
 	// Link to the expenses
+	// Example: https://au-api.basiq.io/users/25c8d1ed77/expenses/s55bf5
 	// Required: true
 	Expenses *string `json:"expenses"`
 
 	// Link to the income
+	// Example: https://au-api.basiq.io/users/25c8d1ed77/income/s55bf4
 	// Required: true
 	Income *string `json:"income"`
 
 	// Link to the affordability resource
+	// Example: https://au-api.basiq.io/users/25c8d1ed77/affordability/s55bf3
 	// Required: true
 	Self *string `json:"self"`
 }

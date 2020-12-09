@@ -25,9 +25,11 @@ type ConnectionGetResponseResource struct {
 	Accounts *AccountsContainer `json:"accounts,omitempty"`
 
 	// Created date of the connection, available only for SERVER_SCOPE.
+	// Example: 2019-07-29T07:34:09Z
 	CreatedDate string `json:"createdDate,omitempty"`
 
 	// A string that uniquely identifies the user connection.
+	// Example: 61723
 	// Required: true
 	ID *string `json:"id"`
 
@@ -36,6 +38,7 @@ type ConnectionGetResponseResource struct {
 	Institution *ConnectionInstitution `json:"institution"`
 
 	// UTC Date and Time of when the connection was last used, in RFC 3339 format, available only for SERVER_SCOPE.
+	// Example: 2020-06-22T11:15:09Z
 	LastUsed string `json:"lastUsed,omitempty"`
 
 	// links
@@ -52,10 +55,12 @@ type ConnectionGetResponseResource struct {
 	// <li>active - the connection is valid (is working!) and the credentials have been verified (the jobs steps will continue) </li>
 	// <li>invalid -  the connection is no longer valid and requires the user to update their logon details. Invalid connections cannot refreshed until the password is updated. </li>
 	// </ul>
+	// Example: active
 	// Enum: [active pending invalid]
 	Status string `json:"status,omitempty"`
 
 	// Type, always "connection".
+	// Example: connection
 	// Required: true
 	Type *string `json:"type"`
 }

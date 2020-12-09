@@ -18,9 +18,11 @@ import (
 type AffordabilityTransactionsGetLinks struct {
 
 	// Url to next result.
+	// Example: https://au-api.basiq.io/users/115dc708/affordability/9dedbb28/transactions?next=9b7d9a64
 	Next string `json:"next,omitempty"`
 
 	// Self reference url.
+	// Example: https://au-api.basiq.io/users/115dc708/affordability/9dedbb28/transactions
 	// Required: true
 	Self *string `json:"self"`
 }

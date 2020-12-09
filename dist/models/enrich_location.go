@@ -17,27 +17,34 @@ import (
 type EnrichLocation struct {
 
 	// Country
+	// Example: Australia
 	Country string `json:"country,omitempty"`
 
 	// Address
+	// Example: 1/39 E Esplanade, Manly NSW 2095
 	FormattedAddress string `json:"formattedAddress,omitempty"`
 
 	// geometry
 	Geometry *EnrichGeometry `json:"geometry,omitempty"`
 
 	// Postal Code
+	// Example: 2095
 	PostalCode string `json:"postalCode,omitempty"`
 
 	// Route Name
+	// Example: E Esplanade
 	Route string `json:"route,omitempty"`
 
 	// Route Number
+	// Example: 29
 	RouteNo string `json:"routeNo,omitempty"`
 
 	// State
+	// Example: NSW
 	State string `json:"state,omitempty"`
 
 	// Suburb
+	// Example: Manly
 	Suburb string `json:"suburb,omitempty"`
 }
 

@@ -18,6 +18,7 @@ import (
 type EnrichMerchant struct {
 
 	// Merchant name
+	// Example: Garfish Manly
 	// Required: true
 	BusinessName *string `json:"businessName"`
 
@@ -25,6 +26,7 @@ type EnrichMerchant struct {
 	PhoneNumber *EnrichPhoneNumber `json:"phoneNumber,omitempty"`
 
 	// Merchant Website
+	// Example: http://garfish.com.au/garfish-manly/
 	// Required: true
 	Website *string `json:"website"`
 }

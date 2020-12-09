@@ -28,17 +28,21 @@ type AffordabilityResponse struct {
 	Assets []*AffordabilityAssetsData `json:"assets"`
 
 	// Number of days covered by the report
+	// Example: 392
 	CoverageDays int64 `json:"coverageDays,omitempty"`
 
 	// Start month for the period for which the Affordability summary is generated. The period of time relates to the account and transaction data used as input into the report.
+	// Example: 2019-03
 	// Required: true
 	FromMonth *string `json:"fromMonth"`
 
 	// Date the report was generated.
+	// Example: 2020-03-26T06:56:44
 	// Required: true
 	GeneratedDate *string `json:"generatedDate"`
 
 	// Uniquely identifies the affordability report.
+	// Example: s55bf3
 	// Required: true
 	ID *string `json:"id"`
 
@@ -55,10 +59,12 @@ type AffordabilityResponse struct {
 	Summary *AffordabilitySummary `json:"summary"`
 
 	// End month (usually the current month) for the period for which the Affordability summary is generated.
+	// Example: 2020-03
 	// Required: true
 	ToMonth *string `json:"toMonth"`
 
 	// Always "affordability".
+	// Example: affordability
 	// Required: true
 	Type *string `json:"type"`
 }

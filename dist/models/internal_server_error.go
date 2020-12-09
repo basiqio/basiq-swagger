@@ -21,6 +21,7 @@ import (
 type InternalServerError struct {
 
 	// Unique identifier for this particular occurrence of the problem.
+	// Example: ac5ah5i
 	// Required: true
 	CorrelationID *string `json:"correlationId"`
 
@@ -29,6 +30,7 @@ type InternalServerError struct {
 	Data []*InternalServerErrorDataItems0 `json:"data"`
 
 	// Always "list".
+	// Example: list
 	// Required: true
 	Type *string `json:"type"`
 }
@@ -122,17 +124,21 @@ func (m *InternalServerError) UnmarshalBinary(b []byte) error {
 type InternalServerErrorDataItems0 struct {
 
 	// Application-specific error code, expressed as a string value.
+	// Example: internal-server-error
 	// Required: true
 	// Enum: [internal-server-error]
 	Code *string `json:"code"`
 
 	// Human-readable explanation specific to this occurrence of the problem.
+	// Example: Internal Server error. Contact support.
 	Detail string `json:"detail,omitempty"`
 
 	// Title of the error
+	// Example: Internal Server error.
 	Title string `json:"title,omitempty"`
 
 	// Type of the response, always "error"
+	// Example: error
 	// Required: true
 	Type *string `json:"type"`
 }

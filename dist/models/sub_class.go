@@ -18,10 +18,12 @@ import (
 type SubClass struct {
 
 	// code
+	// Example: 0801050199
 	// Required: true
 	Code *string `json:"code"`
 
 	// title
+	// Example: Formal child care services nec
 	// Required: true
 	Title *string `json:"title"`
 }

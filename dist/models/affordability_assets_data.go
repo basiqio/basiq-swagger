@@ -26,14 +26,17 @@ type AffordabilityAssetsData struct {
 	AvailableFunds *string `json:"availableFunds"`
 
 	// The currency in which the account is recorded.
+	// Example: 35298.67
 	// Required: true
 	Balance *string `json:"balance"`
 
 	// The currency in which the account is recorded.
+	// Example: AUD
 	// Required: true
 	Currency *string `json:"currency"`
 
 	// The name of the financial institution with whom the account is held.
+	// Example: Hooli
 	// Required: true
 	Institution *string `json:"institution"`
 
@@ -42,6 +45,7 @@ type AffordabilityAssetsData struct {
 	Previous6Months *AssetsPrevious6MonthsData `json:"previous6Months"`
 
 	// Type account
+	// Example: account
 	// Required: true
 	Type *string `json:"type"`
 }

@@ -18,10 +18,12 @@ import (
 type AccountTransactionInterval struct {
 
 	// Date of first transaction on this account
+	// Example: 2018-07-01
 	// Required: true
 	From *string `json:"from"`
 
 	// Date of last transaction on this account
+	// Example: 2018-12-30
 	// Required: true
 	To *string `json:"to"`
 }

@@ -28,6 +28,7 @@ type AccountsResponseResource struct {
 	Links *ResourceLink `json:"links"`
 
 	// Type of the response, always "list".
+	// Example: list
 	// Required: true
 	Type *string `json:"type"`
 }

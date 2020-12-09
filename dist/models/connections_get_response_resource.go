@@ -28,6 +28,7 @@ type ConnectionsGetResponseResource struct {
 	Links *ResourceLink `json:"links,omitempty"`
 
 	// Type, always "list".
+	// Example: list
 	// Required: true
 	Type *string `json:"type"`
 }

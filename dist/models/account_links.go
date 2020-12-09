@@ -18,18 +18,22 @@ import (
 type AccountLinks struct {
 
 	// always null
+	// Example: null
 	// Required: true
 	Connection *string `json:"connection"`
 
 	// institution link to the institution associated with this account
+	// Example: https://au-api.basiq.io/institutions/AU00000
 	// Required: true
 	Institution *string `json:"institution"`
 
 	// self link to the requested account
+	// Example: https://au-api.basiq.io/users/cd6fbd92/accounts/319ae910
 	// Required: true
 	Self *string `json:"self"`
 
 	// transactions link to the transactions associated with this account
+	// Example: https://au-api.basiq.io/users/ea3a81/transactions?filter=account.id.eq('s55bf3')
 	// Required: true
 	Transactions *string `json:"transactions"`
 }

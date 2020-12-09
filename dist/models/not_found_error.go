@@ -21,6 +21,7 @@ import (
 type NotFoundError struct {
 
 	// Unique identifier for this particular occurrence of the problem.
+	// Example: ac5ah5i
 	// Required: true
 	CorrelationID *string `json:"correlationId"`
 
@@ -29,6 +30,7 @@ type NotFoundError struct {
 	Data []*NotFoundErrorDataItems0 `json:"data"`
 
 	// Always "list".
+	// Example: list
 	// Required: true
 	Type *string `json:"type"`
 }
@@ -122,17 +124,21 @@ func (m *NotFoundError) UnmarshalBinary(b []byte) error {
 type NotFoundErrorDataItems0 struct {
 
 	// Application-specific error code, expressed as a string value.
+	// Example: resource-not-found
 	// Required: true
 	// Enum: [resource-not-found]
 	Code *string `json:"code"`
 
 	// Human-readable explanation specific to this occurrence of the problem.
+	// Example: Resource not found.
 	Detail string `json:"detail,omitempty"`
 
 	// Title of the error
+	// Example: Requested resource is not found.
 	Title string `json:"title,omitempty"`
 
 	// Type of the response, always "error"
+	// Example: error
 	// Required: true
 	Type *string `json:"type"`
 }

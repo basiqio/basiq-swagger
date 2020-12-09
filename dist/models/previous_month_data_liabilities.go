@@ -18,18 +18,22 @@ import (
 type PreviousMonthDataLiabilities struct {
 
 	// max balance
+	// Example: -12329.16
 	// Required: true
 	MaxBalance *string `json:"maxBalance"`
 
 	// min balance
+	// Example: -3174.16
 	// Required: true
 	MinBalance *string `json:"minBalance"`
 
 	// total credits
+	// Example: 0.00
 	// Required: true
 	TotalCredits *string `json:"totalCredits"`
 
 	// total debits
+	// Example: -8287.10
 	// Required: true
 	TotalDebits *string `json:"totalDebits"`
 }

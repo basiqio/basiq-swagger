@@ -21,6 +21,7 @@ import (
 type GoneError struct {
 
 	// Unique identifier for this particular occurrence of the problem.
+	// Example: ac5ah5i
 	// Required: true
 	CorrelationID *string `json:"correlationId"`
 
@@ -29,6 +30,7 @@ type GoneError struct {
 	Data []*GoneErrorDataItems0 `json:"data"`
 
 	// Always "list".
+	// Example: list
 	// Required: true
 	Type *string `json:"type"`
 }
@@ -122,6 +124,7 @@ func (m *GoneError) UnmarshalBinary(b []byte) error {
 type GoneErrorDataItems0 struct {
 
 	// Application-specific error code, expressed as a string value.
+	// Example: resource-no-longer-available
 	// Required: true
 	// Enum: [resource-no-longer-available]
 	Code *string `json:"code"`
@@ -133,6 +136,7 @@ type GoneErrorDataItems0 struct {
 	Title string `json:"title,omitempty"`
 
 	// Type of the response, always "error"
+	// Example: error
 	// Required: true
 	Type *string `json:"type"`
 }

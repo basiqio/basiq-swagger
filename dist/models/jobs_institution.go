@@ -20,6 +20,7 @@ import (
 type JobsInstitution struct {
 
 	// A string that uniquely identifies institution.
+	// Example: AU00000
 	// Required: true
 	ID *string `json:"id"`
 
@@ -28,6 +29,7 @@ type JobsInstitution struct {
 	Links *JobsLinks `json:"links"`
 
 	// Always "institution".
+	// Example: institution
 	// Required: true
 	Type *string `json:"type"`
 }

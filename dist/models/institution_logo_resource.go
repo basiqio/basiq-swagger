@@ -27,6 +27,7 @@ type InstitutionLogoResource struct {
 	Links *LogoResourceLinks `json:"links"`
 
 	// Type resource type identifier
+	// Example: image
 	// Required: true
 	// Enum: [image]
 	Type *string `json:"type"`

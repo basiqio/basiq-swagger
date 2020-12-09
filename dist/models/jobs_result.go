@@ -32,6 +32,7 @@ type JobsResult struct {
 	Title string `json:"title,omitempty"`
 
 	// In case of success, Always "link".
+	// Example: link
 	Type string `json:"type,omitempty"`
 
 	// In case of success, URL of the updated (or created) resources.

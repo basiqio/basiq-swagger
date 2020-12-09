@@ -18,10 +18,12 @@ import (
 type AssetsPrevious6MonthsData struct {
 
 	// max balance
+	// Example: 38309.44
 	// Required: true
 	MaxBalance *string `json:"maxBalance"`
 
 	// min balance
+	// Example: 10032.81
 	// Required: true
 	MinBalance *string `json:"minBalance"`
 }

@@ -32,11 +32,13 @@ type JobsStep struct {
 	// <li> success - The job has successfully completed. </li>
 	// <li> failed - The job has failed.</li>
 	// </ul>
+	// Example: success
 	// Required: true
 	// Enum: [pending in-progress success failed]
 	Status *string `json:"status"`
 
 	// Name of the step the job needs to complete.
+	// Example: retrieve-accounts
 	// Enum: [verify-credentials retrieve-accounts retrieve-transactions retrieve-statements]
 	Title string `json:"title,omitempty"`
 }

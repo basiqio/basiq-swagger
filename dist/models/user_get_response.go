@@ -32,11 +32,13 @@ type UserGetResponse struct {
 	Connections *GetUserConnection `json:"connections"`
 
 	// User email or empty.
+	// Example: gavin@hooli.com
 	// Required: true
 	// Format: email
 	Email *strfmt.Email `json:"email"`
 
 	// User identification.
+	// Example: ea3a81
 	// Required: true
 	ID *string `json:"id"`
 
@@ -45,6 +47,7 @@ type UserGetResponse struct {
 	Links *GetUserLinks `json:"links"`
 
 	// User mobile number, or empty.
+	// Example: +61410888666
 	// Required: true
 	Mobile *string `json:"mobile"`
 
@@ -53,6 +56,7 @@ type UserGetResponse struct {
 	Name *string `json:"name"`
 
 	// Always "user".
+	// Example: user
 	// Required: true
 	Type *string `json:"type"`
 }

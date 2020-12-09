@@ -16,9 +16,11 @@ import (
 type GroupDetails struct {
 
 	// Group Code
+	// Example: 451
 	Code string `json:"code,omitempty"`
 
 	// Group Details
+	// Example: Cafes, Restaurants and Takeaway Food Services
 	Title string `json:"title,omitempty"`
 }
 

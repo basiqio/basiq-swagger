@@ -16,9 +16,11 @@ import (
 type EnrichGeometry struct {
 
 	// Latitude
+	// Example: -33.79988520000001
 	Lat string `json:"lat,omitempty"`
 
 	// Longitude
+	// Example: 151.2858021
 	Lng string `json:"lng,omitempty"`
 }
 

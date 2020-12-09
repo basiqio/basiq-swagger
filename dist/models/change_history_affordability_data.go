@@ -20,20 +20,24 @@ import (
 type ChangeHistoryAffordabilityData struct {
 
 	// Amount loan-interest or loan-repayment
+	// Example: 5768.00
 	// Required: true
 	Amount *string `json:"amount"`
 
 	// Date
+	// Example: 2019-03-31
 	// Required: true
 	// Format: date
 	Date *strfmt.Date `json:"date"`
 
 	// Debit or Credit
+	// Example: credit
 	// Required: true
 	// Enum: [debit credit]
 	Direction *string `json:"direction"`
 
 	// Cleaned transaction description
+	// Example: Transfer Platnm Homeloan 346454
 	// Required: true
 	Source *string `json:"source"`
 }

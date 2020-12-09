@@ -22,6 +22,7 @@ import (
 type GetUserConnection struct {
 
 	// Count of accounts.
+	// Example: 5
 	// Required: true
 	Count *int64 `json:"count"`
 
@@ -30,6 +31,7 @@ type GetUserConnection struct {
 	Data []*GetUserConnectionData `json:"data"`
 
 	// Always "list".
+	// Example: list
 	// Required: true
 	Type *string `json:"type"`
 }

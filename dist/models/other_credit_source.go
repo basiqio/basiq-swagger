@@ -21,14 +21,17 @@ import (
 type OtherCreditSource struct {
 
 	// Duration other income (number days from first to last occurrence) returned as an integer with values zero or greater.
+	// Example: 335
 	// Required: true
 	AgeDays *int64 `json:"ageDays"`
 
 	// Mean of irregular income amount - calculated across all occurrences identified.
+	// Example: 110.85
 	// Required: true
 	AmountAvg *string `json:"amountAvg"`
 
 	// Average (mean) number of times per calendar month the credits in the series occur.
+	// Example: 1
 	// Required: true
 	AvgMonthlyOccurence *string `json:"avgMonthlyOccurence"`
 
@@ -41,15 +44,18 @@ type OtherCreditSource struct {
 	Current *CurrentOtherCreditSource `json:"current"`
 
 	// Frequency is "other", "irregular" or a time period e.g. "bi-weekly"
+	// Example: monthly
 	// Required: true
 	// Enum: [daily weekly bi-weekly monthly bi-monthly quarterly half-year yearly other irregular]
 	Frequency *string `json:"frequency"`
 
 	// Number of instances of credits in the series.
+	// Example: 12
 	// Required: true
 	NoOccurrences *int64 `json:"noOccurrences"`
 
 	// Source Other Credit income (cleaned transaction description).
+	// Example: savings interest cr bal - Account 1
 	// Required: true
 	Source *string `json:"source"`
 }

@@ -18,18 +18,22 @@ import (
 type PreviousMonthDataLoanLiabilities struct {
 
 	// total credits
+	// Example: 0.00
 	// Required: true
 	TotalCredits *string `json:"totalCredits"`
 
 	// total debits
+	// Example: -8287.10
 	// Required: true
 	TotalDebits *string `json:"totalDebits"`
 
 	// total interest charged
+	// Example: -4303.50
 	// Required: true
 	TotalInterestCharged *string `json:"totalInterestCharged"`
 
 	// total repayments
+	// Example: 5768.00
 	// Required: true
 	TotalRepayments *string `json:"totalRepayments"`
 }

@@ -22,6 +22,7 @@ import (
 type TransactionsGetResource struct {
 
 	// Count of the transactions in the response.
+	// Example: 100
 	// Required: true
 	Count *int64 `json:"count"`
 
@@ -33,10 +34,12 @@ type TransactionsGetResource struct {
 	Links *TransactionsGetLinks `json:"links,omitempty"`
 
 	// size
+	// Example: 500
 	// Required: true
 	Size *int64 `json:"size"`
 
 	// Value is "list".
+	// Example: list
 	// Required: true
 	Type *string `json:"type"`
 }

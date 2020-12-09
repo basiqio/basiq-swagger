@@ -32,6 +32,7 @@ type ExpensesResponse struct {
 	CashWithdrawals *ClassResourceExpenses `json:"cashWithdrawals"`
 
 	// Number of days covered by the report
+	// Example: 392
 	CoverageDays int64 `json:"coverageDays,omitempty"`
 
 	// external transfers
@@ -39,10 +40,12 @@ type ExpensesResponse struct {
 	ExternalTransfers *ClassResourceExpenses `json:"externalTransfers"`
 
 	// First 'month' occurrence of expenses categorised going back as far as 13 months.
+	// Example: 2017-12
 	// Required: true
 	FromMonth *string `json:"fromMonth"`
 
 	// Uniquely identifies the expenses report.
+	// Example: s55bf3
 	// Required: true
 	ID *string `json:"id"`
 
@@ -62,10 +65,12 @@ type ExpensesResponse struct {
 	Payments []*PaymentsSummaryExpenses `json:"payments"`
 
 	// Latest 'month' occurrence of expenses categorised.
+	// Example: 2018-12
 	// Required: true
 	ToMonth *string `json:"toMonth"`
 
 	// Value of this resource is "expenses".
+	// Example: expenses
 	// Required: true
 	Type *string `json:"type"`
 }

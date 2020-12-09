@@ -3412,10 +3412,16 @@
       "required": [
         "type",
         "id",
+        "createdDate",
         "links",
         "institution"
       ],
       "properties": {
+        "createdDate": {
+          "description": "Created date of the connection, available only for SERVER_SCOPE.",
+          "type": "string",
+          "example": "2019-07-29T07:34:09Z"
+        },
         "id": {
           "description": "Connection identification.",
           "type": "string",
