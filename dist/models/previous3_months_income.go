@@ -18,14 +18,17 @@ import (
 type Previous3MonthsIncome struct {
 
 	// Median regular income amount - calculated across all occurrences in last 3 months (note: median provides a more reliable amount than mean for a regular income source as it is less affected by outliers and skewed data - use variance amount to understand outliers and changeHistory to view actual credits)
+	// Example: 18098.00
 	// Required: true
 	AmountAvg *string `json:"amountAvg"`
 
 	// Median monthly regular income amount
+	// Example: 18098.00
 	// Required: true
 	AmountAvgMonthly *string `json:"amountAvgMonthly"`
 
 	// Difference between min and max payment amount for regular income
+	// Example: 0.00
 	// Required: true
 	Variance *string `json:"variance"`
 }

@@ -18,10 +18,12 @@ import (
 type UserConnectionPostData struct {
 
 	// User's (new or old) institution password.
+	// Example: 1234
 	// Required: true
 	Password *string `json:"password"`
 
 	// User's institution secondary login id.
+	// Example: 4321
 	SecondaryLoginID string `json:"secondaryLoginId,omitempty"`
 
 	// User's institution security code.

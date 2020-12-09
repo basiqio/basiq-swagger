@@ -21,6 +21,7 @@ import (
 type UnauthorizedError struct {
 
 	// Unique identifier for this particular occurrence of the problem.
+	// Example: ac5ah5i
 	// Required: true
 	CorrelationID *string `json:"correlationId"`
 
@@ -29,6 +30,7 @@ type UnauthorizedError struct {
 	Data []*UnauthorizedErrorDataItems0 `json:"data"`
 
 	// Always "list".
+	// Example: list
 	// Required: true
 	Type *string `json:"type"`
 }
@@ -122,17 +124,21 @@ func (m *UnauthorizedError) UnmarshalBinary(b []byte) error {
 type UnauthorizedErrorDataItems0 struct {
 
 	// Application-specific error code, expressed as a string value.
+	// Example: unauthorized-access
 	// Required: true
 	// Enum: [unauthorized-access invalid-authorization-token]
 	Code *string `json:"code"`
 
 	// Human-readable explanation specific to this occurrence of the problem.
+	// Example: You are not authorized to access this resource
 	Detail string `json:"detail,omitempty"`
 
 	// Title of the error
+	// Example: Unauthorized Access
 	Title string `json:"title,omitempty"`
 
 	// Type of the response, always "error"
+	// Example: error
 	// Required: true
 	Type *string `json:"type"`
 }

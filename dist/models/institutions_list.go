@@ -28,6 +28,7 @@ type InstitutionsList struct {
 	Links *ResourceLinks `json:"links"`
 
 	// TotalCount contains total count of institutions
+	// Example: 1
 	// Required: true
 	TotalCount *int64 `json:"totalCount"`
 

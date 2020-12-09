@@ -20,6 +20,7 @@ import (
 type ClassResourceExpenses struct {
 
 	// Average amount monthly
+	// Example: -421.00
 	// Required: true
 	AvgMonthly *string `json:"avgMonthly"`
 
@@ -28,6 +29,7 @@ type ClassResourceExpenses struct {
 	ChangeHistory []*ChangeHistoryExpensesClass `json:"changeHistory"`
 
 	// Summary period "monthly"
+	// Example: monthly
 	// Required: true
 	Summary *string `json:"summary"`
 }

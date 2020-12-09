@@ -18,10 +18,12 @@ import (
 type IncomeLinks struct {
 
 	// Links of accounts
+	// Example: ["https://au-api.basiq.io/users/25c8d1ed77/accounts/s55bf5","https://au-api.basiq.io/users/25c8d1ed77/accounts/s55bf4"]
 	// Required: true
 	Accounts []string `json:"accounts"`
 
 	// Link to the requested income resource
+	// Example: https://au-api.basiq.io/users/25c8d1ed77/income/s55bf4
 	// Required: true
 	Self *string `json:"self"`
 }

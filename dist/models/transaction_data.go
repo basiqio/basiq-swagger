@@ -20,23 +20,28 @@ import (
 type TransactionData struct {
 
 	// The id of the account resource the transaction belongs to.
+	// Example: d3de1ca1
 	// Required: true
 	Account *string `json:"account"`
 
 	// Transaction amount. Outgoing funds are expressed as negative values.
+	// Example: 123.12
 	// Required: true
 	Amount *string `json:"amount"`
 
 	// Value of the account balance at time the transaction was completed.
+	// Example: 123.12
 	// Required: true
 	Balance *string `json:"balance"`
 
 	// Describes the class(type) of transaction.
+	// Example: payment
 	// Required: true
 	// Enum: [bank-fee payment cash-withdrawal transfer loan-interest refund direct-cedit interest loan-repayment]
 	Class *string `json:"class"`
 
 	// The id of the connection resource that was used to retrieve the transaction.
+	// Example: d3de1ca1
 	// Required: true
 	Connection *string `json:"connection"`
 
@@ -45,15 +50,18 @@ type TransactionData struct {
 	Description *string `json:"description"`
 
 	// Identifies if the transaction is of debit or credit type.
+	// Example: credit
 	// Required: true
 	// Enum: [debit credit]
 	Direction *string `json:"direction"`
 
 	// Uniquely identifies the transaction for this connection. Note that when a connection is refreshed pending transactions will receive new id's, whilst posted transactions will receive the same id's as before the refresh.
+	// Example: d3de1ca1
 	// Required: true
 	ID *string `json:"id"`
 
 	// The id of the institution resource the transaction originated from.
+	// Example: AU00000
 	// Required: true
 	Institution *string `json:"institution"`
 
@@ -62,10 +70,12 @@ type TransactionData struct {
 	Links *TransactionLinks `json:"links"`
 
 	// Date the transaction was posted as provided by the institution (this is the same date that appears on a bank statement). This value is null if the record is pending. e.g. "2017-11-10T21:46:44Z" or 2017-11-10T00:00:00Z.
+	// Example: 2018-11-02T00:00:00Z
 	// Required: true
 	PostDate *string `json:"postDate"`
 
 	// Identifies if a transaction is pending or posted. A pending transaction is an approved debit or credit transaction that has not been fully processed yet (i.e. has not been posted). Find out more about pending transaction and how to deal with them within your app. Note that pending transactions are not available for all institutions.
+	// Example: pending
 	// Required: true
 	// Enum: [pending posted]
 	Status *string `json:"status"`
@@ -75,10 +85,12 @@ type TransactionData struct {
 	SubClass *SubClass `json:"subClass"`
 
 	// Date that the user executed the transaction as provided by the istitution. Note that not all transactions provide this value (varies by institution) e.g. "2017-11-10T00:00:00Z"
+	// Example: 2018-11-02T00:00:00Z
 	// Required: true
 	TransactionDate *string `json:"transactionDate"`
 
 	// Value is "transaction".
+	// Example: transaction
 	// Required: true
 	Type *string `json:"type"`
 }

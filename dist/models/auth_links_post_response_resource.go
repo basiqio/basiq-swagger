@@ -18,6 +18,7 @@ import (
 type AuthLinksPostResponseResource struct {
 
 	// The date time of auth link expiry.
+	// Example: 2019-11-21T04:08:50Z
 	// Required: true
 	ExpiresAt *string `json:"expiresAt"`
 
@@ -25,14 +26,17 @@ type AuthLinksPostResponseResource struct {
 	Links *AuthLinkLinks `json:"links,omitempty"`
 
 	// A user's mobile phone, used as for authentication.
+	// Example: +61410000000
 	// Required: true
 	Mobile *string `json:"mobile"`
 
 	// Type of the response, always "auth_link".
+	// Example: auth_link
 	// Required: true
 	Type *string `json:"type"`
 
 	// A string that uniquely identifies the user.
+	// Example: ec4ea48d
 	// Required: true
 	UserID *string `json:"userId"`
 }

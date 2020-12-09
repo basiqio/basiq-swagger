@@ -20,6 +20,7 @@ import (
 type GetUserAccountData struct {
 
 	// Account identification.
+	// Example: aaaf2c3b
 	// Required: true
 	ID *string `json:"id"`
 
@@ -28,6 +29,7 @@ type GetUserAccountData struct {
 	Links *ResourceLink `json:"links"`
 
 	// Always "account".
+	// Example: account
 	// Required: true
 	Type *string `json:"type"`
 }

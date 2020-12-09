@@ -16,9 +16,11 @@ import (
 type SubdivisionDetails struct {
 
 	// Subdivision Code
+	// Example: 45
 	Code string `json:"code,omitempty"`
 
 	// Subdivision Details
+	// Example: Food and Beverage Services
 	Title string `json:"title,omitempty"`
 }
 

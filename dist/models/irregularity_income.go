@@ -20,10 +20,12 @@ import (
 type IrregularityIncome struct {
 
 	// Array of dates for which the expected credit is not met
+	// Example: ["2020-03"]
 	// Required: true
 	Gaps []Gap `json:"gaps"`
 
 	// Stability percentage indicator of how stable the income is. 100 = no gaps in the income series from the source. Calculated as (number of transactions that are included in the income report for this source) / (number of transactions that were expected to be included in the income report for this source).
+	// Example: 100.00
 	// Required: true
 	Stability *string `json:"stability"`
 }

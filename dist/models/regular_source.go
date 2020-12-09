@@ -21,6 +21,7 @@ import (
 type RegularSource struct {
 
 	// Duration regular income (number days from first to last occurrence) returned as an integer with values zero or greater
+	// Example: 334
 	// Required: true
 	AgeDays *int64 `json:"ageDays"`
 
@@ -33,6 +34,7 @@ type RegularSource struct {
 	Current *CurrentRegularSource `json:"current"`
 
 	// Enum detailing frequency regular income
+	// Example: monthly
 	// Required: true
 	// Enum: [daily weekly bi-weekly monthly bi-monthly quarterly half-year yearly]
 	Frequency *string `json:"frequency"`
@@ -46,6 +48,7 @@ type RegularSource struct {
 	Previous3Months *Previous3MonthsIncome `json:"previous3Months"`
 
 	// Source regular income (cleaned transaction description).
+	// Example: payroll wfrms 15439393
 	// Required: true
 	Source *string `json:"source"`
 }

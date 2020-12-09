@@ -28,6 +28,7 @@ type SubCategoryExpenses struct {
 	ChangeHistory []*ChangeHistoryExpensesClass `json:"changeHistory"`
 
 	// Summary period "monthly".
+	// Example: monthly
 	// Required: true
 	Summary *string `json:"summary"`
 }

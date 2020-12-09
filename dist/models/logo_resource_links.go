@@ -18,10 +18,12 @@ import (
 type LogoResourceLinks struct {
 
 	// URL to full size logo
+	// Example: https://example.com/AU00000-full.svg
 	// Required: true
 	Full *string `json:"full"`
 
 	// Square formatted logo URL
+	// Example: https://example.com/AU00000.svg
 	// Required: true
 	Square *string `json:"square"`
 }

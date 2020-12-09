@@ -19,7 +19,13 @@ import (
 // swagger:model ConnectionsData
 type ConnectionsData struct {
 
+	// Created date of the connection, available only for SERVER_SCOPE.
+	// Example: 2019-07-29T07:34:09Z
+	// Required: true
+	CreatedDate *string `json:"createdDate"`
+
 	// Connection identification.
+	// Example: 61723
 	// Required: true
 	ID *string `json:"id"`
 
@@ -28,6 +34,7 @@ type ConnectionsData struct {
 	Institution *ConnectionInstitution `json:"institution"`
 
 	// Connection last used date, available only for SERVER_SCOPE.
+	// Example: 2020-06-22T11:15:09Z
 	LastUsed string `json:"lastUsed,omitempty"`
 
 	// links
@@ -35,10 +42,12 @@ type ConnectionsData struct {
 	Links *GetConnectionLinks `json:"links"`
 
 	// Connection status, available only for SERVER_SCOPE.
+	// Example: active
 	// Enum: [active pending invalid]
 	Status string `json:"status,omitempty"`
 
 	// Type, always "connection".
+	// Example: connection
 	// Required: true
 	Type *string `json:"type"`
 }
@@ -46,6 +55,10 @@ type ConnectionsData struct {
 // Validate validates this connections data
 func (m *ConnectionsData) Validate(formats strfmt.Registry) error {
 	var res []error
+
+	if err := m.validateCreatedDate(formats); err != nil {
+		res = append(res, err)
+	}
 
 	if err := m.validateID(formats); err != nil {
 		res = append(res, err)
@@ -70,6 +83,15 @@ func (m *ConnectionsData) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *ConnectionsData) validateCreatedDate(formats strfmt.Registry) error {
+
+	if err := validate.Required("createdDate", "body", m.CreatedDate); err != nil {
+		return err
+	}
+
 	return nil
 }
 

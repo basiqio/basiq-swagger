@@ -18,9 +18,11 @@ import (
 type Source struct {
 
 	// String indicating which URI query parameter caused the error.
+	// Example: userId
 	Parameter string `json:"parameter,omitempty"`
 
 	// Location to the object or attribute that the error relates to.
+	// Example: users/userId
 	Pointer string `json:"pointer,omitempty"`
 }
 

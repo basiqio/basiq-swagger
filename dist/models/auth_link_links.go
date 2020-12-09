@@ -18,10 +18,12 @@ import (
 type AuthLinkLinks struct {
 
 	// Public URL of auth link.
+	// Example: https://connect.basiq.io/63448be4
 	// Required: true
 	Public *string `json:"public"`
 
 	// URL of the resource
+	// Example: /users/ec4ea48d/auth_link
 	// Required: true
 	Self *string `json:"self"`
 }

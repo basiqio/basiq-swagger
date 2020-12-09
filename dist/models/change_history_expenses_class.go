@@ -18,10 +18,12 @@ import (
 type ChangeHistoryExpensesClass struct {
 
 	// Amount of expense that period
+	// Example: -11.00
 	// Required: true
 	Amount *string `json:"amount"`
 
 	// Month expense relates
+	// Example: 2018-09
 	// Required: true
 	Date *string `json:"date"`
 }

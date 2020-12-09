@@ -18,6 +18,7 @@ import (
 type AvgMonthlyData struct {
 
 	// avg monthly
+	// Example: 18098.00
 	// Required: true
 	AvgMonthly *string `json:"avgMonthly"`
 }

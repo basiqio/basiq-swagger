@@ -20,6 +20,7 @@ import (
 type GetEnrichResponse struct {
 
 	// Transaction Classification
+	// Example: payment
 	// Required: true
 	// Enum: [direct-credit refund interest payment cash-withdrawal bank-fee transfer loan-interest loan-repayment]
 	Class *string `json:"class"`
@@ -29,6 +30,7 @@ type GetEnrichResponse struct {
 	Data *EnrichData `json:"data"`
 
 	// Direction of transaction
+	// Example: credit
 	// Required: true
 	// Enum: [credit debit unknown]
 	Direction *string `json:"direction"`
@@ -38,6 +40,7 @@ type GetEnrichResponse struct {
 	Links *ResourceLink `json:"links"`
 
 	// Always "enrich"
+	// Example: enrich
 	// Required: true
 	Type *string `json:"type"`
 }

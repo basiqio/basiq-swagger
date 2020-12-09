@@ -26,6 +26,7 @@ type ConnectionsRefreshResource struct {
 	Data []*ConnectionResponseResource `json:"data"`
 
 	// Type, always "list".
+	// Example: list
 	// Required: true
 	Type *string `json:"type"`
 }

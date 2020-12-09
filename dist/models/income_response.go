@@ -24,13 +24,16 @@ import (
 type IncomeResponse struct {
 
 	// Number of days covered by the report
+	// Example: 392
 	CoverageDays int64 `json:"coverageDays,omitempty"`
 
 	// Start month for the period for which the Income summary is generated. The period of time relates to the account and transaction data used as input into the report.
+	// Example: 2019-03
 	// Required: true
 	FromMonth *string `json:"fromMonth"`
 
 	// The identifier of the income resource to be retrieved.
+	// Example: s55bf4
 	// Required: true
 	ID *string `json:"id"`
 
@@ -51,10 +54,12 @@ type IncomeResponse struct {
 	Summary *IncomeSummary `json:"summary"`
 
 	// End month (usually the current month) for the period for which the Income summary is generated.
+	// Example: 2020-03
 	// Required: true
 	ToMonth *string `json:"toMonth"`
 
 	// Always "income".
+	// Example: income
 	// Required: true
 	Type *string `json:"type"`
 }

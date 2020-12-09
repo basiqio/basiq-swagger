@@ -226,6 +226,7 @@ func TestPendingConnection(t *testing.T) {
 		*connectionsRsp.GetPayload().Data[0].ID, 2)
 	s = strings.Replace(s, "81a8babb-4a94-4cb5-a3e6-e4b3ce434e05", userID, 4)
 	s = strings.Replace(s, "2020-09-11T06:28:39Z", connectionsRsp.GetPayload().Data[0].LastUsed, 1)
+	s = strings.Replace(s, "2020-12-09T07:32:02Z", *connectionsRsp.GetPayload().Data[0].CreatedDate, 1)
 
 	test.AssertJson(t, s, string(e))
 }

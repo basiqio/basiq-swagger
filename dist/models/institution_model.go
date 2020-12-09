@@ -18,6 +18,7 @@ import (
 type InstitutionModel struct {
 
 	// Institution identification.
+	// Example: AU00000
 	// Required: true
 	ID *string `json:"id"`
 }
