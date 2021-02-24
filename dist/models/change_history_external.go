@@ -12,22 +12,27 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// ChangeHistoryExpensesClass Amount classified as spent that month (repeated each month of data)
+// ChangeHistoryExternal change history external
 //
-// swagger:model ChangeHistoryExpensesClass
-type ChangeHistoryExpensesClass struct {
+// swagger:model ChangeHistoryExternal
+type ChangeHistoryExternal struct {
 
-	// Amount of expense that period
+	// Amount of payment
 	// Required: true
 	Amount *string `json:"amount"`
 
-	// Month expense relates
+	// Date
 	// Required: true
-	Date *string `json:"date"`
+	// Format: date
+	Date *strfmt.Date `json:"date"`
+
+	// Full transaction description
+	// Required: true
+	Source *string `json:"source"`
 }
 
-// Validate validates this change history expenses class
-func (m *ChangeHistoryExpensesClass) Validate(formats strfmt.Registry) error {
+// Validate validates this change history external
+func (m *ChangeHistoryExternal) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateAmount(formats); err != nil {
@@ -38,13 +43,17 @@ func (m *ChangeHistoryExpensesClass) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateSource(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
 	return nil
 }
 
-func (m *ChangeHistoryExpensesClass) validateAmount(formats strfmt.Registry) error {
+func (m *ChangeHistoryExternal) validateAmount(formats strfmt.Registry) error {
 
 	if err := validate.Required("amount", "body", m.Amount); err != nil {
 		return err
@@ -53,9 +62,22 @@ func (m *ChangeHistoryExpensesClass) validateAmount(formats strfmt.Registry) err
 	return nil
 }
 
-func (m *ChangeHistoryExpensesClass) validateDate(formats strfmt.Registry) error {
+func (m *ChangeHistoryExternal) validateDate(formats strfmt.Registry) error {
 
 	if err := validate.Required("date", "body", m.Date); err != nil {
+		return err
+	}
+
+	if err := validate.FormatOf("date", "body", "date", m.Date.String(), formats); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ChangeHistoryExternal) validateSource(formats strfmt.Registry) error {
+
+	if err := validate.Required("source", "body", m.Source); err != nil {
 		return err
 	}
 
@@ -63,7 +85,7 @@ func (m *ChangeHistoryExpensesClass) validateDate(formats strfmt.Registry) error
 }
 
 // MarshalBinary interface implementation
-func (m *ChangeHistoryExpensesClass) MarshalBinary() ([]byte, error) {
+func (m *ChangeHistoryExternal) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -71,8 +93,8 @@ func (m *ChangeHistoryExpensesClass) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *ChangeHistoryExpensesClass) UnmarshalBinary(b []byte) error {
-	var res ChangeHistoryExpensesClass
+func (m *ChangeHistoryExternal) UnmarshalBinary(b []byte) error {
+	var res ChangeHistoryExternal
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

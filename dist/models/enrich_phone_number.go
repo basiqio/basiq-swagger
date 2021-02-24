@@ -16,11 +16,9 @@ import (
 type EnrichPhoneNumber struct {
 
 	// International Phone Number
-	// Example: +61 2 9977 0707
 	International string `json:"international,omitempty"`
 
 	// Local Phone Number
-	// Example: (02) 9977 0707
 	Local string `json:"local,omitempty"`
 }
 

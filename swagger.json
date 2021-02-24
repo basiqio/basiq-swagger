@@ -2721,6 +2721,7 @@
         "summary",
         "assets",
         "liabilities",
+        "external",
         "links"
       ],
       "properties": {
@@ -2736,6 +2737,14 @@
           "type": "integer",
           "format": "int64",
           "example": 392
+        },
+        "external": {
+          "description": "External",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ExternalLiabilityData"
+          },
+          "x-go-name": "ExternalLiabilities"
         },
         "fromMonth": {
           "description": "Start month for the period for which the Affordability summary is generated. The period of time relates to the account and transaction data used as input into the report.",
@@ -2782,7 +2791,9 @@
         "creditLimit",
         "regularIncome",
         "expenses",
-        "savings"
+        "savings",
+        "loanRepaymentMonthly",
+        "potentialLiabilitiesMonthly"
       ],
       "properties": {
         "assets": {
@@ -2808,11 +2819,25 @@
           "x-nullable": true,
           "example": "-323946.20"
         },
+        "loanRepaymentMonthly": {
+          "description": "Total of all repayments monthly to disclosed loan liabilities as an average monthly amount",
+          "type": "string",
+          "x-go-name": "LoanRepaymentMonthly",
+          "x-nullable": true,
+          "example": "5284.00"
+        },
         "netPosition": {
           "description": "Total assets minus total liabilities",
           "type": "string",
           "x-nullable": true,
           "example": "-263963.09"
+        },
+        "potentialLiabilitiesMonthly": {
+          "description": "Total of all repayments monthly to potential undisclosed loan liabilities as an average monthly amount",
+          "type": "string",
+          "x-go-name": "PotentialLiabilitiesMonthly",
+          "x-nullable": true,
+          "example": "-1727.00"
         },
         "regularIncome": {
           "$ref": "#/definitions/AffordabilityRegularIncomeData"
@@ -3156,6 +3181,35 @@
           "description": "Month expense relates",
           "type": "string",
           "example": "2018-09"
+        }
+      }
+    },
+    "ChangeHistoryExternal": {
+      "type": "object",
+      "required": [
+        "amount",
+        "date",
+        "source"
+      ],
+      "properties": {
+        "amount": {
+          "description": "Amount of payment",
+          "type": "string",
+          "x-go-name": "Amount",
+          "example": "-146.50"
+        },
+        "date": {
+          "description": "Date",
+          "type": "string",
+          "format": "date",
+          "x-go-name": "Date",
+          "example": "2019-03-31"
+        },
+        "source": {
+          "description": "Full transaction description",
+          "type": "string",
+          "x-go-name": "Source",
+          "example": "AFTERPAY MELBOURNE VI AUS Card xx3854 Value Date: 10/11/2019"
         }
       }
     },
@@ -3771,6 +3825,90 @@
           "description": "Value of this resource is \"expenses\".",
           "type": "string",
           "example": "expenses"
+        }
+      }
+    },
+    "ExternalLiabilityData": {
+      "type": "object",
+      "required": [
+        "source",
+        "payments",
+        "changeHistory"
+      ],
+      "properties": {
+        "changeHistory": {
+          "description": "Each transaction (repeated for each source ordered by most recent)",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ChangeHistoryExternal"
+          },
+          "x-go-name": "ChangeHistory"
+        },
+        "payments": {
+          "description": "Aggregated attributes relating to payments for this source (identified as an external liability)",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ExternalPayment"
+          },
+          "x-go-name": "Payments"
+        },
+        "source": {
+          "description": "Source of external liability (cleaned transaction description).",
+          "type": "string",
+          "x-go-name": "Source",
+          "example": "afterpay"
+        }
+      }
+    },
+    "ExternalPayment": {
+      "type": "object",
+      "required": [
+        "first",
+        "last",
+        "noOccurrences",
+        "amountAvg",
+        "amountAvgMonthly",
+        "total"
+      ],
+      "properties": {
+        "amountAvg": {
+          "description": "Number of occurrences for same source (in this group)",
+          "type": "string",
+          "x-go-name": "AmountAvg",
+          "example": "-50.50"
+        },
+        "amountAvgMonthly": {
+          "description": "Average monthly payment amount",
+          "type": "string",
+          "x-go-name": "AmountAvgMonthly",
+          "example": "-20.00"
+        },
+        "first": {
+          "description": "Date of first payment",
+          "type": "string",
+          "format": "date",
+          "x-go-name": "First",
+          "example": "2019-03-15"
+        },
+        "last": {
+          "description": "Date of last payment",
+          "type": "string",
+          "format": "date",
+          "x-go-name": "Last",
+          "example": "2020-03-15"
+        },
+        "noOccurrences": {
+          "description": "Number of occurrences for same source (in this group)",
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "NoOccurrences",
+          "example": 2
+        },
+        "total": {
+          "description": "Amount of total payments identified for source in the affordability snapshot",
+          "type": "string",
+          "x-go-name": "Total",
+          "example": "-146.50"
         }
       }
     },

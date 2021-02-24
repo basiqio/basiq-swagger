@@ -20,7 +20,6 @@ import (
 type GetUserConnectionData struct {
 
 	// Connection identification.
-	// Example: aaaf2c3b
 	// Required: true
 	ID *string `json:"id"`
 
@@ -29,7 +28,6 @@ type GetUserConnectionData struct {
 	Links *ResourceLink `json:"links"`
 
 	// Always "connection".
-	// Example: connection
 	// Required: true
 	Type *string `json:"type"`
 }

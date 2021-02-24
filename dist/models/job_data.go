@@ -22,12 +22,10 @@ import (
 type JobData struct {
 
 	// The date time when the job was created.
-	// Example: 2020-06-10T09:59:00Z
 	// Required: true
 	Created *string `json:"created"`
 
 	// A string that uniquely identifies the job.
-	// Example: e9132638
 	// Required: true
 	ID *string `json:"id"`
 
@@ -39,11 +37,9 @@ type JobData struct {
 	Steps []*JobsStep `json:"steps"`
 
 	// Value is "job".
-	// Example: job
 	Type string `json:"type,omitempty"`
 
 	// The date time when the job was last updated.
-	// Example: 2020-06-10T09:59:00Z
 	// Required: true
 	Updated *string `json:"updated"`
 }

@@ -18,17 +18,14 @@ import (
 type ChangeHistoryIncome struct {
 
 	// Amount of income for that period
-	// Example: 62.00
 	// Required: true
 	Amount *string `json:"amount"`
 
 	// Date income received
-	// Example: 2018-10-13T20:03:37
 	// Required: true
 	Date *string `json:"date"`
 
 	// Source income (cleaned transaction description)
-	// Example: savings interest cr bal - Account 1
 	// Required: true
 	Source *string `json:"source"`
 }

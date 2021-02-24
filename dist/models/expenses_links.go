@@ -18,12 +18,10 @@ import (
 type ExpensesLinks struct {
 
 	// Links of accounts
-	// Example: ["https://au-api.basiq.io/users/25c8d1ed77/accounts/s55bf5","https://au-api.basiq.io/users/25c8d1ed77/accounts/s55bf4"]
 	// Required: true
 	Accounts []string `json:"accounts"`
 
 	// Link to the requested expenses resource
-	// Example: https://au-api.basiq.io/users/25c8d1ed77/expenses/s55bf4
 	// Required: true
 	Self *string `json:"self"`
 }

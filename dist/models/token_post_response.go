@@ -18,17 +18,14 @@ import (
 type TokenPostResponse struct {
 
 	// access token
-	// Example: access_token
 	// Required: true
 	AccessToken *string `json:"access_token"`
 
 	// Expires in seconds
-	// Example: 3600
 	// Required: true
 	ExpiresIn *int64 `json:"expires_in"`
 
 	// token type
-	// Example: Bearer
 	// Required: true
 	TokenType *string `json:"token_type"`
 }

@@ -22,12 +22,10 @@ type UserConnectionsPostData struct {
 	Institution *InstitutionModel `json:"institution"`
 
 	// The users institution login ID
-	// Example: gavinBelson
 	// Required: true
 	LoginID *string `json:"loginId"`
 
 	// The users institution password
-	// Example: hooli2020
 	// Required: true
 	Password *string `json:"password"`
 

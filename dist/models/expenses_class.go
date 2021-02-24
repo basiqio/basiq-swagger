@@ -18,22 +18,18 @@ import (
 type ExpensesClass struct {
 
 	// Classification code for HEC classification: 4 levels class, group, subdivision and division.
-	// Example: 0703030101
 	// Required: true
 	ClassCode *string `json:"classCode"`
 
 	// Classification code for HEC classification: 4 levels class, group, subdivision and division.
-	// Example: Non-electrical household appliances
 	// Required: true
 	ClassTitle *string `json:"classTitle"`
 
 	// division code
-	// Example: 04
 	// Required: true
 	DivisionCode *string `json:"divisionCode"`
 
 	// division title
-	// Example: Alcoholic beverages
 	// Required: true
 	DivisionTitle *string `json:"divisionTitle"`
 }

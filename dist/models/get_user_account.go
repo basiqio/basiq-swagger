@@ -22,7 +22,6 @@ import (
 type GetUserAccount struct {
 
 	// Count of accounts.
-	// Example: 7
 	// Required: true
 	Count *int64 `json:"count"`
 
@@ -31,7 +30,6 @@ type GetUserAccount struct {
 	Data []*GetUserAccountData `json:"data"`
 
 	// Always "list".
-	// Example: list
 	// Required: true
 	Type *string `json:"type"`
 }

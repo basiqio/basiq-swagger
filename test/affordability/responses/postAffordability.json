@@ -26,6 +26,7 @@
     "credit": [],
     "loan": []
   },
+  "external": [],
   "links": {
     "accounts": [
       "https://au-api.basiq.io/users/8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5/accounts/14aa946c-6f87-44b7-bab9-d192d6261471"
@@ -39,6 +40,8 @@
     "creditLimit": null,
     "expenses": "0.00",
     "liabilities": null,
+    "loanRepaymentMonthly":null,
+    "potentialLiabilitiesMonthly":null,
     "netPosition": "38383.73",
     "savings": "313.00",
     "regularIncome": {

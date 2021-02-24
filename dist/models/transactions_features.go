@@ -20,32 +20,26 @@ import (
 type TransactionsFeatures struct {
 
 	// TransactionAmount holds list of data source identifiers which are capable to fetch transaction amount.
-	// Example: ["web","pdf","csv"]
 	// Required: true
 	Amount []SourceName `json:"amount"`
 
 	// TransactionBalance holds list of data source identifiers which are capable to fetch account balance when transaction occured.
-	// Example: ["web","pdf","csv"]
 	// Required: true
 	Balance []SourceName `json:"balance"`
 
 	// Class holds list of data source identifiers which are capable to fetch transaction class.
-	// Example: ["web","pdf","csv"]
 	// Required: true
 	Class []SourceName `json:"class"`
 
 	// TransactionDate holds list of data source identifiers which are capable to fetch transaction date.
-	// Example: ["web","pdf","csv"]
 	// Required: true
 	Date []SourceName `json:"date"`
 
 	// TransactionDescription holds list of data source identifiers which are capable to fetch transaction description.
-	// Example: ["web","pdf","csv"]
 	// Required: true
 	Description []SourceName `json:"description"`
 
 	// TransactionStatus holds list of data source identifiers which are capable to fetch transaction status.
-	// Example: ["web","pdf","csv"]
 	// Required: true
 	Status []SourceName `json:"status"`
 }

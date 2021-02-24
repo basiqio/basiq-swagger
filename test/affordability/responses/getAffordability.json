@@ -1,13 +1,15 @@
 {
   "type": "affordability",
-  "id": "1b67ed91-dc97-4074-a574-c30aba852549",
+  "id": "aedf7d4f-9c35-4e72-a1fa-bba322e7ed75",
   "fromMonth": "2018-11",
   "toMonth": "2019-10",
   "coverageDays": 351,
-  "generatedDate": "2020-12-02T12:53:20",
+  "generatedDate": "2021-02-23T12:59:00",
   "summary": {
     "assets": "38383.73",
     "liabilities": null,
+    "loanRepaymentMonthly":null,
+    "potentialLiabilitiesMonthly":null,
     "netPosition": "38383.73",
     "creditLimit": null,
     "expenses": "0.00",
@@ -39,10 +41,11 @@
     "loan": [],
     "credit": []
   },
+  "external": [],
   "links": {
-    "self": "https://au-api.basiq.io/users/8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5/affordability/1b67ed91-dc97-4074-a574-c30aba852549",
-    "expenses": "https://au-api.basiq.io/users/8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5/expenses/6a394b8a-6b90-4590-aa40-aa7775f35f1a",
-    "income": "https://au-api.basiq.io/users/8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5/income/6a394b8a-6b90-4590-aa40-aa7775f35f1a",
+    "self": "https://au-api.basiq.io/users/8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5/affordability/aedf7d4f-9c35-4e72-a1fa-bba322e7ed75",
+    "expenses": "https://au-api.basiq.io/users/8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5/expenses/aedf7d4f-9c35-4e72-a1fa-bba322e7ed75",
+    "income": "https://au-api.basiq.io/users/8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5/income/aedf7d4f-9c35-4e72-a1fa-bba322e7ed75",
     "accounts": [
       "https://au-api.basiq.io/users/8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5/accounts/14aa946c-6f87-44b7-bab9-d192d6261471"
     ]

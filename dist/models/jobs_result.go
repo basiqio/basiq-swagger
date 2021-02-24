@@ -32,7 +32,6 @@ type JobsResult struct {
 	Title string `json:"title,omitempty"`
 
 	// In case of success, Always "link".
-	// Example: link
 	Type string `json:"type,omitempty"`
 
 	// In case of success, URL of the updated (or created) resources.
@@ -136,7 +135,7 @@ const (
 
 // prop value enum
 func (m *JobsResult) validateCodeEnum(path, location string, value string) error {
-	if err := validate.EnumCase(path, location, value, jobsResultTypeCodePropEnum, true); err != nil {
+	if err := validate.Enum(path, location, value, jobsResultTypeCodePropEnum); err != nil {
 		return err
 	}
 	return nil

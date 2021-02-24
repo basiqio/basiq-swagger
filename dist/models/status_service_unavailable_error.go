@@ -20,7 +20,6 @@ import (
 type StatusServiceUnavailableError struct {
 
 	// Unique identifier for this particular occurrence of the problem.
-	// Example: ac5ah5i
 	// Required: true
 	CorrelationID *string `json:"correlationId"`
 
@@ -29,7 +28,6 @@ type StatusServiceUnavailableError struct {
 	Data []*StatusServiceUnavailableErrorDataItems0 `json:"data"`
 
 	// Always "list".
-	// Example: list
 	// Required: true
 	Type *string `json:"type"`
 }
@@ -123,20 +121,16 @@ func (m *StatusServiceUnavailableError) UnmarshalBinary(b []byte) error {
 type StatusServiceUnavailableErrorDataItems0 struct {
 
 	// Application-specific error code, expressed as a string value.
-	// Example: service-unavailable
 	// Required: true
 	Code interface{} `json:"code"`
 
 	// Human-readable explanation specific to this occurrence of the problem.
-	// Example: Service Unavailable. Try again later.
 	Detail string `json:"detail,omitempty"`
 
 	// Title of the error
-	// Example: Service Unavailable
 	Title string `json:"title,omitempty"`
 
 	// Type of the response, always "error"
-	// Example: error
 	// Required: true
 	Type *string `json:"type"`
 }

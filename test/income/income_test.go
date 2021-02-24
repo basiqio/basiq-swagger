@@ -14,7 +14,7 @@ import (
 func TestGetIncome(t *testing.T) {
 	token := httptransport.BearerToken(test.TokenHolder.GetToken(t))
 	userID := "8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5"
-	snapshotID := "b9034d44-eea4-41b7-8123-8f95010b816f"
+	snapshotID := "5a09153c-7d99-4276-b17c-08fd4485ea2a"
 
 	incomeGetParams := &income.GetIncomeParams{UserID: userID,
 		SnapshotID: snapshotID,

@@ -20,7 +20,6 @@ import (
 type ConnectionInstitution struct {
 
 	// Institution id
-	// Example: AU00000
 	// Required: true
 	ID *string `json:"id"`
 
@@ -29,7 +28,6 @@ type ConnectionInstitution struct {
 	Links *ResourceLink `json:"links"`
 
 	// Always "institution".
-	// Example: institution
 	// Required: true
 	Type *string `json:"type"`
 }

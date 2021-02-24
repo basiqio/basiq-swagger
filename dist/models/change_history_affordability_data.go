@@ -20,24 +20,20 @@ import (
 type ChangeHistoryAffordabilityData struct {
 
 	// Amount loan-interest or loan-repayment
-	// Example: 5768.00
 	// Required: true
 	Amount *string `json:"amount"`
 
 	// Date
-	// Example: 2019-03-31
 	// Required: true
 	// Format: date
 	Date *strfmt.Date `json:"date"`
 
 	// Debit or Credit
-	// Example: credit
 	// Required: true
 	// Enum: [debit credit]
 	Direction *string `json:"direction"`
 
 	// Cleaned transaction description
-	// Example: Transfer Platnm Homeloan 346454
 	// Required: true
 	Source *string `json:"source"`
 }
@@ -113,7 +109,7 @@ const (
 
 // prop value enum
 func (m *ChangeHistoryAffordabilityData) validateDirectionEnum(path, location string, value string) error {
-	if err := validate.EnumCase(path, location, value, changeHistoryAffordabilityDataTypeDirectionPropEnum, true); err != nil {
+	if err := validate.Enum(path, location, value, changeHistoryAffordabilityDataTypeDirectionPropEnum); err != nil {
 		return err
 	}
 	return nil

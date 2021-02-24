@@ -20,42 +20,34 @@ import (
 type AccountsFeatures struct {
 
 	// AccountHolder holds list of data source identifiers which are capable to fetch account holder.
-	// Example: ["web","pdf","csv"]
 	// Required: true
 	AccountHolder []SourceName `json:"accountHolder"`
 
 	// AccountNumber holds list of data source identifiers which are capable to fetch account number.
-	// Example: ["web","pdf","csv"]
 	// Required: true
 	AccountNo []SourceName `json:"accountNo"`
 
 	// AvailableFunds holds list of data source identifiers which are capable to fetch available funds.
-	// Example: ["web","pdf","csv"]
 	// Required: true
 	AvailableFunds []SourceName `json:"availableFunds"`
 
 	// AccountBalance holds list of data source identifiers which are capable to fetch account balance.
-	// Example: ["web","pdf","csv"]
 	// Required: true
 	Balance []SourceName `json:"balance"`
 
 	// AccountCurrency holds list of data source identifiers which are capable to fetch account currency.
-	// Example: ["web","pdf","csv"]
 	// Required: true
 	Currency []SourceName `json:"currency"`
 
 	// LastUpdated holds list of data source identifiers which are capable to fetch account last updated date.
-	// Example: ["web","pdf","csv"]
 	// Required: true
 	LastUpdated []SourceName `json:"lastUpdated"`
 
 	// Meta holds list of data source identifiers which are capable to fetch account meta data (e.g. mortgage data).
-	// Example: ["web","pdf","csv"]
 	// Required: true
 	Meta []SourceName `json:"meta"`
 
 	// AccountName holds list of data source identifiers which are capable to fetch account name.
-	// Example: ["web","pdf","csv"]
 	// Required: true
 	Name []SourceName `json:"name"`
 }

@@ -21,7 +21,6 @@ import (
 type UnsupportedMediaTypeError struct {
 
 	// Unique identifier for this particular occurrence of the problem.
-	// Example: ac5ah5i
 	// Required: true
 	CorrelationID *string `json:"correlationId"`
 
@@ -30,7 +29,6 @@ type UnsupportedMediaTypeError struct {
 	Data []*UnsupportedMediaTypeErrorDataItems0 `json:"data"`
 
 	// Always "list".
-	// Example: list
 	// Required: true
 	Type *string `json:"type"`
 }
@@ -124,21 +122,17 @@ func (m *UnsupportedMediaTypeError) UnmarshalBinary(b []byte) error {
 type UnsupportedMediaTypeErrorDataItems0 struct {
 
 	// Application-specific error code, expressed as a string value.
-	// Example: unsupported-content-type
 	// Required: true
 	// Enum: [unsupported-content-type]
 	Code *string `json:"code"`
 
 	// Human-readable explanation specific to this occurrence of the problem.
-	// Example: Internal Server error. Contact support.
 	Detail string `json:"detail,omitempty"`
 
 	// Title of the error
-	// Example: Internal Server error.
 	Title string `json:"title,omitempty"`
 
 	// Type of the response, always "error"
-	// Example: error
 	// Required: true
 	Type *string `json:"type"`
 }
@@ -181,7 +175,7 @@ const (
 
 // prop value enum
 func (m *UnsupportedMediaTypeErrorDataItems0) validateCodeEnum(path, location string, value string) error {
-	if err := validate.EnumCase(path, location, value, unsupportedMediaTypeErrorDataItems0TypeCodePropEnum, true); err != nil {
+	if err := validate.Enum(path, location, value, unsupportedMediaTypeErrorDataItems0TypeCodePropEnum); err != nil {
 		return err
 	}
 	return nil

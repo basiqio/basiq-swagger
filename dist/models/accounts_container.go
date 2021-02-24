@@ -24,7 +24,6 @@ type AccountsContainer struct {
 	Data []*AccountsData `json:"data"`
 
 	// Type always "list".
-	// Example: list
 	// Required: true
 	Type *string `json:"type"`
 }
