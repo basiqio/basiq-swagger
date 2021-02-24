@@ -20,7 +20,6 @@ import (
 type StatementUploadResource struct {
 
 	// Job identification.
-	// Example: 29523951
 	// Required: true
 	ID *string `json:"id"`
 
@@ -29,7 +28,6 @@ type StatementUploadResource struct {
 	Links *ResourceLink `json:"links"`
 
 	// Type, always "job".
-	// Example: job
 	// Required: true
 	Type *string `json:"type"`
 }

@@ -20,12 +20,10 @@ import (
 type ConnectionsData struct {
 
 	// Created date of the connection, available only for SERVER_SCOPE.
-	// Example: 2019-07-29T07:34:09Z
 	// Required: true
 	CreatedDate *string `json:"createdDate"`
 
 	// Connection identification.
-	// Example: 61723
 	// Required: true
 	ID *string `json:"id"`
 
@@ -34,7 +32,6 @@ type ConnectionsData struct {
 	Institution *ConnectionInstitution `json:"institution"`
 
 	// Connection last used date, available only for SERVER_SCOPE.
-	// Example: 2020-06-22T11:15:09Z
 	LastUsed string `json:"lastUsed,omitempty"`
 
 	// links
@@ -42,12 +39,10 @@ type ConnectionsData struct {
 	Links *GetConnectionLinks `json:"links"`
 
 	// Connection status, available only for SERVER_SCOPE.
-	// Example: active
 	// Enum: [active pending invalid]
 	Status string `json:"status,omitempty"`
 
 	// Type, always "connection".
-	// Example: connection
 	// Required: true
 	Type *string `json:"type"`
 }
@@ -166,7 +161,7 @@ const (
 
 // prop value enum
 func (m *ConnectionsData) validateStatusEnum(path, location string, value string) error {
-	if err := validate.EnumCase(path, location, value, connectionsDataTypeStatusPropEnum, true); err != nil {
+	if err := validate.Enum(path, location, value, connectionsDataTypeStatusPropEnum); err != nil {
 		return err
 	}
 	return nil

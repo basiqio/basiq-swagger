@@ -28,12 +28,10 @@ type JobsResponseResource struct {
 	Links *ResourceLink `json:"links"`
 
 	// Size of the all the jobs.
-	// Example: 100
 	// Required: true
 	Size *int64 `json:"size"`
 
 	// Type of the response, always "list".
-	// Example: list
 	// Required: true
 	Type *string `json:"type"`
 }

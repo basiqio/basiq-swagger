@@ -18,11 +18,9 @@ import (
 type TransactionsGetLinks struct {
 
 	// Url to next result.
-	// Example: https://au-api.basiq.io/users/6a52015e/transactions?next=bf1ec9d4
 	Next string `json:"next,omitempty"`
 
 	// Self reference url.
-	// Example: https://au-api.basiq.io/users/ea3a81/transactions
 	// Required: true
 	Self *string `json:"self"`
 }

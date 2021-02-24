@@ -71,7 +71,7 @@ type GetInstitutionsParams struct {
 	• `institution\.authorization\.(eq|ne)\(('user'|'other')\)` </br>
 	• `institution\.serviceType\.(eq|ne)\(('Personal Banking'|'Business Banking'|'Card Access'|'Test')\)` </br>
 	• `institution\.institutionType\.(eq|ne)\(('Bank'|'Bank \(Foreign\)'|'Test Bank'|'Credit Union'|'Financial Services'|'Superannuation')\)` </br>
-	• `institution\.stage\.(eq|ne)\(('live'|'beta')\)` </br>
+	• `institution\.stage\.(eq|ne)\(('live'|'beta'|'alpha')\)` </br>
 	Multiple filter definitions should be separated with comma (`,`). </br>
 	For example, this is filter statement will keep only live tier 1 and tier 2 institutions: `filter=institution.stage.eq('live'),institution.tier.in('1','2')` </br>
 

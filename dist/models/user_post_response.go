@@ -20,12 +20,10 @@ import (
 type UserPostResponse struct {
 
 	// The end-users email address.
-	// Example: gavin@hooli.com
 	// Format: email
 	Email strfmt.Email `json:"email,omitempty"`
 
 	// A string that uniquely identifies the user.
-	// Example: e1956419
 	// Required: true
 	ID *string `json:"id"`
 
@@ -34,12 +32,10 @@ type UserPostResponse struct {
 	Links *ResourceLink `json:"links"`
 
 	// The end-users mobile number.
-	// Example: +61410888999
 	// Required: true
 	Mobile *string `json:"mobile"`
 
 	// Type of the response, always "user".
-	// Example: user
 	// Required: true
 	Type *string `json:"type"`
 }

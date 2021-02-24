@@ -20,13 +20,11 @@ import (
 type Institution struct {
 
 	// Institution authorization identifier
-	// Example: user
 	// Required: true
 	// Enum: [user other]
 	Authorization *string `json:"authorization"`
 
 	// Institution country name
-	// Example: Australia
 	// Required: true
 	Country *string `json:"country"`
 
@@ -35,11 +33,9 @@ type Institution struct {
 	Features *Features `json:"features"`
 
 	// URL to institution forgotten password page
-	// Example: https://example.com/forgotten-password
 	ForgottenPasswordURL string `json:"forgottenPasswordUrl,omitempty"`
 
 	// Institution ID
-	// Example: AU00000
 	// Required: true
 	// Max Length: 7
 	// Min Length: 7
@@ -48,7 +44,6 @@ type Institution struct {
 	ID *string `json:"id"`
 
 	// Institution type identifier
-	// Example: Bank
 	// Required: true
 	// Enum: [Bank Bank (Foreign) Test Bank Credit Union Financial Services Superannuation Building Society]
 	InstitutionType *string `json:"institutionType"`
@@ -58,7 +53,6 @@ type Institution struct {
 	Links *ResourceLinks `json:"links"`
 
 	// Login ID field caption that should be shown on UI
-	// Example: User name
 	// Required: true
 	LoginIDCaption *string `json:"loginIdCaption"`
 
@@ -67,43 +61,35 @@ type Institution struct {
 	Logo *InstitutionLogoResource `json:"logo"`
 
 	// Institution name
-	// Example: Hooli Bank
 	// Required: true
 	Name *string `json:"name"`
 
 	// Password field caption that should be shown on UI
-	// Example: Password
 	// Required: true
 	PasswordCaption *string `json:"passwordCaption"`
 
 	// Secondary loginID caption that should be shown on UI
-	// Example: Secondary login id
 	SecondaryLoginIDCaption string `json:"secondaryLoginIdCaption,omitempty"`
 
 	// Security code caption that should be shown on UI
-	// Example: Security code
 	SecurityCodeCaption string `json:"securityCodeCaption,omitempty"`
 
 	// Institution service name
-	// Example: Personal Online Banking
 	// Required: true
 	ServiceName *string `json:"serviceName"`
 
 	// Institution service name
-	// Example: Personal Banking
 	// Required: true
 	// Enum: [Personal Banking Business Banking Card Access Test Superannuation]
 	ServiceType *string `json:"serviceType"`
 
 	// Institution short name
-	// Example: Hooli
 	// Required: true
 	ShortName *string `json:"shortName"`
 
 	// Institution stage identifier
-	// Example: live
 	// Required: true
-	// Enum: [live beta]
+	// Enum: [live alpha beta]
 	Stage *string `json:"stage"`
 
 	// stats
@@ -115,13 +101,11 @@ type Institution struct {
 	Status FeatureCondition `json:"status"`
 
 	// Institution tier identifier
-	// Example: 3
 	// Required: true
 	// Enum: [1 2 3 4]
 	Tier *string `json:"tier"`
 
 	// Resource type identifier. It is always "institution" for this model.
-	// Example: institution
 	// Required: true
 	// Enum: [institution]
 	Type *string `json:"type"`
@@ -232,7 +216,7 @@ const (
 
 // prop value enum
 func (m *Institution) validateAuthorizationEnum(path, location string, value string) error {
-	if err := validate.EnumCase(path, location, value, institutionTypeAuthorizationPropEnum, true); err != nil {
+	if err := validate.Enum(path, location, value, institutionTypeAuthorizationPropEnum); err != nil {
 		return err
 	}
 	return nil
@@ -338,7 +322,7 @@ const (
 
 // prop value enum
 func (m *Institution) validateInstitutionTypeEnum(path, location string, value string) error {
-	if err := validate.EnumCase(path, location, value, institutionTypeInstitutionTypePropEnum, true); err != nil {
+	if err := validate.Enum(path, location, value, institutionTypeInstitutionTypePropEnum); err != nil {
 		return err
 	}
 	return nil
@@ -462,7 +446,7 @@ const (
 
 // prop value enum
 func (m *Institution) validateServiceTypeEnum(path, location string, value string) error {
-	if err := validate.EnumCase(path, location, value, institutionTypeServiceTypePropEnum, true); err != nil {
+	if err := validate.Enum(path, location, value, institutionTypeServiceTypePropEnum); err != nil {
 		return err
 	}
 	return nil
@@ -495,7 +479,7 @@ var institutionTypeStagePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["live","beta"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["live","alpha","beta"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -508,13 +492,16 @@ const (
 	// InstitutionStageLive captures enum value "live"
 	InstitutionStageLive string = "live"
 
+	// InstitutionStageAlpha captures enum value "alpha"
+	InstitutionStageAlpha string = "alpha"
+
 	// InstitutionStageBeta captures enum value "beta"
 	InstitutionStageBeta string = "beta"
 )
 
 // prop value enum
 func (m *Institution) validateStageEnum(path, location string, value string) error {
-	if err := validate.EnumCase(path, location, value, institutionTypeStagePropEnum, true); err != nil {
+	if err := validate.Enum(path, location, value, institutionTypeStagePropEnum); err != nil {
 		return err
 	}
 	return nil
@@ -593,7 +580,7 @@ const (
 
 // prop value enum
 func (m *Institution) validateTierEnum(path, location string, value string) error {
-	if err := validate.EnumCase(path, location, value, institutionTypeTierPropEnum, true); err != nil {
+	if err := validate.Enum(path, location, value, institutionTypeTierPropEnum); err != nil {
 		return err
 	}
 	return nil
@@ -633,7 +620,7 @@ const (
 
 // prop value enum
 func (m *Institution) validateTypeEnum(path, location string, value string) error {
-	if err := validate.EnumCase(path, location, value, institutionTypeTypePropEnum, true); err != nil {
+	if err := validate.Enum(path, location, value, institutionTypeTypePropEnum); err != nil {
 		return err
 	}
 	return nil

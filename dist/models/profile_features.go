@@ -20,37 +20,30 @@ import (
 type ProfileFeatures struct {
 
 	// EmailAddresses holds list of data source identifiers which are capable to fetch bank customer e-mail addresses.
-	// Example: ["web","pdf","csv"]
 	// Required: true
 	EmailAddresses []SourceName `json:"emailAddresses"`
 
 	// FirstName holds list of data source identifiers which are capable to fetch bank customer first name.
-	// Example: ["web","pdf","csv"]
 	// Required: true
 	FirstName []SourceName `json:"firstName"`
 
 	// FullName holds list of data source identifiers which are capable to fetch bank customer full name.
-	// Example: ["web","pdf","csv"]
 	// Required: true
 	FullName []SourceName `json:"fullName"`
 
 	// LastName holds list of data source identifiers which are capable to fetch bank customer last name.
-	// Example: ["web","pdf","csv"]
 	// Required: true
 	LastName []SourceName `json:"lastName"`
 
 	// MiddleName holds list of data source identifiers which are capable to fetch bank customer middle name.
-	// Example: ["web","pdf","csv"]
 	// Required: true
 	MiddleName []SourceName `json:"middleName"`
 
 	// PhoneNumbers holds list of data source identifiers which are capable to fetch bank customer phone number.
-	// Example: ["web","pdf","csv"]
 	// Required: true
 	PhoneNumbers []SourceName `json:"phoneNumbers"`
 
 	// PhysicalAddresses holds list of data source identifiers which are capable to fetch bank customer physical addresses.
-	// Example: ["web","pdf","csv"]
 	// Required: true
 	PhysicalAddresses []SourceName `json:"physicalAddresses"`
 }

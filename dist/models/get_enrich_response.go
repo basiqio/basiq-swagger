@@ -20,7 +20,6 @@ import (
 type GetEnrichResponse struct {
 
 	// Transaction Classification
-	// Example: payment
 	// Required: true
 	// Enum: [direct-credit refund interest payment cash-withdrawal bank-fee transfer loan-interest loan-repayment]
 	Class *string `json:"class"`
@@ -30,7 +29,6 @@ type GetEnrichResponse struct {
 	Data *EnrichData `json:"data"`
 
 	// Direction of transaction
-	// Example: credit
 	// Required: true
 	// Enum: [credit debit unknown]
 	Direction *string `json:"direction"`
@@ -40,7 +38,6 @@ type GetEnrichResponse struct {
 	Links *ResourceLink `json:"links"`
 
 	// Always "enrich"
-	// Example: enrich
 	// Required: true
 	Type *string `json:"type"`
 }
@@ -119,7 +116,7 @@ const (
 
 // prop value enum
 func (m *GetEnrichResponse) validateClassEnum(path, location string, value string) error {
-	if err := validate.EnumCase(path, location, value, getEnrichResponseTypeClassPropEnum, true); err != nil {
+	if err := validate.Enum(path, location, value, getEnrichResponseTypeClassPropEnum); err != nil {
 		return err
 	}
 	return nil
@@ -183,7 +180,7 @@ const (
 
 // prop value enum
 func (m *GetEnrichResponse) validateDirectionEnum(path, location string, value string) error {
-	if err := validate.EnumCase(path, location, value, getEnrichResponseTypeDirectionPropEnum, true); err != nil {
+	if err := validate.Enum(path, location, value, getEnrichResponseTypeDirectionPropEnum); err != nil {
 		return err
 	}
 	return nil

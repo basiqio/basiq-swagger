@@ -18,17 +18,14 @@ import (
 type CurrentOtherCreditSource struct {
 
 	// Most recent irregular income payment amount
-	// Example: 92.99
 	// Required: true
 	Amount *string `json:"amount"`
 
 	// Most recent irregular income payment date
-	// Example: 2019-10-29T00:00:00
 	// Required: true
 	Date *string `json:"date"`
 
 	// Description of the other credit series e.g. 'former regular income'
-	// Example: regular income small amount
 	// Required: true
 	OtherCreditLabel *string `json:"otherCreditLabel"`
 }

@@ -24,12 +24,10 @@ type LoanLiabilities struct {
 	Account *AccountHolder `json:"account"`
 
 	// The available funds at the time of the query.
-	// Example: 87767.00
 	// Required: true
 	AvailableFunds *string `json:"availableFunds"`
 
 	// The balance at the time of the query.
-	// Example: -312233.00
 	// Required: true
 	Balance *string `json:"balance"`
 
@@ -38,12 +36,10 @@ type LoanLiabilities struct {
 	ChangeHistory []*ChangeHistoryAffordabilityData `json:"changeHistory"`
 
 	// The currency in which the account is recorded.
-	// Example: AUD
 	// Required: true
 	Currency *string `json:"currency"`
 
 	// The name of the financial institution with whom the account is held.
-	// Example: Hooli
 	// Required: true
 	Institution *string `json:"institution"`
 

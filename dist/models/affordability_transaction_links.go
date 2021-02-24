@@ -18,12 +18,10 @@ import (
 type AffordabilityTransactionLinks struct {
 
 	// Url of the account.
-	// Example: https://au-api.basiq.io/users/6a52015e/accounts/31eb30a0
 	// Required: true
 	Account *string `json:"account"`
 
 	// Url of the institution.
-	// Example: https://au-api.basiq.io/institutions/AU00000
 	// Required: true
 	Institution *string `json:"institution"`
 }

@@ -16,12 +16,10 @@ import (
 type CreateUser struct {
 
 	// The end-users email address. Mandatory if mobile is not supplied.
-	// Example: gavin@hooli.com
 	Email string `json:"email,omitempty"`
 
 	// The end-users mobile number, supplied in international format.
 	// +[country-code][mobileno]. Mandatory if email is not supplied.
-	// Example: +61410888999
 	Mobile string `json:"mobile,omitempty"`
 }
 

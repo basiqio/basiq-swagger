@@ -17,28 +17,31 @@ import (
 // swagger:model AffordabilitySummary
 type AffordabilitySummary struct {
 
+	// Total of all repayments monthly to disclosed loan liabilities as an average monthly amount
+	// Required: true
+	LoanRepaymentMonthly *string `json:"loanRepaymentMonthly"`
+
+	// Total of all repayments monthly to potential undisclosed loan liabilities as an average monthly amount
+	// Required: true
+	PotentialLiabilitiesMonthly *string `json:"potentialLiabilitiesMonthly"`
+
 	// Total of cash based assets
-	// Example: 59983.11
 	// Required: true
 	Assets *string `json:"assets"`
 
 	// Total credit limit across all credit cards and overdrafts
-	// Example: 20000.00
 	// Required: true
 	CreditLimit *string `json:"creditLimit"`
 
 	// Provides an average of monthly expenses calculated for the whole period of data retrieved (e.g. 13 months)
-	// Example: -12046.00
 	// Required: true
 	Expenses *string `json:"expenses"`
 
 	// Total of account based liabilities split into credit and loan liabilities
-	// Example: -323946.20
 	// Required: true
 	Liabilities *string `json:"liabilities"`
 
 	// Total assets minus total liabilities
-	// Example: -263963.09
 	// Required: true
 	NetPosition *string `json:"netPosition"`
 
@@ -47,7 +50,6 @@ type AffordabilitySummary struct {
 	RegularIncome *AffordabilityRegularIncomeData `json:"regularIncome"`
 
 	// Average of monthly savings calculated for the whole period of data retrieved (e.g. 13 months)
-	// Example: 93.00
 	// Required: true
 	Savings *string `json:"savings"`
 }
@@ -55,6 +57,14 @@ type AffordabilitySummary struct {
 // Validate validates this affordability summary
 func (m *AffordabilitySummary) Validate(formats strfmt.Registry) error {
 	var res []error
+
+	if err := m.validateLoanRepaymentMonthly(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validatePotentialLiabilitiesMonthly(formats); err != nil {
+		res = append(res, err)
+	}
 
 	if err := m.validateAssets(formats); err != nil {
 		res = append(res, err)
@@ -87,6 +97,24 @@ func (m *AffordabilitySummary) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *AffordabilitySummary) validateLoanRepaymentMonthly(formats strfmt.Registry) error {
+
+	if err := validate.Required("loanRepaymentMonthly", "body", m.LoanRepaymentMonthly); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *AffordabilitySummary) validatePotentialLiabilitiesMonthly(formats strfmt.Registry) error {
+
+	if err := validate.Required("potentialLiabilitiesMonthly", "body", m.PotentialLiabilitiesMonthly); err != nil {
+		return err
+	}
+
 	return nil
 }
 

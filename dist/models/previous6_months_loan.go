@@ -18,7 +18,6 @@ import (
 type Previous6MonthsLoan struct {
 
 	// Has the loan been in arrears in the past 6 months - returned as a string value (true or false or null)
-	// Example: true
 	// Required: true
 	Arrears *string `json:"arrears"`
 }

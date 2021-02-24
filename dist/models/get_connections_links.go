@@ -20,20 +20,16 @@ import (
 type GetConnectionsLinks struct {
 
 	// Accounts reference url.
-	// Example: https://au-api.basiq.io/users/cd6fbd92/accounts?filter=institution.id.eq('AU00000')
 	Accounts string `json:"accounts,omitempty"`
 
 	// Connection self reference url.
-	// Example: https://au-api.basiq.io/users/cd6fbd92/connections/29523951
 	// Required: true
 	Self *string `json:"self"`
 
 	// Transactions reference url.
-	// Example: https://au-api.basiq.io/users/cd6fbd92/transactions?filter=institution.id.eq('AU00000')
 	Transactions string `json:"transactions,omitempty"`
 
 	// User reference url.
-	// Example: https://au-api.basiq.io/users/cd6fbd92
 	// Required: true
 	User *string `json:"user"`
 }

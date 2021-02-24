@@ -14,7 +14,7 @@ import (
 func TestGetExpenses(t *testing.T) {
 	token := httptransport.BearerToken(test.TokenHolder.GetToken(t))
 	userID := "8cda72db-b11f-4b8e-a4ca-3c5b1de4e4b5"
-	snapshotID := "5ebfb80d-181d-4dc2-9be7-0fbd0437f076"
+	snapshotID := "4dc8bf26-8393-456f-a07e-6950354479d5"
 
 	expensesGetParams := &expenses.GetExpensesParams{UserID: userID,
 		SnapshotID: snapshotID,

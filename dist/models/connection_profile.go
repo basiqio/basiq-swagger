@@ -20,22 +20,18 @@ import (
 type ConnectionProfile struct {
 
 	// User email address
-	// Example: ["gavin@hooli.com"]
 	// Required: true
 	EmailAddresses []string `json:"emailAddresses"`
 
 	// User first name
-	// Example: Gavin
 	// Required: true
 	FirstName *string `json:"firstName"`
 
 	// User full name
-	// Example: Gavin Belson
 	// Required: true
 	FullName *string `json:"fullName"`
 
 	// User last name
-	// Example: Belson
 	// Required: true
 	LastName *string `json:"lastName"`
 
@@ -44,7 +40,6 @@ type ConnectionProfile struct {
 	MiddleName *string `json:"middleName"`
 
 	// User phone number
-	// Example: ["XXXX 888 991"]
 	// Required: true
 	PhoneNumbers []string `json:"phoneNumbers"`
 

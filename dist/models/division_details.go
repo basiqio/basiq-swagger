@@ -16,11 +16,9 @@ import (
 type DivisionDetails struct {
 
 	// Division Code
-	// Example: H
 	Code string `json:"code,omitempty"`
 
 	// Division Details
-	// Example: Accommodation and  Food Services
 	Title string `json:"title,omitempty"`
 }
 

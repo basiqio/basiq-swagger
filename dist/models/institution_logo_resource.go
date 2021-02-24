@@ -27,7 +27,6 @@ type InstitutionLogoResource struct {
 	Links *LogoResourceLinks `json:"links"`
 
 	// Type resource type identifier
-	// Example: image
 	// Required: true
 	// Enum: [image]
 	Type *string `json:"type"`
@@ -111,7 +110,7 @@ const (
 
 // prop value enum
 func (m *InstitutionLogoResource) validateTypeEnum(path, location string, value string) error {
-	if err := validate.EnumCase(path, location, value, institutionLogoResourceTypeTypePropEnum, true); err != nil {
+	if err := validate.Enum(path, location, value, institutionLogoResourceTypeTypePropEnum); err != nil {
 		return err
 	}
 	return nil

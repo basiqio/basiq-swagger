@@ -18,12 +18,10 @@ import (
 type AccountHolder struct {
 
 	// Identifies the Product as defined by institution
-	// Example: Hooli Transaction
 	// Required: true
 	Product *string `json:"product"`
 
 	// Identifies the Account type defined by institution
-	// Example: transaction
 	// Required: true
 	Type *string `json:"type"`
 }

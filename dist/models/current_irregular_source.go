@@ -18,12 +18,10 @@ import (
 type CurrentIrregularSource struct {
 
 	// Most recent irregular income payment amount
-	// Example: 62.00
 	// Required: true
 	Amount *string `json:"amount"`
 
 	// Most recent irregular income payment date
-	// Example: 2018-10-13T20:03:37
 	// Required: true
 	Date *string `json:"date"`
 }

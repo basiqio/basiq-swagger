@@ -16,11 +16,9 @@ import (
 type ClassDetails struct {
 
 	// Class Code
-	// Example: 4511
 	Code string `json:"code,omitempty"`
 
 	// Class Details
-	// Example: Cafes and Restaurants
 	Title string `json:"title,omitempty"`
 }
 

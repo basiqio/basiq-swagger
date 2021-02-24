@@ -18,7 +18,6 @@ import (
 type Previous6MonthsCreditLiabilities struct {
 
 	// Value of cash advances in period
-	// Example: -2053.50
 	// Required: true
 	CashAdvances *string `json:"cashAdvances"`
 }

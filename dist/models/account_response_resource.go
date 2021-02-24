@@ -25,22 +25,18 @@ import (
 type AccountResponseResource struct {
 
 	// The name of the account holder as returned by the institution. No formatting is applied. Returns a string or null when not available.
-	// Example: GAVIN BELSON
 	// Required: true
 	AccountHolder *string `json:"accountHolder"`
 
 	// Full account number.
-	// Example: 600000-157441965
 	// Required: true
 	AccountNo *string `json:"accountNo"`
 
 	// Funds that are available to an account holder for withdrawal or other use. This may include funds from an overdraft facility or line of credit. As well as funds classified as the available balance, such as from cleared and existing deposits.
-	// Example: 420.28
 	// Required: true
 	AvailableFunds *string `json:"availableFunds"`
 
 	// Amount of funds in the account right now - excluding any pending transactions. For a credit card this would be zero or the minus amount spent.
-	// Example: 356.50
 	// Required: true
 	Balance *string `json:"balance"`
 
@@ -49,27 +45,22 @@ type AccountResponseResource struct {
 	Class *AccountClass `json:"class"`
 
 	// The id of the connection resource that was used to retrieve the account.
-	// Example: 8fce3b
 	// Required: true
 	Connection *string `json:"connection"`
 
 	// The currency the funds are stored in, using ISO 4217 standard.
-	// Example: AUD
 	// Required: true
 	Currency *string `json:"currency"`
 
 	// Uniquely identifies the account.
-	// Example: s55bf3
 	// Required: true
 	ID *string `json:"id"`
 
 	// The id of the institution resource the account originated from.
-	// Example: AU00000
 	// Required: true
 	Institution *string `json:"institution"`
 
 	// Timestamp of last update, UTC, RFC 3339 format e.g. "2017-09-28T13:39:33Z"
-	// Example: 2019-09-28T13:39:33Z
 	// Required: true
 	LastUpdated *string `json:"lastUpdated"`
 
@@ -78,13 +69,11 @@ type AccountResponseResource struct {
 	Links *AccountLinks `json:"links"`
 
 	// Account name as defined by institution or user.
-	// Example: Master Savings
 	// Required: true
 	Name *string `json:"name"`
 
 	// Indicates the account status. Always set to 'available'. Field kept for backward compatibility. Possible values include:
 	// <ul><li>available newest account data is available.</li></ul>
-	// Example: available
 	// Required: true
 	// Enum: [available unavailable]
 	Status *string `json:"status"`
@@ -96,7 +85,6 @@ type AccountResponseResource struct {
 	TransactionIntervals []*AccountTransactionInterval `json:"transactionIntervals"`
 
 	// Always "account".
-	// Example: account
 	// Required: true
 	Type *string `json:"type"`
 }
@@ -320,7 +308,7 @@ const (
 
 // prop value enum
 func (m *AccountResponseResource) validateStatusEnum(path, location string, value string) error {
-	if err := validate.EnumCase(path, location, value, accountResponseResourceTypeStatusPropEnum, true); err != nil {
+	if err := validate.Enum(path, location, value, accountResponseResourceTypeStatusPropEnum); err != nil {
 		return err
 	}
 	return nil
