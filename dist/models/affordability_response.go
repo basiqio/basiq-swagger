@@ -23,16 +23,16 @@ import (
 // swagger:model AffordabilityResponse
 type AffordabilityResponse struct {
 
-	// External
-	// Required: true
-	ExternalLiabilities []*ExternalLiabilityData `json:"external"`
-
 	// Assets
 	// Required: true
 	Assets []*AffordabilityAssetsData `json:"assets"`
 
 	// Number of days covered by the report
 	CoverageDays int64 `json:"coverageDays,omitempty"`
+
+	// External
+	// Required: true
+	External []*ExternalLiabilityData `json:"external"`
 
 	// Start month for the period for which the Affordability summary is generated. The period of time relates to the account and transaction data used as input into the report.
 	// Required: true
@@ -71,11 +71,11 @@ type AffordabilityResponse struct {
 func (m *AffordabilityResponse) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateExternalLiabilities(formats); err != nil {
+	if err := m.validateAssets(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateAssets(formats); err != nil {
+	if err := m.validateExternal(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -117,31 +117,6 @@ func (m *AffordabilityResponse) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *AffordabilityResponse) validateExternalLiabilities(formats strfmt.Registry) error {
-
-	if err := validate.Required("external", "body", m.ExternalLiabilities); err != nil {
-		return err
-	}
-
-	for i := 0; i < len(m.ExternalLiabilities); i++ {
-		if swag.IsZero(m.ExternalLiabilities[i]) { // not required
-			continue
-		}
-
-		if m.ExternalLiabilities[i] != nil {
-			if err := m.ExternalLiabilities[i].Validate(formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("external" + "." + strconv.Itoa(i))
-				}
-				return err
-			}
-		}
-
-	}
-
-	return nil
-}
-
 func (m *AffordabilityResponse) validateAssets(formats strfmt.Registry) error {
 
 	if err := validate.Required("assets", "body", m.Assets); err != nil {
@@ -157,6 +132,31 @@ func (m *AffordabilityResponse) validateAssets(formats strfmt.Registry) error {
 			if err := m.Assets[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("assets" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *AffordabilityResponse) validateExternal(formats strfmt.Registry) error {
+
+	if err := validate.Required("external", "body", m.External); err != nil {
+		return err
+	}
+
+	for i := 0; i < len(m.External); i++ {
+		if swag.IsZero(m.External[i]) { // not required
+			continue
+		}
+
+		if m.External[i] != nil {
+			if err := m.External[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("external" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

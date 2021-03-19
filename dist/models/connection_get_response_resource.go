@@ -25,7 +25,8 @@ type ConnectionGetResponseResource struct {
 	Accounts *AccountsContainer `json:"accounts,omitempty"`
 
 	// Created date of the connection, available only for SERVER_SCOPE.
-	CreatedDate string `json:"createdDate,omitempty"`
+	// Required: true
+	CreatedDate *string `json:"createdDate"`
 
 	// A string that uniquely identifies the user connection.
 	// Required: true
@@ -40,7 +41,7 @@ type ConnectionGetResponseResource struct {
 
 	// links
 	// Required: true
-	Links *GetConnectionsLinks `json:"links"`
+	Links *GetConnectionLinks `json:"links"`
 
 	// profile
 	Profile *ConnectionProfile `json:"profile,omitempty"`
@@ -65,6 +66,10 @@ func (m *ConnectionGetResponseResource) Validate(formats strfmt.Registry) error 
 	var res []error
 
 	if err := m.validateAccounts(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateCreatedDate(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -111,6 +116,15 @@ func (m *ConnectionGetResponseResource) validateAccounts(formats strfmt.Registry
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *ConnectionGetResponseResource) validateCreatedDate(formats strfmt.Registry) error {
+
+	if err := validate.Required("createdDate", "body", m.CreatedDate); err != nil {
+		return err
 	}
 
 	return nil

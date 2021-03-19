@@ -10,7 +10,7 @@
   "serviceName": "Personal Online Banking",
   "serviceType": "Personal Banking",
   "shortName": "Hooli",
-  "stage": "beta",
+  "stage": "live",
   "tier": "4",
   "features": {
     "login": [
@@ -101,5 +101,5 @@
       "verifyCredentials": 8154
     }
   },
-  "status": "under-maintenance"
+  "status": "operational"
 }

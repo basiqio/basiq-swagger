@@ -2743,8 +2743,7 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/ExternalLiabilityData"
-          },
-          "x-go-name": "ExternalLiabilities"
+          }
         },
         "fromMonth": {
           "description": "Start month for the period for which the Affordability summary is generated. The period of time relates to the account and transaction data used as input into the report.",
@@ -2822,7 +2821,6 @@
         "loanRepaymentMonthly": {
           "description": "Total of all repayments monthly to disclosed loan liabilities as an average monthly amount",
           "type": "string",
-          "x-go-name": "LoanRepaymentMonthly",
           "x-nullable": true,
           "example": "5284.00"
         },
@@ -2835,7 +2833,6 @@
         "potentialLiabilitiesMonthly": {
           "description": "Total of all repayments monthly to potential undisclosed loan liabilities as an average monthly amount",
           "type": "string",
-          "x-go-name": "PotentialLiabilitiesMonthly",
           "x-nullable": true,
           "example": "-1727.00"
         },
@@ -3195,20 +3192,17 @@
         "amount": {
           "description": "Amount of payment",
           "type": "string",
-          "x-go-name": "Amount",
           "example": "-146.50"
         },
         "date": {
           "description": "Date",
           "type": "string",
           "format": "date",
-          "x-go-name": "Date",
           "example": "2019-03-31"
         },
         "source": {
           "description": "Full transaction description",
           "type": "string",
-          "x-go-name": "Source",
           "example": "AFTERPAY MELBOURNE VI AUS Card xx3854 Value Date: 10/11/2019"
         }
       }
@@ -3272,6 +3266,7 @@
       "required": [
         "type",
         "id",
+        "createdDate",
         "institution",
         "links"
       ],
@@ -3298,7 +3293,7 @@
           "example": "2020-06-22T11:15:09Z"
         },
         "links": {
-          "$ref": "#/definitions/GetConnectionsLinks"
+          "$ref": "#/definitions/GetConnectionLinks"
         },
         "profile": {
           "$ref": "#/definitions/ConnectionProfile"
@@ -3317,37 +3312,6 @@
           "description": "Type, always \"connection\".",
           "type": "string",
           "example": "connection"
-        }
-      }
-    },
-    "GetConnectionsLinks": {
-      "description": "Object containing links to resources.",
-      "type": "object",
-      "title": "GetConnectionLinks",
-      "required": [
-        "self",
-        "user"
-      ],
-      "properties": {
-        "accounts": {
-          "description": "Accounts reference url.",
-          "type": "string",
-          "example": "https://au-api.basiq.io/users/cd6fbd92/accounts?filter=institution.id.eq('AU00000')"
-        },
-        "self": {
-          "description": "Connection self reference url.",
-          "type": "string",
-          "example": "https://au-api.basiq.io/users/cd6fbd92/connections/29523951"
-        },
-        "transactions": {
-          "description": "Transactions reference url.",
-          "type": "string",
-          "example": "https://au-api.basiq.io/users/cd6fbd92/transactions?filter=institution.id.eq('AU00000')"
-        },
-        "user": {
-          "description": "User reference url.",
-          "type": "string",
-          "example": "https://au-api.basiq.io/users/cd6fbd92"
         }
       }
     },
@@ -3490,7 +3454,7 @@
           "example": "2020-06-22T11:15:09Z"
         },
         "links": {
-          "$ref": "#/definitions/GetConnectionLinks"
+          "$ref": "#/definitions/GetConnectionsLinks"
         },
         "status": {
           "description": "Connection status, available only for SERVER_SCOPE.",
@@ -3841,21 +3805,18 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/ChangeHistoryExternal"
-          },
-          "x-go-name": "ChangeHistory"
+          }
         },
         "payments": {
           "description": "Aggregated attributes relating to payments for this source (identified as an external liability)",
           "type": "array",
           "items": {
             "$ref": "#/definitions/ExternalPayment"
-          },
-          "x-go-name": "Payments"
+          }
         },
         "source": {
           "description": "Source of external liability (cleaned transaction description).",
           "type": "string",
-          "x-go-name": "Source",
           "example": "afterpay"
         }
       }
@@ -3874,40 +3835,34 @@
         "amountAvg": {
           "description": "Number of occurrences for same source (in this group)",
           "type": "string",
-          "x-go-name": "AmountAvg",
           "example": "-50.50"
         },
         "amountAvgMonthly": {
           "description": "Average monthly payment amount",
           "type": "string",
-          "x-go-name": "AmountAvgMonthly",
           "example": "-20.00"
         },
         "first": {
           "description": "Date of first payment",
           "type": "string",
           "format": "date",
-          "x-go-name": "First",
           "example": "2019-03-15"
         },
         "last": {
           "description": "Date of last payment",
           "type": "string",
           "format": "date",
-          "x-go-name": "Last",
           "example": "2020-03-15"
         },
         "noOccurrences": {
           "description": "Number of occurrences for same source (in this group)",
           "type": "integer",
           "format": "int64",
-          "x-go-name": "NoOccurrences",
           "example": 2
         },
         "total": {
           "description": "Amount of total payments identified for source in the affordability snapshot",
           "type": "string",
-          "x-go-name": "Total",
           "example": "-146.50"
         }
       }
@@ -4021,7 +3976,8 @@
       "type": "object",
       "title": "GetConnectionLinks",
       "required": [
-        "self"
+        "self",
+        "user"
       ],
       "properties": {
         "accounts": {
@@ -4039,10 +3995,41 @@
           "type": "string",
           "example": "https://au-api.basiq.io/users/cd6fbd92/transactions?filter=institution.id.eq('AU00000')"
         },
-        "institution": {
+        "user": {
           "description": "User reference url.",
           "type": "string",
+          "example": "https://au-api.basiq.io/users/cd6fbd92"
+        }
+      }
+    },
+    "GetConnectionsLinks": {
+      "description": "Object containing links to resources.",
+      "type": "object",
+      "title": "GetConnectionsLinks",
+      "required": [
+        "self",
+        "institution"
+      ],
+      "properties": {
+        "accounts": {
+          "description": "Accounts reference url.",
+          "type": "string",
+          "example": "https://au-api.basiq.io/users/cd6fbd92/accounts?filter=institution.id.eq('AU00000')"
+        },
+        "institution": {
+          "description": "Institution details.",
+          "type": "string",
           "example": "https://au-api.basiq.io/institutions/AU00000"
+        },
+        "self": {
+          "description": "Connection self reference url.",
+          "type": "string",
+          "example": "https://au-api.basiq.io/users/cd6fbd92/connections/29523951"
+        },
+        "transactions": {
+          "description": "Transactions reference url.",
+          "type": "string",
+          "example": "https://au-api.basiq.io/users/cd6fbd92/transactions?filter=institution.id.eq('AU00000')"
         }
       }
     },
@@ -5435,6 +5422,7 @@
         "connection",
         "subClass",
         "transactionDate",
+        "enrich",
         "postDate",
         "links"
       ],
@@ -5487,6 +5475,9 @@
             "credit"
           ],
           "example": "credit"
+        },
+        "enrich": {
+          "$ref": "#/definitions/TransactionsEnrich"
         },
         "id": {
           "description": "Uniquely identifies the transaction for this connection. Note that when a connection is refreshed pending transactions will receive new id's, whilst posted transactions will receive the same id's as before the refresh.",
@@ -5667,6 +5658,95 @@
         }
       }
     },
+    "TransactionsAnzsic": {
+      "type": "object",
+      "properties": {
+        "class": {
+          "$ref": "#/definitions/TransactionsClass"
+        },
+        "division": {
+          "$ref": "#/definitions/TransactionsDivision"
+        },
+        "group": {
+          "$ref": "#/definitions/TransactionsGroup"
+        },
+        "subdivision": {
+          "$ref": "#/definitions/TransactionsSubdivision"
+        }
+      }
+    },
+    "TransactionsCategory": {
+      "type": "object",
+      "properties": {
+        "anzsic": {
+          "$ref": "#/definitions/TransactionsAnzsic"
+        }
+      }
+    },
+    "TransactionsClass": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "description": "Class Code",
+          "type": "string",
+          "example": "4511"
+        },
+        "title": {
+          "description": "Class Details",
+          "type": "string",
+          "example": "Cafes and Restaurants"
+        }
+      }
+    },
+    "TransactionsDivision": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "description": "Division Code",
+          "type": "string",
+          "example": "H"
+        },
+        "title": {
+          "description": "Division Details",
+          "type": "string",
+          "example": "Accommodation and  Food Services"
+        }
+      }
+    },
+    "TransactionsEnrich": {
+      "type": "object",
+      "required": [
+        "merchant",
+        "location",
+        "category"
+      ],
+      "properties": {
+        "category": {
+          "$ref": "#/definitions/TransactionsCategory"
+        },
+        "location": {
+          "$ref": "#/definitions/TransactionsLocation"
+        },
+        "merchant": {
+          "$ref": "#/definitions/TransactionsMerchant"
+        }
+      }
+    },
+    "TransactionsGeometry": {
+      "type": "object",
+      "properties": {
+        "lat": {
+          "description": "Latitude",
+          "type": "string",
+          "example": "-33.79988520000001"
+        },
+        "lng": {
+          "description": "Longitude",
+          "type": "string",
+          "example": "151.2858021"
+        }
+      }
+    },
     "TransactionsGetLinks": {
       "type": "object",
       "required": [
@@ -5720,6 +5800,116 @@
           "description": "Value is \"list\".",
           "type": "string",
           "example": "list"
+        }
+      }
+    },
+    "TransactionsGroup": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "description": "Group Code",
+          "type": "string",
+          "example": "451"
+        },
+        "title": {
+          "description": "Group Details",
+          "type": "string",
+          "example": "Cafes, Restaurants and Takeaway Food Services"
+        }
+      }
+    },
+    "TransactionsLocation": {
+      "type": "object",
+      "properties": {
+        "country": {
+          "description": "Country",
+          "type": "string",
+          "example": "Australia"
+        },
+        "formattedAddress": {
+          "description": "Address",
+          "type": "string",
+          "example": "1/39 E Esplanade, Manly NSW 2095"
+        },
+        "geometry": {
+          "$ref": "#/definitions/TransactionsGeometry"
+        },
+        "postalCode": {
+          "description": "Postal Code",
+          "type": "string",
+          "example": "2095"
+        },
+        "route": {
+          "description": "Route Name",
+          "type": "string",
+          "example": "E Esplanade"
+        },
+        "routeNo": {
+          "description": "Route Number",
+          "type": "string",
+          "example": "29"
+        },
+        "state": {
+          "description": "State",
+          "type": "string",
+          "example": "NSW"
+        },
+        "suburb": {
+          "description": "Suburb",
+          "type": "string",
+          "example": "Manly"
+        }
+      }
+    },
+    "TransactionsMerchant": {
+      "type": "object",
+      "required": [
+        "businessName",
+        "website"
+      ],
+      "properties": {
+        "businessName": {
+          "description": "Merchant name",
+          "type": "string",
+          "example": "Garfish Manly"
+        },
+        "phoneNumber": {
+          "$ref": "#/definitions/TransactionsPhoneNumber"
+        },
+        "website": {
+          "description": "Merchant Website",
+          "type": "string",
+          "example": "http://garfish.com.au/garfish-manly/"
+        }
+      }
+    },
+    "TransactionsPhoneNumber": {
+      "type": "object",
+      "properties": {
+        "international": {
+          "description": "International Phone Number",
+          "type": "string",
+          "example": "+61 2 9977 0707"
+        },
+        "local": {
+          "description": "Local Phone Number",
+          "type": "string",
+          "example": "(02) 9977 0707"
+        }
+      }
+    },
+    "TransactionsSubdivision": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "description": "Subdivision Code",
+          "type": "string",
+          "example": "45"
+        },
+        "title": {
+          "description": "Subdivision Details",
+          "type": "string",
+          "example": "Food and Beverage Services"
         }
       }
     },
