@@ -36,7 +36,7 @@ type ConnectionsData struct {
 
 	// links
 	// Required: true
-	Links *GetConnectionLinks `json:"links"`
+	Links *GetConnectionsLinks `json:"links"`
 
 	// Connection status, available only for SERVER_SCOPE.
 	// Enum: [active pending invalid]

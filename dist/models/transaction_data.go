@@ -49,6 +49,10 @@ type TransactionData struct {
 	// Enum: [debit credit]
 	Direction *string `json:"direction"`
 
+	// enrich
+	// Required: true
+	Enrich *TransactionsEnrich `json:"enrich"`
+
 	// Uniquely identifies the transaction for this connection. Note that when a connection is refreshed pending transactions will receive new id's, whilst posted transactions will receive the same id's as before the refresh.
 	// Required: true
 	ID *string `json:"id"`
@@ -112,6 +116,10 @@ func (m *TransactionData) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateDirection(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateEnrich(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -300,6 +308,24 @@ func (m *TransactionData) validateDirection(formats strfmt.Registry) error {
 	// value enum
 	if err := m.validateDirectionEnum("direction", "body", *m.Direction); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *TransactionData) validateEnrich(formats strfmt.Registry) error {
+
+	if err := validate.Required("enrich", "body", m.Enrich); err != nil {
+		return err
+	}
+
+	if m.Enrich != nil {
+		if err := m.Enrich.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("enrich")
+			}
+			return err
+		}
 	}
 
 	return nil

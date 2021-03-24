@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// GetConnectionsLinks GetConnectionLinks
+// GetConnectionsLinks GetConnectionsLinks
 //
 // Object containing links to resources.
 //
@@ -22,27 +22,27 @@ type GetConnectionsLinks struct {
 	// Accounts reference url.
 	Accounts string `json:"accounts,omitempty"`
 
+	// Institution details.
+	// Required: true
+	Institution *string `json:"institution"`
+
 	// Connection self reference url.
 	// Required: true
 	Self *string `json:"self"`
 
 	// Transactions reference url.
 	Transactions string `json:"transactions,omitempty"`
-
-	// User reference url.
-	// Required: true
-	User *string `json:"user"`
 }
 
 // Validate validates this get connections links
 func (m *GetConnectionsLinks) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateSelf(formats); err != nil {
+	if err := m.validateInstitution(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateUser(formats); err != nil {
+	if err := m.validateSelf(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -52,18 +52,18 @@ func (m *GetConnectionsLinks) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *GetConnectionsLinks) validateSelf(formats strfmt.Registry) error {
+func (m *GetConnectionsLinks) validateInstitution(formats strfmt.Registry) error {
 
-	if err := validate.Required("self", "body", m.Self); err != nil {
+	if err := validate.Required("institution", "body", m.Institution); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-func (m *GetConnectionsLinks) validateUser(formats strfmt.Registry) error {
+func (m *GetConnectionsLinks) validateSelf(formats strfmt.Registry) error {
 
-	if err := validate.Required("user", "body", m.User); err != nil {
+	if err := validate.Required("self", "body", m.Self); err != nil {
 		return err
 	}
 
