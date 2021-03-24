@@ -1,7 +1,5 @@
 {
   "class": "payment",
-  "direction": "debit",
-  "type": "enrich",
   "data": {
     "category": {
       "anzsic": {
@@ -24,28 +22,17 @@
       }
     },
     "location": {
-      "country": "Australia",
-      "formattedAddress": "Glenferrie Centre, 1/674 Glenferrie Rd, Hawthorn VIC 3122",
-      "postalCode": "3122",
-      "route": "Glenferrie Rd",
-      "routeNo": "674",
-      "state": "VIC",
-      "suburb": "Hawthorn",
-      "geometry": {
-        "lat": "-37.8210807",
-        "lng": "145.0359011"
-      }
+      "geometry": {}
     },
     "merchant": {
       "businessName": "Starbucks",
-      "website": "http://www.starbucks.com.au/",
-      "phoneNumber": {
-        "international": "+61 3 9819 9322",
-        "local": "(03) 9819 9322"
-      }
+      "phoneNumber": {},
+      "website": ""
     }
   },
+  "direction": "debit",
   "links": {
     "self": "https://au-api.basiq.io/enrich?accountType=credit-card\u0026amount=-124\u0026institution=AU00000\u0026q=Starbucks"
-  }
+  },
+  "type": "enrich"
 }

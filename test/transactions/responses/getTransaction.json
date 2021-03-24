@@ -7,6 +7,11 @@
   "account": "14aa946c-6f87-44b7-bab9-d192d6261471",
   "balance": "38383.73",
   "direction": "credit",
+  "enrich": {
+    "category": null,
+    "location": null,
+    "merchant": null
+  },
   "class": "interest",
   "institution": "AU00000",
   "connection": "8dc10b7f-266a-4a72-af2b-7c6eb117a11d",
