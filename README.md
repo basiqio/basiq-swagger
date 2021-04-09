@@ -40,7 +40,7 @@ func main() {
 	tokenReq := token2.NewPostTokenParamsWithContext(context.TODO())
 	tokenReq.SetBasiqVersion("2.0")
 	auth := httptransport.APIKeyAuth("Authorization", "header", "Basic "+ apiKey)  
-	tokenResponse, err := client.Token.PostToken(tokenReq, apiKey)
+	tokenResponse, err := client.Token.PostToken(tokenReq, auth)
 
 	if err != nil {
 		log.Printf("Error getting token: %v", err)
