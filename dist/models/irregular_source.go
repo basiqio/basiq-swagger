@@ -15,7 +15,8 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// IrregularSource Irregular Income sources typically require at least 5 credits across a minimum 90 day time period
+// IrregularSource IrregularSource
+// Income sources typically require at least 5 credits across a minimum 90 day time period
 //
 // swagger:model IrregularSource
 type IrregularSource struct {

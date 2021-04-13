@@ -520,6 +520,58 @@
       }
     },
     "/users/{userId}/affordability": {
+      "get": {
+        "security": [
+          {
+            "application": [
+              "SERVER_ACCESS"
+            ]
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Affordability"
+        ],
+        "summary": "Returns a list with a data property that contains an array of affordability resources.",
+        "operationId": "getAffordabilityList",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "The identifier of the user.",
+            "name": "userId",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a list with a data property that contains an array of affordability resources.",
+            "schema": {
+              "$ref": "#/definitions/AffordabilityListResponse"
+            }
+          },
+          "400": {
+            "description": "Returns error that server cannot or will not process the request due to something that is perceived to be a client error.",
+            "schema": {
+              "$ref": "#/definitions/BadRequestError"
+            }
+          },
+          "404": {
+            "description": "Returns error indicating that server can't find requested resource.",
+            "schema": {
+              "$ref": "#/definitions/NotFoundError"
+            }
+          },
+          "500": {
+            "description": "Returns error response code indicates that the server encountered an unexpected condition that prevented it from fulfilling the request.",
+            "schema": {
+              "$ref": "#/definitions/InternalServerError"
+            }
+          }
+        }
+      },
       "post": {
         "security": [
           {
@@ -2671,6 +2723,129 @@
         }
       }
     },
+    "AffordabilityLinksInList": {
+      "description": "Object containing links to resources.",
+      "type": "object",
+      "title": "AffordabilityLinksInList",
+      "required": [
+        "self",
+        "income",
+        "expenses"
+      ],
+      "properties": {
+        "expenses": {
+          "description": "Link to the expenses",
+          "type": "string",
+          "example": "https://au-api.basiq.io/users/25c8d1ed77/expenses/s55bf5"
+        },
+        "income": {
+          "description": "Link to the income",
+          "type": "string",
+          "example": "https://au-api.basiq.io/users/25c8d1ed77/income/s55bf4"
+        },
+        "self": {
+          "description": "Link to the affordability resource",
+          "type": "string",
+          "example": "https://au-api.basiq.io/users/25c8d1ed77/affordability/s55bf3"
+        }
+      }
+    },
+    "AffordabilityListData": {
+      "type": "object",
+      "required": [
+        "type",
+        "id",
+        "fromMonth",
+        "toMonth",
+        "generatedDate",
+        "links"
+      ],
+      "properties": {
+        "coverageDays": {
+          "description": "Number of days covered by the report",
+          "type": "integer",
+          "format": "int64",
+          "example": 392
+        },
+        "fromMonth": {
+          "description": "Start month for the period for which the Affordability summary is generated. The period of time relates to the account and transaction data used as input into the report.",
+          "type": "string",
+          "example": "2019-03"
+        },
+        "generatedDate": {
+          "description": "Date the report was generated.",
+          "type": "string",
+          "example": "2020-03-26T06:56:44"
+        },
+        "id": {
+          "description": "Uniquely identifies the affordability report.",
+          "type": "string",
+          "example": "s55bf3"
+        },
+        "institutions": {
+          "description": "An array of institution ids to indicate the sources of transaction data, aggregated to generate the affordability resource.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "example": [
+            "AU00000"
+          ]
+        },
+        "links": {
+          "$ref": "#/definitions/AffordabilityLinksInList"
+        },
+        "toMonth": {
+          "description": "End month (usually the current month) for the period for which the Affordability summary is generated.",
+          "type": "string",
+          "example": "2020-03"
+        },
+        "type": {
+          "description": "Always \"affordability\".",
+          "type": "string",
+          "example": "affordability"
+        }
+      }
+    },
+    "AffordabilityListLinks": {
+      "type": "object",
+      "required": [
+        "self"
+      ],
+      "properties": {
+        "self": {
+          "description": "Link to the requested user affordability resources",
+          "type": "string",
+          "example": "https://au-api.basiq.io/users/25c8d1ed77/affordability"
+        }
+      }
+    },
+    "AffordabilityListResponse": {
+      "description": "Container object, containing affordability list details.",
+      "type": "object",
+      "title": "AffordabilityListResponse",
+      "required": [
+        "type",
+        "data",
+        "links"
+      ],
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AffordabilityListData"
+          }
+        },
+        "links": {
+          "$ref": "#/definitions/AffordabilityListLinks"
+        },
+        "type": {
+          "description": "Always \"List\".",
+          "type": "string",
+          "example": "list"
+        }
+      }
+    },
     "AffordabilityPostRequest": {
       "type": "object",
       "properties": {
@@ -4456,7 +4631,7 @@
       }
     },
     "IrregularSource": {
-      "description": "Irregular Income sources typically require at least 5 credits across a minimum 90 day time period",
+      "description": "IrregularSource\nIncome sources typically require at least 5 credits across a minimum 90 day time period",
       "type": "object",
       "required": [
         "source",
@@ -5200,8 +5375,8 @@
       }
     },
     "RegularSource": {
+      "description": "RegularSource\nOur complex income algorithm uses over 50 rules to identify different types of income sources. For example, to identify a regular income source - the fortnightly salary should have a minimum of 5 credits across a 90 day time period with regular intervals. Additionally, tolerances are applied based on confidence in identified income source patterns (by amount and frequency).",
       "type": "object",
-      "title": "Our complex income algorithm uses over 50 rules to identify different types of income sources. For example, to identify a regular income source - the fortnightly salary should have a minimum of 5 credits across a 90 day time period with regular intervals. Additionally, tolerances are applied based on confidence in identified income source patterns (by amount and frequency).",
       "required": [
         "source",
         "frequency",
