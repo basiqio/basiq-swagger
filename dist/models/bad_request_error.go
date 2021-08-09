@@ -6,6 +6,7 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"encoding/json"
 	"strconv"
 
@@ -21,6 +22,7 @@ import (
 type BadRequestError struct {
 
 	// Unique identifier for this particular occurrence of the problem.
+	// Example: ac5ah5i
 	// Required: true
 	CorrelationID *string `json:"correlationId"`
 
@@ -29,6 +31,7 @@ type BadRequestError struct {
 	Data []*BadRequestErrorDataItems0 `json:"data"`
 
 	// Always "list".
+	// Example: list
 	// Required: true
 	Type *string `json:"type"`
 }
@@ -98,6 +101,38 @@ func (m *BadRequestError) validateType(formats strfmt.Registry) error {
 	return nil
 }
 
+// ContextValidate validate this bad request error based on the context it is used
+func (m *BadRequestError) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateData(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *BadRequestError) contextValidateData(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Data); i++ {
+
+		if m.Data[i] != nil {
+			if err := m.Data[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("data" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
 // MarshalBinary interface implementation
 func (m *BadRequestError) MarshalBinary() ([]byte, error) {
 	if m == nil {
@@ -122,20 +157,24 @@ func (m *BadRequestError) UnmarshalBinary(b []byte) error {
 type BadRequestErrorDataItems0 struct {
 
 	// Application-specific error code, expressed as a string value.
+	// Example: parameter-not-valid
 	// Required: true
 	// Enum: [parameter-not-supplied parameter-not-valid unsupported-accept invalid-content institution-not-supported temporary-unavailable invalid-credentials]
 	Code *string `json:"code"`
 
 	// Human-readable explanation specific to this occurrence of the problem.
+	// Example: ID value is not valid.
 	Detail string `json:"detail,omitempty"`
 
 	// source
 	Source *Source `json:"source,omitempty"`
 
 	// Title of the error
+	// Example: Parameter not valid.
 	Title string `json:"title,omitempty"`
 
 	// Type of the response, always "error"
+	// Example: error
 	// Required: true
 	Type *string `json:"type"`
 }
@@ -176,31 +215,31 @@ func init() {
 
 const (
 
-	// BadRequestErrorDataItems0CodeParameterNotSupplied captures enum value "parameter-not-supplied"
-	BadRequestErrorDataItems0CodeParameterNotSupplied string = "parameter-not-supplied"
+	// BadRequestErrorDataItems0CodeParameterDashNotDashSupplied captures enum value "parameter-not-supplied"
+	BadRequestErrorDataItems0CodeParameterDashNotDashSupplied string = "parameter-not-supplied"
 
-	// BadRequestErrorDataItems0CodeParameterNotValid captures enum value "parameter-not-valid"
-	BadRequestErrorDataItems0CodeParameterNotValid string = "parameter-not-valid"
+	// BadRequestErrorDataItems0CodeParameterDashNotDashValid captures enum value "parameter-not-valid"
+	BadRequestErrorDataItems0CodeParameterDashNotDashValid string = "parameter-not-valid"
 
-	// BadRequestErrorDataItems0CodeUnsupportedAccept captures enum value "unsupported-accept"
-	BadRequestErrorDataItems0CodeUnsupportedAccept string = "unsupported-accept"
+	// BadRequestErrorDataItems0CodeUnsupportedDashAccept captures enum value "unsupported-accept"
+	BadRequestErrorDataItems0CodeUnsupportedDashAccept string = "unsupported-accept"
 
-	// BadRequestErrorDataItems0CodeInvalidContent captures enum value "invalid-content"
-	BadRequestErrorDataItems0CodeInvalidContent string = "invalid-content"
+	// BadRequestErrorDataItems0CodeInvalidDashContent captures enum value "invalid-content"
+	BadRequestErrorDataItems0CodeInvalidDashContent string = "invalid-content"
 
-	// BadRequestErrorDataItems0CodeInstitutionNotSupported captures enum value "institution-not-supported"
-	BadRequestErrorDataItems0CodeInstitutionNotSupported string = "institution-not-supported"
+	// BadRequestErrorDataItems0CodeInstitutionDashNotDashSupported captures enum value "institution-not-supported"
+	BadRequestErrorDataItems0CodeInstitutionDashNotDashSupported string = "institution-not-supported"
 
-	// BadRequestErrorDataItems0CodeTemporaryUnavailable captures enum value "temporary-unavailable"
-	BadRequestErrorDataItems0CodeTemporaryUnavailable string = "temporary-unavailable"
+	// BadRequestErrorDataItems0CodeTemporaryDashUnavailable captures enum value "temporary-unavailable"
+	BadRequestErrorDataItems0CodeTemporaryDashUnavailable string = "temporary-unavailable"
 
-	// BadRequestErrorDataItems0CodeInvalidCredentials captures enum value "invalid-credentials"
-	BadRequestErrorDataItems0CodeInvalidCredentials string = "invalid-credentials"
+	// BadRequestErrorDataItems0CodeInvalidDashCredentials captures enum value "invalid-credentials"
+	BadRequestErrorDataItems0CodeInvalidDashCredentials string = "invalid-credentials"
 )
 
 // prop value enum
 func (m *BadRequestErrorDataItems0) validateCodeEnum(path, location string, value string) error {
-	if err := validate.Enum(path, location, value, badRequestErrorDataItems0TypeCodePropEnum); err != nil {
+	if err := validate.EnumCase(path, location, value, badRequestErrorDataItems0TypeCodePropEnum, true); err != nil {
 		return err
 	}
 	return nil
@@ -221,7 +260,6 @@ func (m *BadRequestErrorDataItems0) validateCode(formats strfmt.Registry) error 
 }
 
 func (m *BadRequestErrorDataItems0) validateSource(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Source) { // not required
 		return nil
 	}
@@ -242,6 +280,34 @@ func (m *BadRequestErrorDataItems0) validateType(formats strfmt.Registry) error 
 
 	if err := validate.Required("type", "body", m.Type); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+// ContextValidate validate this bad request error data items0 based on the context it is used
+func (m *BadRequestErrorDataItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateSource(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *BadRequestErrorDataItems0) contextValidateSource(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Source != nil {
+		if err := m.Source.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("source")
+			}
+			return err
+		}
 	}
 
 	return nil

@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -35,13 +37,40 @@ func (m *InstitutionPerformanceStats) Validate(formats strfmt.Registry) error {
 }
 
 func (m *InstitutionPerformanceStats) validateAverageDurationMs(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.AverageDurationMs) { // not required
 		return nil
 	}
 
 	if m.AverageDurationMs != nil {
 		if err := m.AverageDurationMs.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("averageDurationMs")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// ContextValidate validate this institution performance stats based on the context it is used
+func (m *InstitutionPerformanceStats) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateAverageDurationMs(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *InstitutionPerformanceStats) contextValidateAverageDurationMs(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.AverageDurationMs != nil {
+		if err := m.AverageDurationMs.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("averageDurationMs")
 			}
@@ -94,6 +123,11 @@ type InstitutionPerformanceStatsAverageDurationMs struct {
 
 // Validate validates this institution performance stats average duration ms
 func (m *InstitutionPerformanceStatsAverageDurationMs) Validate(formats strfmt.Registry) error {
+	return nil
+}
+
+// ContextValidate validates this institution performance stats average duration ms based on context it is used
+func (m *InstitutionPerformanceStatsAverageDurationMs) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

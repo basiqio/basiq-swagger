@@ -17,69 +17,85 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// NewGetAffordabilitySnapshotTransactionsParams creates a new GetAffordabilitySnapshotTransactionsParams object
-// with the default values initialized.
+// NewGetAffordabilitySnapshotTransactionsParams creates a new GetAffordabilitySnapshotTransactionsParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewGetAffordabilitySnapshotTransactionsParams() *GetAffordabilitySnapshotTransactionsParams {
-	var ()
 	return &GetAffordabilitySnapshotTransactionsParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewGetAffordabilitySnapshotTransactionsParamsWithTimeout creates a new GetAffordabilitySnapshotTransactionsParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewGetAffordabilitySnapshotTransactionsParamsWithTimeout(timeout time.Duration) *GetAffordabilitySnapshotTransactionsParams {
-	var ()
 	return &GetAffordabilitySnapshotTransactionsParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewGetAffordabilitySnapshotTransactionsParamsWithContext creates a new GetAffordabilitySnapshotTransactionsParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewGetAffordabilitySnapshotTransactionsParamsWithContext(ctx context.Context) *GetAffordabilitySnapshotTransactionsParams {
-	var ()
 	return &GetAffordabilitySnapshotTransactionsParams{
-
 		Context: ctx,
 	}
 }
 
 // NewGetAffordabilitySnapshotTransactionsParamsWithHTTPClient creates a new GetAffordabilitySnapshotTransactionsParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewGetAffordabilitySnapshotTransactionsParamsWithHTTPClient(client *http.Client) *GetAffordabilitySnapshotTransactionsParams {
-	var ()
 	return &GetAffordabilitySnapshotTransactionsParams{
 		HTTPClient: client,
 	}
 }
 
-/*GetAffordabilitySnapshotTransactionsParams contains all the parameters to send to the API endpoint
-for the get affordability snapshot transactions operation typically these are written to a http.Request
+/* GetAffordabilitySnapshotTransactionsParams contains all the parameters to send to the API endpoint
+   for the get affordability snapshot transactions operation.
+
+   Typically these are written to a http.Request.
 */
 type GetAffordabilitySnapshotTransactionsParams struct {
 
-	/*Limit
-	  This represents the maximum number of transactions that may be included in the response (maximum of 500). Note that by default 500 transactions are returned if this value is not specified.
+	/* Limit.
 
+	   This represents the maximum number of transactions that may be included in the response (maximum of 500). Note that by default 500 transactions are returned if this value is not specified.
 	*/
 	Limit *int64
-	/*SnapshotID
-	  The identifier of the affordability report to be retrieved.
 
+	/* SnapshotID.
+
+	   The identifier of the affordability report to be retrieved.
 	*/
 	SnapshotID string
-	/*UserID
-	  The identifier of the user.
 
+	/* UserID.
+
+	   The identifier of the user.
 	*/
 	UserID string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the get affordability snapshot transactions params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetAffordabilitySnapshotTransactionsParams) WithDefaults() *GetAffordabilitySnapshotTransactionsParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the get affordability snapshot transactions params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetAffordabilitySnapshotTransactionsParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the get affordability snapshot transactions params
@@ -160,16 +176,17 @@ func (o *GetAffordabilitySnapshotTransactionsParams) WriteToRequest(r runtime.Cl
 
 		// query param limit
 		var qrLimit int64
+
 		if o.Limit != nil {
 			qrLimit = *o.Limit
 		}
 		qLimit := swag.FormatInt64(qrLimit)
 		if qLimit != "" {
+
 			if err := r.SetQueryParam("limit", qLimit); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	// path param snapshotId

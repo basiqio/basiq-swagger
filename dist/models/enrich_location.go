@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -17,27 +19,34 @@ import (
 type EnrichLocation struct {
 
 	// Country
+	// Example: Australia
 	Country string `json:"country,omitempty"`
 
 	// Address
+	// Example: 1/39 E Esplanade, Manly NSW 2095
 	FormattedAddress string `json:"formattedAddress,omitempty"`
 
 	// geometry
 	Geometry *EnrichGeometry `json:"geometry,omitempty"`
 
 	// Postal Code
+	// Example: 2095
 	PostalCode string `json:"postalCode,omitempty"`
 
 	// Route Name
+	// Example: E Esplanade
 	Route string `json:"route,omitempty"`
 
 	// Route Number
+	// Example: 29
 	RouteNo string `json:"routeNo,omitempty"`
 
 	// State
+	// Example: NSW
 	State string `json:"state,omitempty"`
 
 	// Suburb
+	// Example: Manly
 	Suburb string `json:"suburb,omitempty"`
 }
 
@@ -56,13 +65,40 @@ func (m *EnrichLocation) Validate(formats strfmt.Registry) error {
 }
 
 func (m *EnrichLocation) validateGeometry(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Geometry) { // not required
 		return nil
 	}
 
 	if m.Geometry != nil {
 		if err := m.Geometry.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("geometry")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// ContextValidate validate this enrich location based on the context it is used
+func (m *EnrichLocation) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateGeometry(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *EnrichLocation) contextValidateGeometry(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Geometry != nil {
+		if err := m.Geometry.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("geometry")
 			}

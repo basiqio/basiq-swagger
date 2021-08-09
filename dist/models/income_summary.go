@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -18,18 +20,22 @@ import (
 type IncomeSummary struct {
 
 	// Total mean of irregular income monthly calculated across the whole time period for all irregular sources
+	// Example: 55.00
 	// Required: true
 	IrregularIncomeAvg *string `json:"irregularIncomeAvg"`
 
 	// Total median regular income monthly calculated over the past 3 months for all regular sources
+	// Example: 18098.00
 	// Required: true
 	RegularIncomeAvg *string `json:"regularIncomeAvg"`
 
 	// Total regular income so far this financial year (year to date)
+	// Example: 90490.00
 	// Required: true
 	RegularIncomeYTD *string `json:"regularIncomeYTD"`
 
 	// Total predicted regular income for this financial year year
+	// Example: 217176.00
 	// Required: true
 	RegularIncomeYear *string `json:"regularIncomeYear"`
 }
@@ -93,6 +99,11 @@ func (m *IncomeSummary) validateRegularIncomeYear(formats strfmt.Registry) error
 		return err
 	}
 
+	return nil
+}
+
+// ContextValidate validates this income summary based on context it is used
+func (m *IncomeSummary) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

@@ -53,9 +53,8 @@ func (o *GetAffordabilitySnapshotTransactionsReader) ReadResponse(response runti
 			return nil, err
 		}
 		return nil, result
-
 	default:
-		return nil, runtime.NewAPIError("unknown error", response, response.Code())
+		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
 }
 
@@ -64,7 +63,7 @@ func NewGetAffordabilitySnapshotTransactionsOK() *GetAffordabilitySnapshotTransa
 	return &GetAffordabilitySnapshotTransactionsOK{}
 }
 
-/*GetAffordabilitySnapshotTransactionsOK handles this case with default header values.
+/* GetAffordabilitySnapshotTransactionsOK describes a response with status code 200, with default header values.
 
 Returns a affordability resource transactions JSON or CSV file, if the operation succeeded.
 */
@@ -75,7 +74,6 @@ type GetAffordabilitySnapshotTransactionsOK struct {
 func (o *GetAffordabilitySnapshotTransactionsOK) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/affordability/{snapshotId}/transactions][%d] getAffordabilitySnapshotTransactionsOK  %+v", 200, o.Payload)
 }
-
 func (o *GetAffordabilitySnapshotTransactionsOK) GetPayload() *models.AffordabilityTransactionsResponse {
 	return o.Payload
 }
@@ -97,7 +95,7 @@ func NewGetAffordabilitySnapshotTransactionsBadRequest() *GetAffordabilitySnapsh
 	return &GetAffordabilitySnapshotTransactionsBadRequest{}
 }
 
-/*GetAffordabilitySnapshotTransactionsBadRequest handles this case with default header values.
+/* GetAffordabilitySnapshotTransactionsBadRequest describes a response with status code 400, with default header values.
 
 Returns error that server cannot or will not process the request due to something that is perceived to be a client error.
 */
@@ -108,7 +106,6 @@ type GetAffordabilitySnapshotTransactionsBadRequest struct {
 func (o *GetAffordabilitySnapshotTransactionsBadRequest) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/affordability/{snapshotId}/transactions][%d] getAffordabilitySnapshotTransactionsBadRequest  %+v", 400, o.Payload)
 }
-
 func (o *GetAffordabilitySnapshotTransactionsBadRequest) GetPayload() *models.BadRequestError {
 	return o.Payload
 }
@@ -130,7 +127,7 @@ func NewGetAffordabilitySnapshotTransactionsForbidden() *GetAffordabilitySnapsho
 	return &GetAffordabilitySnapshotTransactionsForbidden{}
 }
 
-/*GetAffordabilitySnapshotTransactionsForbidden handles this case with default header values.
+/* GetAffordabilitySnapshotTransactionsForbidden describes a response with status code 403, with default header values.
 
 Error that access is forbidden and tied to the application logic, such as insufficient rights to a resource.
 */
@@ -141,7 +138,6 @@ type GetAffordabilitySnapshotTransactionsForbidden struct {
 func (o *GetAffordabilitySnapshotTransactionsForbidden) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/affordability/{snapshotId}/transactions][%d] getAffordabilitySnapshotTransactionsForbidden  %+v", 403, o.Payload)
 }
-
 func (o *GetAffordabilitySnapshotTransactionsForbidden) GetPayload() *models.ForbiddenAccessError {
 	return o.Payload
 }
@@ -163,7 +159,7 @@ func NewGetAffordabilitySnapshotTransactionsNotFound() *GetAffordabilitySnapshot
 	return &GetAffordabilitySnapshotTransactionsNotFound{}
 }
 
-/*GetAffordabilitySnapshotTransactionsNotFound handles this case with default header values.
+/* GetAffordabilitySnapshotTransactionsNotFound describes a response with status code 404, with default header values.
 
 Returns error indicating that server can't find requested resource.
 */
@@ -174,7 +170,6 @@ type GetAffordabilitySnapshotTransactionsNotFound struct {
 func (o *GetAffordabilitySnapshotTransactionsNotFound) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/affordability/{snapshotId}/transactions][%d] getAffordabilitySnapshotTransactionsNotFound  %+v", 404, o.Payload)
 }
-
 func (o *GetAffordabilitySnapshotTransactionsNotFound) GetPayload() *models.NotFoundError {
 	return o.Payload
 }
@@ -196,7 +191,7 @@ func NewGetAffordabilitySnapshotTransactionsInternalServerError() *GetAffordabil
 	return &GetAffordabilitySnapshotTransactionsInternalServerError{}
 }
 
-/*GetAffordabilitySnapshotTransactionsInternalServerError handles this case with default header values.
+/* GetAffordabilitySnapshotTransactionsInternalServerError describes a response with status code 500, with default header values.
 
 Returns error response code indicates that the server encountered an unexpected condition that prevented it from fulfilling the request.
 */
@@ -207,7 +202,6 @@ type GetAffordabilitySnapshotTransactionsInternalServerError struct {
 func (o *GetAffordabilitySnapshotTransactionsInternalServerError) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/affordability/{snapshotId}/transactions][%d] getAffordabilitySnapshotTransactionsInternalServerError  %+v", 500, o.Payload)
 }
-
 func (o *GetAffordabilitySnapshotTransactionsInternalServerError) GetPayload() *models.InternalServerError {
 	return o.Payload
 }

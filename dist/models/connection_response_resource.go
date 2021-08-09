@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -20,6 +22,7 @@ import (
 type ConnectionResponseResource struct {
 
 	// Job identification.
+	// Example: 29523951
 	// Required: true
 	ID *string `json:"id"`
 
@@ -28,6 +31,7 @@ type ConnectionResponseResource struct {
 	Links *ResourceLink `json:"links"`
 
 	// Type, always "job".
+	// Example: job
 	// Required: true
 	Type *string `json:"type"`
 }
@@ -85,6 +89,34 @@ func (m *ConnectionResponseResource) validateType(formats strfmt.Registry) error
 
 	if err := validate.Required("type", "body", m.Type); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+// ContextValidate validate this connection response resource based on the context it is used
+func (m *ConnectionResponseResource) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateLinks(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *ConnectionResponseResource) contextValidateLinks(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Links != nil {
+		if err := m.Links.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("links")
+			}
+			return err
+		}
 	}
 
 	return nil

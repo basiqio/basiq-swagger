@@ -6,6 +6,7 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"encoding/json"
 
 	"github.com/go-openapi/errors"
@@ -20,10 +21,12 @@ import (
 type ConnectionsData struct {
 
 	// Created date of the connection, available only for SERVER_SCOPE.
+	// Example: 2019-07-29T07:34:09Z
 	// Required: true
 	CreatedDate *string `json:"createdDate"`
 
 	// Connection identification.
+	// Example: 61723
 	// Required: true
 	ID *string `json:"id"`
 
@@ -32,6 +35,7 @@ type ConnectionsData struct {
 	Institution *ConnectionInstitution `json:"institution"`
 
 	// Connection last used date, available only for SERVER_SCOPE.
+	// Example: 2020-06-22T11:15:09Z
 	LastUsed string `json:"lastUsed,omitempty"`
 
 	// links
@@ -39,10 +43,12 @@ type ConnectionsData struct {
 	Links *GetConnectionsLinks `json:"links"`
 
 	// Connection status, available only for SERVER_SCOPE.
+	// Example: active
 	// Enum: [active pending invalid]
 	Status string `json:"status,omitempty"`
 
 	// Type, always "connection".
+	// Example: connection
 	// Required: true
 	Type *string `json:"type"`
 }
@@ -161,14 +167,13 @@ const (
 
 // prop value enum
 func (m *ConnectionsData) validateStatusEnum(path, location string, value string) error {
-	if err := validate.Enum(path, location, value, connectionsDataTypeStatusPropEnum); err != nil {
+	if err := validate.EnumCase(path, location, value, connectionsDataTypeStatusPropEnum, true); err != nil {
 		return err
 	}
 	return nil
 }
 
 func (m *ConnectionsData) validateStatus(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Status) { // not required
 		return nil
 	}
@@ -185,6 +190,52 @@ func (m *ConnectionsData) validateType(formats strfmt.Registry) error {
 
 	if err := validate.Required("type", "body", m.Type); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+// ContextValidate validate this connections data based on the context it is used
+func (m *ConnectionsData) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateInstitution(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateLinks(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *ConnectionsData) contextValidateInstitution(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Institution != nil {
+		if err := m.Institution.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("institution")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *ConnectionsData) contextValidateLinks(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Links != nil {
+		if err := m.Links.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("links")
+			}
+			return err
+		}
 	}
 
 	return nil

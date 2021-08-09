@@ -6,6 +6,7 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"encoding/json"
 	"strconv"
 
@@ -21,6 +22,7 @@ import (
 type UnauthorizedError struct {
 
 	// Unique identifier for this particular occurrence of the problem.
+	// Example: ac5ah5i
 	// Required: true
 	CorrelationID *string `json:"correlationId"`
 
@@ -29,6 +31,7 @@ type UnauthorizedError struct {
 	Data []*UnauthorizedErrorDataItems0 `json:"data"`
 
 	// Always "list".
+	// Example: list
 	// Required: true
 	Type *string `json:"type"`
 }
@@ -98,6 +101,38 @@ func (m *UnauthorizedError) validateType(formats strfmt.Registry) error {
 	return nil
 }
 
+// ContextValidate validate this unauthorized error based on the context it is used
+func (m *UnauthorizedError) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateData(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *UnauthorizedError) contextValidateData(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Data); i++ {
+
+		if m.Data[i] != nil {
+			if err := m.Data[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("data" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
 // MarshalBinary interface implementation
 func (m *UnauthorizedError) MarshalBinary() ([]byte, error) {
 	if m == nil {
@@ -122,17 +157,21 @@ func (m *UnauthorizedError) UnmarshalBinary(b []byte) error {
 type UnauthorizedErrorDataItems0 struct {
 
 	// Application-specific error code, expressed as a string value.
+	// Example: unauthorized-access
 	// Required: true
 	// Enum: [unauthorized-access invalid-authorization-token]
 	Code *string `json:"code"`
 
 	// Human-readable explanation specific to this occurrence of the problem.
+	// Example: You are not authorized to access this resource
 	Detail string `json:"detail,omitempty"`
 
 	// Title of the error
+	// Example: Unauthorized Access
 	Title string `json:"title,omitempty"`
 
 	// Type of the response, always "error"
+	// Example: error
 	// Required: true
 	Type *string `json:"type"`
 }
@@ -169,16 +208,16 @@ func init() {
 
 const (
 
-	// UnauthorizedErrorDataItems0CodeUnauthorizedAccess captures enum value "unauthorized-access"
-	UnauthorizedErrorDataItems0CodeUnauthorizedAccess string = "unauthorized-access"
+	// UnauthorizedErrorDataItems0CodeUnauthorizedDashAccess captures enum value "unauthorized-access"
+	UnauthorizedErrorDataItems0CodeUnauthorizedDashAccess string = "unauthorized-access"
 
-	// UnauthorizedErrorDataItems0CodeInvalidAuthorizationToken captures enum value "invalid-authorization-token"
-	UnauthorizedErrorDataItems0CodeInvalidAuthorizationToken string = "invalid-authorization-token"
+	// UnauthorizedErrorDataItems0CodeInvalidDashAuthorizationDashToken captures enum value "invalid-authorization-token"
+	UnauthorizedErrorDataItems0CodeInvalidDashAuthorizationDashToken string = "invalid-authorization-token"
 )
 
 // prop value enum
 func (m *UnauthorizedErrorDataItems0) validateCodeEnum(path, location string, value string) error {
-	if err := validate.Enum(path, location, value, unauthorizedErrorDataItems0TypeCodePropEnum); err != nil {
+	if err := validate.EnumCase(path, location, value, unauthorizedErrorDataItems0TypeCodePropEnum, true); err != nil {
 		return err
 	}
 	return nil
@@ -204,6 +243,11 @@ func (m *UnauthorizedErrorDataItems0) validateType(formats strfmt.Registry) erro
 		return err
 	}
 
+	return nil
+}
+
+// ContextValidate validates this unauthorized error data items0 based on context it is used
+func (m *UnauthorizedErrorDataItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

@@ -47,9 +47,8 @@ func (o *GetInstitutionsReader) ReadResponse(response runtime.ClientResponse, co
 			return nil, err
 		}
 		return nil, result
-
 	default:
-		return nil, runtime.NewAPIError("unknown error", response, response.Code())
+		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
 }
 
@@ -58,7 +57,7 @@ func NewGetInstitutionsOK() *GetInstitutionsOK {
 	return &GetInstitutionsOK{}
 }
 
-/*GetInstitutionsOK handles this case with default header values.
+/* GetInstitutionsOK describes a response with status code 200, with default header values.
 
 Returns data of single institution.
 */
@@ -69,7 +68,6 @@ type GetInstitutionsOK struct {
 func (o *GetInstitutionsOK) Error() string {
 	return fmt.Sprintf("[GET /institutions][%d] getInstitutionsOK  %+v", 200, o.Payload)
 }
-
 func (o *GetInstitutionsOK) GetPayload() *models.InstitutionsList {
 	return o.Payload
 }
@@ -91,7 +89,7 @@ func NewGetInstitutionsBadRequest() *GetInstitutionsBadRequest {
 	return &GetInstitutionsBadRequest{}
 }
 
-/*GetInstitutionsBadRequest handles this case with default header values.
+/* GetInstitutionsBadRequest describes a response with status code 400, with default header values.
 
 Returns error that server cannot or will not process the request due to something that is perceived to be a client error.
 */
@@ -102,7 +100,6 @@ type GetInstitutionsBadRequest struct {
 func (o *GetInstitutionsBadRequest) Error() string {
 	return fmt.Sprintf("[GET /institutions][%d] getInstitutionsBadRequest  %+v", 400, o.Payload)
 }
-
 func (o *GetInstitutionsBadRequest) GetPayload() *models.BadRequestError {
 	return o.Payload
 }
@@ -124,7 +121,7 @@ func NewGetInstitutionsUnauthorized() *GetInstitutionsUnauthorized {
 	return &GetInstitutionsUnauthorized{}
 }
 
-/*GetInstitutionsUnauthorized handles this case with default header values.
+/* GetInstitutionsUnauthorized describes a response with status code 401, with default header values.
 
 Returns error that indicates unauthorized access.
 */
@@ -135,7 +132,6 @@ type GetInstitutionsUnauthorized struct {
 func (o *GetInstitutionsUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /institutions][%d] getInstitutionsUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *GetInstitutionsUnauthorized) GetPayload() *models.UnauthorizedError {
 	return o.Payload
 }
@@ -157,7 +153,7 @@ func NewGetInstitutionsInternalServerError() *GetInstitutionsInternalServerError
 	return &GetInstitutionsInternalServerError{}
 }
 
-/*GetInstitutionsInternalServerError handles this case with default header values.
+/* GetInstitutionsInternalServerError describes a response with status code 500, with default header values.
 
 Returns error response code indicates that the server encountered an unexpected condition that prevented it from fulfilling the request.
 */
@@ -168,7 +164,6 @@ type GetInstitutionsInternalServerError struct {
 func (o *GetInstitutionsInternalServerError) Error() string {
 	return fmt.Sprintf("[GET /institutions][%d] getInstitutionsInternalServerError  %+v", 500, o.Payload)
 }
-
 func (o *GetInstitutionsInternalServerError) GetPayload() *models.InternalServerError {
 	return o.Payload
 }

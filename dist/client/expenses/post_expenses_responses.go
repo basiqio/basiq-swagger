@@ -59,9 +59,8 @@ func (o *PostExpensesReader) ReadResponse(response runtime.ClientResponse, consu
 			return nil, err
 		}
 		return nil, result
-
 	default:
-		return nil, runtime.NewAPIError("unknown error", response, response.Code())
+		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
 }
 
@@ -70,7 +69,7 @@ func NewPostExpensesOK() *PostExpensesOK {
 	return &PostExpensesOK{}
 }
 
-/*PostExpensesOK handles this case with default header values.
+/* PostExpensesOK describes a response with status code 200, with default header values.
 
 Returns a created expenses resource, if the operation succeeded.
 */
@@ -81,7 +80,6 @@ type PostExpensesOK struct {
 func (o *PostExpensesOK) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}/expenses][%d] postExpensesOK  %+v", 200, o.Payload)
 }
-
 func (o *PostExpensesOK) GetPayload() *models.ExpensesResponse {
 	return o.Payload
 }
@@ -103,7 +101,7 @@ func NewPostExpensesNoContent() *PostExpensesNoContent {
 	return &PostExpensesNoContent{}
 }
 
-/*PostExpensesNoContent handles this case with default header values.
+/* PostExpensesNoContent describes a response with status code 204, with default header values.
 
 Returns no content if there are none transactions for the requested period.
 */
@@ -124,7 +122,7 @@ func NewPostExpensesBadRequest() *PostExpensesBadRequest {
 	return &PostExpensesBadRequest{}
 }
 
-/*PostExpensesBadRequest handles this case with default header values.
+/* PostExpensesBadRequest describes a response with status code 400, with default header values.
 
 Returns error that server cannot or will not process the request due to something that is perceived to be a client error.
 */
@@ -135,7 +133,6 @@ type PostExpensesBadRequest struct {
 func (o *PostExpensesBadRequest) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}/expenses][%d] postExpensesBadRequest  %+v", 400, o.Payload)
 }
-
 func (o *PostExpensesBadRequest) GetPayload() *models.BadRequestError {
 	return o.Payload
 }
@@ -157,7 +154,7 @@ func NewPostExpensesForbidden() *PostExpensesForbidden {
 	return &PostExpensesForbidden{}
 }
 
-/*PostExpensesForbidden handles this case with default header values.
+/* PostExpensesForbidden describes a response with status code 403, with default header values.
 
 Error that access is forbidden and tied to the application logic, such as insufficient rights to a resource.
 */
@@ -168,7 +165,6 @@ type PostExpensesForbidden struct {
 func (o *PostExpensesForbidden) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}/expenses][%d] postExpensesForbidden  %+v", 403, o.Payload)
 }
-
 func (o *PostExpensesForbidden) GetPayload() *models.ForbiddenAccessError {
 	return o.Payload
 }
@@ -190,7 +186,7 @@ func NewPostExpensesNotFound() *PostExpensesNotFound {
 	return &PostExpensesNotFound{}
 }
 
-/*PostExpensesNotFound handles this case with default header values.
+/* PostExpensesNotFound describes a response with status code 404, with default header values.
 
 Returns error indicating that server can't find requested resource.
 */
@@ -201,7 +197,6 @@ type PostExpensesNotFound struct {
 func (o *PostExpensesNotFound) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}/expenses][%d] postExpensesNotFound  %+v", 404, o.Payload)
 }
-
 func (o *PostExpensesNotFound) GetPayload() *models.NotFoundError {
 	return o.Payload
 }
@@ -223,7 +218,7 @@ func NewPostExpensesInternalServerError() *PostExpensesInternalServerError {
 	return &PostExpensesInternalServerError{}
 }
 
-/*PostExpensesInternalServerError handles this case with default header values.
+/* PostExpensesInternalServerError describes a response with status code 500, with default header values.
 
 Returns error response code indicates that the server encountered an unexpected condition that prevented it from fulfilling the request.
 */
@@ -234,7 +229,6 @@ type PostExpensesInternalServerError struct {
 func (o *PostExpensesInternalServerError) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}/expenses][%d] postExpensesInternalServerError  %+v", 500, o.Payload)
 }
-
 func (o *PostExpensesInternalServerError) GetPayload() *models.InternalServerError {
 	return o.Payload
 }

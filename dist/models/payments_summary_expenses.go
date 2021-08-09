@@ -6,6 +6,7 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"strconv"
 
 	"github.com/go-openapi/errors"
@@ -20,14 +21,17 @@ import (
 type PaymentsSummaryExpenses struct {
 
 	// Average monthly amount by category for defined period (up to 13 months). This number monthly is calculated as follows: (Total Expenses/Report Coverage Days)*30. This allows data with partial months to be calculated correctly.
+	// Example: -636.88
 	// Required: true
 	AvgMonthly *string `json:"avgMonthly"`
 
 	// Top level summary: category name. e.g. Medical care and heath expenses, Food and non-alcoholic beverages, Education
+	// Example: Education
 	// Required: true
 	Division *string `json:"division"`
 
 	// Average monthly amount expressed as a percentage of total expenses.
+	// Example: -636.88
 	// Required: true
 	PercentageTotal *float64 `json:"percentageTotal"`
 
@@ -102,6 +106,38 @@ func (m *PaymentsSummaryExpenses) validateSubCategory(formats strfmt.Registry) e
 
 		if m.SubCategory[i] != nil {
 			if err := m.SubCategory[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("subCategory" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+// ContextValidate validate this payments summary expenses based on the context it is used
+func (m *PaymentsSummaryExpenses) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateSubCategory(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *PaymentsSummaryExpenses) contextValidateSubCategory(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.SubCategory); i++ {
+
+		if m.SubCategory[i] != nil {
+			if err := m.SubCategory[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("subCategory" + "." + strconv.Itoa(i))
 				}

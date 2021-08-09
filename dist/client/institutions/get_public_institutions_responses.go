@@ -41,9 +41,8 @@ func (o *GetPublicInstitutionsReader) ReadResponse(response runtime.ClientRespon
 			return nil, err
 		}
 		return nil, result
-
 	default:
-		return nil, runtime.NewAPIError("unknown error", response, response.Code())
+		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
 }
 
@@ -52,7 +51,7 @@ func NewGetPublicInstitutionsOK() *GetPublicInstitutionsOK {
 	return &GetPublicInstitutionsOK{}
 }
 
-/*GetPublicInstitutionsOK handles this case with default header values.
+/* GetPublicInstitutionsOK describes a response with status code 200, with default header values.
 
 Returns data of single institution.
 */
@@ -63,7 +62,6 @@ type GetPublicInstitutionsOK struct {
 func (o *GetPublicInstitutionsOK) Error() string {
 	return fmt.Sprintf("[GET /public/institutions][%d] getPublicInstitutionsOK  %+v", 200, o.Payload)
 }
-
 func (o *GetPublicInstitutionsOK) GetPayload() *models.InstitutionsList {
 	return o.Payload
 }
@@ -85,7 +83,7 @@ func NewGetPublicInstitutionsBadRequest() *GetPublicInstitutionsBadRequest {
 	return &GetPublicInstitutionsBadRequest{}
 }
 
-/*GetPublicInstitutionsBadRequest handles this case with default header values.
+/* GetPublicInstitutionsBadRequest describes a response with status code 400, with default header values.
 
 Returns error that server cannot or will not process the request due to something that is perceived to be a client error.
 */
@@ -96,7 +94,6 @@ type GetPublicInstitutionsBadRequest struct {
 func (o *GetPublicInstitutionsBadRequest) Error() string {
 	return fmt.Sprintf("[GET /public/institutions][%d] getPublicInstitutionsBadRequest  %+v", 400, o.Payload)
 }
-
 func (o *GetPublicInstitutionsBadRequest) GetPayload() *models.BadRequestError {
 	return o.Payload
 }
@@ -118,7 +115,7 @@ func NewGetPublicInstitutionsInternalServerError() *GetPublicInstitutionsInterna
 	return &GetPublicInstitutionsInternalServerError{}
 }
 
-/*GetPublicInstitutionsInternalServerError handles this case with default header values.
+/* GetPublicInstitutionsInternalServerError describes a response with status code 500, with default header values.
 
 Returns error response code indicates that the server encountered an unexpected condition that prevented it from fulfilling the request.
 */
@@ -129,7 +126,6 @@ type GetPublicInstitutionsInternalServerError struct {
 func (o *GetPublicInstitutionsInternalServerError) Error() string {
 	return fmt.Sprintf("[GET /public/institutions][%d] getPublicInstitutionsInternalServerError  %+v", 500, o.Payload)
 }
-
 func (o *GetPublicInstitutionsInternalServerError) GetPayload() *models.InternalServerError {
 	return o.Payload
 }

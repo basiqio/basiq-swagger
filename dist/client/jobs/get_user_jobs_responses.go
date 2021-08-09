@@ -53,9 +53,8 @@ func (o *GetUserJobsReader) ReadResponse(response runtime.ClientResponse, consum
 			return nil, err
 		}
 		return nil, result
-
 	default:
-		return nil, runtime.NewAPIError("unknown error", response, response.Code())
+		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
 }
 
@@ -64,7 +63,7 @@ func NewGetUserJobsOK() *GetUserJobsOK {
 	return &GetUserJobsOK{}
 }
 
-/*GetUserJobsOK handles this case with default header values.
+/* GetUserJobsOK describes a response with status code 200, with default header values.
 
 Returns a list of jobs with details.
 */
@@ -75,7 +74,6 @@ type GetUserJobsOK struct {
 func (o *GetUserJobsOK) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/jobs][%d] getUserJobsOK  %+v", 200, o.Payload)
 }
-
 func (o *GetUserJobsOK) GetPayload() *models.JobsResponseResource {
 	return o.Payload
 }
@@ -97,7 +95,7 @@ func NewGetUserJobsBadRequest() *GetUserJobsBadRequest {
 	return &GetUserJobsBadRequest{}
 }
 
-/*GetUserJobsBadRequest handles this case with default header values.
+/* GetUserJobsBadRequest describes a response with status code 400, with default header values.
 
 Returns error that server cannot or will not process the request due to something that is perceived to be a client error
 */
@@ -108,7 +106,6 @@ type GetUserJobsBadRequest struct {
 func (o *GetUserJobsBadRequest) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/jobs][%d] getUserJobsBadRequest  %+v", 400, o.Payload)
 }
-
 func (o *GetUserJobsBadRequest) GetPayload() *models.BadRequestError {
 	return o.Payload
 }
@@ -130,7 +127,7 @@ func NewGetUserJobsForbidden() *GetUserJobsForbidden {
 	return &GetUserJobsForbidden{}
 }
 
-/*GetUserJobsForbidden handles this case with default header values.
+/* GetUserJobsForbidden describes a response with status code 403, with default header values.
 
 Error that access is forbidden and tied to the application logic, such as insufficient rights to a resource.
 */
@@ -141,7 +138,6 @@ type GetUserJobsForbidden struct {
 func (o *GetUserJobsForbidden) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/jobs][%d] getUserJobsForbidden  %+v", 403, o.Payload)
 }
-
 func (o *GetUserJobsForbidden) GetPayload() *models.ForbiddenAccessError {
 	return o.Payload
 }
@@ -163,7 +159,7 @@ func NewGetUserJobsNotFound() *GetUserJobsNotFound {
 	return &GetUserJobsNotFound{}
 }
 
-/*GetUserJobsNotFound handles this case with default header values.
+/* GetUserJobsNotFound describes a response with status code 404, with default header values.
 
 Returns error indicating that server can't find requested resource.
 */
@@ -174,7 +170,6 @@ type GetUserJobsNotFound struct {
 func (o *GetUserJobsNotFound) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/jobs][%d] getUserJobsNotFound  %+v", 404, o.Payload)
 }
-
 func (o *GetUserJobsNotFound) GetPayload() *models.NotFoundError {
 	return o.Payload
 }
@@ -196,7 +191,7 @@ func NewGetUserJobsInternalServerError() *GetUserJobsInternalServerError {
 	return &GetUserJobsInternalServerError{}
 }
 
-/*GetUserJobsInternalServerError handles this case with default header values.
+/* GetUserJobsInternalServerError describes a response with status code 500, with default header values.
 
 Returns error response code indicates that the server encountered an unexpected condition that prevented it from fulfilling the request.
 */
@@ -207,7 +202,6 @@ type GetUserJobsInternalServerError struct {
 func (o *GetUserJobsInternalServerError) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/jobs][%d] getUserJobsInternalServerError  %+v", 500, o.Payload)
 }
-
 func (o *GetUserJobsInternalServerError) GetPayload() *models.InternalServerError {
 	return o.Payload
 }

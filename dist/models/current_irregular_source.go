@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -18,10 +20,12 @@ import (
 type CurrentIrregularSource struct {
 
 	// Most recent irregular income payment amount
+	// Example: 62.00
 	// Required: true
 	Amount *string `json:"amount"`
 
 	// Most recent irregular income payment date
+	// Example: 2018-10-13T20:03:37
 	// Required: true
 	Date *string `json:"date"`
 }
@@ -59,6 +63,11 @@ func (m *CurrentIrregularSource) validateDate(formats strfmt.Registry) error {
 		return err
 	}
 
+	return nil
+}
+
+// ContextValidate validates this current irregular source based on context it is used
+func (m *CurrentIrregularSource) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

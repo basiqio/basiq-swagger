@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -18,6 +20,7 @@ import (
 type InstitutionModel struct {
 
 	// Institution identification.
+	// Example: AU00000
 	// Required: true
 	ID *string `json:"id"`
 }
@@ -42,6 +45,11 @@ func (m *InstitutionModel) validateID(formats strfmt.Registry) error {
 		return err
 	}
 
+	return nil
+}
+
+// ContextValidate validates this institution model based on context it is used
+func (m *InstitutionModel) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

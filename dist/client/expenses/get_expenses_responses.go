@@ -53,9 +53,8 @@ func (o *GetExpensesReader) ReadResponse(response runtime.ClientResponse, consum
 			return nil, err
 		}
 		return nil, result
-
 	default:
-		return nil, runtime.NewAPIError("unknown error", response, response.Code())
+		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
 }
 
@@ -64,7 +63,7 @@ func NewGetExpensesOK() *GetExpensesOK {
 	return &GetExpensesOK{}
 }
 
-/*GetExpensesOK handles this case with default header values.
+/* GetExpensesOK describes a response with status code 200, with default header values.
 
 Returns a saved expenses resource, if the operation succeeded.
 */
@@ -75,7 +74,6 @@ type GetExpensesOK struct {
 func (o *GetExpensesOK) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/expenses/{snapshotId}][%d] getExpensesOK  %+v", 200, o.Payload)
 }
-
 func (o *GetExpensesOK) GetPayload() *models.ExpensesResponse {
 	return o.Payload
 }
@@ -97,7 +95,7 @@ func NewGetExpensesBadRequest() *GetExpensesBadRequest {
 	return &GetExpensesBadRequest{}
 }
 
-/*GetExpensesBadRequest handles this case with default header values.
+/* GetExpensesBadRequest describes a response with status code 400, with default header values.
 
 Returns error that server cannot or will not process the request due to something that is perceived to be a client error.
 */
@@ -108,7 +106,6 @@ type GetExpensesBadRequest struct {
 func (o *GetExpensesBadRequest) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/expenses/{snapshotId}][%d] getExpensesBadRequest  %+v", 400, o.Payload)
 }
-
 func (o *GetExpensesBadRequest) GetPayload() *models.BadRequestError {
 	return o.Payload
 }
@@ -130,7 +127,7 @@ func NewGetExpensesForbidden() *GetExpensesForbidden {
 	return &GetExpensesForbidden{}
 }
 
-/*GetExpensesForbidden handles this case with default header values.
+/* GetExpensesForbidden describes a response with status code 403, with default header values.
 
 Error that access is forbidden and tied to the application logic, such as insufficient rights to a resource.
 */
@@ -141,7 +138,6 @@ type GetExpensesForbidden struct {
 func (o *GetExpensesForbidden) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/expenses/{snapshotId}][%d] getExpensesForbidden  %+v", 403, o.Payload)
 }
-
 func (o *GetExpensesForbidden) GetPayload() *models.ForbiddenAccessError {
 	return o.Payload
 }
@@ -163,7 +159,7 @@ func NewGetExpensesNotFound() *GetExpensesNotFound {
 	return &GetExpensesNotFound{}
 }
 
-/*GetExpensesNotFound handles this case with default header values.
+/* GetExpensesNotFound describes a response with status code 404, with default header values.
 
 Returns error indicating that server can't find requested resource.
 */
@@ -174,7 +170,6 @@ type GetExpensesNotFound struct {
 func (o *GetExpensesNotFound) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/expenses/{snapshotId}][%d] getExpensesNotFound  %+v", 404, o.Payload)
 }
-
 func (o *GetExpensesNotFound) GetPayload() *models.NotFoundError {
 	return o.Payload
 }
@@ -196,7 +191,7 @@ func NewGetExpensesInternalServerError() *GetExpensesInternalServerError {
 	return &GetExpensesInternalServerError{}
 }
 
-/*GetExpensesInternalServerError handles this case with default header values.
+/* GetExpensesInternalServerError describes a response with status code 500, with default header values.
 
 Returns error response code indicates that the server encountered an unexpected condition that prevented it from fulfilling the request.
 */
@@ -207,7 +202,6 @@ type GetExpensesInternalServerError struct {
 func (o *GetExpensesInternalServerError) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/expenses/{snapshotId}][%d] getExpensesInternalServerError  %+v", 500, o.Payload)
 }
-
 func (o *GetExpensesInternalServerError) GetPayload() *models.InternalServerError {
 	return o.Payload
 }

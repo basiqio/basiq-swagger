@@ -6,6 +6,7 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"encoding/json"
 
 	"github.com/go-openapi/errors"
@@ -25,10 +26,12 @@ type ConnectionGetResponseResource struct {
 	Accounts *AccountsContainer `json:"accounts,omitempty"`
 
 	// Created date of the connection, available only for SERVER_SCOPE.
+	// Example: 2019-07-29T07:34:09Z
 	// Required: true
 	CreatedDate *string `json:"createdDate"`
 
 	// A string that uniquely identifies the user connection.
+	// Example: 61723
 	// Required: true
 	ID *string `json:"id"`
 
@@ -37,6 +40,7 @@ type ConnectionGetResponseResource struct {
 	Institution *ConnectionInstitution `json:"institution"`
 
 	// UTC Date and Time of when the connection was last used, in RFC 3339 format, available only for SERVER_SCOPE.
+	// Example: 2020-06-22T11:15:09Z
 	LastUsed string `json:"lastUsed,omitempty"`
 
 	// links
@@ -53,10 +57,12 @@ type ConnectionGetResponseResource struct {
 	// <li>active - the connection is valid (is working!) and the credentials have been verified (the jobs steps will continue) </li>
 	// <li>invalid -  the connection is no longer valid and requires the user to update their logon details. Invalid connections cannot refreshed until the password is updated. </li>
 	// </ul>
+	// Example: active
 	// Enum: [active pending invalid]
 	Status string `json:"status,omitempty"`
 
 	// Type, always "connection".
+	// Example: connection
 	// Required: true
 	Type *string `json:"type"`
 }
@@ -104,7 +110,6 @@ func (m *ConnectionGetResponseResource) Validate(formats strfmt.Registry) error 
 }
 
 func (m *ConnectionGetResponseResource) validateAccounts(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Accounts) { // not required
 		return nil
 	}
@@ -176,7 +181,6 @@ func (m *ConnectionGetResponseResource) validateLinks(formats strfmt.Registry) e
 }
 
 func (m *ConnectionGetResponseResource) validateProfile(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Profile) { // not required
 		return nil
 	}
@@ -219,14 +223,13 @@ const (
 
 // prop value enum
 func (m *ConnectionGetResponseResource) validateStatusEnum(path, location string, value string) error {
-	if err := validate.Enum(path, location, value, connectionGetResponseResourceTypeStatusPropEnum); err != nil {
+	if err := validate.EnumCase(path, location, value, connectionGetResponseResourceTypeStatusPropEnum, true); err != nil {
 		return err
 	}
 	return nil
 }
 
 func (m *ConnectionGetResponseResource) validateStatus(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Status) { // not required
 		return nil
 	}
@@ -243,6 +246,88 @@ func (m *ConnectionGetResponseResource) validateType(formats strfmt.Registry) er
 
 	if err := validate.Required("type", "body", m.Type); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+// ContextValidate validate this connection get response resource based on the context it is used
+func (m *ConnectionGetResponseResource) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateAccounts(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateInstitution(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateLinks(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateProfile(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *ConnectionGetResponseResource) contextValidateAccounts(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Accounts != nil {
+		if err := m.Accounts.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("accounts")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *ConnectionGetResponseResource) contextValidateInstitution(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Institution != nil {
+		if err := m.Institution.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("institution")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *ConnectionGetResponseResource) contextValidateLinks(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Links != nil {
+		if err := m.Links.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("links")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *ConnectionGetResponseResource) contextValidateProfile(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Profile != nil {
+		if err := m.Profile.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("profile")
+			}
+			return err
+		}
 	}
 
 	return nil

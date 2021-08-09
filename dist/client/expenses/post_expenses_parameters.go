@@ -18,61 +18,76 @@ import (
 	"github.com/basiqio/basiq-swagger/dist/models"
 )
 
-// NewPostExpensesParams creates a new PostExpensesParams object
-// with the default values initialized.
+// NewPostExpensesParams creates a new PostExpensesParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewPostExpensesParams() *PostExpensesParams {
-	var ()
 	return &PostExpensesParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewPostExpensesParamsWithTimeout creates a new PostExpensesParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewPostExpensesParamsWithTimeout(timeout time.Duration) *PostExpensesParams {
-	var ()
 	return &PostExpensesParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewPostExpensesParamsWithContext creates a new PostExpensesParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewPostExpensesParamsWithContext(ctx context.Context) *PostExpensesParams {
-	var ()
 	return &PostExpensesParams{
-
 		Context: ctx,
 	}
 }
 
 // NewPostExpensesParamsWithHTTPClient creates a new PostExpensesParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewPostExpensesParamsWithHTTPClient(client *http.Client) *PostExpensesParams {
-	var ()
 	return &PostExpensesParams{
 		HTTPClient: client,
 	}
 }
 
-/*PostExpensesParams contains all the parameters to send to the API endpoint
-for the post expenses operation typically these are written to a http.Request
+/* PostExpensesParams contains all the parameters to send to the API endpoint
+   for the post expenses operation.
+
+   Typically these are written to a http.Request.
 */
 type PostExpensesParams struct {
 
-	/*ExpensesPostRequest*/
+	// ExpensesPostRequest.
 	ExpensesPostRequest *models.ExpensesPostRequest
-	/*UserID
-	  The identifier of the user.
 
+	/* UserID.
+
+	   The identifier of the user.
 	*/
 	UserID string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the post expenses params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *PostExpensesParams) WithDefaults() *PostExpensesParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the post expenses params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *PostExpensesParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the post expenses params
@@ -137,7 +152,6 @@ func (o *PostExpensesParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 		return err
 	}
 	var res []error
-
 	if o.ExpensesPostRequest != nil {
 		if err := r.SetBodyParam(o.ExpensesPostRequest); err != nil {
 			return err

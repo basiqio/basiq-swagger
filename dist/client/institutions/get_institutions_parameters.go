@@ -16,71 +16,86 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewGetInstitutionsParams creates a new GetInstitutionsParams object
-// with the default values initialized.
+// NewGetInstitutionsParams creates a new GetInstitutionsParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewGetInstitutionsParams() *GetInstitutionsParams {
-	var ()
 	return &GetInstitutionsParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewGetInstitutionsParamsWithTimeout creates a new GetInstitutionsParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewGetInstitutionsParamsWithTimeout(timeout time.Duration) *GetInstitutionsParams {
-	var ()
 	return &GetInstitutionsParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewGetInstitutionsParamsWithContext creates a new GetInstitutionsParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewGetInstitutionsParamsWithContext(ctx context.Context) *GetInstitutionsParams {
-	var ()
 	return &GetInstitutionsParams{
-
 		Context: ctx,
 	}
 }
 
 // NewGetInstitutionsParamsWithHTTPClient creates a new GetInstitutionsParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewGetInstitutionsParamsWithHTTPClient(client *http.Client) *GetInstitutionsParams {
-	var ()
 	return &GetInstitutionsParams{
 		HTTPClient: client,
 	}
 }
 
-/*GetInstitutionsParams contains all the parameters to send to the API endpoint
-for the get institutions operation typically these are written to a http.Request
+/* GetInstitutionsParams contains all the parameters to send to the API endpoint
+   for the get institutions operation.
+
+   Typically these are written to a http.Request.
 */
 type GetInstitutionsParams struct {
 
-	/*Filter
-	  Filter parameter can be used to filter institution list by institution property. This parameter should contain comma separated list of filter statements.</br>
+	/* Filter.
+
+	     Filter parameter can be used to filter institution list by institution property. This parameter should contain comma separated list of filter statements.</br>
 	Filter statement is composed from entity name (in this case it is always `institution`), property name (e.g. `stage`), filter operator (e.g. `eq`) and quoted string value in parentasis (e.g. `('live')`). </br>
 	The Following list of regular expressions descirbes acceptable filter statements: </br>
 	• `institution\.country\.(eq|ne)\(('Australia'|'New Zealand')\)` </br>
 	• `institution\.country\.in\(([\w\W]+)\)` </br>
 	• `institution\.tier\.(eq|ne)\(('1'|'2'|'3'|'4')\)` </br>
 	• `institution\.tier\.in\('[1-4]'(,'[1-4]')*\)` </br>
-	• `institution\.authorization\.(eq|ne)\(('user'|'other')\)` </br>
+	• `institution\.authorization\.(eq|ne)\(('user'|'other'|'token'|'user-mfa-intermittent'|'user-mfa')\)` </br>
+	• `institution\.authorization\.in\(([\w-', ]+)\)` </br>
 	• `institution\.serviceType\.(eq|ne)\(('Personal Banking'|'Business Banking'|'Card Access'|'Test')\)` </br>
 	• `institution\.institutionType\.(eq|ne)\(('Bank'|'Bank \(Foreign\)'|'Test Bank'|'Credit Union'|'Financial Services'|'Superannuation')\)` </br>
 	• `institution\.stage\.(eq|ne)\(('live'|'beta'|'alpha')\)` </br>
 	Multiple filter definitions should be separated with comma (`,`). </br>
 	For example, this is filter statement will keep only live tier 1 and tier 2 institutions: `filter=institution.stage.eq('live'),institution.tier.in('1','2')` </br>
-
 	*/
 	Filter *string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the get institutions params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetInstitutionsParams) WithDefaults() *GetInstitutionsParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the get institutions params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetInstitutionsParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the get institutions params
@@ -139,16 +154,17 @@ func (o *GetInstitutionsParams) WriteToRequest(r runtime.ClientRequest, reg strf
 
 		// query param filter
 		var qrFilter string
+
 		if o.Filter != nil {
 			qrFilter = *o.Filter
 		}
 		qFilter := qrFilter
 		if qFilter != "" {
+
 			if err := r.SetQueryParam("filter", qFilter); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	if len(res) > 0 {

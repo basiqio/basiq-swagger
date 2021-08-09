@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -18,10 +20,12 @@ import (
 type AssetsPrevious6MonthsData struct {
 
 	// max balance
+	// Example: 38309.44
 	// Required: true
 	MaxBalance *string `json:"maxBalance"`
 
 	// min balance
+	// Example: 10032.81
 	// Required: true
 	MinBalance *string `json:"minBalance"`
 }
@@ -59,6 +63,11 @@ func (m *AssetsPrevious6MonthsData) validateMinBalance(formats strfmt.Registry) 
 		return err
 	}
 
+	return nil
+}
+
+// ContextValidate validates this assets previous6 months data based on context it is used
+func (m *AssetsPrevious6MonthsData) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

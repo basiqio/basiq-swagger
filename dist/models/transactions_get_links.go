@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -18,9 +20,11 @@ import (
 type TransactionsGetLinks struct {
 
 	// Url to next result.
+	// Example: https://au-api.basiq.io/users/6a52015e/transactions?next=bf1ec9d4
 	Next string `json:"next,omitempty"`
 
 	// Self reference url.
+	// Example: https://au-api.basiq.io/users/ea3a81/transactions
 	// Required: true
 	Self *string `json:"self"`
 }
@@ -45,6 +49,11 @@ func (m *TransactionsGetLinks) validateSelf(formats strfmt.Registry) error {
 		return err
 	}
 
+	return nil
+}
+
+// ContextValidate validates this transactions get links based on context it is used
+func (m *TransactionsGetLinks) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

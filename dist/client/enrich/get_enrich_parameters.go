@@ -17,74 +17,93 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// NewGetEnrichParams creates a new GetEnrichParams object
-// with the default values initialized.
+// NewGetEnrichParams creates a new GetEnrichParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewGetEnrichParams() *GetEnrichParams {
-	var ()
 	return &GetEnrichParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewGetEnrichParamsWithTimeout creates a new GetEnrichParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewGetEnrichParamsWithTimeout(timeout time.Duration) *GetEnrichParams {
-	var ()
 	return &GetEnrichParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewGetEnrichParamsWithContext creates a new GetEnrichParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewGetEnrichParamsWithContext(ctx context.Context) *GetEnrichParams {
-	var ()
 	return &GetEnrichParams{
-
 		Context: ctx,
 	}
 }
 
 // NewGetEnrichParamsWithHTTPClient creates a new GetEnrichParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewGetEnrichParamsWithHTTPClient(client *http.Client) *GetEnrichParams {
-	var ()
 	return &GetEnrichParams{
 		HTTPClient: client,
 	}
 }
 
-/*GetEnrichParams contains all the parameters to send to the API endpoint
-for the get enrich operation typically these are written to a http.Request
+/* GetEnrichParams contains all the parameters to send to the API endpoint
+   for the get enrich operation.
+
+   Typically these are written to a http.Request.
 */
 type GetEnrichParams struct {
 
-	/*AccountType
-	  Account Type
+	/* AccountType.
 
+	   Account Type
 	*/
 	AccountType *string
-	/*Amount
-	  Amount
 
+	/* Amount.
+
+	   Amount
+
+	   Format: double
 	*/
 	Amount *float64
-	/*Institution
-	  Institution ID
 
+	/* Institution.
+
+	   Institution ID
 	*/
 	Institution string
-	/*Q
-	  Transaction Description
 
+	/* Q.
+
+	   Transaction Description
 	*/
 	Q string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the get enrich params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetEnrichParams) WithDefaults() *GetEnrichParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the get enrich params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetEnrichParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the get enrich params
@@ -176,38 +195,41 @@ func (o *GetEnrichParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Reg
 
 		// query param accountType
 		var qrAccountType string
+
 		if o.AccountType != nil {
 			qrAccountType = *o.AccountType
 		}
 		qAccountType := qrAccountType
 		if qAccountType != "" {
+
 			if err := r.SetQueryParam("accountType", qAccountType); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	if o.Amount != nil {
 
 		// query param amount
 		var qrAmount float64
+
 		if o.Amount != nil {
 			qrAmount = *o.Amount
 		}
 		qAmount := swag.FormatFloat64(qrAmount)
 		if qAmount != "" {
+
 			if err := r.SetQueryParam("amount", qAmount); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	// query param institution
 	qrInstitution := o.Institution
 	qInstitution := qrInstitution
 	if qInstitution != "" {
+
 		if err := r.SetQueryParam("institution", qInstitution); err != nil {
 			return err
 		}
@@ -217,6 +239,7 @@ func (o *GetEnrichParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Reg
 	qrQ := o.Q
 	qQ := qrQ
 	if qQ != "" {
+
 		if err := r.SetQueryParam("q", qQ); err != nil {
 			return err
 		}

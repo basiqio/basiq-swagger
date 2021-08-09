@@ -6,6 +6,7 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"strconv"
 
 	"github.com/go-openapi/errors"
@@ -28,6 +29,7 @@ type ConnectionsGetResponseResource struct {
 	Links *ResourceLink `json:"links,omitempty"`
 
 	// Type, always "list".
+	// Example: list
 	// Required: true
 	Type *string `json:"type"`
 }
@@ -55,7 +57,6 @@ func (m *ConnectionsGetResponseResource) Validate(formats strfmt.Registry) error
 }
 
 func (m *ConnectionsGetResponseResource) validateData(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Data) { // not required
 		return nil
 	}
@@ -80,7 +81,6 @@ func (m *ConnectionsGetResponseResource) validateData(formats strfmt.Registry) e
 }
 
 func (m *ConnectionsGetResponseResource) validateLinks(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Links) { // not required
 		return nil
 	}
@@ -101,6 +101,56 @@ func (m *ConnectionsGetResponseResource) validateType(formats strfmt.Registry) e
 
 	if err := validate.Required("type", "body", m.Type); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+// ContextValidate validate this connections get response resource based on the context it is used
+func (m *ConnectionsGetResponseResource) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateData(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateLinks(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *ConnectionsGetResponseResource) contextValidateData(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Data); i++ {
+
+		if m.Data[i] != nil {
+			if err := m.Data[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("data" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *ConnectionsGetResponseResource) contextValidateLinks(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Links != nil {
+		if err := m.Links.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("links")
+			}
+			return err
+		}
 	}
 
 	return nil

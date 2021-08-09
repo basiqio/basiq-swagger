@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -32,11 +34,13 @@ type UserGetResponse struct {
 	Connections *GetUserConnection `json:"connections"`
 
 	// User email or empty.
+	// Example: gavin@hooli.com
 	// Required: true
 	// Format: email
 	Email *strfmt.Email `json:"email"`
 
 	// User identification.
+	// Example: ea3a81
 	// Required: true
 	ID *string `json:"id"`
 
@@ -45,6 +49,7 @@ type UserGetResponse struct {
 	Links *GetUserLinks `json:"links"`
 
 	// User mobile number, or empty.
+	// Example: +61410888666
 	// Required: true
 	Mobile *string `json:"mobile"`
 
@@ -53,6 +58,7 @@ type UserGetResponse struct {
 	Name *string `json:"name"`
 
 	// Always "user".
+	// Example: user
 	// Required: true
 	Type *string `json:"type"`
 }
@@ -197,6 +203,70 @@ func (m *UserGetResponse) validateType(formats strfmt.Registry) error {
 
 	if err := validate.Required("type", "body", m.Type); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+// ContextValidate validate this user get response based on the context it is used
+func (m *UserGetResponse) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateAccounts(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateConnections(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateLinks(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *UserGetResponse) contextValidateAccounts(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Accounts != nil {
+		if err := m.Accounts.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("accounts")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *UserGetResponse) contextValidateConnections(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Connections != nil {
+		if err := m.Connections.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("connections")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *UserGetResponse) contextValidateLinks(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Links != nil {
+		if err := m.Links.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("links")
+			}
+			return err
+		}
 	}
 
 	return nil

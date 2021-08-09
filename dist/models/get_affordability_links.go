@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -20,18 +22,22 @@ import (
 type GetAffordabilityLinks struct {
 
 	// Links of accounts
+	// Example: ["https://au-api.basiq.io/users/25c8d1ed77/accounts/s55bf5","https://au-api.basiq.io/users/25c8d1ed77/accounts/s55bf4"]
 	// Required: true
 	Accounts []string `json:"accounts"`
 
 	// Link to the expenses
+	// Example: https://au-api.basiq.io/users/25c8d1ed77/expenses/s55bf5
 	// Required: true
 	Expenses *string `json:"expenses"`
 
 	// Link to the income
+	// Example: https://au-api.basiq.io/users/25c8d1ed77/income/s55bf4
 	// Required: true
 	Income *string `json:"income"`
 
 	// Link to the affordability resource
+	// Example: https://au-api.basiq.io/users/25c8d1ed77/affordability/s55bf3
 	// Required: true
 	Self *string `json:"self"`
 }
@@ -95,6 +101,11 @@ func (m *GetAffordabilityLinks) validateSelf(formats strfmt.Registry) error {
 		return err
 	}
 
+	return nil
+}
+
+// ContextValidate validates this get affordability links based on context it is used
+func (m *GetAffordabilityLinks) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

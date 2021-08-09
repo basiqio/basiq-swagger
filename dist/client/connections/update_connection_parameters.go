@@ -18,66 +18,82 @@ import (
 	"github.com/basiqio/basiq-swagger/dist/models"
 )
 
-// NewUpdateConnectionParams creates a new UpdateConnectionParams object
-// with the default values initialized.
+// NewUpdateConnectionParams creates a new UpdateConnectionParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewUpdateConnectionParams() *UpdateConnectionParams {
-	var ()
 	return &UpdateConnectionParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewUpdateConnectionParamsWithTimeout creates a new UpdateConnectionParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewUpdateConnectionParamsWithTimeout(timeout time.Duration) *UpdateConnectionParams {
-	var ()
 	return &UpdateConnectionParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewUpdateConnectionParamsWithContext creates a new UpdateConnectionParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewUpdateConnectionParamsWithContext(ctx context.Context) *UpdateConnectionParams {
-	var ()
 	return &UpdateConnectionParams{
-
 		Context: ctx,
 	}
 }
 
 // NewUpdateConnectionParamsWithHTTPClient creates a new UpdateConnectionParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewUpdateConnectionParamsWithHTTPClient(client *http.Client) *UpdateConnectionParams {
-	var ()
 	return &UpdateConnectionParams{
 		HTTPClient: client,
 	}
 }
 
-/*UpdateConnectionParams contains all the parameters to send to the API endpoint
-for the update connection operation typically these are written to a http.Request
+/* UpdateConnectionParams contains all the parameters to send to the API endpoint
+   for the update connection operation.
+
+   Typically these are written to a http.Request.
 */
 type UpdateConnectionParams struct {
 
-	/*UserConnectionPostData*/
+	// UserConnectionPostData.
 	UserConnectionPostData *models.UserConnectionPostData
-	/*ConnectionID
-	  Connection identifier.
 
+	/* ConnectionID.
+
+	   Connection identifier.
 	*/
 	ConnectionID string
-	/*UserID
-	  User identifier.
 
+	/* UserID.
+
+	   User identifier.
 	*/
 	UserID string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the update connection params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *UpdateConnectionParams) WithDefaults() *UpdateConnectionParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the update connection params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *UpdateConnectionParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the update connection params
@@ -153,7 +169,6 @@ func (o *UpdateConnectionParams) WriteToRequest(r runtime.ClientRequest, reg str
 		return err
 	}
 	var res []error
-
 	if o.UserConnectionPostData != nil {
 		if err := r.SetBodyParam(o.UserConnectionPostData); err != nil {
 			return err

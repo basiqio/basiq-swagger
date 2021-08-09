@@ -6,6 +6,7 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"strconv"
 
 	"github.com/go-openapi/errors"
@@ -20,30 +21,37 @@ import (
 type ProfileFeatures struct {
 
 	// EmailAddresses holds list of data source identifiers which are capable to fetch bank customer e-mail addresses.
+	// Example: ["web","pdf","csv"]
 	// Required: true
 	EmailAddresses []SourceName `json:"emailAddresses"`
 
 	// FirstName holds list of data source identifiers which are capable to fetch bank customer first name.
+	// Example: ["web","pdf","csv"]
 	// Required: true
 	FirstName []SourceName `json:"firstName"`
 
 	// FullName holds list of data source identifiers which are capable to fetch bank customer full name.
+	// Example: ["web","pdf","csv"]
 	// Required: true
 	FullName []SourceName `json:"fullName"`
 
 	// LastName holds list of data source identifiers which are capable to fetch bank customer last name.
+	// Example: ["web","pdf","csv"]
 	// Required: true
 	LastName []SourceName `json:"lastName"`
 
 	// MiddleName holds list of data source identifiers which are capable to fetch bank customer middle name.
+	// Example: ["web","pdf","csv"]
 	// Required: true
 	MiddleName []SourceName `json:"middleName"`
 
 	// PhoneNumbers holds list of data source identifiers which are capable to fetch bank customer phone number.
+	// Example: ["web","pdf","csv"]
 	// Required: true
 	PhoneNumbers []SourceName `json:"phoneNumbers"`
 
 	// PhysicalAddresses holds list of data source identifiers which are capable to fetch bank customer physical addresses.
+	// Example: ["web","pdf","csv"]
 	// Required: true
 	PhysicalAddresses []SourceName `json:"physicalAddresses"`
 }
@@ -215,6 +223,156 @@ func (m *ProfileFeatures) validatePhysicalAddresses(formats strfmt.Registry) err
 	for i := 0; i < len(m.PhysicalAddresses); i++ {
 
 		if err := m.PhysicalAddresses[i].Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("physicalAddresses" + "." + strconv.Itoa(i))
+			}
+			return err
+		}
+
+	}
+
+	return nil
+}
+
+// ContextValidate validate this profile features based on the context it is used
+func (m *ProfileFeatures) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateEmailAddresses(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateFirstName(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateFullName(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateLastName(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateMiddleName(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidatePhoneNumbers(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidatePhysicalAddresses(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *ProfileFeatures) contextValidateEmailAddresses(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.EmailAddresses); i++ {
+
+		if err := m.EmailAddresses[i].ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("emailAddresses" + "." + strconv.Itoa(i))
+			}
+			return err
+		}
+
+	}
+
+	return nil
+}
+
+func (m *ProfileFeatures) contextValidateFirstName(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.FirstName); i++ {
+
+		if err := m.FirstName[i].ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("firstName" + "." + strconv.Itoa(i))
+			}
+			return err
+		}
+
+	}
+
+	return nil
+}
+
+func (m *ProfileFeatures) contextValidateFullName(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.FullName); i++ {
+
+		if err := m.FullName[i].ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("fullName" + "." + strconv.Itoa(i))
+			}
+			return err
+		}
+
+	}
+
+	return nil
+}
+
+func (m *ProfileFeatures) contextValidateLastName(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.LastName); i++ {
+
+		if err := m.LastName[i].ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("lastName" + "." + strconv.Itoa(i))
+			}
+			return err
+		}
+
+	}
+
+	return nil
+}
+
+func (m *ProfileFeatures) contextValidateMiddleName(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.MiddleName); i++ {
+
+		if err := m.MiddleName[i].ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("middleName" + "." + strconv.Itoa(i))
+			}
+			return err
+		}
+
+	}
+
+	return nil
+}
+
+func (m *ProfileFeatures) contextValidatePhoneNumbers(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.PhoneNumbers); i++ {
+
+		if err := m.PhoneNumbers[i].ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("phoneNumbers" + "." + strconv.Itoa(i))
+			}
+			return err
+		}
+
+	}
+
+	return nil
+}
+
+func (m *ProfileFeatures) contextValidatePhysicalAddresses(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.PhysicalAddresses); i++ {
+
+		if err := m.PhysicalAddresses[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("physicalAddresses" + "." + strconv.Itoa(i))
 			}

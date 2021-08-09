@@ -6,6 +6,7 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"encoding/json"
 
 	"github.com/go-openapi/errors"
@@ -32,6 +33,7 @@ type JobsResult struct {
 	Title string `json:"title,omitempty"`
 
 	// In case of success, Always "link".
+	// Example: link
 	Type string `json:"type,omitempty"`
 
 	// In case of success, URL of the updated (or created) resources.
@@ -66,83 +68,82 @@ func init() {
 
 const (
 
-	// JobsResultCodeUserActionRequired captures enum value "user-action-required"
-	JobsResultCodeUserActionRequired string = "user-action-required"
+	// JobsResultCodeUserDashActionDashRequired captures enum value "user-action-required"
+	JobsResultCodeUserDashActionDashRequired string = "user-action-required"
 
-	// JobsResultCodeSystemUnavailable captures enum value "system-unavailable"
-	JobsResultCodeSystemUnavailable string = "system-unavailable"
+	// JobsResultCodeSystemDashUnavailable captures enum value "system-unavailable"
+	JobsResultCodeSystemDashUnavailable string = "system-unavailable"
 
 	// JobsResultCodeMaintenance captures enum value "maintenance"
 	JobsResultCodeMaintenance string = "maintenance"
 
-	// JobsResultCodeConnectorError captures enum value "connector-error"
-	JobsResultCodeConnectorError string = "connector-error"
+	// JobsResultCodeConnectorDashError captures enum value "connector-error"
+	JobsResultCodeConnectorDashError string = "connector-error"
 
-	// JobsResultCodeInstitutionNotFound captures enum value "institution-not-found"
-	JobsResultCodeInstitutionNotFound string = "institution-not-found"
+	// JobsResultCodeInstitutionDashNotDashFound captures enum value "institution-not-found"
+	JobsResultCodeInstitutionDashNotDashFound string = "institution-not-found"
 
-	// JobsResultCodeInstitutionNotAvailable captures enum value "institution-not-available"
-	JobsResultCodeInstitutionNotAvailable string = "institution-not-available"
+	// JobsResultCodeInstitutionDashNotDashAvailable captures enum value "institution-not-available"
+	JobsResultCodeInstitutionDashNotDashAvailable string = "institution-not-available"
 
-	// JobsResultCodeInstitutionDisabled captures enum value "institution-disabled"
-	JobsResultCodeInstitutionDisabled string = "institution-disabled"
+	// JobsResultCodeInstitutionDashDisabled captures enum value "institution-disabled"
+	JobsResultCodeInstitutionDashDisabled string = "institution-disabled"
 
-	// JobsResultCodeMissingRequiredField captures enum value "missing-required-field"
-	JobsResultCodeMissingRequiredField string = "missing-required-field"
+	// JobsResultCodeMissingDashRequiredDashField captures enum value "missing-required-field"
+	JobsResultCodeMissingDashRequiredDashField string = "missing-required-field"
 
-	// JobsResultCodeMissingRequiredFieldValue captures enum value "missing-required-field-value"
-	JobsResultCodeMissingRequiredFieldValue string = "missing-required-field-value"
+	// JobsResultCodeMissingDashRequiredDashFieldDashValue captures enum value "missing-required-field-value"
+	JobsResultCodeMissingDashRequiredDashFieldDashValue string = "missing-required-field-value"
 
-	// JobsResultCodeInvalidFieldValue captures enum value "invalid-field-value"
-	JobsResultCodeInvalidFieldValue string = "invalid-field-value"
+	// JobsResultCodeInvalidDashFieldDashValue captures enum value "invalid-field-value"
+	JobsResultCodeInvalidDashFieldDashValue string = "invalid-field-value"
 
-	// JobsResultCodeInvalidCsvRow captures enum value "invalid-csv-row"
-	JobsResultCodeInvalidCsvRow string = "invalid-csv-row"
+	// JobsResultCodeInvalidDashCsvDashRow captures enum value "invalid-csv-row"
+	JobsResultCodeInvalidDashCsvDashRow string = "invalid-csv-row"
 
-	// JobsResultCodeRowCountExceeded captures enum value "row-count-exceeded"
-	JobsResultCodeRowCountExceeded string = "row-count-exceeded"
+	// JobsResultCodeRowDashCountDashExceeded captures enum value "row-count-exceeded"
+	JobsResultCodeRowDashCountDashExceeded string = "row-count-exceeded"
 
-	// JobsResultCodeAccountDataDiffers captures enum value "account-data-differs"
-	JobsResultCodeAccountDataDiffers string = "account-data-differs"
+	// JobsResultCodeAccountDashDataDashDiffers captures enum value "account-data-differs"
+	JobsResultCodeAccountDashDataDashDiffers string = "account-data-differs"
 
-	// JobsResultCodeEmptyFile captures enum value "empty-file"
-	JobsResultCodeEmptyFile string = "empty-file"
+	// JobsResultCodeEmptyDashFile captures enum value "empty-file"
+	JobsResultCodeEmptyDashFile string = "empty-file"
 
-	// JobsResultCodeBankStatementInvalid captures enum value "bank-statement-invalid"
-	JobsResultCodeBankStatementInvalid string = "bank-statement-invalid"
+	// JobsResultCodeBankDashStatementDashInvalid captures enum value "bank-statement-invalid"
+	JobsResultCodeBankDashStatementDashInvalid string = "bank-statement-invalid"
 
-	// JobsResultCodeBankStatementNewProduct captures enum value "bank-statement-new-product"
-	JobsResultCodeBankStatementNewProduct string = "bank-statement-new-product"
+	// JobsResultCodeBankDashStatementDashNewDashProduct captures enum value "bank-statement-new-product"
+	JobsResultCodeBankDashStatementDashNewDashProduct string = "bank-statement-new-product"
 
-	// JobsResultCodeBankStatementParsingError captures enum value "bank-statement-parsing-error"
-	JobsResultCodeBankStatementParsingError string = "bank-statement-parsing-error"
+	// JobsResultCodeBankDashStatementDashParsingDashError captures enum value "bank-statement-parsing-error"
+	JobsResultCodeBankDashStatementDashParsingDashError string = "bank-statement-parsing-error"
 
-	// JobsResultCodeBankStatementNotSupported captures enum value "bank-statement-not-supported"
-	JobsResultCodeBankStatementNotSupported string = "bank-statement-not-supported"
+	// JobsResultCodeBankDashStatementDashNotDashSupported captures enum value "bank-statement-not-supported"
+	JobsResultCodeBankDashStatementDashNotDashSupported string = "bank-statement-not-supported"
 
-	// JobsResultCodeTxnAfterLastUpdatedDate captures enum value "txn-after-last-updated-date"
-	JobsResultCodeTxnAfterLastUpdatedDate string = "txn-after-last-updated-date"
+	// JobsResultCodeTxnDashAfterDashLastDashUpdatedDashDate captures enum value "txn-after-last-updated-date"
+	JobsResultCodeTxnDashAfterDashLastDashUpdatedDashDate string = "txn-after-last-updated-date"
 
-	// JobsResultCodeInvalidConnection captures enum value "invalid-connection"
-	JobsResultCodeInvalidConnection string = "invalid-connection"
+	// JobsResultCodeInvalidDashConnection captures enum value "invalid-connection"
+	JobsResultCodeInvalidDashConnection string = "invalid-connection"
 
-	// JobsResultCodeUnknownError captures enum value "unknown-error"
-	JobsResultCodeUnknownError string = "unknown-error"
+	// JobsResultCodeUnknownDashError captures enum value "unknown-error"
+	JobsResultCodeUnknownDashError string = "unknown-error"
 
-	// JobsResultCodeJobTimedOut captures enum value "job-timed-out"
-	JobsResultCodeJobTimedOut string = "job-timed-out"
+	// JobsResultCodeJobDashTimedDashOut captures enum value "job-timed-out"
+	JobsResultCodeJobDashTimedDashOut string = "job-timed-out"
 )
 
 // prop value enum
 func (m *JobsResult) validateCodeEnum(path, location string, value string) error {
-	if err := validate.Enum(path, location, value, jobsResultTypeCodePropEnum); err != nil {
+	if err := validate.EnumCase(path, location, value, jobsResultTypeCodePropEnum, true); err != nil {
 		return err
 	}
 	return nil
 }
 
 func (m *JobsResult) validateCode(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Code) { // not required
 		return nil
 	}
@@ -152,6 +153,11 @@ func (m *JobsResult) validateCode(formats strfmt.Registry) error {
 		return err
 	}
 
+	return nil
+}
+
+// ContextValidate validates this jobs result based on context it is used
+func (m *JobsResult) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

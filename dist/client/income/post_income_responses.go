@@ -59,9 +59,8 @@ func (o *PostIncomeReader) ReadResponse(response runtime.ClientResponse, consume
 			return nil, err
 		}
 		return nil, result
-
 	default:
-		return nil, runtime.NewAPIError("unknown error", response, response.Code())
+		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
 }
 
@@ -70,7 +69,7 @@ func NewPostIncomeOK() *PostIncomeOK {
 	return &PostIncomeOK{}
 }
 
-/*PostIncomeOK handles this case with default header values.
+/* PostIncomeOK describes a response with status code 200, with default header values.
 
 Returns a created income resource, if the operation succeeded.
 */
@@ -81,7 +80,6 @@ type PostIncomeOK struct {
 func (o *PostIncomeOK) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}/income][%d] postIncomeOK  %+v", 200, o.Payload)
 }
-
 func (o *PostIncomeOK) GetPayload() *models.IncomeResponse {
 	return o.Payload
 }
@@ -103,7 +101,7 @@ func NewPostIncomeNoContent() *PostIncomeNoContent {
 	return &PostIncomeNoContent{}
 }
 
-/*PostIncomeNoContent handles this case with default header values.
+/* PostIncomeNoContent describes a response with status code 204, with default header values.
 
 Returns no content if there are none transactions for the requested period.
 */
@@ -124,7 +122,7 @@ func NewPostIncomeBadRequest() *PostIncomeBadRequest {
 	return &PostIncomeBadRequest{}
 }
 
-/*PostIncomeBadRequest handles this case with default header values.
+/* PostIncomeBadRequest describes a response with status code 400, with default header values.
 
 Returns error that server cannot or will not process the request due to something that is perceived to be a client error.
 */
@@ -135,7 +133,6 @@ type PostIncomeBadRequest struct {
 func (o *PostIncomeBadRequest) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}/income][%d] postIncomeBadRequest  %+v", 400, o.Payload)
 }
-
 func (o *PostIncomeBadRequest) GetPayload() *models.BadRequestError {
 	return o.Payload
 }
@@ -157,7 +154,7 @@ func NewPostIncomeForbidden() *PostIncomeForbidden {
 	return &PostIncomeForbidden{}
 }
 
-/*PostIncomeForbidden handles this case with default header values.
+/* PostIncomeForbidden describes a response with status code 403, with default header values.
 
 Error that access is forbidden and tied to the application logic, such as insufficient rights to a resource.
 */
@@ -168,7 +165,6 @@ type PostIncomeForbidden struct {
 func (o *PostIncomeForbidden) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}/income][%d] postIncomeForbidden  %+v", 403, o.Payload)
 }
-
 func (o *PostIncomeForbidden) GetPayload() *models.ForbiddenAccessError {
 	return o.Payload
 }
@@ -190,7 +186,7 @@ func NewPostIncomeNotFound() *PostIncomeNotFound {
 	return &PostIncomeNotFound{}
 }
 
-/*PostIncomeNotFound handles this case with default header values.
+/* PostIncomeNotFound describes a response with status code 404, with default header values.
 
 Returns error indicating that server can't find requested resource.
 */
@@ -201,7 +197,6 @@ type PostIncomeNotFound struct {
 func (o *PostIncomeNotFound) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}/income][%d] postIncomeNotFound  %+v", 404, o.Payload)
 }
-
 func (o *PostIncomeNotFound) GetPayload() *models.NotFoundError {
 	return o.Payload
 }
@@ -223,7 +218,7 @@ func NewPostIncomeInternalServerError() *PostIncomeInternalServerError {
 	return &PostIncomeInternalServerError{}
 }
 
-/*PostIncomeInternalServerError handles this case with default header values.
+/* PostIncomeInternalServerError describes a response with status code 500, with default header values.
 
 Returns error response code indicates that the server encountered an unexpected condition that prevented it from fulfilling the request.
 */
@@ -234,7 +229,6 @@ type PostIncomeInternalServerError struct {
 func (o *PostIncomeInternalServerError) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}/income][%d] postIncomeInternalServerError  %+v", 500, o.Payload)
 }
-
 func (o *PostIncomeInternalServerError) GetPayload() *models.InternalServerError {
 	return o.Payload
 }

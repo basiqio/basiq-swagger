@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -18,6 +20,7 @@ import (
 type AvgMonthlyData struct {
 
 	// avg monthly
+	// Example: 18098.00
 	// Required: true
 	AvgMonthly *string `json:"avgMonthly"`
 }
@@ -42,6 +45,11 @@ func (m *AvgMonthlyData) validateAvgMonthly(formats strfmt.Registry) error {
 		return err
 	}
 
+	return nil
+}
+
+// ContextValidate validates this avg monthly data based on context it is used
+func (m *AvgMonthlyData) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

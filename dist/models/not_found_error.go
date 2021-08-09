@@ -6,6 +6,7 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"encoding/json"
 	"strconv"
 
@@ -21,6 +22,7 @@ import (
 type NotFoundError struct {
 
 	// Unique identifier for this particular occurrence of the problem.
+	// Example: ac5ah5i
 	// Required: true
 	CorrelationID *string `json:"correlationId"`
 
@@ -29,6 +31,7 @@ type NotFoundError struct {
 	Data []*NotFoundErrorDataItems0 `json:"data"`
 
 	// Always "list".
+	// Example: list
 	// Required: true
 	Type *string `json:"type"`
 }
@@ -98,6 +101,38 @@ func (m *NotFoundError) validateType(formats strfmt.Registry) error {
 	return nil
 }
 
+// ContextValidate validate this not found error based on the context it is used
+func (m *NotFoundError) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateData(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *NotFoundError) contextValidateData(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Data); i++ {
+
+		if m.Data[i] != nil {
+			if err := m.Data[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("data" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
 // MarshalBinary interface implementation
 func (m *NotFoundError) MarshalBinary() ([]byte, error) {
 	if m == nil {
@@ -122,17 +157,21 @@ func (m *NotFoundError) UnmarshalBinary(b []byte) error {
 type NotFoundErrorDataItems0 struct {
 
 	// Application-specific error code, expressed as a string value.
+	// Example: resource-not-found
 	// Required: true
 	// Enum: [resource-not-found]
 	Code *string `json:"code"`
 
 	// Human-readable explanation specific to this occurrence of the problem.
+	// Example: Resource not found.
 	Detail string `json:"detail,omitempty"`
 
 	// Title of the error
+	// Example: Requested resource is not found.
 	Title string `json:"title,omitempty"`
 
 	// Type of the response, always "error"
+	// Example: error
 	// Required: true
 	Type *string `json:"type"`
 }
@@ -169,13 +208,13 @@ func init() {
 
 const (
 
-	// NotFoundErrorDataItems0CodeResourceNotFound captures enum value "resource-not-found"
-	NotFoundErrorDataItems0CodeResourceNotFound string = "resource-not-found"
+	// NotFoundErrorDataItems0CodeResourceDashNotDashFound captures enum value "resource-not-found"
+	NotFoundErrorDataItems0CodeResourceDashNotDashFound string = "resource-not-found"
 )
 
 // prop value enum
 func (m *NotFoundErrorDataItems0) validateCodeEnum(path, location string, value string) error {
-	if err := validate.Enum(path, location, value, notFoundErrorDataItems0TypeCodePropEnum); err != nil {
+	if err := validate.EnumCase(path, location, value, notFoundErrorDataItems0TypeCodePropEnum, true); err != nil {
 		return err
 	}
 	return nil
@@ -201,6 +240,11 @@ func (m *NotFoundErrorDataItems0) validateType(formats strfmt.Registry) error {
 		return err
 	}
 
+	return nil
+}
+
+// ContextValidate validates this not found error data items0 based on context it is used
+func (m *NotFoundErrorDataItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

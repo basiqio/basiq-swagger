@@ -53,9 +53,8 @@ func (o *GetIncomeReader) ReadResponse(response runtime.ClientResponse, consumer
 			return nil, err
 		}
 		return nil, result
-
 	default:
-		return nil, runtime.NewAPIError("unknown error", response, response.Code())
+		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
 }
 
@@ -64,7 +63,7 @@ func NewGetIncomeOK() *GetIncomeOK {
 	return &GetIncomeOK{}
 }
 
-/*GetIncomeOK handles this case with default header values.
+/* GetIncomeOK describes a response with status code 200, with default header values.
 
 Returns a saved income resource, if the operation succeeded.
 */
@@ -75,7 +74,6 @@ type GetIncomeOK struct {
 func (o *GetIncomeOK) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/income/{snapshotId}][%d] getIncomeOK  %+v", 200, o.Payload)
 }
-
 func (o *GetIncomeOK) GetPayload() *models.IncomeResponse {
 	return o.Payload
 }
@@ -97,7 +95,7 @@ func NewGetIncomeBadRequest() *GetIncomeBadRequest {
 	return &GetIncomeBadRequest{}
 }
 
-/*GetIncomeBadRequest handles this case with default header values.
+/* GetIncomeBadRequest describes a response with status code 400, with default header values.
 
 Returns error that server cannot or will not process the request due to something that is perceived to be a client error.
 */
@@ -108,7 +106,6 @@ type GetIncomeBadRequest struct {
 func (o *GetIncomeBadRequest) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/income/{snapshotId}][%d] getIncomeBadRequest  %+v", 400, o.Payload)
 }
-
 func (o *GetIncomeBadRequest) GetPayload() *models.BadRequestError {
 	return o.Payload
 }
@@ -130,7 +127,7 @@ func NewGetIncomeForbidden() *GetIncomeForbidden {
 	return &GetIncomeForbidden{}
 }
 
-/*GetIncomeForbidden handles this case with default header values.
+/* GetIncomeForbidden describes a response with status code 403, with default header values.
 
 Error that access is forbidden and tied to the application logic, such as insufficient rights to a resource.
 */
@@ -141,7 +138,6 @@ type GetIncomeForbidden struct {
 func (o *GetIncomeForbidden) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/income/{snapshotId}][%d] getIncomeForbidden  %+v", 403, o.Payload)
 }
-
 func (o *GetIncomeForbidden) GetPayload() *models.ForbiddenAccessError {
 	return o.Payload
 }
@@ -163,7 +159,7 @@ func NewGetIncomeNotFound() *GetIncomeNotFound {
 	return &GetIncomeNotFound{}
 }
 
-/*GetIncomeNotFound handles this case with default header values.
+/* GetIncomeNotFound describes a response with status code 404, with default header values.
 
 Returns error indicating that server can't find requested resource.
 */
@@ -174,7 +170,6 @@ type GetIncomeNotFound struct {
 func (o *GetIncomeNotFound) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/income/{snapshotId}][%d] getIncomeNotFound  %+v", 404, o.Payload)
 }
-
 func (o *GetIncomeNotFound) GetPayload() *models.NotFoundError {
 	return o.Payload
 }
@@ -196,7 +191,7 @@ func NewGetIncomeInternalServerError() *GetIncomeInternalServerError {
 	return &GetIncomeInternalServerError{}
 }
 
-/*GetIncomeInternalServerError handles this case with default header values.
+/* GetIncomeInternalServerError describes a response with status code 500, with default header values.
 
 Returns error response code indicates that the server encountered an unexpected condition that prevented it from fulfilling the request.
 */
@@ -207,7 +202,6 @@ type GetIncomeInternalServerError struct {
 func (o *GetIncomeInternalServerError) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/income/{snapshotId}][%d] getIncomeInternalServerError  %+v", 500, o.Payload)
 }
-
 func (o *GetIncomeInternalServerError) GetPayload() *models.InternalServerError {
 	return o.Payload
 }

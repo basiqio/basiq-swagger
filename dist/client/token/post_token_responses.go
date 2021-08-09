@@ -47,9 +47,8 @@ func (o *PostTokenReader) ReadResponse(response runtime.ClientResponse, consumer
 			return nil, err
 		}
 		return nil, result
-
 	default:
-		return nil, runtime.NewAPIError("unknown error", response, response.Code())
+		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
 }
 
@@ -58,7 +57,7 @@ func NewPostTokenOK() *PostTokenOK {
 	return &PostTokenOK{}
 }
 
-/*PostTokenOK handles this case with default header values.
+/* PostTokenOK describes a response with status code 200, with default header values.
 
 Return token object that will be used for Basiq API requests.
 */
@@ -69,7 +68,6 @@ type PostTokenOK struct {
 func (o *PostTokenOK) Error() string {
 	return fmt.Sprintf("[POST /token][%d] postTokenOK  %+v", 200, o.Payload)
 }
-
 func (o *PostTokenOK) GetPayload() *models.TokenPostResponse {
 	return o.Payload
 }
@@ -91,7 +89,7 @@ func NewPostTokenBadRequest() *PostTokenBadRequest {
 	return &PostTokenBadRequest{}
 }
 
-/*PostTokenBadRequest handles this case with default header values.
+/* PostTokenBadRequest describes a response with status code 400, with default header values.
 
 Returns error that server cannot or will not process the request due to something that is perceived to be a client error.
 */
@@ -102,7 +100,6 @@ type PostTokenBadRequest struct {
 func (o *PostTokenBadRequest) Error() string {
 	return fmt.Sprintf("[POST /token][%d] postTokenBadRequest  %+v", 400, o.Payload)
 }
-
 func (o *PostTokenBadRequest) GetPayload() *models.BadRequestError {
 	return o.Payload
 }
@@ -124,7 +121,7 @@ func NewPostTokenNotFound() *PostTokenNotFound {
 	return &PostTokenNotFound{}
 }
 
-/*PostTokenNotFound handles this case with default header values.
+/* PostTokenNotFound describes a response with status code 404, with default header values.
 
 Returns error indicating that server can't find requested resource.
 */
@@ -135,7 +132,6 @@ type PostTokenNotFound struct {
 func (o *PostTokenNotFound) Error() string {
 	return fmt.Sprintf("[POST /token][%d] postTokenNotFound  %+v", 404, o.Payload)
 }
-
 func (o *PostTokenNotFound) GetPayload() *models.NotFoundError {
 	return o.Payload
 }
@@ -157,7 +153,7 @@ func NewPostTokenInternalServerError() *PostTokenInternalServerError {
 	return &PostTokenInternalServerError{}
 }
 
-/*PostTokenInternalServerError handles this case with default header values.
+/* PostTokenInternalServerError describes a response with status code 500, with default header values.
 
 Returns error response code indicates that the server encountered an unexpected condition that prevented it from fulfilling the request.
 */
@@ -168,7 +164,6 @@ type PostTokenInternalServerError struct {
 func (o *PostTokenInternalServerError) Error() string {
 	return fmt.Sprintf("[POST /token][%d] postTokenInternalServerError  %+v", 500, o.Payload)
 }
-
 func (o *PostTokenInternalServerError) GetPayload() *models.InternalServerError {
 	return o.Payload
 }

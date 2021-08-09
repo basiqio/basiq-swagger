@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/strfmt"
 )
 
@@ -16,5 +18,10 @@ type FeatureCondition string
 
 // Validate validates this feature condition
 func (m FeatureCondition) Validate(formats strfmt.Registry) error {
+	return nil
+}
+
+// ContextValidate validates this feature condition based on context it is used
+func (m FeatureCondition) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }

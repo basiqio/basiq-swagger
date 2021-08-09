@@ -6,6 +6,7 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"encoding/json"
 
 	"github.com/go-openapi/errors"
@@ -20,36 +21,44 @@ import (
 type TransactionDataAffordability struct {
 
 	// The id of the account resource the transaction belongs to.
+	// Example: d3de1ca1
 	// Required: true
 	Account *string `json:"account"`
 
 	// Transaction amount. Outgoing funds are expressed as negative values.
+	// Example: 123.12
 	// Required: true
 	Amount *string `json:"amount"`
 
 	// Value of the account balance at time the transaction was completed.
+	// Example: 123.12
 	// Required: true
 	Balance *string `json:"balance"`
 
 	// Describes the class(type) of transaction.
+	// Example: payment
 	// Required: true
 	// Enum: [bank-fee payment cash-withdrawal transfer loan-interest refund direct-cedit interest loan-repayment]
 	Class *string `json:"class"`
 
 	// The transaction description as submitted by the institution..
+	// Example: DEBIT Only About Children Seaforth
 	// Required: true
 	Description *string `json:"description"`
 
 	// Identifies if the transaction is of debit or credit type.
+	// Example: credit
 	// Required: true
 	// Enum: [debit credit]
 	Direction *string `json:"direction"`
 
 	// Uniquely identifies the transaction.
+	// Example: d3de1ca1
 	// Required: true
 	ID *string `json:"id"`
 
 	// The id of the institution resource the transaction originated from.
+	// Example: AU00000
 	// Required: true
 	Institution *string `json:"institution"`
 
@@ -58,10 +67,12 @@ type TransactionDataAffordability struct {
 	Links *AffordabilityTransactionLinks `json:"links"`
 
 	// Date the transaction was posted as provided by the institution (this is the same date that appears on a bank statement). This value is null if the record is pending. e.g. "2017-11-10T21:46:44Z" or 2017-11-10T00:00:00Z.
+	// Example: 2018-11-02T00:00:00Z
 	// Required: true
 	PostDate *string `json:"postDate"`
 
 	// Identifies if a transaction is pending or posted. A pending transaction is an approved debit or credit transaction that has not been fully processed yet (i.e. has not been posted). Find out more about pending transaction and how to deal with them within your app. Note that pending transactions are not available for all institutions.
+	// Example: pending
 	// Required: true
 	// Enum: [pending posted]
 	Status *string `json:"status"`
@@ -71,10 +82,12 @@ type TransactionDataAffordability struct {
 	SubClass *SubClass `json:"subClass"`
 
 	// Date that the user executed the transaction as provided by the institution. Note that not all transactions provide this value (varies by institution) e.g. "2017-11-10T00:00:00Z"
+	// Example: 2018-11-02T00:00:00Z
 	// Required: true
 	TransactionDate *string `json:"transactionDate"`
 
 	// Value is "transaction".
+	// Example: transaction
 	// Required: true
 	Type *string `json:"type"`
 }
@@ -186,37 +199,37 @@ func init() {
 
 const (
 
-	// TransactionDataAffordabilityClassBankFee captures enum value "bank-fee"
-	TransactionDataAffordabilityClassBankFee string = "bank-fee"
+	// TransactionDataAffordabilityClassBankDashFee captures enum value "bank-fee"
+	TransactionDataAffordabilityClassBankDashFee string = "bank-fee"
 
 	// TransactionDataAffordabilityClassPayment captures enum value "payment"
 	TransactionDataAffordabilityClassPayment string = "payment"
 
-	// TransactionDataAffordabilityClassCashWithdrawal captures enum value "cash-withdrawal"
-	TransactionDataAffordabilityClassCashWithdrawal string = "cash-withdrawal"
+	// TransactionDataAffordabilityClassCashDashWithdrawal captures enum value "cash-withdrawal"
+	TransactionDataAffordabilityClassCashDashWithdrawal string = "cash-withdrawal"
 
 	// TransactionDataAffordabilityClassTransfer captures enum value "transfer"
 	TransactionDataAffordabilityClassTransfer string = "transfer"
 
-	// TransactionDataAffordabilityClassLoanInterest captures enum value "loan-interest"
-	TransactionDataAffordabilityClassLoanInterest string = "loan-interest"
+	// TransactionDataAffordabilityClassLoanDashInterest captures enum value "loan-interest"
+	TransactionDataAffordabilityClassLoanDashInterest string = "loan-interest"
 
 	// TransactionDataAffordabilityClassRefund captures enum value "refund"
 	TransactionDataAffordabilityClassRefund string = "refund"
 
-	// TransactionDataAffordabilityClassDirectCedit captures enum value "direct-cedit"
-	TransactionDataAffordabilityClassDirectCedit string = "direct-cedit"
+	// TransactionDataAffordabilityClassDirectDashCedit captures enum value "direct-cedit"
+	TransactionDataAffordabilityClassDirectDashCedit string = "direct-cedit"
 
 	// TransactionDataAffordabilityClassInterest captures enum value "interest"
 	TransactionDataAffordabilityClassInterest string = "interest"
 
-	// TransactionDataAffordabilityClassLoanRepayment captures enum value "loan-repayment"
-	TransactionDataAffordabilityClassLoanRepayment string = "loan-repayment"
+	// TransactionDataAffordabilityClassLoanDashRepayment captures enum value "loan-repayment"
+	TransactionDataAffordabilityClassLoanDashRepayment string = "loan-repayment"
 )
 
 // prop value enum
 func (m *TransactionDataAffordability) validateClassEnum(path, location string, value string) error {
-	if err := validate.Enum(path, location, value, transactionDataAffordabilityTypeClassPropEnum); err != nil {
+	if err := validate.EnumCase(path, location, value, transactionDataAffordabilityTypeClassPropEnum, true); err != nil {
 		return err
 	}
 	return nil
@@ -268,7 +281,7 @@ const (
 
 // prop value enum
 func (m *TransactionDataAffordability) validateDirectionEnum(path, location string, value string) error {
-	if err := validate.Enum(path, location, value, transactionDataAffordabilityTypeDirectionPropEnum); err != nil {
+	if err := validate.EnumCase(path, location, value, transactionDataAffordabilityTypeDirectionPropEnum, true); err != nil {
 		return err
 	}
 	return nil
@@ -356,7 +369,7 @@ const (
 
 // prop value enum
 func (m *TransactionDataAffordability) validateStatusEnum(path, location string, value string) error {
-	if err := validate.Enum(path, location, value, transactionDataAffordabilityTypeStatusPropEnum); err != nil {
+	if err := validate.EnumCase(path, location, value, transactionDataAffordabilityTypeStatusPropEnum, true); err != nil {
 		return err
 	}
 	return nil
@@ -407,6 +420,52 @@ func (m *TransactionDataAffordability) validateType(formats strfmt.Registry) err
 
 	if err := validate.Required("type", "body", m.Type); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+// ContextValidate validate this transaction data affordability based on the context it is used
+func (m *TransactionDataAffordability) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateLinks(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateSubClass(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *TransactionDataAffordability) contextValidateLinks(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Links != nil {
+		if err := m.Links.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("links")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *TransactionDataAffordability) contextValidateSubClass(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.SubClass != nil {
+		if err := m.SubClass.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("subClass")
+			}
+			return err
+		}
 	}
 
 	return nil

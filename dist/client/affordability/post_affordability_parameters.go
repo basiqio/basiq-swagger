@@ -18,61 +18,76 @@ import (
 	"github.com/basiqio/basiq-swagger/dist/models"
 )
 
-// NewPostAffordabilityParams creates a new PostAffordabilityParams object
-// with the default values initialized.
+// NewPostAffordabilityParams creates a new PostAffordabilityParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewPostAffordabilityParams() *PostAffordabilityParams {
-	var ()
 	return &PostAffordabilityParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewPostAffordabilityParamsWithTimeout creates a new PostAffordabilityParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewPostAffordabilityParamsWithTimeout(timeout time.Duration) *PostAffordabilityParams {
-	var ()
 	return &PostAffordabilityParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewPostAffordabilityParamsWithContext creates a new PostAffordabilityParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewPostAffordabilityParamsWithContext(ctx context.Context) *PostAffordabilityParams {
-	var ()
 	return &PostAffordabilityParams{
-
 		Context: ctx,
 	}
 }
 
 // NewPostAffordabilityParamsWithHTTPClient creates a new PostAffordabilityParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewPostAffordabilityParamsWithHTTPClient(client *http.Client) *PostAffordabilityParams {
-	var ()
 	return &PostAffordabilityParams{
 		HTTPClient: client,
 	}
 }
 
-/*PostAffordabilityParams contains all the parameters to send to the API endpoint
-for the post affordability operation typically these are written to a http.Request
+/* PostAffordabilityParams contains all the parameters to send to the API endpoint
+   for the post affordability operation.
+
+   Typically these are written to a http.Request.
 */
 type PostAffordabilityParams struct {
 
-	/*AffordabilityPostRequest*/
+	// AffordabilityPostRequest.
 	AffordabilityPostRequest *models.AffordabilityPostRequest
-	/*UserID
-	  The identifier of the user.
 
+	/* UserID.
+
+	   The identifier of the user.
 	*/
 	UserID string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the post affordability params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *PostAffordabilityParams) WithDefaults() *PostAffordabilityParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the post affordability params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *PostAffordabilityParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the post affordability params
@@ -137,7 +152,6 @@ func (o *PostAffordabilityParams) WriteToRequest(r runtime.ClientRequest, reg st
 		return err
 	}
 	var res []error
-
 	if o.AffordabilityPostRequest != nil {
 		if err := r.SetBodyParam(o.AffordabilityPostRequest); err != nil {
 			return err

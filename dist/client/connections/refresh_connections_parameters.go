@@ -16,59 +16,73 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewRefreshConnectionsParams creates a new RefreshConnectionsParams object
-// with the default values initialized.
+// NewRefreshConnectionsParams creates a new RefreshConnectionsParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewRefreshConnectionsParams() *RefreshConnectionsParams {
-	var ()
 	return &RefreshConnectionsParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewRefreshConnectionsParamsWithTimeout creates a new RefreshConnectionsParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewRefreshConnectionsParamsWithTimeout(timeout time.Duration) *RefreshConnectionsParams {
-	var ()
 	return &RefreshConnectionsParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewRefreshConnectionsParamsWithContext creates a new RefreshConnectionsParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewRefreshConnectionsParamsWithContext(ctx context.Context) *RefreshConnectionsParams {
-	var ()
 	return &RefreshConnectionsParams{
-
 		Context: ctx,
 	}
 }
 
 // NewRefreshConnectionsParamsWithHTTPClient creates a new RefreshConnectionsParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewRefreshConnectionsParamsWithHTTPClient(client *http.Client) *RefreshConnectionsParams {
-	var ()
 	return &RefreshConnectionsParams{
 		HTTPClient: client,
 	}
 }
 
-/*RefreshConnectionsParams contains all the parameters to send to the API endpoint
-for the refresh connections operation typically these are written to a http.Request
+/* RefreshConnectionsParams contains all the parameters to send to the API endpoint
+   for the refresh connections operation.
+
+   Typically these are written to a http.Request.
 */
 type RefreshConnectionsParams struct {
 
-	/*UserID
-	  The identifier of the user.
+	/* UserID.
 
+	   The identifier of the user.
 	*/
 	UserID string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the refresh connections params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *RefreshConnectionsParams) WithDefaults() *RefreshConnectionsParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the refresh connections params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *RefreshConnectionsParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the refresh connections params

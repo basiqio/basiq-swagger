@@ -6,6 +6,7 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"encoding/json"
 
 	"github.com/go-openapi/errors"
@@ -20,14 +21,17 @@ import (
 type AccountsData struct {
 
 	// Account number
+	// Example: 105148119695
 	// Required: true
 	AccountNo *string `json:"accountNo"`
 
 	// Account available funds, nullable.
+	// Example: 200.54
 	// Required: true
 	AvailableFunds *string `json:"availableFunds"`
 
 	// Account balance, nullable.
+	// Example: 100.12
 	// Required: true
 	Balance *string `json:"balance"`
 
@@ -36,14 +40,17 @@ type AccountsData struct {
 	Class *AccountClass `json:"class"`
 
 	// Currency
+	// Example: AUD
 	// Required: true
 	Currency *string `json:"currency"`
 
 	// Account identification.
+	// Example: 319ae910
 	// Required: true
 	ID *string `json:"id"`
 
 	// Account last updated date and time.
+	// Example: 2017-09-28T11:15:09.756Z
 	// Required: true
 	LastUpdated *string `json:"lastUpdated"`
 
@@ -52,15 +59,18 @@ type AccountsData struct {
 	Links *ConnectionAccountLinks `json:"links"`
 
 	// Account name.
+	// Example: Business account
 	// Required: true
 	Name *string `json:"name"`
 
 	// Account status.
+	// Example: available
 	// Required: true
 	// Enum: [available unavailable]
 	Status *string `json:"status"`
 
 	// Type always "account".
+	// Example: account
 	// Required: true
 	Type *string `json:"type"`
 }
@@ -241,7 +251,7 @@ const (
 
 // prop value enum
 func (m *AccountsData) validateStatusEnum(path, location string, value string) error {
-	if err := validate.Enum(path, location, value, accountsDataTypeStatusPropEnum); err != nil {
+	if err := validate.EnumCase(path, location, value, accountsDataTypeStatusPropEnum, true); err != nil {
 		return err
 	}
 	return nil
@@ -265,6 +275,52 @@ func (m *AccountsData) validateType(formats strfmt.Registry) error {
 
 	if err := validate.Required("type", "body", m.Type); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+// ContextValidate validate this accounts data based on the context it is used
+func (m *AccountsData) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateClass(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateLinks(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *AccountsData) contextValidateClass(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Class != nil {
+		if err := m.Class.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("class")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *AccountsData) contextValidateLinks(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Links != nil {
+		if err := m.Links.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("links")
+			}
+			return err
+		}
 	}
 
 	return nil

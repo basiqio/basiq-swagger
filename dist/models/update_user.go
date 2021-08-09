@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
@@ -16,14 +18,21 @@ import (
 type UpdateUser struct {
 
 	// The end-users email address.
+	// Example: gavin@hooli.com
 	Email string `json:"email,omitempty"`
 
 	// The end-users mobile number.
+	// Example: +61410888666
 	Mobile string `json:"mobile,omitempty"`
 }
 
 // Validate validates this update user
 func (m *UpdateUser) Validate(formats strfmt.Registry) error {
+	return nil
+}
+
+// ContextValidate validates this update user based on context it is used
+func (m *UpdateUser) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

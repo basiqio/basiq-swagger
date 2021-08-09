@@ -65,9 +65,8 @@ func (o *GetAuthLinkReader) ReadResponse(response runtime.ClientResponse, consum
 			return nil, err
 		}
 		return nil, result
-
 	default:
-		return nil, runtime.NewAPIError("unknown error", response, response.Code())
+		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
 }
 
@@ -76,7 +75,7 @@ func NewGetAuthLinkOK() *GetAuthLinkOK {
 	return &GetAuthLinkOK{}
 }
 
-/*GetAuthLinkOK handles this case with default header values.
+/* GetAuthLinkOK describes a response with status code 200, with default header values.
 
 Returns details of a connection.
 */
@@ -87,7 +86,6 @@ type GetAuthLinkOK struct {
 func (o *GetAuthLinkOK) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/auth_link][%d] getAuthLinkOK  %+v", 200, o.Payload)
 }
-
 func (o *GetAuthLinkOK) GetPayload() *models.AuthLinksResponseResource {
 	return o.Payload
 }
@@ -109,7 +107,7 @@ func NewGetAuthLinkBadRequest() *GetAuthLinkBadRequest {
 	return &GetAuthLinkBadRequest{}
 }
 
-/*GetAuthLinkBadRequest handles this case with default header values.
+/* GetAuthLinkBadRequest describes a response with status code 400, with default header values.
 
 Returns error that server cannot or will not process the request due to something that is perceived to be a client error
 */
@@ -120,7 +118,6 @@ type GetAuthLinkBadRequest struct {
 func (o *GetAuthLinkBadRequest) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/auth_link][%d] getAuthLinkBadRequest  %+v", 400, o.Payload)
 }
-
 func (o *GetAuthLinkBadRequest) GetPayload() *models.BadRequestError {
 	return o.Payload
 }
@@ -142,7 +139,7 @@ func NewGetAuthLinkForbidden() *GetAuthLinkForbidden {
 	return &GetAuthLinkForbidden{}
 }
 
-/*GetAuthLinkForbidden handles this case with default header values.
+/* GetAuthLinkForbidden describes a response with status code 403, with default header values.
 
 Error that access is forbidden and tied to the application logic, such as insufficient rights to a resource.
 */
@@ -153,7 +150,6 @@ type GetAuthLinkForbidden struct {
 func (o *GetAuthLinkForbidden) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/auth_link][%d] getAuthLinkForbidden  %+v", 403, o.Payload)
 }
-
 func (o *GetAuthLinkForbidden) GetPayload() *models.ForbiddenAccessError {
 	return o.Payload
 }
@@ -175,7 +171,7 @@ func NewGetAuthLinkNotFound() *GetAuthLinkNotFound {
 	return &GetAuthLinkNotFound{}
 }
 
-/*GetAuthLinkNotFound handles this case with default header values.
+/* GetAuthLinkNotFound describes a response with status code 404, with default header values.
 
 Returns error indicating that server can't find requested resource.
 */
@@ -186,7 +182,6 @@ type GetAuthLinkNotFound struct {
 func (o *GetAuthLinkNotFound) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/auth_link][%d] getAuthLinkNotFound  %+v", 404, o.Payload)
 }
-
 func (o *GetAuthLinkNotFound) GetPayload() *models.NotFoundError {
 	return o.Payload
 }
@@ -208,7 +203,7 @@ func NewGetAuthLinkGone() *GetAuthLinkGone {
 	return &GetAuthLinkGone{}
 }
 
-/*GetAuthLinkGone handles this case with default header values.
+/* GetAuthLinkGone describes a response with status code 410, with default header values.
 
 Returns error indicating that access to the target resource is no longer available at the origin server and that this condition is likely to be permanent.
 */
@@ -219,7 +214,6 @@ type GetAuthLinkGone struct {
 func (o *GetAuthLinkGone) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/auth_link][%d] getAuthLinkGone  %+v", 410, o.Payload)
 }
-
 func (o *GetAuthLinkGone) GetPayload() *models.GoneError {
 	return o.Payload
 }
@@ -241,7 +235,7 @@ func NewGetAuthLinkInternalServerError() *GetAuthLinkInternalServerError {
 	return &GetAuthLinkInternalServerError{}
 }
 
-/*GetAuthLinkInternalServerError handles this case with default header values.
+/* GetAuthLinkInternalServerError describes a response with status code 500, with default header values.
 
 Returns error response code indicates that the server encountered an unexpected condition that prevented it from fulfilling the request.
 */
@@ -252,7 +246,6 @@ type GetAuthLinkInternalServerError struct {
 func (o *GetAuthLinkInternalServerError) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/auth_link][%d] getAuthLinkInternalServerError  %+v", 500, o.Payload)
 }
-
 func (o *GetAuthLinkInternalServerError) GetPayload() *models.InternalServerError {
 	return o.Payload
 }
@@ -274,7 +267,7 @@ func NewGetAuthLinkServiceUnavailable() *GetAuthLinkServiceUnavailable {
 	return &GetAuthLinkServiceUnavailable{}
 }
 
-/*GetAuthLinkServiceUnavailable handles this case with default header values.
+/* GetAuthLinkServiceUnavailable describes a response with status code 503, with default header values.
 
 Returns error response code indicates that the server is not ready to handle the request.
 */
@@ -285,7 +278,6 @@ type GetAuthLinkServiceUnavailable struct {
 func (o *GetAuthLinkServiceUnavailable) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/auth_link][%d] getAuthLinkServiceUnavailable  %+v", 503, o.Payload)
 }
-
 func (o *GetAuthLinkServiceUnavailable) GetPayload() *models.StatusServiceUnavailableError {
 	return o.Payload
 }

@@ -6,6 +6,7 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"encoding/json"
 
 	"github.com/go-openapi/errors"
@@ -32,11 +33,13 @@ type JobsStep struct {
 	// <li> success - The job has successfully completed. </li>
 	// <li> failed - The job has failed.</li>
 	// </ul>
+	// Example: success
 	// Required: true
 	// Enum: [pending in-progress success failed]
 	Status *string `json:"status"`
 
 	// Name of the step the job needs to complete.
+	// Example: retrieve-accounts
 	// Enum: [verify-credentials retrieve-accounts retrieve-transactions retrieve-statements]
 	Title string `json:"title,omitempty"`
 }
@@ -98,8 +101,8 @@ const (
 	// JobsStepStatusPending captures enum value "pending"
 	JobsStepStatusPending string = "pending"
 
-	// JobsStepStatusInProgress captures enum value "in-progress"
-	JobsStepStatusInProgress string = "in-progress"
+	// JobsStepStatusInDashProgress captures enum value "in-progress"
+	JobsStepStatusInDashProgress string = "in-progress"
 
 	// JobsStepStatusSuccess captures enum value "success"
 	JobsStepStatusSuccess string = "success"
@@ -110,7 +113,7 @@ const (
 
 // prop value enum
 func (m *JobsStep) validateStatusEnum(path, location string, value string) error {
-	if err := validate.Enum(path, location, value, jobsStepTypeStatusPropEnum); err != nil {
+	if err := validate.EnumCase(path, location, value, jobsStepTypeStatusPropEnum, true); err != nil {
 		return err
 	}
 	return nil
@@ -144,29 +147,28 @@ func init() {
 
 const (
 
-	// JobsStepTitleVerifyCredentials captures enum value "verify-credentials"
-	JobsStepTitleVerifyCredentials string = "verify-credentials"
+	// JobsStepTitleVerifyDashCredentials captures enum value "verify-credentials"
+	JobsStepTitleVerifyDashCredentials string = "verify-credentials"
 
-	// JobsStepTitleRetrieveAccounts captures enum value "retrieve-accounts"
-	JobsStepTitleRetrieveAccounts string = "retrieve-accounts"
+	// JobsStepTitleRetrieveDashAccounts captures enum value "retrieve-accounts"
+	JobsStepTitleRetrieveDashAccounts string = "retrieve-accounts"
 
-	// JobsStepTitleRetrieveTransactions captures enum value "retrieve-transactions"
-	JobsStepTitleRetrieveTransactions string = "retrieve-transactions"
+	// JobsStepTitleRetrieveDashTransactions captures enum value "retrieve-transactions"
+	JobsStepTitleRetrieveDashTransactions string = "retrieve-transactions"
 
-	// JobsStepTitleRetrieveStatements captures enum value "retrieve-statements"
-	JobsStepTitleRetrieveStatements string = "retrieve-statements"
+	// JobsStepTitleRetrieveDashStatements captures enum value "retrieve-statements"
+	JobsStepTitleRetrieveDashStatements string = "retrieve-statements"
 )
 
 // prop value enum
 func (m *JobsStep) validateTitleEnum(path, location string, value string) error {
-	if err := validate.Enum(path, location, value, jobsStepTypeTitlePropEnum); err != nil {
+	if err := validate.EnumCase(path, location, value, jobsStepTypeTitlePropEnum, true); err != nil {
 		return err
 	}
 	return nil
 }
 
 func (m *JobsStep) validateTitle(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Title) { // not required
 		return nil
 	}
@@ -174,6 +176,34 @@ func (m *JobsStep) validateTitle(formats strfmt.Registry) error {
 	// value enum
 	if err := m.validateTitleEnum("title", "body", m.Title); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+// ContextValidate validate this jobs step based on the context it is used
+func (m *JobsStep) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateResult(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *JobsStep) contextValidateResult(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Result != nil {
+		if err := m.Result.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("result")
+			}
+			return err
+		}
 	}
 
 	return nil

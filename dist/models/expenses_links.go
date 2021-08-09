@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -18,10 +20,12 @@ import (
 type ExpensesLinks struct {
 
 	// Links of accounts
+	// Example: ["https://au-api.basiq.io/users/25c8d1ed77/accounts/s55bf5","https://au-api.basiq.io/users/25c8d1ed77/accounts/s55bf4"]
 	// Required: true
 	Accounts []string `json:"accounts"`
 
 	// Link to the requested expenses resource
+	// Example: https://au-api.basiq.io/users/25c8d1ed77/expenses/s55bf4
 	// Required: true
 	Self *string `json:"self"`
 }
@@ -59,6 +63,11 @@ func (m *ExpensesLinks) validateSelf(formats strfmt.Registry) error {
 		return err
 	}
 
+	return nil
+}
+
+// ContextValidate validates this expenses links based on context it is used
+func (m *ExpensesLinks) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

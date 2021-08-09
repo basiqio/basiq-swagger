@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -18,28 +20,34 @@ import (
 type ExternalPayment struct {
 
 	// Number of occurrences for same source (in this group)
+	// Example: -50.50
 	// Required: true
 	AmountAvg *string `json:"amountAvg"`
 
 	// Average monthly payment amount
+	// Example: -20.00
 	// Required: true
 	AmountAvgMonthly *string `json:"amountAvgMonthly"`
 
 	// Date of first payment
+	// Example: 2019-03-15
 	// Required: true
 	// Format: date
 	First *strfmt.Date `json:"first"`
 
 	// Date of last payment
+	// Example: 2020-03-15
 	// Required: true
 	// Format: date
 	Last *strfmt.Date `json:"last"`
 
 	// Number of occurrences for same source (in this group)
+	// Example: 2
 	// Required: true
 	NoOccurrences *int64 `json:"noOccurrences"`
 
 	// Amount of total payments identified for source in the affordability snapshot
+	// Example: -146.50
 	// Required: true
 	Total *string `json:"total"`
 }
@@ -137,6 +145,11 @@ func (m *ExternalPayment) validateTotal(formats strfmt.Registry) error {
 		return err
 	}
 
+	return nil
+}
+
+// ContextValidate validates this external payment based on context it is used
+func (m *ExternalPayment) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

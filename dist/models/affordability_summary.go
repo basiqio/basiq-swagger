@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -18,30 +20,37 @@ import (
 type AffordabilitySummary struct {
 
 	// Total of cash based assets
+	// Example: 59983.11
 	// Required: true
 	Assets *string `json:"assets"`
 
 	// Total credit limit across all credit cards and overdrafts
+	// Example: 20000.00
 	// Required: true
 	CreditLimit *string `json:"creditLimit"`
 
 	// Provides an average of monthly expenses calculated for the whole period of data retrieved (e.g. 13 months)
+	// Example: -12046.00
 	// Required: true
 	Expenses *string `json:"expenses"`
 
 	// Total of account based liabilities split into credit and loan liabilities
+	// Example: -323946.20
 	// Required: true
 	Liabilities *string `json:"liabilities"`
 
 	// Total of all repayments monthly to disclosed loan liabilities as an average monthly amount
+	// Example: 5284.00
 	// Required: true
 	LoanRepaymentMonthly *string `json:"loanRepaymentMonthly"`
 
 	// Total assets minus total liabilities
+	// Example: -263963.09
 	// Required: true
 	NetPosition *string `json:"netPosition"`
 
 	// Total of all repayments monthly to potential undisclosed loan liabilities as an average monthly amount
+	// Example: -1727.00
 	// Required: true
 	PotentialLiabilitiesMonthly *string `json:"potentialLiabilitiesMonthly"`
 
@@ -50,6 +59,7 @@ type AffordabilitySummary struct {
 	RegularIncome *AffordabilityRegularIncomeData `json:"regularIncome"`
 
 	// Average of monthly savings calculated for the whole period of data retrieved (e.g. 13 months)
+	// Example: 93.00
 	// Required: true
 	Savings *string `json:"savings"`
 }
@@ -185,6 +195,34 @@ func (m *AffordabilitySummary) validateSavings(formats strfmt.Registry) error {
 
 	if err := validate.Required("savings", "body", m.Savings); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+// ContextValidate validate this affordability summary based on the context it is used
+func (m *AffordabilitySummary) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateRegularIncome(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *AffordabilitySummary) contextValidateRegularIncome(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.RegularIncome != nil {
+		if err := m.RegularIncome.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("regularIncome")
+			}
+			return err
+		}
 	}
 
 	return nil

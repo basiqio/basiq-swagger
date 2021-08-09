@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -18,6 +20,7 @@ import (
 type Previous6MonthsCreditLiabilities struct {
 
 	// Value of cash advances in period
+	// Example: -2053.50
 	// Required: true
 	CashAdvances *string `json:"cashAdvances"`
 }
@@ -42,6 +45,11 @@ func (m *Previous6MonthsCreditLiabilities) validateCashAdvances(formats strfmt.R
 		return err
 	}
 
+	return nil
+}
+
+// ContextValidate validates this previous6 months credit liabilities based on context it is used
+func (m *Previous6MonthsCreditLiabilities) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

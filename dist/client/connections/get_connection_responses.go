@@ -65,9 +65,8 @@ func (o *GetConnectionReader) ReadResponse(response runtime.ClientResponse, cons
 			return nil, err
 		}
 		return nil, result
-
 	default:
-		return nil, runtime.NewAPIError("unknown error", response, response.Code())
+		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
 }
 
@@ -76,7 +75,7 @@ func NewGetConnectionOK() *GetConnectionOK {
 	return &GetConnectionOK{}
 }
 
-/*GetConnectionOK handles this case with default header values.
+/* GetConnectionOK describes a response with status code 200, with default header values.
 
 Returns details of a connection.
 */
@@ -87,7 +86,6 @@ type GetConnectionOK struct {
 func (o *GetConnectionOK) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/connections/{connectionId}][%d] getConnectionOK  %+v", 200, o.Payload)
 }
-
 func (o *GetConnectionOK) GetPayload() *models.ConnectionGetResponseResource {
 	return o.Payload
 }
@@ -109,7 +107,7 @@ func NewGetConnectionBadRequest() *GetConnectionBadRequest {
 	return &GetConnectionBadRequest{}
 }
 
-/*GetConnectionBadRequest handles this case with default header values.
+/* GetConnectionBadRequest describes a response with status code 400, with default header values.
 
 Returns error that server cannot or will not process the request due to something that is perceived to be a client error
 */
@@ -120,7 +118,6 @@ type GetConnectionBadRequest struct {
 func (o *GetConnectionBadRequest) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/connections/{connectionId}][%d] getConnectionBadRequest  %+v", 400, o.Payload)
 }
-
 func (o *GetConnectionBadRequest) GetPayload() *models.BadRequestError {
 	return o.Payload
 }
@@ -142,7 +139,7 @@ func NewGetConnectionUnauthorized() *GetConnectionUnauthorized {
 	return &GetConnectionUnauthorized{}
 }
 
-/*GetConnectionUnauthorized handles this case with default header values.
+/* GetConnectionUnauthorized describes a response with status code 401, with default header values.
 
 Error status response code indicates that the request has not been applied because it lacks valid authentication credentials for the target resource.
 */
@@ -153,7 +150,6 @@ type GetConnectionUnauthorized struct {
 func (o *GetConnectionUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/connections/{connectionId}][%d] getConnectionUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *GetConnectionUnauthorized) GetPayload() *models.UnauthorizedError {
 	return o.Payload
 }
@@ -175,7 +171,7 @@ func NewGetConnectionForbidden() *GetConnectionForbidden {
 	return &GetConnectionForbidden{}
 }
 
-/*GetConnectionForbidden handles this case with default header values.
+/* GetConnectionForbidden describes a response with status code 403, with default header values.
 
 Error that access is forbidden and tied to the application logic, such as insufficient rights to a resource.
 */
@@ -186,7 +182,6 @@ type GetConnectionForbidden struct {
 func (o *GetConnectionForbidden) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/connections/{connectionId}][%d] getConnectionForbidden  %+v", 403, o.Payload)
 }
-
 func (o *GetConnectionForbidden) GetPayload() *models.ForbiddenAccessError {
 	return o.Payload
 }
@@ -208,7 +203,7 @@ func NewGetConnectionNotFound() *GetConnectionNotFound {
 	return &GetConnectionNotFound{}
 }
 
-/*GetConnectionNotFound handles this case with default header values.
+/* GetConnectionNotFound describes a response with status code 404, with default header values.
 
 Returns error indicating that server can't find requested resource.
 */
@@ -219,7 +214,6 @@ type GetConnectionNotFound struct {
 func (o *GetConnectionNotFound) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/connections/{connectionId}][%d] getConnectionNotFound  %+v", 404, o.Payload)
 }
-
 func (o *GetConnectionNotFound) GetPayload() *models.NotFoundError {
 	return o.Payload
 }
@@ -241,7 +235,7 @@ func NewGetConnectionInternalServerError() *GetConnectionInternalServerError {
 	return &GetConnectionInternalServerError{}
 }
 
-/*GetConnectionInternalServerError handles this case with default header values.
+/* GetConnectionInternalServerError describes a response with status code 500, with default header values.
 
 Returns error response code indicates that the server encountered an unexpected condition that prevented it from fulfilling the request.
 */
@@ -252,7 +246,6 @@ type GetConnectionInternalServerError struct {
 func (o *GetConnectionInternalServerError) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/connections/{connectionId}][%d] getConnectionInternalServerError  %+v", 500, o.Payload)
 }
-
 func (o *GetConnectionInternalServerError) GetPayload() *models.InternalServerError {
 	return o.Payload
 }
@@ -274,7 +267,7 @@ func NewGetConnectionServiceUnavailable() *GetConnectionServiceUnavailable {
 	return &GetConnectionServiceUnavailable{}
 }
 
-/*GetConnectionServiceUnavailable handles this case with default header values.
+/* GetConnectionServiceUnavailable describes a response with status code 503, with default header values.
 
 Returns error response code indicates that the server is not ready to handle the request.
 */
@@ -285,7 +278,6 @@ type GetConnectionServiceUnavailable struct {
 func (o *GetConnectionServiceUnavailable) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/connections/{connectionId}][%d] getConnectionServiceUnavailable  %+v", 503, o.Payload)
 }
-
 func (o *GetConnectionServiceUnavailable) GetPayload() *models.StatusServiceUnavailableError {
 	return o.Payload
 }

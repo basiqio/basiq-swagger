@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -18,14 +20,17 @@ import (
 type ChangeHistoryIncome struct {
 
 	// Amount of income for that period
+	// Example: 62.00
 	// Required: true
 	Amount *string `json:"amount"`
 
 	// Date income received
+	// Example: 2018-10-13T20:03:37
 	// Required: true
 	Date *string `json:"date"`
 
 	// Source income (cleaned transaction description)
+	// Example: savings interest cr bal - Account 1
 	// Required: true
 	Source *string `json:"source"`
 }
@@ -76,6 +81,11 @@ func (m *ChangeHistoryIncome) validateSource(formats strfmt.Registry) error {
 		return err
 	}
 
+	return nil
+}
+
+// ContextValidate validates this change history income based on context it is used
+func (m *ChangeHistoryIncome) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

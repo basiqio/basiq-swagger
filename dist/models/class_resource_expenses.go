@@ -6,6 +6,7 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"strconv"
 
 	"github.com/go-openapi/errors"
@@ -20,6 +21,7 @@ import (
 type ClassResourceExpenses struct {
 
 	// Average amount monthly
+	// Example: -421.00
 	// Required: true
 	AvgMonthly *string `json:"avgMonthly"`
 
@@ -28,6 +30,7 @@ type ClassResourceExpenses struct {
 	ChangeHistory []*ChangeHistoryExpensesClass `json:"changeHistory"`
 
 	// Summary period "monthly"
+	// Example: monthly
 	// Required: true
 	Summary *string `json:"summary"`
 }
@@ -92,6 +95,38 @@ func (m *ClassResourceExpenses) validateSummary(formats strfmt.Registry) error {
 
 	if err := validate.Required("summary", "body", m.Summary); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+// ContextValidate validate this class resource expenses based on the context it is used
+func (m *ClassResourceExpenses) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateChangeHistory(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *ClassResourceExpenses) contextValidateChangeHistory(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.ChangeHistory); i++ {
+
+		if m.ChangeHistory[i] != nil {
+			if err := m.ChangeHistory[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("changeHistory" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
 	}
 
 	return nil

@@ -53,9 +53,8 @@ func (o *RefreshConnectionsReader) ReadResponse(response runtime.ClientResponse,
 			return nil, err
 		}
 		return nil, result
-
 	default:
-		return nil, runtime.NewAPIError("unknown error", response, response.Code())
+		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
 }
 
@@ -64,7 +63,7 @@ func NewRefreshConnectionsAccepted() *RefreshConnectionsAccepted {
 	return &RefreshConnectionsAccepted{}
 }
 
-/*RefreshConnectionsAccepted handles this case with default header values.
+/* RefreshConnectionsAccepted describes a response with status code 202, with default header values.
 
 Returns a created jobs resource, if the operation succeeded.
 */
@@ -75,7 +74,6 @@ type RefreshConnectionsAccepted struct {
 func (o *RefreshConnectionsAccepted) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}/connections/refresh][%d] refreshConnectionsAccepted  %+v", 202, o.Payload)
 }
-
 func (o *RefreshConnectionsAccepted) GetPayload() *models.ConnectionsRefreshResource {
 	return o.Payload
 }
@@ -97,7 +95,7 @@ func NewRefreshConnectionsBadRequest() *RefreshConnectionsBadRequest {
 	return &RefreshConnectionsBadRequest{}
 }
 
-/*RefreshConnectionsBadRequest handles this case with default header values.
+/* RefreshConnectionsBadRequest describes a response with status code 400, with default header values.
 
 Returns error that server cannot or will not process the request due to something that is perceived to be a client error
 */
@@ -108,7 +106,6 @@ type RefreshConnectionsBadRequest struct {
 func (o *RefreshConnectionsBadRequest) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}/connections/refresh][%d] refreshConnectionsBadRequest  %+v", 400, o.Payload)
 }
-
 func (o *RefreshConnectionsBadRequest) GetPayload() *models.BadRequestError {
 	return o.Payload
 }
@@ -130,7 +127,7 @@ func NewRefreshConnectionsForbidden() *RefreshConnectionsForbidden {
 	return &RefreshConnectionsForbidden{}
 }
 
-/*RefreshConnectionsForbidden handles this case with default header values.
+/* RefreshConnectionsForbidden describes a response with status code 403, with default header values.
 
 Error that access is forbidden and tied to the application logic, such as insufficient rights to a resource.
 */
@@ -141,7 +138,6 @@ type RefreshConnectionsForbidden struct {
 func (o *RefreshConnectionsForbidden) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}/connections/refresh][%d] refreshConnectionsForbidden  %+v", 403, o.Payload)
 }
-
 func (o *RefreshConnectionsForbidden) GetPayload() *models.ForbiddenAccessError {
 	return o.Payload
 }
@@ -163,7 +159,7 @@ func NewRefreshConnectionsNotFound() *RefreshConnectionsNotFound {
 	return &RefreshConnectionsNotFound{}
 }
 
-/*RefreshConnectionsNotFound handles this case with default header values.
+/* RefreshConnectionsNotFound describes a response with status code 404, with default header values.
 
 Returns error indicating that server can't find requested resource.
 */
@@ -174,7 +170,6 @@ type RefreshConnectionsNotFound struct {
 func (o *RefreshConnectionsNotFound) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}/connections/refresh][%d] refreshConnectionsNotFound  %+v", 404, o.Payload)
 }
-
 func (o *RefreshConnectionsNotFound) GetPayload() *models.NotFoundError {
 	return o.Payload
 }
@@ -196,7 +191,7 @@ func NewRefreshConnectionsInternalServerError() *RefreshConnectionsInternalServe
 	return &RefreshConnectionsInternalServerError{}
 }
 
-/*RefreshConnectionsInternalServerError handles this case with default header values.
+/* RefreshConnectionsInternalServerError describes a response with status code 500, with default header values.
 
 Returns error response code indicates that the server encountered an unexpected condition that prevented it from fulfilling the request.
 */
@@ -207,7 +202,6 @@ type RefreshConnectionsInternalServerError struct {
 func (o *RefreshConnectionsInternalServerError) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}/connections/refresh][%d] refreshConnectionsInternalServerError  %+v", 500, o.Payload)
 }
-
 func (o *RefreshConnectionsInternalServerError) GetPayload() *models.InternalServerError {
 	return o.Payload
 }

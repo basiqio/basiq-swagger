@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -22,10 +24,12 @@ type UserConnectionsPostData struct {
 	Institution *InstitutionModel `json:"institution"`
 
 	// The users institution login ID
+	// Example: gavinBelson
 	// Required: true
 	LoginID *string `json:"loginId"`
 
 	// The users institution password
+	// Example: hooli2020
 	// Required: true
 	Password *string `json:"password"`
 
@@ -89,6 +93,34 @@ func (m *UserConnectionsPostData) validatePassword(formats strfmt.Registry) erro
 
 	if err := validate.Required("password", "body", m.Password); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+// ContextValidate validate this user connections post data based on the context it is used
+func (m *UserConnectionsPostData) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateInstitution(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *UserConnectionsPostData) contextValidateInstitution(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Institution != nil {
+		if err := m.Institution.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("institution")
+			}
+			return err
+		}
 	}
 
 	return nil

@@ -6,6 +6,7 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"encoding/json"
 
 	"github.com/go-openapi/errors"
@@ -20,6 +21,7 @@ import (
 type GetEnrichResponse struct {
 
 	// Transaction Classification
+	// Example: payment
 	// Required: true
 	// Enum: [direct-credit refund interest payment cash-withdrawal bank-fee transfer loan-interest loan-repayment]
 	Class *string `json:"class"`
@@ -29,6 +31,7 @@ type GetEnrichResponse struct {
 	Data *EnrichData `json:"data"`
 
 	// Direction of transaction
+	// Example: credit
 	// Required: true
 	// Enum: [credit debit unknown]
 	Direction *string `json:"direction"`
@@ -38,6 +41,7 @@ type GetEnrichResponse struct {
 	Links *ResourceLink `json:"links"`
 
 	// Always "enrich"
+	// Example: enrich
 	// Required: true
 	Type *string `json:"type"`
 }
@@ -86,8 +90,8 @@ func init() {
 
 const (
 
-	// GetEnrichResponseClassDirectCredit captures enum value "direct-credit"
-	GetEnrichResponseClassDirectCredit string = "direct-credit"
+	// GetEnrichResponseClassDirectDashCredit captures enum value "direct-credit"
+	GetEnrichResponseClassDirectDashCredit string = "direct-credit"
 
 	// GetEnrichResponseClassRefund captures enum value "refund"
 	GetEnrichResponseClassRefund string = "refund"
@@ -98,25 +102,25 @@ const (
 	// GetEnrichResponseClassPayment captures enum value "payment"
 	GetEnrichResponseClassPayment string = "payment"
 
-	// GetEnrichResponseClassCashWithdrawal captures enum value "cash-withdrawal"
-	GetEnrichResponseClassCashWithdrawal string = "cash-withdrawal"
+	// GetEnrichResponseClassCashDashWithdrawal captures enum value "cash-withdrawal"
+	GetEnrichResponseClassCashDashWithdrawal string = "cash-withdrawal"
 
-	// GetEnrichResponseClassBankFee captures enum value "bank-fee"
-	GetEnrichResponseClassBankFee string = "bank-fee"
+	// GetEnrichResponseClassBankDashFee captures enum value "bank-fee"
+	GetEnrichResponseClassBankDashFee string = "bank-fee"
 
 	// GetEnrichResponseClassTransfer captures enum value "transfer"
 	GetEnrichResponseClassTransfer string = "transfer"
 
-	// GetEnrichResponseClassLoanInterest captures enum value "loan-interest"
-	GetEnrichResponseClassLoanInterest string = "loan-interest"
+	// GetEnrichResponseClassLoanDashInterest captures enum value "loan-interest"
+	GetEnrichResponseClassLoanDashInterest string = "loan-interest"
 
-	// GetEnrichResponseClassLoanRepayment captures enum value "loan-repayment"
-	GetEnrichResponseClassLoanRepayment string = "loan-repayment"
+	// GetEnrichResponseClassLoanDashRepayment captures enum value "loan-repayment"
+	GetEnrichResponseClassLoanDashRepayment string = "loan-repayment"
 )
 
 // prop value enum
 func (m *GetEnrichResponse) validateClassEnum(path, location string, value string) error {
-	if err := validate.Enum(path, location, value, getEnrichResponseTypeClassPropEnum); err != nil {
+	if err := validate.EnumCase(path, location, value, getEnrichResponseTypeClassPropEnum, true); err != nil {
 		return err
 	}
 	return nil
@@ -180,7 +184,7 @@ const (
 
 // prop value enum
 func (m *GetEnrichResponse) validateDirectionEnum(path, location string, value string) error {
-	if err := validate.Enum(path, location, value, getEnrichResponseTypeDirectionPropEnum); err != nil {
+	if err := validate.EnumCase(path, location, value, getEnrichResponseTypeDirectionPropEnum, true); err != nil {
 		return err
 	}
 	return nil
@@ -222,6 +226,52 @@ func (m *GetEnrichResponse) validateType(formats strfmt.Registry) error {
 
 	if err := validate.Required("type", "body", m.Type); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+// ContextValidate validate this get enrich response based on the context it is used
+func (m *GetEnrichResponse) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateData(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateLinks(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *GetEnrichResponse) contextValidateData(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Data != nil {
+		if err := m.Data.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("data")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *GetEnrichResponse) contextValidateLinks(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Links != nil {
+		if err := m.Links.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("links")
+			}
+			return err
+		}
 	}
 
 	return nil

@@ -6,6 +6,7 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"strconv"
 
 	"github.com/go-openapi/errors"
@@ -28,6 +29,7 @@ type SubCategoryExpenses struct {
 	ChangeHistory []*ChangeHistoryExpensesClass `json:"changeHistory"`
 
 	// Summary period "monthly".
+	// Example: monthly
 	// Required: true
 	Summary *string `json:"summary"`
 }
@@ -101,6 +103,56 @@ func (m *SubCategoryExpenses) validateSummary(formats strfmt.Registry) error {
 
 	if err := validate.Required("summary", "body", m.Summary); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+// ContextValidate validate this sub category expenses based on the context it is used
+func (m *SubCategoryExpenses) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateCategory(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateChangeHistory(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *SubCategoryExpenses) contextValidateCategory(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Category != nil {
+		if err := m.Category.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("category")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *SubCategoryExpenses) contextValidateChangeHistory(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.ChangeHistory); i++ {
+
+		if m.ChangeHistory[i] != nil {
+			if err := m.ChangeHistory[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("changeHistory" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
 	}
 
 	return nil

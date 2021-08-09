@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -18,14 +20,17 @@ import (
 type TokenPostResponse struct {
 
 	// access token
+	// Example: access_token
 	// Required: true
 	AccessToken *string `json:"access_token"`
 
 	// Expires in seconds
+	// Example: 3600
 	// Required: true
 	ExpiresIn *int64 `json:"expires_in"`
 
 	// token type
+	// Example: Bearer
 	// Required: true
 	TokenType *string `json:"token_type"`
 }
@@ -76,6 +81,11 @@ func (m *TokenPostResponse) validateTokenType(formats strfmt.Registry) error {
 		return err
 	}
 
+	return nil
+}
+
+// ContextValidate validates this token post response based on context it is used
+func (m *TokenPostResponse) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

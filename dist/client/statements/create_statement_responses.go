@@ -59,9 +59,8 @@ func (o *CreateStatementReader) ReadResponse(response runtime.ClientResponse, co
 			return nil, err
 		}
 		return nil, result
-
 	default:
-		return nil, runtime.NewAPIError("unknown error", response, response.Code())
+		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
 }
 
@@ -70,7 +69,7 @@ func NewCreateStatementAccepted() *CreateStatementAccepted {
 	return &CreateStatementAccepted{}
 }
 
-/*CreateStatementAccepted handles this case with default header values.
+/* CreateStatementAccepted describes a response with status code 202, with default header values.
 
 Returns a job details if a valid job ID was provided.
 */
@@ -81,7 +80,6 @@ type CreateStatementAccepted struct {
 func (o *CreateStatementAccepted) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}/statements][%d] createStatementAccepted  %+v", 202, o.Payload)
 }
-
 func (o *CreateStatementAccepted) GetPayload() *models.StatementUploadResource {
 	return o.Payload
 }
@@ -103,7 +101,7 @@ func NewCreateStatementBadRequest() *CreateStatementBadRequest {
 	return &CreateStatementBadRequest{}
 }
 
-/*CreateStatementBadRequest handles this case with default header values.
+/* CreateStatementBadRequest describes a response with status code 400, with default header values.
 
 Returns error that server cannot or will not process the request due to something that is perceived to be a client error.
 */
@@ -114,7 +112,6 @@ type CreateStatementBadRequest struct {
 func (o *CreateStatementBadRequest) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}/statements][%d] createStatementBadRequest  %+v", 400, o.Payload)
 }
-
 func (o *CreateStatementBadRequest) GetPayload() *models.BadRequestError {
 	return o.Payload
 }
@@ -136,7 +133,7 @@ func NewCreateStatementForbidden() *CreateStatementForbidden {
 	return &CreateStatementForbidden{}
 }
 
-/*CreateStatementForbidden handles this case with default header values.
+/* CreateStatementForbidden describes a response with status code 403, with default header values.
 
 Error that access is forbidden and tied to the application logic, such as insufficient rights to a resource.
 */
@@ -147,7 +144,6 @@ type CreateStatementForbidden struct {
 func (o *CreateStatementForbidden) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}/statements][%d] createStatementForbidden  %+v", 403, o.Payload)
 }
-
 func (o *CreateStatementForbidden) GetPayload() *models.ForbiddenAccessError {
 	return o.Payload
 }
@@ -169,7 +165,7 @@ func NewCreateStatementNotFound() *CreateStatementNotFound {
 	return &CreateStatementNotFound{}
 }
 
-/*CreateStatementNotFound handles this case with default header values.
+/* CreateStatementNotFound describes a response with status code 404, with default header values.
 
 Returns error indicating that server can't find requested resource.
 */
@@ -180,7 +176,6 @@ type CreateStatementNotFound struct {
 func (o *CreateStatementNotFound) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}/statements][%d] createStatementNotFound  %+v", 404, o.Payload)
 }
-
 func (o *CreateStatementNotFound) GetPayload() *models.NotFoundError {
 	return o.Payload
 }
@@ -202,7 +197,7 @@ func NewCreateStatementInternalServerError() *CreateStatementInternalServerError
 	return &CreateStatementInternalServerError{}
 }
 
-/*CreateStatementInternalServerError handles this case with default header values.
+/* CreateStatementInternalServerError describes a response with status code 500, with default header values.
 
 Returns error response code indicates that the server encountered an unexpected condition that prevented it from fulfilling the request.
 */
@@ -213,7 +208,6 @@ type CreateStatementInternalServerError struct {
 func (o *CreateStatementInternalServerError) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}/statements][%d] createStatementInternalServerError  %+v", 500, o.Payload)
 }
-
 func (o *CreateStatementInternalServerError) GetPayload() *models.InternalServerError {
 	return o.Payload
 }
@@ -235,7 +229,7 @@ func NewCreateStatementServiceUnavailable() *CreateStatementServiceUnavailable {
 	return &CreateStatementServiceUnavailable{}
 }
 
-/*CreateStatementServiceUnavailable handles this case with default header values.
+/* CreateStatementServiceUnavailable describes a response with status code 503, with default header values.
 
 Returns error response code indicates that the server is not ready to handle the request.
 */
@@ -246,7 +240,6 @@ type CreateStatementServiceUnavailable struct {
 func (o *CreateStatementServiceUnavailable) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}/statements][%d] createStatementServiceUnavailable  %+v", 503, o.Payload)
 }
-
 func (o *CreateStatementServiceUnavailable) GetPayload() *models.StatusServiceUnavailableError {
 	return o.Payload
 }

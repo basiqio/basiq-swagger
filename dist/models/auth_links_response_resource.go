@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -18,10 +20,12 @@ import (
 type AuthLinksResponseResource struct {
 
 	// The date time of auth link expiry.
+	// Example: 2019-11-21T04:08:50Z
 	// Required: true
 	ExpiresAt *string `json:"expiresAt"`
 
 	// Uniquely identifies the auth link.
+	// Example: 63448be4
 	// Required: true
 	ID *string `json:"id"`
 
@@ -29,14 +33,17 @@ type AuthLinksResponseResource struct {
 	Links *AuthLinkLinks `json:"links,omitempty"`
 
 	// A user's mobile phone, used as for authentication.
+	// Example: +61410000000
 	// Required: true
 	Mobile *string `json:"mobile"`
 
 	// Type of the response, always "auth_link".
+	// Example: auth_link
 	// Required: true
 	Type *string `json:"type"`
 
 	// A string that uniquely identifies the user.
+	// Example: ec4ea48d
 	// Required: true
 	UserID *string `json:"userId"`
 }
@@ -94,7 +101,6 @@ func (m *AuthLinksResponseResource) validateID(formats strfmt.Registry) error {
 }
 
 func (m *AuthLinksResponseResource) validateLinks(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Links) { // not required
 		return nil
 	}
@@ -133,6 +139,34 @@ func (m *AuthLinksResponseResource) validateUserID(formats strfmt.Registry) erro
 
 	if err := validate.Required("userId", "body", m.UserID); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+// ContextValidate validate this auth links response resource based on the context it is used
+func (m *AuthLinksResponseResource) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateLinks(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *AuthLinksResponseResource) contextValidateLinks(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Links != nil {
+		if err := m.Links.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("links")
+			}
+			return err
+		}
 	}
 
 	return nil

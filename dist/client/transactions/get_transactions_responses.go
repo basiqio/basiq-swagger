@@ -53,9 +53,8 @@ func (o *GetTransactionsReader) ReadResponse(response runtime.ClientResponse, co
 			return nil, err
 		}
 		return nil, result
-
 	default:
-		return nil, runtime.NewAPIError("unknown error", response, response.Code())
+		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
 }
 
@@ -64,7 +63,7 @@ func NewGetTransactionsOK() *GetTransactionsOK {
 	return &GetTransactionsOK{}
 }
 
-/*GetTransactionsOK handles this case with default header values.
+/* GetTransactionsOK describes a response with status code 200, with default header values.
 
 Returns a paginated list with a data property that contains an array of transactions. Each entry in the array is a separate object. If no data is returned, the resulting array will be empty.
 */
@@ -75,7 +74,6 @@ type GetTransactionsOK struct {
 func (o *GetTransactionsOK) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/transactions][%d] getTransactionsOK  %+v", 200, o.Payload)
 }
-
 func (o *GetTransactionsOK) GetPayload() *models.TransactionsGetResource {
 	return o.Payload
 }
@@ -97,7 +95,7 @@ func NewGetTransactionsBadRequest() *GetTransactionsBadRequest {
 	return &GetTransactionsBadRequest{}
 }
 
-/*GetTransactionsBadRequest handles this case with default header values.
+/* GetTransactionsBadRequest describes a response with status code 400, with default header values.
 
 Returns error that server cannot or will not process the request due to something that is perceived to be a client error.
 */
@@ -108,7 +106,6 @@ type GetTransactionsBadRequest struct {
 func (o *GetTransactionsBadRequest) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/transactions][%d] getTransactionsBadRequest  %+v", 400, o.Payload)
 }
-
 func (o *GetTransactionsBadRequest) GetPayload() *models.BadRequestError {
 	return o.Payload
 }
@@ -130,7 +127,7 @@ func NewGetTransactionsForbidden() *GetTransactionsForbidden {
 	return &GetTransactionsForbidden{}
 }
 
-/*GetTransactionsForbidden handles this case with default header values.
+/* GetTransactionsForbidden describes a response with status code 403, with default header values.
 
 Error that access is forbidden and tied to the application logic, such as insufficient rights to a resource.
 */
@@ -141,7 +138,6 @@ type GetTransactionsForbidden struct {
 func (o *GetTransactionsForbidden) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/transactions][%d] getTransactionsForbidden  %+v", 403, o.Payload)
 }
-
 func (o *GetTransactionsForbidden) GetPayload() *models.ForbiddenAccessError {
 	return o.Payload
 }
@@ -163,7 +159,7 @@ func NewGetTransactionsNotFound() *GetTransactionsNotFound {
 	return &GetTransactionsNotFound{}
 }
 
-/*GetTransactionsNotFound handles this case with default header values.
+/* GetTransactionsNotFound describes a response with status code 404, with default header values.
 
 Returns error indicating that server can't find requested resource.
 */
@@ -174,7 +170,6 @@ type GetTransactionsNotFound struct {
 func (o *GetTransactionsNotFound) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/transactions][%d] getTransactionsNotFound  %+v", 404, o.Payload)
 }
-
 func (o *GetTransactionsNotFound) GetPayload() *models.NotFoundError {
 	return o.Payload
 }
@@ -196,7 +191,7 @@ func NewGetTransactionsInternalServerError() *GetTransactionsInternalServerError
 	return &GetTransactionsInternalServerError{}
 }
 
-/*GetTransactionsInternalServerError handles this case with default header values.
+/* GetTransactionsInternalServerError describes a response with status code 500, with default header values.
 
 Returns error response code indicates that the server encountered an unexpected condition that prevented it from fulfilling the request.
 */
@@ -207,7 +202,6 @@ type GetTransactionsInternalServerError struct {
 func (o *GetTransactionsInternalServerError) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/transactions][%d] getTransactionsInternalServerError  %+v", 500, o.Payload)
 }
-
 func (o *GetTransactionsInternalServerError) GetPayload() *models.InternalServerError {
 	return o.Payload
 }

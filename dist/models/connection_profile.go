@@ -6,6 +6,7 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"strconv"
 
 	"github.com/go-openapi/errors"
@@ -20,18 +21,22 @@ import (
 type ConnectionProfile struct {
 
 	// User email address
+	// Example: ["gavin@hooli.com"]
 	// Required: true
 	EmailAddresses []string `json:"emailAddresses"`
 
 	// User first name
+	// Example: Gavin
 	// Required: true
 	FirstName *string `json:"firstName"`
 
 	// User full name
+	// Example: Gavin Belson
 	// Required: true
 	FullName *string `json:"fullName"`
 
 	// User last name
+	// Example: Belson
 	// Required: true
 	LastName *string `json:"lastName"`
 
@@ -40,6 +45,7 @@ type ConnectionProfile struct {
 	MiddleName *string `json:"middleName"`
 
 	// User phone number
+	// Example: ["XXXX 888 991"]
 	// Required: true
 	PhoneNumbers []string `json:"phoneNumbers"`
 
@@ -153,6 +159,38 @@ func (m *ConnectionProfile) validatePhysicalAddresses(formats strfmt.Registry) e
 
 		if m.PhysicalAddresses[i] != nil {
 			if err := m.PhysicalAddresses[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("physicalAddresses" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+// ContextValidate validate this connection profile based on the context it is used
+func (m *ConnectionProfile) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidatePhysicalAddresses(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *ConnectionProfile) contextValidatePhysicalAddresses(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.PhysicalAddresses); i++ {
+
+		if m.PhysicalAddresses[i] != nil {
+			if err := m.PhysicalAddresses[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("physicalAddresses" + "." + strconv.Itoa(i))
 				}

@@ -6,6 +6,7 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"strconv"
 
 	"github.com/go-openapi/errors"
@@ -20,26 +21,32 @@ import (
 type TransactionsFeatures struct {
 
 	// TransactionAmount holds list of data source identifiers which are capable to fetch transaction amount.
+	// Example: ["web","pdf","csv"]
 	// Required: true
 	Amount []SourceName `json:"amount"`
 
 	// TransactionBalance holds list of data source identifiers which are capable to fetch account balance when transaction occured.
+	// Example: ["web","pdf","csv"]
 	// Required: true
 	Balance []SourceName `json:"balance"`
 
 	// Class holds list of data source identifiers which are capable to fetch transaction class.
+	// Example: ["web","pdf","csv"]
 	// Required: true
 	Class []SourceName `json:"class"`
 
 	// TransactionDate holds list of data source identifiers which are capable to fetch transaction date.
+	// Example: ["web","pdf","csv"]
 	// Required: true
 	Date []SourceName `json:"date"`
 
 	// TransactionDescription holds list of data source identifiers which are capable to fetch transaction description.
+	// Example: ["web","pdf","csv"]
 	// Required: true
 	Description []SourceName `json:"description"`
 
 	// TransactionStatus holds list of data source identifiers which are capable to fetch transaction status.
+	// Example: ["web","pdf","csv"]
 	// Required: true
 	Status []SourceName `json:"status"`
 }
@@ -187,6 +194,136 @@ func (m *TransactionsFeatures) validateStatus(formats strfmt.Registry) error {
 	for i := 0; i < len(m.Status); i++ {
 
 		if err := m.Status[i].Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("status" + "." + strconv.Itoa(i))
+			}
+			return err
+		}
+
+	}
+
+	return nil
+}
+
+// ContextValidate validate this transactions features based on the context it is used
+func (m *TransactionsFeatures) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateAmount(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateBalance(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateClass(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateDate(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateDescription(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateStatus(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *TransactionsFeatures) contextValidateAmount(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Amount); i++ {
+
+		if err := m.Amount[i].ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("amount" + "." + strconv.Itoa(i))
+			}
+			return err
+		}
+
+	}
+
+	return nil
+}
+
+func (m *TransactionsFeatures) contextValidateBalance(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Balance); i++ {
+
+		if err := m.Balance[i].ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("balance" + "." + strconv.Itoa(i))
+			}
+			return err
+		}
+
+	}
+
+	return nil
+}
+
+func (m *TransactionsFeatures) contextValidateClass(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Class); i++ {
+
+		if err := m.Class[i].ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("class" + "." + strconv.Itoa(i))
+			}
+			return err
+		}
+
+	}
+
+	return nil
+}
+
+func (m *TransactionsFeatures) contextValidateDate(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Date); i++ {
+
+		if err := m.Date[i].ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("date" + "." + strconv.Itoa(i))
+			}
+			return err
+		}
+
+	}
+
+	return nil
+}
+
+func (m *TransactionsFeatures) contextValidateDescription(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Description); i++ {
+
+		if err := m.Description[i].ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("description" + "." + strconv.Itoa(i))
+			}
+			return err
+		}
+
+	}
+
+	return nil
+}
+
+func (m *TransactionsFeatures) contextValidateStatus(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Status); i++ {
+
+		if err := m.Status[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("status" + "." + strconv.Itoa(i))
 			}

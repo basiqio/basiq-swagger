@@ -16,58 +16,73 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewPostTokenParams creates a new PostTokenParams object
-// with the default values initialized.
+// NewPostTokenParams creates a new PostTokenParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewPostTokenParams() *PostTokenParams {
-	var ()
 	return &PostTokenParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewPostTokenParamsWithTimeout creates a new PostTokenParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewPostTokenParamsWithTimeout(timeout time.Duration) *PostTokenParams {
-	var ()
 	return &PostTokenParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewPostTokenParamsWithContext creates a new PostTokenParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewPostTokenParamsWithContext(ctx context.Context) *PostTokenParams {
-	var ()
 	return &PostTokenParams{
-
 		Context: ctx,
 	}
 }
 
 // NewPostTokenParamsWithHTTPClient creates a new PostTokenParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewPostTokenParamsWithHTTPClient(client *http.Client) *PostTokenParams {
-	var ()
 	return &PostTokenParams{
 		HTTPClient: client,
 	}
 }
 
-/*PostTokenParams contains all the parameters to send to the API endpoint
-for the post token operation typically these are written to a http.Request
+/* PostTokenParams contains all the parameters to send to the API endpoint
+   for the post token operation.
+
+   Typically these are written to a http.Request.
 */
 type PostTokenParams struct {
 
-	/*BasiqVersion*/
+	// BasiqVersion.
 	BasiqVersion string
-	/*Scope*/
+
+	// Scope.
 	Scope *string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the post token params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *PostTokenParams) WithDefaults() *PostTokenParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the post token params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *PostTokenParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the post token params
@@ -151,7 +166,6 @@ func (o *PostTokenParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Reg
 				return err
 			}
 		}
-
 	}
 
 	if len(res) > 0 {

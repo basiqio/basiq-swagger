@@ -6,6 +6,7 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"encoding/json"
 
 	"github.com/go-openapi/errors"
@@ -27,6 +28,7 @@ type InstitutionLogoResource struct {
 	Links *LogoResourceLinks `json:"links"`
 
 	// Type resource type identifier
+	// Example: image
 	// Required: true
 	// Enum: [image]
 	Type *string `json:"type"`
@@ -55,7 +57,6 @@ func (m *InstitutionLogoResource) Validate(formats strfmt.Registry) error {
 }
 
 func (m *InstitutionLogoResource) validateColors(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Colors) { // not required
 		return nil
 	}
@@ -110,7 +111,7 @@ const (
 
 // prop value enum
 func (m *InstitutionLogoResource) validateTypeEnum(path, location string, value string) error {
-	if err := validate.Enum(path, location, value, institutionLogoResourceTypeTypePropEnum); err != nil {
+	if err := validate.EnumCase(path, location, value, institutionLogoResourceTypeTypePropEnum, true); err != nil {
 		return err
 	}
 	return nil
@@ -125,6 +126,52 @@ func (m *InstitutionLogoResource) validateType(formats strfmt.Registry) error {
 	// value enum
 	if err := m.validateTypeEnum("type", "body", *m.Type); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+// ContextValidate validate this institution logo resource based on the context it is used
+func (m *InstitutionLogoResource) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateColors(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateLinks(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *InstitutionLogoResource) contextValidateColors(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Colors != nil {
+		if err := m.Colors.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("colors")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *InstitutionLogoResource) contextValidateLinks(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Links != nil {
+		if err := m.Links.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("links")
+			}
+			return err
+		}
 	}
 
 	return nil

@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -20,6 +22,7 @@ import (
 type PhysicalAddresses struct {
 
 	// User address.
+	// Example: 13/91 Fisher Rd
 	// Required: true
 	AddressLine1 *string `json:"addressLine1"`
 
@@ -32,6 +35,7 @@ type PhysicalAddresses struct {
 	AddressLine3 *string `json:"addressLine3"`
 
 	// City
+	// Example: Sydney
 	// Required: true
 	City *string `json:"city"`
 
@@ -39,18 +43,22 @@ type PhysicalAddresses struct {
 	Country string `json:"country,omitempty"`
 
 	// Country code
+	// Example: AU
 	// Required: true
 	CountryCode *string `json:"countryCode"`
 
 	// Address formatted.
+	// Example: 13/91 Fisher Rd, Dee Why NSW 2099, Australia
 	// Required: true
 	FormattedAddress *string `json:"formattedAddress"`
 
 	// Post code
+	// Example: 2099
 	// Required: true
 	Postcode *string `json:"postcode"`
 
 	// State
+	// Example: NSW
 	// Required: true
 	State *string `json:"state"`
 }
@@ -166,6 +174,11 @@ func (m *PhysicalAddresses) validateState(formats strfmt.Registry) error {
 		return err
 	}
 
+	return nil
+}
+
+// ContextValidate validates this physical addresses based on context it is used
+func (m *PhysicalAddresses) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

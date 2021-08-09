@@ -6,6 +6,7 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"strconv"
 
 	"github.com/go-openapi/errors"
@@ -32,6 +33,7 @@ type ExpensesResponse struct {
 	CashWithdrawals *ClassResourceExpenses `json:"cashWithdrawals"`
 
 	// Number of days covered by the report
+	// Example: 392
 	CoverageDays int64 `json:"coverageDays,omitempty"`
 
 	// external transfers
@@ -39,10 +41,12 @@ type ExpensesResponse struct {
 	ExternalTransfers *ClassResourceExpenses `json:"externalTransfers"`
 
 	// First 'month' occurrence of expenses categorised going back as far as 13 months.
+	// Example: 2017-12
 	// Required: true
 	FromMonth *string `json:"fromMonth"`
 
 	// Uniquely identifies the expenses report.
+	// Example: s55bf3
 	// Required: true
 	ID *string `json:"id"`
 
@@ -62,10 +66,12 @@ type ExpensesResponse struct {
 	Payments []*PaymentsSummaryExpenses `json:"payments"`
 
 	// Latest 'month' occurrence of expenses categorised.
+	// Example: 2018-12
 	// Required: true
 	ToMonth *string `json:"toMonth"`
 
 	// Value of this resource is "expenses".
+	// Example: expenses
 	// Required: true
 	Type *string `json:"type"`
 }
@@ -197,7 +203,6 @@ func (m *ExpensesResponse) validateID(formats strfmt.Registry) error {
 }
 
 func (m *ExpensesResponse) validateLinks(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Links) { // not required
 		return nil
 	}
@@ -288,6 +293,146 @@ func (m *ExpensesResponse) validateType(formats strfmt.Registry) error {
 
 	if err := validate.Required("type", "body", m.Type); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+// ContextValidate validate this expenses response based on the context it is used
+func (m *ExpensesResponse) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateBankFees(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateCashWithdrawals(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateExternalTransfers(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateLinks(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateLoanInterests(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateLoanRepayments(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidatePayments(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *ExpensesResponse) contextValidateBankFees(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.BankFees != nil {
+		if err := m.BankFees.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("bankFees")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *ExpensesResponse) contextValidateCashWithdrawals(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.CashWithdrawals != nil {
+		if err := m.CashWithdrawals.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("cashWithdrawals")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *ExpensesResponse) contextValidateExternalTransfers(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.ExternalTransfers != nil {
+		if err := m.ExternalTransfers.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("externalTransfers")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *ExpensesResponse) contextValidateLinks(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Links != nil {
+		if err := m.Links.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("links")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *ExpensesResponse) contextValidateLoanInterests(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.LoanInterests != nil {
+		if err := m.LoanInterests.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("loanInterests")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *ExpensesResponse) contextValidateLoanRepayments(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.LoanRepayments != nil {
+		if err := m.LoanRepayments.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("loanRepayments")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *ExpensesResponse) contextValidatePayments(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Payments); i++ {
+
+		if m.Payments[i] != nil {
+			if err := m.Payments[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("payments" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
 	}
 
 	return nil

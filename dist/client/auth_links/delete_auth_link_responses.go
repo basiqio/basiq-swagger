@@ -53,9 +53,8 @@ func (o *DeleteAuthLinkReader) ReadResponse(response runtime.ClientResponse, con
 			return nil, err
 		}
 		return nil, result
-
 	default:
-		return nil, runtime.NewAPIError("unknown error", response, response.Code())
+		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
 }
 
@@ -64,7 +63,7 @@ func NewDeleteAuthLinkNoContent() *DeleteAuthLinkNoContent {
 	return &DeleteAuthLinkNoContent{}
 }
 
-/*DeleteAuthLinkNoContent handles this case with default header values.
+/* DeleteAuthLinkNoContent describes a response with status code 204, with default header values.
 
 Returns an empty body if the delete succeeded.
 */
@@ -85,7 +84,7 @@ func NewDeleteAuthLinkBadRequest() *DeleteAuthLinkBadRequest {
 	return &DeleteAuthLinkBadRequest{}
 }
 
-/*DeleteAuthLinkBadRequest handles this case with default header values.
+/* DeleteAuthLinkBadRequest describes a response with status code 400, with default header values.
 
 Returns error that server cannot or will not process the request due to something that is perceived to be a client error
 */
@@ -96,7 +95,6 @@ type DeleteAuthLinkBadRequest struct {
 func (o *DeleteAuthLinkBadRequest) Error() string {
 	return fmt.Sprintf("[DELETE /users/{userId}/auth_link][%d] deleteAuthLinkBadRequest  %+v", 400, o.Payload)
 }
-
 func (o *DeleteAuthLinkBadRequest) GetPayload() *models.BadRequestError {
 	return o.Payload
 }
@@ -118,7 +116,7 @@ func NewDeleteAuthLinkNotFound() *DeleteAuthLinkNotFound {
 	return &DeleteAuthLinkNotFound{}
 }
 
-/*DeleteAuthLinkNotFound handles this case with default header values.
+/* DeleteAuthLinkNotFound describes a response with status code 404, with default header values.
 
 Returns error indicating that server can't find requested resource.
 */
@@ -129,7 +127,6 @@ type DeleteAuthLinkNotFound struct {
 func (o *DeleteAuthLinkNotFound) Error() string {
 	return fmt.Sprintf("[DELETE /users/{userId}/auth_link][%d] deleteAuthLinkNotFound  %+v", 404, o.Payload)
 }
-
 func (o *DeleteAuthLinkNotFound) GetPayload() *models.NotFoundError {
 	return o.Payload
 }
@@ -151,7 +148,7 @@ func NewDeleteAuthLinkInternalServerError() *DeleteAuthLinkInternalServerError {
 	return &DeleteAuthLinkInternalServerError{}
 }
 
-/*DeleteAuthLinkInternalServerError handles this case with default header values.
+/* DeleteAuthLinkInternalServerError describes a response with status code 500, with default header values.
 
 Returns error response code indicates that the server encountered an unexpected condition that prevented it from fulfilling the request.
 */
@@ -162,7 +159,6 @@ type DeleteAuthLinkInternalServerError struct {
 func (o *DeleteAuthLinkInternalServerError) Error() string {
 	return fmt.Sprintf("[DELETE /users/{userId}/auth_link][%d] deleteAuthLinkInternalServerError  %+v", 500, o.Payload)
 }
-
 func (o *DeleteAuthLinkInternalServerError) GetPayload() *models.InternalServerError {
 	return o.Payload
 }
@@ -184,7 +180,7 @@ func NewDeleteAuthLinkServiceUnavailable() *DeleteAuthLinkServiceUnavailable {
 	return &DeleteAuthLinkServiceUnavailable{}
 }
 
-/*DeleteAuthLinkServiceUnavailable handles this case with default header values.
+/* DeleteAuthLinkServiceUnavailable describes a response with status code 503, with default header values.
 
 Returns error response code indicates that the server is not ready to handle the request.
 */
@@ -195,7 +191,6 @@ type DeleteAuthLinkServiceUnavailable struct {
 func (o *DeleteAuthLinkServiceUnavailable) Error() string {
 	return fmt.Sprintf("[DELETE /users/{userId}/auth_link][%d] deleteAuthLinkServiceUnavailable  %+v", 503, o.Payload)
 }
-
 func (o *DeleteAuthLinkServiceUnavailable) GetPayload() *models.StatusServiceUnavailableError {
 	return o.Payload
 }

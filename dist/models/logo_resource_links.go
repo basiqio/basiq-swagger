@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -18,10 +20,12 @@ import (
 type LogoResourceLinks struct {
 
 	// URL to full size logo
+	// Example: https://example.com/AU00000-full.svg
 	// Required: true
 	Full *string `json:"full"`
 
 	// Square formatted logo URL
+	// Example: https://example.com/AU00000.svg
 	// Required: true
 	Square *string `json:"square"`
 }
@@ -59,6 +63,11 @@ func (m *LogoResourceLinks) validateSquare(formats strfmt.Registry) error {
 		return err
 	}
 
+	return nil
+}
+
+// ContextValidate validates this logo resource links based on context it is used
+func (m *LogoResourceLinks) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

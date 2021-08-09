@@ -6,6 +6,7 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"strconv"
 
 	"github.com/go-openapi/errors"
@@ -20,6 +21,7 @@ import (
 type StatusServiceUnavailableError struct {
 
 	// Unique identifier for this particular occurrence of the problem.
+	// Example: ac5ah5i
 	// Required: true
 	CorrelationID *string `json:"correlationId"`
 
@@ -28,6 +30,7 @@ type StatusServiceUnavailableError struct {
 	Data []*StatusServiceUnavailableErrorDataItems0 `json:"data"`
 
 	// Always "list".
+	// Example: list
 	// Required: true
 	Type *string `json:"type"`
 }
@@ -97,6 +100,38 @@ func (m *StatusServiceUnavailableError) validateType(formats strfmt.Registry) er
 	return nil
 }
 
+// ContextValidate validate this status service unavailable error based on the context it is used
+func (m *StatusServiceUnavailableError) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateData(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *StatusServiceUnavailableError) contextValidateData(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Data); i++ {
+
+		if m.Data[i] != nil {
+			if err := m.Data[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("data" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
 // MarshalBinary interface implementation
 func (m *StatusServiceUnavailableError) MarshalBinary() ([]byte, error) {
 	if m == nil {
@@ -121,16 +156,20 @@ func (m *StatusServiceUnavailableError) UnmarshalBinary(b []byte) error {
 type StatusServiceUnavailableErrorDataItems0 struct {
 
 	// Application-specific error code, expressed as a string value.
+	// Example: service-unavailable
 	// Required: true
 	Code interface{} `json:"code"`
 
 	// Human-readable explanation specific to this occurrence of the problem.
+	// Example: Service Unavailable. Try again later.
 	Detail string `json:"detail,omitempty"`
 
 	// Title of the error
+	// Example: Service Unavailable
 	Title string `json:"title,omitempty"`
 
 	// Type of the response, always "error"
+	// Example: error
 	// Required: true
 	Type *string `json:"type"`
 }
@@ -155,8 +194,8 @@ func (m *StatusServiceUnavailableErrorDataItems0) Validate(formats strfmt.Regist
 
 func (m *StatusServiceUnavailableErrorDataItems0) validateCode(formats strfmt.Registry) error {
 
-	if err := validate.Required("code", "body", m.Code); err != nil {
-		return err
+	if m.Code == nil {
+		return errors.Required("code", "body", nil)
 	}
 
 	return nil
@@ -168,6 +207,11 @@ func (m *StatusServiceUnavailableErrorDataItems0) validateType(formats strfmt.Re
 		return err
 	}
 
+	return nil
+}
+
+// ContextValidate validates this status service unavailable error data items0 based on context it is used
+func (m *StatusServiceUnavailableErrorDataItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 
