@@ -16,18 +16,27 @@
       },
       "steps": [
         {
-          "result": null,
-          "status": "in-progress",
+          "result": {
+            "type": "link",
+            "url": "{url}"
+          },
+          "status": "success",
           "title": "verify-credentials"
         },
         {
-          "result": null,
-          "status": "pending",
+          "result": {
+            "type": "link",
+            "url": "/users/5b3532e0-23c7-48cb-b7a4-ff37f46c3eb1/accounts?filter=institution.id.eq('AU00000')"
+          },
+          "status": "success",
           "title": "retrieve-accounts"
         },
         {
-          "result": null,
-          "status": "pending",
+          "result": {
+            "type": "link",
+            "url": "/users/5b3532e0-23c7-48cb-b7a4-ff37f46c3eb1/transactions?filter=institution.id.eq('AU00000')"
+          },
+          "status": "success",
           "title": "retrieve-transactions"
         }
       ],
