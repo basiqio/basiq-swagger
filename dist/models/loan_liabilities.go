@@ -6,6 +6,7 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"strconv"
 
 	"github.com/go-openapi/errors"
@@ -24,10 +25,12 @@ type LoanLiabilities struct {
 	Account *AccountHolder `json:"account"`
 
 	// The available funds at the time of the query.
+	// Example: 87767.00
 	// Required: true
 	AvailableFunds *string `json:"availableFunds"`
 
 	// The balance at the time of the query.
+	// Example: -312233.00
 	// Required: true
 	Balance *string `json:"balance"`
 
@@ -36,10 +39,12 @@ type LoanLiabilities struct {
 	ChangeHistory []*ChangeHistoryAffordabilityData `json:"changeHistory"`
 
 	// The currency in which the account is recorded.
+	// Example: AUD
 	// Required: true
 	Currency *string `json:"currency"`
 
 	// The name of the financial institution with whom the account is held.
+	// Example: Hooli
 	// Required: true
 	Institution *string `json:"institution"`
 
@@ -199,6 +204,92 @@ func (m *LoanLiabilities) validatePreviousMonth(formats strfmt.Registry) error {
 
 	if m.PreviousMonth != nil {
 		if err := m.PreviousMonth.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("previousMonth")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// ContextValidate validate this loan liabilities based on the context it is used
+func (m *LoanLiabilities) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateAccount(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateChangeHistory(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidatePrevious6Months(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidatePreviousMonth(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *LoanLiabilities) contextValidateAccount(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Account != nil {
+		if err := m.Account.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("account")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *LoanLiabilities) contextValidateChangeHistory(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.ChangeHistory); i++ {
+
+		if m.ChangeHistory[i] != nil {
+			if err := m.ChangeHistory[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("changeHistory" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *LoanLiabilities) contextValidatePrevious6Months(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Previous6Months != nil {
+		if err := m.Previous6Months.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("previous6Months")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *LoanLiabilities) contextValidatePreviousMonth(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.PreviousMonth != nil {
+		if err := m.PreviousMonth.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("previousMonth")
 			}

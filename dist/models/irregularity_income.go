@@ -6,6 +6,7 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"strconv"
 
 	"github.com/go-openapi/errors"
@@ -20,10 +21,12 @@ import (
 type IrregularityIncome struct {
 
 	// Array of dates for which the expected credit is not met
+	// Example: ["2020-03"]
 	// Required: true
 	Gaps []Gap `json:"gaps"`
 
 	// Stability percentage indicator of how stable the income is. 100 = no gaps in the income series from the source. Calculated as (number of transactions that are included in the income report for this source) / (number of transactions that were expected to be included in the income report for this source).
+	// Example: 100.00
 	// Required: true
 	Stability *string `json:"stability"`
 }
@@ -70,6 +73,36 @@ func (m *IrregularityIncome) validateStability(formats strfmt.Registry) error {
 
 	if err := validate.Required("stability", "body", m.Stability); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+// ContextValidate validate this irregularity income based on the context it is used
+func (m *IrregularityIncome) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateGaps(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *IrregularityIncome) contextValidateGaps(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Gaps); i++ {
+
+		if err := m.Gaps[i].ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("gaps" + "." + strconv.Itoa(i))
+			}
+			return err
+		}
+
 	}
 
 	return nil

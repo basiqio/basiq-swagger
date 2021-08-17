@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -18,18 +20,22 @@ import (
 type ExpensesClass struct {
 
 	// Classification code for HEC classification: 4 levels class, group, subdivision and division.
+	// Example: 0703030101
 	// Required: true
 	ClassCode *string `json:"classCode"`
 
 	// Classification code for HEC classification: 4 levels class, group, subdivision and division.
+	// Example: Non-electrical household appliances
 	// Required: true
 	ClassTitle *string `json:"classTitle"`
 
 	// division code
+	// Example: 04
 	// Required: true
 	DivisionCode *string `json:"divisionCode"`
 
 	// division title
+	// Example: Alcoholic beverages
 	// Required: true
 	DivisionTitle *string `json:"divisionTitle"`
 }
@@ -93,6 +99,11 @@ func (m *ExpensesClass) validateDivisionTitle(formats strfmt.Registry) error {
 		return err
 	}
 
+	return nil
+}
+
+// ContextValidate validates this expenses class based on context it is used
+func (m *ExpensesClass) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

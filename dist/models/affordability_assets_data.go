@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -26,14 +28,17 @@ type AffordabilityAssetsData struct {
 	AvailableFunds *string `json:"availableFunds"`
 
 	// The currency in which the account is recorded.
+	// Example: 35298.67
 	// Required: true
 	Balance *string `json:"balance"`
 
 	// The currency in which the account is recorded.
+	// Example: AUD
 	// Required: true
 	Currency *string `json:"currency"`
 
 	// The name of the financial institution with whom the account is held.
+	// Example: Hooli
 	// Required: true
 	Institution *string `json:"institution"`
 
@@ -42,6 +47,7 @@ type AffordabilityAssetsData struct {
 	Previous6Months *AssetsPrevious6MonthsData `json:"previous6Months"`
 
 	// Type account
+	// Example: account
 	// Required: true
 	Type *string `json:"type"`
 }
@@ -160,6 +166,52 @@ func (m *AffordabilityAssetsData) validateType(formats strfmt.Registry) error {
 
 	if err := validate.Required("type", "body", m.Type); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+// ContextValidate validate this affordability assets data based on the context it is used
+func (m *AffordabilityAssetsData) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateAccount(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidatePrevious6Months(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *AffordabilityAssetsData) contextValidateAccount(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Account != nil {
+		if err := m.Account.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("account")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *AffordabilityAssetsData) contextValidatePrevious6Months(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Previous6Months != nil {
+		if err := m.Previous6Months.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("previous6Months")
+			}
+			return err
+		}
 	}
 
 	return nil

@@ -6,6 +6,7 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"encoding/json"
 	"strconv"
 
@@ -21,14 +22,17 @@ import (
 type OtherCreditSource struct {
 
 	// Duration other income (number days from first to last occurrence) returned as an integer with values zero or greater.
+	// Example: 335
 	// Required: true
 	AgeDays *int64 `json:"ageDays"`
 
 	// Mean of irregular income amount - calculated across all occurrences identified.
+	// Example: 110.85
 	// Required: true
 	AmountAvg *string `json:"amountAvg"`
 
 	// Average (mean) number of times per calendar month the credits in the series occur.
+	// Example: 1
 	// Required: true
 	AvgMonthlyOccurence *string `json:"avgMonthlyOccurence"`
 
@@ -41,15 +45,18 @@ type OtherCreditSource struct {
 	Current *CurrentOtherCreditSource `json:"current"`
 
 	// Frequency is "other", "irregular" or a time period e.g. "bi-weekly"
+	// Example: monthly
 	// Required: true
 	// Enum: [daily weekly bi-weekly monthly bi-monthly quarterly half-year yearly other irregular]
 	Frequency *string `json:"frequency"`
 
 	// Number of instances of credits in the series.
+	// Example: 12
 	// Required: true
 	NoOccurrences *int64 `json:"noOccurrences"`
 
 	// Source Other Credit income (cleaned transaction description).
+	// Example: savings interest cr bal - Account 1
 	// Required: true
 	Source *string `json:"source"`
 }
@@ -186,20 +193,20 @@ const (
 	// OtherCreditSourceFrequencyWeekly captures enum value "weekly"
 	OtherCreditSourceFrequencyWeekly string = "weekly"
 
-	// OtherCreditSourceFrequencyBiWeekly captures enum value "bi-weekly"
-	OtherCreditSourceFrequencyBiWeekly string = "bi-weekly"
+	// OtherCreditSourceFrequencyBiDashWeekly captures enum value "bi-weekly"
+	OtherCreditSourceFrequencyBiDashWeekly string = "bi-weekly"
 
 	// OtherCreditSourceFrequencyMonthly captures enum value "monthly"
 	OtherCreditSourceFrequencyMonthly string = "monthly"
 
-	// OtherCreditSourceFrequencyBiMonthly captures enum value "bi-monthly"
-	OtherCreditSourceFrequencyBiMonthly string = "bi-monthly"
+	// OtherCreditSourceFrequencyBiDashMonthly captures enum value "bi-monthly"
+	OtherCreditSourceFrequencyBiDashMonthly string = "bi-monthly"
 
 	// OtherCreditSourceFrequencyQuarterly captures enum value "quarterly"
 	OtherCreditSourceFrequencyQuarterly string = "quarterly"
 
-	// OtherCreditSourceFrequencyHalfYear captures enum value "half-year"
-	OtherCreditSourceFrequencyHalfYear string = "half-year"
+	// OtherCreditSourceFrequencyHalfDashYear captures enum value "half-year"
+	OtherCreditSourceFrequencyHalfDashYear string = "half-year"
 
 	// OtherCreditSourceFrequencyYearly captures enum value "yearly"
 	OtherCreditSourceFrequencyYearly string = "yearly"
@@ -213,7 +220,7 @@ const (
 
 // prop value enum
 func (m *OtherCreditSource) validateFrequencyEnum(path, location string, value string) error {
-	if err := validate.Enum(path, location, value, otherCreditSourceTypeFrequencyPropEnum); err != nil {
+	if err := validate.EnumCase(path, location, value, otherCreditSourceTypeFrequencyPropEnum, true); err != nil {
 		return err
 	}
 	return nil
@@ -246,6 +253,56 @@ func (m *OtherCreditSource) validateSource(formats strfmt.Registry) error {
 
 	if err := validate.Required("source", "body", m.Source); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+// ContextValidate validate this other credit source based on the context it is used
+func (m *OtherCreditSource) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateChangeHistory(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateCurrent(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *OtherCreditSource) contextValidateChangeHistory(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.ChangeHistory); i++ {
+
+		if m.ChangeHistory[i] != nil {
+			if err := m.ChangeHistory[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("changeHistory" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *OtherCreditSource) contextValidateCurrent(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Current != nil {
+		if err := m.Current.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("current")
+			}
+			return err
+		}
 	}
 
 	return nil

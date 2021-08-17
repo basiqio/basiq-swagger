@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -22,22 +24,27 @@ type CreditLiabilities struct {
 	Account *AccountHolder `json:"account"`
 
 	// The available funds at the time of the query.
+	// Example: 8286.80
 	// Required: true
 	AvailableFunds *string `json:"availableFunds"`
 
 	// The balance at the time of the query.
+	// Example: -11713.20
 	// Required: true
 	Balance *string `json:"balance"`
 
 	// Total credit limit available for the specified credit facility.
+	// Example: 20000.00
 	// Required: true
 	CreditLimit *string `json:"creditLimit"`
 
 	// The currency in which the account is recorded.
+	// Example: AUD
 	// Required: true
 	Currency *string `json:"currency"`
 
 	// The name of the financial institution with whom the account is held.
+	// Example: Hooli
 	// Required: true
 	Institution *string `json:"institution"`
 
@@ -181,6 +188,70 @@ func (m *CreditLiabilities) validatePreviousMonth(formats strfmt.Registry) error
 
 	if m.PreviousMonth != nil {
 		if err := m.PreviousMonth.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("previousMonth")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// ContextValidate validate this credit liabilities based on the context it is used
+func (m *CreditLiabilities) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateAccount(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidatePrevious6Months(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidatePreviousMonth(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *CreditLiabilities) contextValidateAccount(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Account != nil {
+		if err := m.Account.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("account")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *CreditLiabilities) contextValidatePrevious6Months(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Previous6Months != nil {
+		if err := m.Previous6Months.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("previous6Months")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *CreditLiabilities) contextValidatePreviousMonth(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.PreviousMonth != nil {
+		if err := m.PreviousMonth.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("previousMonth")
 			}

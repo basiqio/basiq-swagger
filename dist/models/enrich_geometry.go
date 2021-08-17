@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
@@ -16,14 +18,21 @@ import (
 type EnrichGeometry struct {
 
 	// Latitude
+	// Example: -33.79988520000001
 	Lat string `json:"lat,omitempty"`
 
 	// Longitude
+	// Example: 151.2858021
 	Lng string `json:"lng,omitempty"`
 }
 
 // Validate validates this enrich geometry
 func (m *EnrichGeometry) Validate(formats strfmt.Registry) error {
+	return nil
+}
+
+// ContextValidate validates this enrich geometry based on context it is used
+func (m *EnrichGeometry) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

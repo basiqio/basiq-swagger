@@ -71,9 +71,8 @@ func (o *PostConnectionReader) ReadResponse(response runtime.ClientResponse, con
 			return nil, err
 		}
 		return nil, result
-
 	default:
-		return nil, runtime.NewAPIError("unknown error", response, response.Code())
+		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
 }
 
@@ -82,7 +81,7 @@ func NewPostConnectionAccepted() *PostConnectionAccepted {
 	return &PostConnectionAccepted{}
 }
 
-/*PostConnectionAccepted handles this case with default header values.
+/* PostConnectionAccepted describes a response with status code 202, with default header values.
 
 Returns the job object if the creation succeeded.
 */
@@ -93,7 +92,6 @@ type PostConnectionAccepted struct {
 func (o *PostConnectionAccepted) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}/connections][%d] postConnectionAccepted  %+v", 202, o.Payload)
 }
-
 func (o *PostConnectionAccepted) GetPayload() *models.ConnectionResponseResource {
 	return o.Payload
 }
@@ -115,7 +113,7 @@ func NewPostConnectionBadRequest() *PostConnectionBadRequest {
 	return &PostConnectionBadRequest{}
 }
 
-/*PostConnectionBadRequest handles this case with default header values.
+/* PostConnectionBadRequest describes a response with status code 400, with default header values.
 
 Returns error that server cannot or will not process the request due to something that is perceived to be a client error
 */
@@ -126,7 +124,6 @@ type PostConnectionBadRequest struct {
 func (o *PostConnectionBadRequest) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}/connections][%d] postConnectionBadRequest  %+v", 400, o.Payload)
 }
-
 func (o *PostConnectionBadRequest) GetPayload() *models.BadRequestError {
 	return o.Payload
 }
@@ -148,7 +145,7 @@ func NewPostConnectionUnauthorized() *PostConnectionUnauthorized {
 	return &PostConnectionUnauthorized{}
 }
 
-/*PostConnectionUnauthorized handles this case with default header values.
+/* PostConnectionUnauthorized describes a response with status code 401, with default header values.
 
 Error status response code indicates that the request has not been applied because it lacks valid authentication credentials for the target resource.
 */
@@ -159,7 +156,6 @@ type PostConnectionUnauthorized struct {
 func (o *PostConnectionUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}/connections][%d] postConnectionUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *PostConnectionUnauthorized) GetPayload() *models.UnauthorizedError {
 	return o.Payload
 }
@@ -181,7 +177,7 @@ func NewPostConnectionForbidden() *PostConnectionForbidden {
 	return &PostConnectionForbidden{}
 }
 
-/*PostConnectionForbidden handles this case with default header values.
+/* PostConnectionForbidden describes a response with status code 403, with default header values.
 
 Error that access is forbidden and tied to the application logic, such as insufficient rights to a resource.
 */
@@ -192,7 +188,6 @@ type PostConnectionForbidden struct {
 func (o *PostConnectionForbidden) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}/connections][%d] postConnectionForbidden  %+v", 403, o.Payload)
 }
-
 func (o *PostConnectionForbidden) GetPayload() *models.ForbiddenAccessError {
 	return o.Payload
 }
@@ -214,7 +209,7 @@ func NewPostConnectionNotFound() *PostConnectionNotFound {
 	return &PostConnectionNotFound{}
 }
 
-/*PostConnectionNotFound handles this case with default header values.
+/* PostConnectionNotFound describes a response with status code 404, with default header values.
 
 Returns error indicating that server can't find requested resource.
 */
@@ -225,7 +220,6 @@ type PostConnectionNotFound struct {
 func (o *PostConnectionNotFound) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}/connections][%d] postConnectionNotFound  %+v", 404, o.Payload)
 }
-
 func (o *PostConnectionNotFound) GetPayload() *models.NotFoundError {
 	return o.Payload
 }
@@ -247,7 +241,7 @@ func NewPostConnectionUnsupportedMediaType() *PostConnectionUnsupportedMediaType
 	return &PostConnectionUnsupportedMediaType{}
 }
 
-/*PostConnectionUnsupportedMediaType handles this case with default header values.
+/* PostConnectionUnsupportedMediaType describes a response with status code 415, with default header values.
 
 Returns error response code that indicates that the server refuses to accept the request because the payload format is in an unsupported format.
 */
@@ -258,7 +252,6 @@ type PostConnectionUnsupportedMediaType struct {
 func (o *PostConnectionUnsupportedMediaType) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}/connections][%d] postConnectionUnsupportedMediaType  %+v", 415, o.Payload)
 }
-
 func (o *PostConnectionUnsupportedMediaType) GetPayload() *models.UnsupportedMediaTypeError {
 	return o.Payload
 }
@@ -280,7 +273,7 @@ func NewPostConnectionInternalServerError() *PostConnectionInternalServerError {
 	return &PostConnectionInternalServerError{}
 }
 
-/*PostConnectionInternalServerError handles this case with default header values.
+/* PostConnectionInternalServerError describes a response with status code 500, with default header values.
 
 Returns error response code indicates that the server encountered an unexpected condition that prevented it from fulfilling the request.
 */
@@ -291,7 +284,6 @@ type PostConnectionInternalServerError struct {
 func (o *PostConnectionInternalServerError) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}/connections][%d] postConnectionInternalServerError  %+v", 500, o.Payload)
 }
-
 func (o *PostConnectionInternalServerError) GetPayload() *models.InternalServerError {
 	return o.Payload
 }
@@ -313,7 +305,7 @@ func NewPostConnectionServiceUnavailable() *PostConnectionServiceUnavailable {
 	return &PostConnectionServiceUnavailable{}
 }
 
-/*PostConnectionServiceUnavailable handles this case with default header values.
+/* PostConnectionServiceUnavailable describes a response with status code 503, with default header values.
 
 Returns error response code indicates that the server is not ready to handle the request.
 */
@@ -324,7 +316,6 @@ type PostConnectionServiceUnavailable struct {
 func (o *PostConnectionServiceUnavailable) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}/connections][%d] postConnectionServiceUnavailable  %+v", 503, o.Payload)
 }
-
 func (o *PostConnectionServiceUnavailable) GetPayload() *models.StatusServiceUnavailableError {
 	return o.Payload
 }

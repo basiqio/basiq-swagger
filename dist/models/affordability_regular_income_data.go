@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -44,6 +46,34 @@ func (m *AffordabilityRegularIncomeData) validatePrevious3Months(formats strfmt.
 
 	if m.Previous3Months != nil {
 		if err := m.Previous3Months.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("previous3Months")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// ContextValidate validate this affordability regular income data based on the context it is used
+func (m *AffordabilityRegularIncomeData) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidatePrevious3Months(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *AffordabilityRegularIncomeData) contextValidatePrevious3Months(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Previous3Months != nil {
+		if err := m.Previous3Months.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("previous3Months")
 			}

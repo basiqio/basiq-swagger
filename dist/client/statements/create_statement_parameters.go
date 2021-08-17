@@ -16,66 +16,82 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewCreateStatementParams creates a new CreateStatementParams object
-// with the default values initialized.
+// NewCreateStatementParams creates a new CreateStatementParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewCreateStatementParams() *CreateStatementParams {
-	var ()
 	return &CreateStatementParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewCreateStatementParamsWithTimeout creates a new CreateStatementParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewCreateStatementParamsWithTimeout(timeout time.Duration) *CreateStatementParams {
-	var ()
 	return &CreateStatementParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewCreateStatementParamsWithContext creates a new CreateStatementParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewCreateStatementParamsWithContext(ctx context.Context) *CreateStatementParams {
-	var ()
 	return &CreateStatementParams{
-
 		Context: ctx,
 	}
 }
 
 // NewCreateStatementParamsWithHTTPClient creates a new CreateStatementParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewCreateStatementParamsWithHTTPClient(client *http.Client) *CreateStatementParams {
-	var ()
 	return &CreateStatementParams{
 		HTTPClient: client,
 	}
 }
 
-/*CreateStatementParams contains all the parameters to send to the API endpoint
-for the create statement operation typically these are written to a http.Request
+/* CreateStatementParams contains all the parameters to send to the API endpoint
+   for the create statement operation.
+
+   Typically these are written to a http.Request.
 */
 type CreateStatementParams struct {
 
-	/*InstitutionID
-	  The identifier of the institution to which the statement relates e.g. "AU01001". Note that sandbox institutions (i.e. AU00000 do not support the file upload option
+	/* InstitutionID.
 
+	   The identifier of the institution to which the statement relates e.g. "AU01001". Note that sandbox institutions (i.e. AU00000 do not support the file upload option
 	*/
 	InstitutionID string
-	/*Statement
-	  Official PDF bank statement for the specified institution to be uploaded. Csv files conforming to our file specification are also accepted
 
+	/* Statement.
+
+	   Official PDF bank statement for the specified institution to be uploaded. Csv files conforming to our file specification are also accepted
 	*/
 	Statement runtime.NamedReadCloser
-	/*UserID*/
+
+	// UserID.
 	UserID string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the create statement params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *CreateStatementParams) WithDefaults() *CreateStatementParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the create statement params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *CreateStatementParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the create statement params
@@ -160,7 +176,6 @@ func (o *CreateStatementParams) WriteToRequest(r runtime.ClientRequest, reg strf
 			return err
 		}
 	}
-
 	// form file param statement
 	if err := r.SetFileParam("statement", o.Statement); err != nil {
 		return err

@@ -6,6 +6,7 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"encoding/json"
 	"strconv"
 
@@ -21,6 +22,7 @@ import (
 type ForbiddenAccessError struct {
 
 	// Unique identifier for this particular occurrence of the problem.
+	// Example: ac5ah5i
 	// Required: true
 	CorrelationID *string `json:"correlationId"`
 
@@ -29,6 +31,7 @@ type ForbiddenAccessError struct {
 	Data []*ForbiddenAccessErrorDataItems0 `json:"data"`
 
 	// Always "list".
+	// Example: list
 	// Required: true
 	Type *string `json:"type"`
 }
@@ -98,6 +101,38 @@ func (m *ForbiddenAccessError) validateType(formats strfmt.Registry) error {
 	return nil
 }
 
+// ContextValidate validate this forbidden access error based on the context it is used
+func (m *ForbiddenAccessError) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateData(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *ForbiddenAccessError) contextValidateData(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Data); i++ {
+
+		if m.Data[i] != nil {
+			if err := m.Data[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("data" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
 // MarshalBinary interface implementation
 func (m *ForbiddenAccessError) MarshalBinary() ([]byte, error) {
 	if m == nil {
@@ -122,11 +157,13 @@ func (m *ForbiddenAccessError) UnmarshalBinary(b []byte) error {
 type ForbiddenAccessErrorDataItems0 struct {
 
 	// Application-specific error code, expressed as a string value.
+	// Example: forbidden-access
 	// Required: true
 	// Enum: [forbidden-access no-production-access access-denied]
 	Code *string `json:"code"`
 
 	// Human-readable explanation specific to this occurrence of the problem.
+	// Example: Access to this resource is forbidden.
 	Detail string `json:"detail,omitempty"`
 
 	// source
@@ -134,9 +171,11 @@ type ForbiddenAccessErrorDataItems0 struct {
 	Source *Source `json:"source"`
 
 	// Title of the error
+	// Example: Forbidden Access
 	Title string `json:"title,omitempty"`
 
 	// Type of the response, always "error"
+	// Example: error
 	// Required: true
 	Type *string `json:"type"`
 }
@@ -177,19 +216,19 @@ func init() {
 
 const (
 
-	// ForbiddenAccessErrorDataItems0CodeForbiddenAccess captures enum value "forbidden-access"
-	ForbiddenAccessErrorDataItems0CodeForbiddenAccess string = "forbidden-access"
+	// ForbiddenAccessErrorDataItems0CodeForbiddenDashAccess captures enum value "forbidden-access"
+	ForbiddenAccessErrorDataItems0CodeForbiddenDashAccess string = "forbidden-access"
 
-	// ForbiddenAccessErrorDataItems0CodeNoProductionAccess captures enum value "no-production-access"
-	ForbiddenAccessErrorDataItems0CodeNoProductionAccess string = "no-production-access"
+	// ForbiddenAccessErrorDataItems0CodeNoDashProductionDashAccess captures enum value "no-production-access"
+	ForbiddenAccessErrorDataItems0CodeNoDashProductionDashAccess string = "no-production-access"
 
-	// ForbiddenAccessErrorDataItems0CodeAccessDenied captures enum value "access-denied"
-	ForbiddenAccessErrorDataItems0CodeAccessDenied string = "access-denied"
+	// ForbiddenAccessErrorDataItems0CodeAccessDashDenied captures enum value "access-denied"
+	ForbiddenAccessErrorDataItems0CodeAccessDashDenied string = "access-denied"
 )
 
 // prop value enum
 func (m *ForbiddenAccessErrorDataItems0) validateCodeEnum(path, location string, value string) error {
-	if err := validate.Enum(path, location, value, forbiddenAccessErrorDataItems0TypeCodePropEnum); err != nil {
+	if err := validate.EnumCase(path, location, value, forbiddenAccessErrorDataItems0TypeCodePropEnum, true); err != nil {
 		return err
 	}
 	return nil
@@ -231,6 +270,34 @@ func (m *ForbiddenAccessErrorDataItems0) validateType(formats strfmt.Registry) e
 
 	if err := validate.Required("type", "body", m.Type); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+// ContextValidate validate this forbidden access error data items0 based on the context it is used
+func (m *ForbiddenAccessErrorDataItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateSource(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *ForbiddenAccessErrorDataItems0) contextValidateSource(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Source != nil {
+		if err := m.Source.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("source")
+			}
+			return err
+		}
 	}
 
 	return nil

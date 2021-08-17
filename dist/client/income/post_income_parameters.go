@@ -18,61 +18,76 @@ import (
 	"github.com/basiqio/basiq-swagger/dist/models"
 )
 
-// NewPostIncomeParams creates a new PostIncomeParams object
-// with the default values initialized.
+// NewPostIncomeParams creates a new PostIncomeParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewPostIncomeParams() *PostIncomeParams {
-	var ()
 	return &PostIncomeParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewPostIncomeParamsWithTimeout creates a new PostIncomeParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewPostIncomeParamsWithTimeout(timeout time.Duration) *PostIncomeParams {
-	var ()
 	return &PostIncomeParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewPostIncomeParamsWithContext creates a new PostIncomeParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewPostIncomeParamsWithContext(ctx context.Context) *PostIncomeParams {
-	var ()
 	return &PostIncomeParams{
-
 		Context: ctx,
 	}
 }
 
 // NewPostIncomeParamsWithHTTPClient creates a new PostIncomeParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewPostIncomeParamsWithHTTPClient(client *http.Client) *PostIncomeParams {
-	var ()
 	return &PostIncomeParams{
 		HTTPClient: client,
 	}
 }
 
-/*PostIncomeParams contains all the parameters to send to the API endpoint
-for the post income operation typically these are written to a http.Request
+/* PostIncomeParams contains all the parameters to send to the API endpoint
+   for the post income operation.
+
+   Typically these are written to a http.Request.
 */
 type PostIncomeParams struct {
 
-	/*IncomePostRequest*/
+	// IncomePostRequest.
 	IncomePostRequest *models.IncomePostRequest
-	/*UserID
-	  The identifier of the user.
 
+	/* UserID.
+
+	   The identifier of the user.
 	*/
 	UserID string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the post income params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *PostIncomeParams) WithDefaults() *PostIncomeParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the post income params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *PostIncomeParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the post income params
@@ -137,7 +152,6 @@ func (o *PostIncomeParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Re
 		return err
 	}
 	var res []error
-
 	if o.IncomePostRequest != nil {
 		if err := r.SetBodyParam(o.IncomePostRequest); err != nil {
 			return err

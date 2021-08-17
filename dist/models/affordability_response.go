@@ -6,6 +6,7 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"strconv"
 
 	"github.com/go-openapi/errors"
@@ -28,6 +29,7 @@ type AffordabilityResponse struct {
 	Assets []*AffordabilityAssetsData `json:"assets"`
 
 	// Number of days covered by the report
+	// Example: 392
 	CoverageDays int64 `json:"coverageDays,omitempty"`
 
 	// External
@@ -35,14 +37,17 @@ type AffordabilityResponse struct {
 	External []*ExternalLiabilityData `json:"external"`
 
 	// Start month for the period for which the Affordability summary is generated. The period of time relates to the account and transaction data used as input into the report.
+	// Example: 2019-03
 	// Required: true
 	FromMonth *string `json:"fromMonth"`
 
 	// Date the report was generated.
+	// Example: 2020-03-26T06:56:44
 	// Required: true
 	GeneratedDate *string `json:"generatedDate"`
 
 	// Uniquely identifies the affordability report.
+	// Example: s55bf3
 	// Required: true
 	ID *string `json:"id"`
 
@@ -59,10 +64,12 @@ type AffordabilityResponse struct {
 	Summary *AffordabilitySummary `json:"summary"`
 
 	// End month (usually the current month) for the period for which the Affordability summary is generated.
+	// Example: 2020-03
 	// Required: true
 	ToMonth *string `json:"toMonth"`
 
 	// Always "affordability".
+	// Example: affordability
 	// Required: true
 	Type *string `json:"type"`
 }
@@ -261,6 +268,114 @@ func (m *AffordabilityResponse) validateType(formats strfmt.Registry) error {
 
 	if err := validate.Required("type", "body", m.Type); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+// ContextValidate validate this affordability response based on the context it is used
+func (m *AffordabilityResponse) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateAssets(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateExternal(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateLiabilities(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateLinks(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateSummary(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *AffordabilityResponse) contextValidateAssets(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Assets); i++ {
+
+		if m.Assets[i] != nil {
+			if err := m.Assets[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("assets" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *AffordabilityResponse) contextValidateExternal(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.External); i++ {
+
+		if m.External[i] != nil {
+			if err := m.External[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("external" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *AffordabilityResponse) contextValidateLiabilities(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Liabilities != nil {
+		if err := m.Liabilities.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("liabilities")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *AffordabilityResponse) contextValidateLinks(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Links != nil {
+		if err := m.Links.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("links")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *AffordabilityResponse) contextValidateSummary(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Summary != nil {
+		if err := m.Summary.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("summary")
+			}
+			return err
+		}
 	}
 
 	return nil

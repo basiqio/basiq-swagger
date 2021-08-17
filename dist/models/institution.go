@@ -6,6 +6,7 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"encoding/json"
 
 	"github.com/go-openapi/errors"
@@ -20,11 +21,13 @@ import (
 type Institution struct {
 
 	// Institution authorization identifier
+	// Example: user
 	// Required: true
-	// Enum: [user other]
+	// Enum: [user token other user-mfa user-mfa-intermittent]
 	Authorization *string `json:"authorization"`
 
 	// Institution country name
+	// Example: Australia
 	// Required: true
 	Country *string `json:"country"`
 
@@ -33,17 +36,19 @@ type Institution struct {
 	Features *Features `json:"features"`
 
 	// URL to institution forgotten password page
+	// Example: https://example.com/forgotten-password
 	ForgottenPasswordURL string `json:"forgottenPasswordUrl,omitempty"`
 
 	// Institution ID
+	// Example: AU00000
 	// Required: true
 	// Max Length: 7
 	// Min Length: 7
 	// Pattern: ^[A-Z]{2}[0-9]{5}$
-	// Unique: true
 	ID *string `json:"id"`
 
 	// Institution type identifier
+	// Example: Bank
 	// Required: true
 	// Enum: [Bank Bank (Foreign) Test Bank Credit Union Financial Services Superannuation Building Society]
 	InstitutionType *string `json:"institutionType"`
@@ -53,43 +58,50 @@ type Institution struct {
 	Links *ResourceLinks `json:"links"`
 
 	// Login ID field caption that should be shown on UI
-	// Required: true
-	LoginIDCaption *string `json:"loginIdCaption"`
+	// Example: User name
+	LoginIDCaption string `json:"loginIdCaption,omitempty"`
 
 	// logo
 	// Required: true
 	Logo *InstitutionLogoResource `json:"logo"`
 
 	// Institution name
+	// Example: Hooli Bank
 	// Required: true
 	Name *string `json:"name"`
 
 	// Password field caption that should be shown on UI
-	// Required: true
-	PasswordCaption *string `json:"passwordCaption"`
+	// Example: Password
+	PasswordCaption string `json:"passwordCaption,omitempty"`
 
 	// Secondary loginID caption that should be shown on UI
+	// Example: Secondary login id
 	SecondaryLoginIDCaption string `json:"secondaryLoginIdCaption,omitempty"`
 
 	// Security code caption that should be shown on UI
+	// Example: Security code
 	SecurityCodeCaption string `json:"securityCodeCaption,omitempty"`
 
 	// Institution service name
+	// Example: Personal Online Banking
 	// Required: true
 	ServiceName *string `json:"serviceName"`
 
 	// Institution service name
+	// Example: Personal Banking
 	// Required: true
 	// Enum: [Personal Banking Business Banking Card Access Test Superannuation]
 	ServiceType *string `json:"serviceType"`
 
 	// Institution short name
+	// Example: Hooli
 	// Required: true
 	ShortName *string `json:"shortName"`
 
 	// Institution stage identifier
+	// Example: live
 	// Required: true
-	// Enum: [live alpha beta]
+	// Enum: [live beta alpha]
 	Stage *string `json:"stage"`
 
 	// stats
@@ -98,17 +110,23 @@ type Institution struct {
 
 	// status
 	// Required: true
-	Status FeatureCondition `json:"status"`
+	Status *FeatureCondition `json:"status"`
 
 	// Institution tier identifier
+	// Example: 3
 	// Required: true
 	// Enum: [1 2 3 4]
 	Tier *string `json:"tier"`
 
 	// Resource type identifier. It is always "institution" for this model.
+	// Example: institution
 	// Required: true
 	// Enum: [institution]
 	Type *string `json:"type"`
+
+	// User token caption that should be shown on UI
+	// Example: User token
+	UserTokenCaption string `json:"userTokenCaption,omitempty"`
 }
 
 // Validate validates this institution
@@ -139,19 +157,11 @@ func (m *Institution) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateLoginIDCaption(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.validateLogo(formats); err != nil {
 		res = append(res, err)
 	}
 
 	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validatePasswordCaption(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -197,7 +207,7 @@ var institutionTypeAuthorizationPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["user","other"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["user","token","other","user-mfa","user-mfa-intermittent"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -210,13 +220,22 @@ const (
 	// InstitutionAuthorizationUser captures enum value "user"
 	InstitutionAuthorizationUser string = "user"
 
+	// InstitutionAuthorizationToken captures enum value "token"
+	InstitutionAuthorizationToken string = "token"
+
 	// InstitutionAuthorizationOther captures enum value "other"
 	InstitutionAuthorizationOther string = "other"
+
+	// InstitutionAuthorizationUserDashMfa captures enum value "user-mfa"
+	InstitutionAuthorizationUserDashMfa string = "user-mfa"
+
+	// InstitutionAuthorizationUserDashMfaDashIntermittent captures enum value "user-mfa-intermittent"
+	InstitutionAuthorizationUserDashMfaDashIntermittent string = "user-mfa-intermittent"
 )
 
 // prop value enum
 func (m *Institution) validateAuthorizationEnum(path, location string, value string) error {
-	if err := validate.Enum(path, location, value, institutionTypeAuthorizationPropEnum); err != nil {
+	if err := validate.EnumCase(path, location, value, institutionTypeAuthorizationPropEnum, true); err != nil {
 		return err
 	}
 	return nil
@@ -269,15 +288,15 @@ func (m *Institution) validateID(formats strfmt.Registry) error {
 		return err
 	}
 
-	if err := validate.MinLength("id", "body", string(*m.ID), 7); err != nil {
+	if err := validate.MinLength("id", "body", *m.ID, 7); err != nil {
 		return err
 	}
 
-	if err := validate.MaxLength("id", "body", string(*m.ID), 7); err != nil {
+	if err := validate.MaxLength("id", "body", *m.ID, 7); err != nil {
 		return err
 	}
 
-	if err := validate.Pattern("id", "body", string(*m.ID), `^[A-Z]{2}[0-9]{5}$`); err != nil {
+	if err := validate.Pattern("id", "body", *m.ID, `^[A-Z]{2}[0-9]{5}$`); err != nil {
 		return err
 	}
 
@@ -322,7 +341,7 @@ const (
 
 // prop value enum
 func (m *Institution) validateInstitutionTypeEnum(path, location string, value string) error {
-	if err := validate.Enum(path, location, value, institutionTypeInstitutionTypePropEnum); err != nil {
+	if err := validate.EnumCase(path, location, value, institutionTypeInstitutionTypePropEnum, true); err != nil {
 		return err
 	}
 	return nil
@@ -360,15 +379,6 @@ func (m *Institution) validateLinks(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *Institution) validateLoginIDCaption(formats strfmt.Registry) error {
-
-	if err := validate.Required("loginIdCaption", "body", m.LoginIDCaption); err != nil {
-		return err
-	}
-
-	return nil
-}
-
 func (m *Institution) validateLogo(formats strfmt.Registry) error {
 
 	if err := validate.Required("logo", "body", m.Logo); err != nil {
@@ -390,15 +400,6 @@ func (m *Institution) validateLogo(formats strfmt.Registry) error {
 func (m *Institution) validateName(formats strfmt.Registry) error {
 
 	if err := validate.Required("name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *Institution) validatePasswordCaption(formats strfmt.Registry) error {
-
-	if err := validate.Required("passwordCaption", "body", m.PasswordCaption); err != nil {
 		return err
 	}
 
@@ -446,7 +447,7 @@ const (
 
 // prop value enum
 func (m *Institution) validateServiceTypeEnum(path, location string, value string) error {
-	if err := validate.Enum(path, location, value, institutionTypeServiceTypePropEnum); err != nil {
+	if err := validate.EnumCase(path, location, value, institutionTypeServiceTypePropEnum, true); err != nil {
 		return err
 	}
 	return nil
@@ -479,7 +480,7 @@ var institutionTypeStagePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["live","alpha","beta"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["live","beta","alpha"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -492,16 +493,16 @@ const (
 	// InstitutionStageLive captures enum value "live"
 	InstitutionStageLive string = "live"
 
-	// InstitutionStageAlpha captures enum value "alpha"
-	InstitutionStageAlpha string = "alpha"
-
 	// InstitutionStageBeta captures enum value "beta"
 	InstitutionStageBeta string = "beta"
+
+	// InstitutionStageAlpha captures enum value "alpha"
+	InstitutionStageAlpha string = "alpha"
 )
 
 // prop value enum
 func (m *Institution) validateStageEnum(path, location string, value string) error {
-	if err := validate.Enum(path, location, value, institutionTypeStagePropEnum); err != nil {
+	if err := validate.EnumCase(path, location, value, institutionTypeStagePropEnum, true); err != nil {
 		return err
 	}
 	return nil
@@ -541,11 +542,21 @@ func (m *Institution) validateStats(formats strfmt.Registry) error {
 
 func (m *Institution) validateStatus(formats strfmt.Registry) error {
 
-	if err := m.Status.Validate(formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("status")
-		}
+	if err := validate.Required("status", "body", m.Status); err != nil {
 		return err
+	}
+
+	if err := validate.Required("status", "body", m.Status); err != nil {
+		return err
+	}
+
+	if m.Status != nil {
+		if err := m.Status.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("status")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -580,7 +591,7 @@ const (
 
 // prop value enum
 func (m *Institution) validateTierEnum(path, location string, value string) error {
-	if err := validate.Enum(path, location, value, institutionTypeTierPropEnum); err != nil {
+	if err := validate.EnumCase(path, location, value, institutionTypeTierPropEnum, true); err != nil {
 		return err
 	}
 	return nil
@@ -620,7 +631,7 @@ const (
 
 // prop value enum
 func (m *Institution) validateTypeEnum(path, location string, value string) error {
-	if err := validate.Enum(path, location, value, institutionTypeTypePropEnum); err != nil {
+	if err := validate.EnumCase(path, location, value, institutionTypeTypePropEnum, true); err != nil {
 		return err
 	}
 	return nil
@@ -635,6 +646,106 @@ func (m *Institution) validateType(formats strfmt.Registry) error {
 	// value enum
 	if err := m.validateTypeEnum("type", "body", *m.Type); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+// ContextValidate validate this institution based on the context it is used
+func (m *Institution) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateFeatures(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateLinks(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateLogo(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateStats(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateStatus(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *Institution) contextValidateFeatures(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Features != nil {
+		if err := m.Features.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("features")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *Institution) contextValidateLinks(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Links != nil {
+		if err := m.Links.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("links")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *Institution) contextValidateLogo(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Logo != nil {
+		if err := m.Logo.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("logo")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *Institution) contextValidateStats(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Stats != nil {
+		if err := m.Stats.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("stats")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *Institution) contextValidateStatus(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Status != nil {
+		if err := m.Status.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("status")
+			}
+			return err
+		}
 	}
 
 	return nil

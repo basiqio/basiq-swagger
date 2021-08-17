@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
@@ -16,14 +18,21 @@ import (
 type TransactionsGeometry struct {
 
 	// Latitude
+	// Example: -33.79988520000001
 	Lat string `json:"lat,omitempty"`
 
 	// Longitude
+	// Example: 151.2858021
 	Lng string `json:"lng,omitempty"`
 }
 
 // Validate validates this transactions geometry
 func (m *TransactionsGeometry) Validate(formats strfmt.Registry) error {
+	return nil
+}
+
+// ContextValidate validates this transactions geometry based on context it is used
+func (m *TransactionsGeometry) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

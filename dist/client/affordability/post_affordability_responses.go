@@ -65,9 +65,8 @@ func (o *PostAffordabilityReader) ReadResponse(response runtime.ClientResponse, 
 			return nil, err
 		}
 		return nil, result
-
 	default:
-		return nil, runtime.NewAPIError("unknown error", response, response.Code())
+		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
 }
 
@@ -76,7 +75,7 @@ func NewPostAffordabilityOK() *PostAffordabilityOK {
 	return &PostAffordabilityOK{}
 }
 
-/*PostAffordabilityOK handles this case with default header values.
+/* PostAffordabilityOK describes a response with status code 200, with default header values.
 
 Returns a created affordability resource, if the operation succeeded.
 */
@@ -87,7 +86,6 @@ type PostAffordabilityOK struct {
 func (o *PostAffordabilityOK) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}/affordability][%d] postAffordabilityOK  %+v", 200, o.Payload)
 }
-
 func (o *PostAffordabilityOK) GetPayload() *models.AffordabilityResponse {
 	return o.Payload
 }
@@ -109,7 +107,7 @@ func NewPostAffordabilityCreated() *PostAffordabilityCreated {
 	return &PostAffordabilityCreated{}
 }
 
-/*PostAffordabilityCreated handles this case with default header values.
+/* PostAffordabilityCreated describes a response with status code 201, with default header values.
 
 Returns a created affordability PDF Report, if the operation succeeded.
 */
@@ -130,7 +128,7 @@ func NewPostAffordabilityNoContent() *PostAffordabilityNoContent {
 	return &PostAffordabilityNoContent{}
 }
 
-/*PostAffordabilityNoContent handles this case with default header values.
+/* PostAffordabilityNoContent describes a response with status code 204, with default header values.
 
 Returns no content if there are none transactions for the requested period.
 */
@@ -151,7 +149,7 @@ func NewPostAffordabilityBadRequest() *PostAffordabilityBadRequest {
 	return &PostAffordabilityBadRequest{}
 }
 
-/*PostAffordabilityBadRequest handles this case with default header values.
+/* PostAffordabilityBadRequest describes a response with status code 400, with default header values.
 
 Returns error that server cannot or will not process the request due to something that is perceived to be a client error.
 */
@@ -162,7 +160,6 @@ type PostAffordabilityBadRequest struct {
 func (o *PostAffordabilityBadRequest) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}/affordability][%d] postAffordabilityBadRequest  %+v", 400, o.Payload)
 }
-
 func (o *PostAffordabilityBadRequest) GetPayload() *models.BadRequestError {
 	return o.Payload
 }
@@ -184,7 +181,7 @@ func NewPostAffordabilityForbidden() *PostAffordabilityForbidden {
 	return &PostAffordabilityForbidden{}
 }
 
-/*PostAffordabilityForbidden handles this case with default header values.
+/* PostAffordabilityForbidden describes a response with status code 403, with default header values.
 
 Error that access is forbidden and tied to the application logic, such as insufficient rights to a resource.
 */
@@ -195,7 +192,6 @@ type PostAffordabilityForbidden struct {
 func (o *PostAffordabilityForbidden) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}/affordability][%d] postAffordabilityForbidden  %+v", 403, o.Payload)
 }
-
 func (o *PostAffordabilityForbidden) GetPayload() *models.ForbiddenAccessError {
 	return o.Payload
 }
@@ -217,7 +213,7 @@ func NewPostAffordabilityNotFound() *PostAffordabilityNotFound {
 	return &PostAffordabilityNotFound{}
 }
 
-/*PostAffordabilityNotFound handles this case with default header values.
+/* PostAffordabilityNotFound describes a response with status code 404, with default header values.
 
 Returns error indicating that server can't find requested resource.
 */
@@ -228,7 +224,6 @@ type PostAffordabilityNotFound struct {
 func (o *PostAffordabilityNotFound) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}/affordability][%d] postAffordabilityNotFound  %+v", 404, o.Payload)
 }
-
 func (o *PostAffordabilityNotFound) GetPayload() *models.NotFoundError {
 	return o.Payload
 }
@@ -250,7 +245,7 @@ func NewPostAffordabilityInternalServerError() *PostAffordabilityInternalServerE
 	return &PostAffordabilityInternalServerError{}
 }
 
-/*PostAffordabilityInternalServerError handles this case with default header values.
+/* PostAffordabilityInternalServerError describes a response with status code 500, with default header values.
 
 Returns error response code indicates that the server encountered an unexpected condition that prevented it from fulfilling the request.
 */
@@ -261,7 +256,6 @@ type PostAffordabilityInternalServerError struct {
 func (o *PostAffordabilityInternalServerError) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}/affordability][%d] postAffordabilityInternalServerError  %+v", 500, o.Payload)
 }
-
 func (o *PostAffordabilityInternalServerError) GetPayload() *models.InternalServerError {
 	return o.Payload
 }

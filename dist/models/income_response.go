@@ -6,6 +6,7 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"strconv"
 
 	"github.com/go-openapi/errors"
@@ -24,13 +25,16 @@ import (
 type IncomeResponse struct {
 
 	// Number of days covered by the report
+	// Example: 392
 	CoverageDays int64 `json:"coverageDays,omitempty"`
 
 	// Start month for the period for which the Income summary is generated. The period of time relates to the account and transaction data used as input into the report.
+	// Example: 2019-03
 	// Required: true
 	FromMonth *string `json:"fromMonth"`
 
 	// The identifier of the income resource to be retrieved.
+	// Example: s55bf4
 	// Required: true
 	ID *string `json:"id"`
 
@@ -51,10 +55,12 @@ type IncomeResponse struct {
 	Summary *IncomeSummary `json:"summary"`
 
 	// End month (usually the current month) for the period for which the Income summary is generated.
+	// Example: 2020-03
 	// Required: true
 	ToMonth *string `json:"toMonth"`
 
 	// Always "income".
+	// Example: income
 	// Required: true
 	Type *string `json:"type"`
 }
@@ -124,7 +130,6 @@ func (m *IncomeResponse) validateID(formats strfmt.Registry) error {
 }
 
 func (m *IncomeResponse) validateIrregular(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Irregular) { // not required
 		return nil
 	}
@@ -149,7 +154,6 @@ func (m *IncomeResponse) validateIrregular(formats strfmt.Registry) error {
 }
 
 func (m *IncomeResponse) validateLinks(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Links) { // not required
 		return nil
 	}
@@ -167,7 +171,6 @@ func (m *IncomeResponse) validateLinks(formats strfmt.Registry) error {
 }
 
 func (m *IncomeResponse) validateOtherCredit(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.OtherCredit) { // not required
 		return nil
 	}
@@ -192,7 +195,6 @@ func (m *IncomeResponse) validateOtherCredit(formats strfmt.Registry) error {
 }
 
 func (m *IncomeResponse) validateRegular(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Regular) { // not required
 		return nil
 	}
@@ -247,6 +249,118 @@ func (m *IncomeResponse) validateType(formats strfmt.Registry) error {
 
 	if err := validate.Required("type", "body", m.Type); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+// ContextValidate validate this income response based on the context it is used
+func (m *IncomeResponse) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateIrregular(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateLinks(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateOtherCredit(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateRegular(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateSummary(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *IncomeResponse) contextValidateIrregular(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Irregular); i++ {
+
+		if m.Irregular[i] != nil {
+			if err := m.Irregular[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("irregular" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *IncomeResponse) contextValidateLinks(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Links != nil {
+		if err := m.Links.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("links")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *IncomeResponse) contextValidateOtherCredit(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.OtherCredit); i++ {
+
+		if m.OtherCredit[i] != nil {
+			if err := m.OtherCredit[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("otherCredit" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *IncomeResponse) contextValidateRegular(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Regular); i++ {
+
+		if m.Regular[i] != nil {
+			if err := m.Regular[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("regular" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *IncomeResponse) contextValidateSummary(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Summary != nil {
+		if err := m.Summary.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("summary")
+			}
+			return err
+		}
 	}
 
 	return nil

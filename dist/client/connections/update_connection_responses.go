@@ -71,9 +71,8 @@ func (o *UpdateConnectionReader) ReadResponse(response runtime.ClientResponse, c
 			return nil, err
 		}
 		return nil, result
-
 	default:
-		return nil, runtime.NewAPIError("unknown error", response, response.Code())
+		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
 }
 
@@ -82,7 +81,7 @@ func NewUpdateConnectionAccepted() *UpdateConnectionAccepted {
 	return &UpdateConnectionAccepted{}
 }
 
-/*UpdateConnectionAccepted handles this case with default header values.
+/* UpdateConnectionAccepted describes a response with status code 202, with default header values.
 
 Returns a job object if the request succeeded.
 */
@@ -93,7 +92,6 @@ type UpdateConnectionAccepted struct {
 func (o *UpdateConnectionAccepted) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}/connections/{connectionId}][%d] updateConnectionAccepted  %+v", 202, o.Payload)
 }
-
 func (o *UpdateConnectionAccepted) GetPayload() *models.ConnectionResponseResource {
 	return o.Payload
 }
@@ -115,7 +113,7 @@ func NewUpdateConnectionBadRequest() *UpdateConnectionBadRequest {
 	return &UpdateConnectionBadRequest{}
 }
 
-/*UpdateConnectionBadRequest handles this case with default header values.
+/* UpdateConnectionBadRequest describes a response with status code 400, with default header values.
 
 Returns error that server cannot or will not process the request due to something that is perceived to be a client error
 */
@@ -126,7 +124,6 @@ type UpdateConnectionBadRequest struct {
 func (o *UpdateConnectionBadRequest) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}/connections/{connectionId}][%d] updateConnectionBadRequest  %+v", 400, o.Payload)
 }
-
 func (o *UpdateConnectionBadRequest) GetPayload() *models.BadRequestError {
 	return o.Payload
 }
@@ -148,7 +145,7 @@ func NewUpdateConnectionUnauthorized() *UpdateConnectionUnauthorized {
 	return &UpdateConnectionUnauthorized{}
 }
 
-/*UpdateConnectionUnauthorized handles this case with default header values.
+/* UpdateConnectionUnauthorized describes a response with status code 401, with default header values.
 
 Error status response code indicates that the request has not been applied because it lacks valid authentication credentials for the target resource.
 */
@@ -159,7 +156,6 @@ type UpdateConnectionUnauthorized struct {
 func (o *UpdateConnectionUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}/connections/{connectionId}][%d] updateConnectionUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *UpdateConnectionUnauthorized) GetPayload() *models.UnauthorizedError {
 	return o.Payload
 }
@@ -181,7 +177,7 @@ func NewUpdateConnectionForbidden() *UpdateConnectionForbidden {
 	return &UpdateConnectionForbidden{}
 }
 
-/*UpdateConnectionForbidden handles this case with default header values.
+/* UpdateConnectionForbidden describes a response with status code 403, with default header values.
 
 Error that access is forbidden and tied to the application logic, such as insufficient rights to a resource.
 */
@@ -192,7 +188,6 @@ type UpdateConnectionForbidden struct {
 func (o *UpdateConnectionForbidden) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}/connections/{connectionId}][%d] updateConnectionForbidden  %+v", 403, o.Payload)
 }
-
 func (o *UpdateConnectionForbidden) GetPayload() *models.ForbiddenAccessError {
 	return o.Payload
 }
@@ -214,7 +209,7 @@ func NewUpdateConnectionNotFound() *UpdateConnectionNotFound {
 	return &UpdateConnectionNotFound{}
 }
 
-/*UpdateConnectionNotFound handles this case with default header values.
+/* UpdateConnectionNotFound describes a response with status code 404, with default header values.
 
 Returns error indicating that server can't find requested resource.
 */
@@ -225,7 +220,6 @@ type UpdateConnectionNotFound struct {
 func (o *UpdateConnectionNotFound) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}/connections/{connectionId}][%d] updateConnectionNotFound  %+v", 404, o.Payload)
 }
-
 func (o *UpdateConnectionNotFound) GetPayload() *models.NotFoundError {
 	return o.Payload
 }
@@ -247,7 +241,7 @@ func NewUpdateConnectionUnsupportedMediaType() *UpdateConnectionUnsupportedMedia
 	return &UpdateConnectionUnsupportedMediaType{}
 }
 
-/*UpdateConnectionUnsupportedMediaType handles this case with default header values.
+/* UpdateConnectionUnsupportedMediaType describes a response with status code 415, with default header values.
 
 Returns error response code that indicates that the server refuses to accept the request because the payload format is in an unsupported format.
 */
@@ -258,7 +252,6 @@ type UpdateConnectionUnsupportedMediaType struct {
 func (o *UpdateConnectionUnsupportedMediaType) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}/connections/{connectionId}][%d] updateConnectionUnsupportedMediaType  %+v", 415, o.Payload)
 }
-
 func (o *UpdateConnectionUnsupportedMediaType) GetPayload() *models.UnsupportedMediaTypeError {
 	return o.Payload
 }
@@ -280,7 +273,7 @@ func NewUpdateConnectionInternalServerError() *UpdateConnectionInternalServerErr
 	return &UpdateConnectionInternalServerError{}
 }
 
-/*UpdateConnectionInternalServerError handles this case with default header values.
+/* UpdateConnectionInternalServerError describes a response with status code 500, with default header values.
 
 Returns error response code indicates that the server encountered an unexpected condition that prevented it from fulfilling the request.
 */
@@ -291,7 +284,6 @@ type UpdateConnectionInternalServerError struct {
 func (o *UpdateConnectionInternalServerError) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}/connections/{connectionId}][%d] updateConnectionInternalServerError  %+v", 500, o.Payload)
 }
-
 func (o *UpdateConnectionInternalServerError) GetPayload() *models.InternalServerError {
 	return o.Payload
 }
@@ -313,7 +305,7 @@ func NewUpdateConnectionServiceUnavailable() *UpdateConnectionServiceUnavailable
 	return &UpdateConnectionServiceUnavailable{}
 }
 
-/*UpdateConnectionServiceUnavailable handles this case with default header values.
+/* UpdateConnectionServiceUnavailable describes a response with status code 503, with default header values.
 
 Returns error response code indicates that the server is not ready to handle the request.
 */
@@ -324,7 +316,6 @@ type UpdateConnectionServiceUnavailable struct {
 func (o *UpdateConnectionServiceUnavailable) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}/connections/{connectionId}][%d] updateConnectionServiceUnavailable  %+v", 503, o.Payload)
 }
-
 func (o *UpdateConnectionServiceUnavailable) GetPayload() *models.StatusServiceUnavailableError {
 	return o.Payload
 }

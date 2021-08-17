@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -18,10 +20,12 @@ import (
 type UserConnectionPostData struct {
 
 	// User's (new or old) institution password.
+	// Example: 1234
 	// Required: true
 	Password *string `json:"password"`
 
 	// User's institution secondary login id.
+	// Example: 4321
 	SecondaryLoginID string `json:"secondaryLoginId,omitempty"`
 
 	// User's institution security code.
@@ -48,6 +52,11 @@ func (m *UserConnectionPostData) validatePassword(formats strfmt.Registry) error
 		return err
 	}
 
+	return nil
+}
+
+// ContextValidate validates this user connection post data based on context it is used
+func (m *UserConnectionPostData) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

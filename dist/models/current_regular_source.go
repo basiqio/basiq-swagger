@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -18,14 +20,17 @@ import (
 type CurrentRegularSource struct {
 
 	// Most recent regular income payment amount
+	// Example: 18098.00
 	// Required: true
 	Amount *string `json:"amount"`
 
 	// Most recent regular income payment date
+	// Example: 2018-11-30T09:23:37
 	// Required: true
 	Date *string `json:"date"`
 
 	// Predicted next occurrence for regular income (note: where the pattern has recently ceased there would be no predicted next occurrence)
+	// Example: 2018-12-30T18:30:49
 	// Required: true
 	NextDate *string `json:"nextDate"`
 }
@@ -76,6 +81,11 @@ func (m *CurrentRegularSource) validateNextDate(formats strfmt.Registry) error {
 		return err
 	}
 
+	return nil
+}
+
+// ContextValidate validates this current regular source based on context it is used
+func (m *CurrentRegularSource) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

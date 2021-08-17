@@ -35,9 +35,8 @@ func (o *GetEnrichReader) ReadResponse(response runtime.ClientResponse, consumer
 			return nil, err
 		}
 		return nil, result
-
 	default:
-		return nil, runtime.NewAPIError("unknown error", response, response.Code())
+		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
 }
 
@@ -46,7 +45,7 @@ func NewGetEnrichOK() *GetEnrichOK {
 	return &GetEnrichOK{}
 }
 
-/*GetEnrichOK handles this case with default header values.
+/* GetEnrichOK describes a response with status code 200, with default header values.
 
 The service enriches transaction data with multiple attributes, returning a transaction classification and three metadata components. The transaction classification will first determine if the transaction is of type payment, transfer, cash-withdrawal, bank-fee etc. The engine then derives merchant information, purchase location and prescribes an industry standard categorisation for each payment transaction.
 */
@@ -57,7 +56,6 @@ type GetEnrichOK struct {
 func (o *GetEnrichOK) Error() string {
 	return fmt.Sprintf("[GET /enrich][%d] getEnrichOK  %+v", 200, o.Payload)
 }
-
 func (o *GetEnrichOK) GetPayload() *models.GetEnrichResponse {
 	return o.Payload
 }
@@ -79,7 +77,7 @@ func NewGetEnrichBadRequest() *GetEnrichBadRequest {
 	return &GetEnrichBadRequest{}
 }
 
-/*GetEnrichBadRequest handles this case with default header values.
+/* GetEnrichBadRequest describes a response with status code 400, with default header values.
 
 Returns error that server cannot or will not process the request due to something that is perceived to be a client error.
 */
@@ -90,7 +88,6 @@ type GetEnrichBadRequest struct {
 func (o *GetEnrichBadRequest) Error() string {
 	return fmt.Sprintf("[GET /enrich][%d] getEnrichBadRequest  %+v", 400, o.Payload)
 }
-
 func (o *GetEnrichBadRequest) GetPayload() *models.BadRequestError {
 	return o.Payload
 }

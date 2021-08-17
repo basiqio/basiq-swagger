@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -20,10 +22,12 @@ import (
 type UserPostResponse struct {
 
 	// The end-users email address.
+	// Example: gavin@hooli.com
 	// Format: email
 	Email strfmt.Email `json:"email,omitempty"`
 
 	// A string that uniquely identifies the user.
+	// Example: e1956419
 	// Required: true
 	ID *string `json:"id"`
 
@@ -32,10 +36,12 @@ type UserPostResponse struct {
 	Links *ResourceLink `json:"links"`
 
 	// The end-users mobile number.
+	// Example: +61410888999
 	// Required: true
 	Mobile *string `json:"mobile"`
 
 	// Type of the response, always "user".
+	// Example: user
 	// Required: true
 	Type *string `json:"type"`
 }
@@ -71,7 +77,6 @@ func (m *UserPostResponse) Validate(formats strfmt.Registry) error {
 }
 
 func (m *UserPostResponse) validateEmail(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Email) { // not required
 		return nil
 	}
@@ -123,6 +128,34 @@ func (m *UserPostResponse) validateType(formats strfmt.Registry) error {
 
 	if err := validate.Required("type", "body", m.Type); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+// ContextValidate validate this user post response based on the context it is used
+func (m *UserPostResponse) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateLinks(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *UserPostResponse) contextValidateLinks(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Links != nil {
+		if err := m.Links.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("links")
+			}
+			return err
+		}
 	}
 
 	return nil

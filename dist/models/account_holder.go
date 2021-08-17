@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -18,10 +20,12 @@ import (
 type AccountHolder struct {
 
 	// Identifies the Product as defined by institution
+	// Example: Hooli Transaction
 	// Required: true
 	Product *string `json:"product"`
 
 	// Identifies the Account type defined by institution
+	// Example: transaction
 	// Required: true
 	Type *string `json:"type"`
 }
@@ -59,6 +63,11 @@ func (m *AccountHolder) validateType(formats strfmt.Registry) error {
 		return err
 	}
 
+	return nil
+}
+
+// ContextValidate validates this account holder based on context it is used
+func (m *AccountHolder) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

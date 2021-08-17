@@ -53,9 +53,8 @@ func (o *CreateUserReader) ReadResponse(response runtime.ClientResponse, consume
 			return nil, err
 		}
 		return nil, result
-
 	default:
-		return nil, runtime.NewAPIError("unknown error", response, response.Code())
+		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
 }
 
@@ -64,7 +63,7 @@ func NewCreateUserCreated() *CreateUserCreated {
 	return &CreateUserCreated{}
 }
 
-/*CreateUserCreated handles this case with default header values.
+/* CreateUserCreated describes a response with status code 201, with default header values.
 
 Returns the user object if the creation succeeded.
 */
@@ -75,7 +74,6 @@ type CreateUserCreated struct {
 func (o *CreateUserCreated) Error() string {
 	return fmt.Sprintf("[POST /users][%d] createUserCreated  %+v", 201, o.Payload)
 }
-
 func (o *CreateUserCreated) GetPayload() *models.UserPostResponse {
 	return o.Payload
 }
@@ -97,7 +95,7 @@ func NewCreateUserBadRequest() *CreateUserBadRequest {
 	return &CreateUserBadRequest{}
 }
 
-/*CreateUserBadRequest handles this case with default header values.
+/* CreateUserBadRequest describes a response with status code 400, with default header values.
 
 Returns error that server cannot or will not process the request due to something that is perceived to be a client error.
 */
@@ -108,7 +106,6 @@ type CreateUserBadRequest struct {
 func (o *CreateUserBadRequest) Error() string {
 	return fmt.Sprintf("[POST /users][%d] createUserBadRequest  %+v", 400, o.Payload)
 }
-
 func (o *CreateUserBadRequest) GetPayload() *models.BadRequestError {
 	return o.Payload
 }
@@ -130,7 +127,7 @@ func NewCreateUserForbidden() *CreateUserForbidden {
 	return &CreateUserForbidden{}
 }
 
-/*CreateUserForbidden handles this case with default header values.
+/* CreateUserForbidden describes a response with status code 403, with default header values.
 
 Error that access is forbidden and tied to the application logic, such as insufficient rights to a resource.
 */
@@ -141,7 +138,6 @@ type CreateUserForbidden struct {
 func (o *CreateUserForbidden) Error() string {
 	return fmt.Sprintf("[POST /users][%d] createUserForbidden  %+v", 403, o.Payload)
 }
-
 func (o *CreateUserForbidden) GetPayload() *models.ForbiddenAccessError {
 	return o.Payload
 }
@@ -163,7 +159,7 @@ func NewCreateUserNotFound() *CreateUserNotFound {
 	return &CreateUserNotFound{}
 }
 
-/*CreateUserNotFound handles this case with default header values.
+/* CreateUserNotFound describes a response with status code 404, with default header values.
 
 Returns error indicating that server can't find requested resource.
 */
@@ -174,7 +170,6 @@ type CreateUserNotFound struct {
 func (o *CreateUserNotFound) Error() string {
 	return fmt.Sprintf("[POST /users][%d] createUserNotFound  %+v", 404, o.Payload)
 }
-
 func (o *CreateUserNotFound) GetPayload() *models.NotFoundError {
 	return o.Payload
 }
@@ -196,7 +191,7 @@ func NewCreateUserInternalServerError() *CreateUserInternalServerError {
 	return &CreateUserInternalServerError{}
 }
 
-/*CreateUserInternalServerError handles this case with default header values.
+/* CreateUserInternalServerError describes a response with status code 500, with default header values.
 
 Returns error response code indicates that the server encountered an unexpected condition that prevented it from fulfilling the request.
 */
@@ -207,7 +202,6 @@ type CreateUserInternalServerError struct {
 func (o *CreateUserInternalServerError) Error() string {
 	return fmt.Sprintf("[POST /users][%d] createUserInternalServerError  %+v", 500, o.Payload)
 }
-
 func (o *CreateUserInternalServerError) GetPayload() *models.InternalServerError {
 	return o.Payload
 }

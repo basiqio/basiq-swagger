@@ -6,6 +6,7 @@ package auth_links
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"fmt"
 	"io"
 
@@ -54,9 +55,8 @@ func (o *PostAuthLinkReader) ReadResponse(response runtime.ClientResponse, consu
 			return nil, err
 		}
 		return nil, result
-
 	default:
-		return nil, runtime.NewAPIError("unknown error", response, response.Code())
+		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
 }
 
@@ -65,7 +65,7 @@ func NewPostAuthLinkCreated() *PostAuthLinkCreated {
 	return &PostAuthLinkCreated{}
 }
 
-/*PostAuthLinkCreated handles this case with default header values.
+/* PostAuthLinkCreated describes a response with status code 201, with default header values.
 
 Returns a created auth_link resource, if the operation succeeded
 */
@@ -76,7 +76,6 @@ type PostAuthLinkCreated struct {
 func (o *PostAuthLinkCreated) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}/auth_link][%d] postAuthLinkCreated  %+v", 201, o.Payload)
 }
-
 func (o *PostAuthLinkCreated) GetPayload() *models.AuthLinksPostResponseResource {
 	return o.Payload
 }
@@ -98,7 +97,7 @@ func NewPostAuthLinkBadRequest() *PostAuthLinkBadRequest {
 	return &PostAuthLinkBadRequest{}
 }
 
-/*PostAuthLinkBadRequest handles this case with default header values.
+/* PostAuthLinkBadRequest describes a response with status code 400, with default header values.
 
 Returns error that server cannot or will not process the request due to something that is perceived to be a client error
 */
@@ -109,7 +108,6 @@ type PostAuthLinkBadRequest struct {
 func (o *PostAuthLinkBadRequest) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}/auth_link][%d] postAuthLinkBadRequest  %+v", 400, o.Payload)
 }
-
 func (o *PostAuthLinkBadRequest) GetPayload() *models.BadRequestError {
 	return o.Payload
 }
@@ -131,7 +129,7 @@ func NewPostAuthLinkForbidden() *PostAuthLinkForbidden {
 	return &PostAuthLinkForbidden{}
 }
 
-/*PostAuthLinkForbidden handles this case with default header values.
+/* PostAuthLinkForbidden describes a response with status code 403, with default header values.
 
 Error that access is forbidden and tied to the application logic, such as insufficient rights to a resource.
 */
@@ -142,7 +140,6 @@ type PostAuthLinkForbidden struct {
 func (o *PostAuthLinkForbidden) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}/auth_link][%d] postAuthLinkForbidden  %+v", 403, o.Payload)
 }
-
 func (o *PostAuthLinkForbidden) GetPayload() *models.ForbiddenAccessError {
 	return o.Payload
 }
@@ -164,7 +161,7 @@ func NewPostAuthLinkNotFound() *PostAuthLinkNotFound {
 	return &PostAuthLinkNotFound{}
 }
 
-/*PostAuthLinkNotFound handles this case with default header values.
+/* PostAuthLinkNotFound describes a response with status code 404, with default header values.
 
 Returns error indicating that server can't find requested resource.
 */
@@ -175,7 +172,6 @@ type PostAuthLinkNotFound struct {
 func (o *PostAuthLinkNotFound) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}/auth_link][%d] postAuthLinkNotFound  %+v", 404, o.Payload)
 }
-
 func (o *PostAuthLinkNotFound) GetPayload() *models.NotFoundError {
 	return o.Payload
 }
@@ -197,7 +193,7 @@ func NewPostAuthLinkInternalServerError() *PostAuthLinkInternalServerError {
 	return &PostAuthLinkInternalServerError{}
 }
 
-/*PostAuthLinkInternalServerError handles this case with default header values.
+/* PostAuthLinkInternalServerError describes a response with status code 500, with default header values.
 
 Returns error response code indicates that the server encountered an unexpected condition that prevented it from fulfilling the request.
 */
@@ -208,7 +204,6 @@ type PostAuthLinkInternalServerError struct {
 func (o *PostAuthLinkInternalServerError) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}/auth_link][%d] postAuthLinkInternalServerError  %+v", 500, o.Payload)
 }
-
 func (o *PostAuthLinkInternalServerError) GetPayload() *models.InternalServerError {
 	return o.Payload
 }
@@ -236,6 +231,11 @@ type PostAuthLinkBody struct {
 
 // Validate validates this post auth link body
 func (o *PostAuthLinkBody) Validate(formats strfmt.Registry) error {
+	return nil
+}
+
+// ContextValidate validates this post auth link body based on context it is used
+func (o *PostAuthLinkBody) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

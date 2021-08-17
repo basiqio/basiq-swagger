@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
@@ -16,14 +18,21 @@ import (
 type TransactionsGroup struct {
 
 	// Group Code
+	// Example: 451
 	Code string `json:"code,omitempty"`
 
 	// Group Details
+	// Example: Cafes, Restaurants and Takeaway Food Services
 	Title string `json:"title,omitempty"`
 }
 
 // Validate validates this transactions group
 func (m *TransactionsGroup) Validate(formats strfmt.Registry) error {
+	return nil
+}
+
+// ContextValidate validates this transactions group based on context it is used
+func (m *TransactionsGroup) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

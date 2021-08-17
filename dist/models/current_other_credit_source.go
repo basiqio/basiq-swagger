@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -18,14 +20,17 @@ import (
 type CurrentOtherCreditSource struct {
 
 	// Most recent irregular income payment amount
+	// Example: 92.99
 	// Required: true
 	Amount *string `json:"amount"`
 
 	// Most recent irregular income payment date
+	// Example: 2019-10-29T00:00:00
 	// Required: true
 	Date *string `json:"date"`
 
 	// Description of the other credit series e.g. 'former regular income'
+	// Example: regular income small amount
 	// Required: true
 	OtherCreditLabel *string `json:"otherCreditLabel"`
 }
@@ -76,6 +81,11 @@ func (m *CurrentOtherCreditSource) validateOtherCreditLabel(formats strfmt.Regis
 		return err
 	}
 
+	return nil
+}
+
+// ContextValidate validates this current other credit source based on context it is used
+func (m *CurrentOtherCreditSource) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

@@ -16,64 +16,79 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewGetAffordabilityParams creates a new GetAffordabilityParams object
-// with the default values initialized.
+// NewGetAffordabilityParams creates a new GetAffordabilityParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewGetAffordabilityParams() *GetAffordabilityParams {
-	var ()
 	return &GetAffordabilityParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewGetAffordabilityParamsWithTimeout creates a new GetAffordabilityParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewGetAffordabilityParamsWithTimeout(timeout time.Duration) *GetAffordabilityParams {
-	var ()
 	return &GetAffordabilityParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewGetAffordabilityParamsWithContext creates a new GetAffordabilityParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewGetAffordabilityParamsWithContext(ctx context.Context) *GetAffordabilityParams {
-	var ()
 	return &GetAffordabilityParams{
-
 		Context: ctx,
 	}
 }
 
 // NewGetAffordabilityParamsWithHTTPClient creates a new GetAffordabilityParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewGetAffordabilityParamsWithHTTPClient(client *http.Client) *GetAffordabilityParams {
-	var ()
 	return &GetAffordabilityParams{
 		HTTPClient: client,
 	}
 }
 
-/*GetAffordabilityParams contains all the parameters to send to the API endpoint
-for the get affordability operation typically these are written to a http.Request
+/* GetAffordabilityParams contains all the parameters to send to the API endpoint
+   for the get affordability operation.
+
+   Typically these are written to a http.Request.
 */
 type GetAffordabilityParams struct {
 
-	/*SnapshotID
-	  The identifier of the affordability report to be retrieved.
+	/* SnapshotID.
 
+	   The identifier of the affordability report to be retrieved.
 	*/
 	SnapshotID string
-	/*UserID
-	  The identifier of the user.
 
+	/* UserID.
+
+	   The identifier of the user.
 	*/
 	UserID string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the get affordability params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetAffordabilityParams) WithDefaults() *GetAffordabilityParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the get affordability params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetAffordabilityParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the get affordability params

@@ -3,13 +3,14 @@ package jobs
 import (
 	"context"
 	"encoding/json"
+	"strings"
+	"testing"
+
 	"github.com/basiqio/basiq-swagger/dist/client/connections"
 	"github.com/basiqio/basiq-swagger/dist/client/jobs"
 	"github.com/basiqio/basiq-swagger/dist/models"
 	"github.com/basiqio/basiq-swagger/test"
 	httptransport "github.com/go-openapi/runtime/client"
-	"strings"
-	"testing"
 )
 
 func TestGetJob(t *testing.T) {
@@ -65,7 +66,9 @@ func TestGetJobs(t *testing.T) {
 		t.Fatalf("Error getting user jobs: %v", err)
 	}
 
-	e, err := json.Marshal(jobsRsp.GetPayload())
+	jobsPayload := jobsRsp.GetPayload()
+
+	e, err := json.Marshal(jobsPayload)
 	if err != nil {
 		t.Fatalf("Error: %v", err)
 	}
@@ -73,8 +76,9 @@ func TestGetJobs(t *testing.T) {
 	s := test.GetJsonResponse("./responses/getJobs.json", t)
 	s = strings.Replace(s, "5b3532e0-23c7-48cb-b7a4-ff37f46c3eb1", userID, 5)
 	s = strings.Replace(s, "a826e470-83d5-482a-b19f-bb44985c14bb", *connectionPostRsp.GetPayload().ID, 2)
-	s = strings.Replace(s, "2020-09-21T11:19:11Z", *jobsRsp.GetPayload().Data[0].Created, 1)
-	s = strings.Replace(s, "2020-09-21T11:19:11Z", *jobsRsp.GetPayload().Data[0].Updated, 1)
-	s = strings.Replace(s, "{source}", jobsRsp.GetPayload().Data[0].Links.Source, 1)
+	s = strings.Replace(s, "2020-09-21T11:19:11Z", *jobsPayload.Data[0].Created, 1)
+	s = strings.Replace(s, "2020-09-21T11:19:11Z", *jobsPayload.Data[0].Updated, 1)
+	s = strings.Replace(s, "{source}", jobsPayload.Data[0].Links.Source, 1)
+	s = strings.Replace(s, "{url}", jobsPayload.Data[0].Steps[0].Result.URL, 1)
 	test.AssertJson(t, s, string(e))
 }

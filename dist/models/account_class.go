@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -21,10 +23,12 @@ type AccountClass struct {
 	Meta Meta `json:"meta,omitempty"`
 
 	// Product name.
+	// Example: saver
 	// Required: true
 	Product *string `json:"product"`
 
 	// Account type
+	// Example: savings
 	// Required: true
 	Type *string `json:"type"`
 }
@@ -52,16 +56,17 @@ func (m *AccountClass) Validate(formats strfmt.Registry) error {
 }
 
 func (m *AccountClass) validateMeta(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Meta) { // not required
 		return nil
 	}
 
-	if err := m.Meta.Validate(formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("meta")
+	if m.Meta != nil {
+		if err := m.Meta.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("meta")
+			}
+			return err
 		}
-		return err
 	}
 
 	return nil
@@ -79,6 +84,32 @@ func (m *AccountClass) validateProduct(formats strfmt.Registry) error {
 func (m *AccountClass) validateType(formats strfmt.Registry) error {
 
 	if err := validate.Required("type", "body", m.Type); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// ContextValidate validate this account class based on the context it is used
+func (m *AccountClass) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateMeta(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *AccountClass) contextValidateMeta(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := m.Meta.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("meta")
+		}
 		return err
 	}
 

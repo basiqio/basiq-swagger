@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -18,10 +20,12 @@ import (
 type AccountTransactionInterval struct {
 
 	// Date of first transaction on this account
+	// Example: 2018-07-01
 	// Required: true
 	From *string `json:"from"`
 
 	// Date of last transaction on this account
+	// Example: 2018-12-30
 	// Required: true
 	To *string `json:"to"`
 }
@@ -59,6 +63,11 @@ func (m *AccountTransactionInterval) validateTo(formats strfmt.Registry) error {
 		return err
 	}
 
+	return nil
+}
+
+// ContextValidate validates this account transaction interval based on context it is used
+func (m *AccountTransactionInterval) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

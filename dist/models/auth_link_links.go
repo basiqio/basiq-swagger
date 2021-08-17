@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -18,10 +20,12 @@ import (
 type AuthLinkLinks struct {
 
 	// Public URL of auth link.
+	// Example: https://connect.basiq.io/63448be4
 	// Required: true
 	Public *string `json:"public"`
 
 	// URL of the resource
+	// Example: /users/ec4ea48d/auth_link
 	// Required: true
 	Self *string `json:"self"`
 }
@@ -59,6 +63,11 @@ func (m *AuthLinkLinks) validateSelf(formats strfmt.Registry) error {
 		return err
 	}
 
+	return nil
+}
+
+// ContextValidate validates this auth link links based on context it is used
+func (m *AuthLinkLinks) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

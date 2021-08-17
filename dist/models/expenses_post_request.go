@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
@@ -16,17 +18,25 @@ import (
 type ExpensesPostRequest struct {
 
 	// The list of accounts to be included in the expenses otherwise all the user accounts will be included in the report
+	// Example: ["s55bf3","s55bf4"]
 	Accounts []string `json:"accounts"`
 
 	// The first/start month to be included in the expense output e.g. "fromMonth":"2019-05". Resulting expenses resource will be based on data between fromMonth and toMonth.
+	// Example: 2019-05
 	FromMonth string `json:"fromMonth,omitempty"`
 
 	// The last/end month to be included in the expense output e.g. "toMonth":"2019-09". Resulting expenses resource will be based on data between fromMonth and toMonth.
+	// Example: 2019-09
 	ToMonth string `json:"toMonth,omitempty"`
 }
 
 // Validate validates this expenses post request
 func (m *ExpensesPostRequest) Validate(formats strfmt.Registry) error {
+	return nil
+}
+
+// ContextValidate validates this expenses post request based on context it is used
+func (m *ExpensesPostRequest) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

@@ -59,9 +59,8 @@ func (o *GetTransactionReader) ReadResponse(response runtime.ClientResponse, con
 			return nil, err
 		}
 		return nil, result
-
 	default:
-		return nil, runtime.NewAPIError("unknown error", response, response.Code())
+		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
 }
 
@@ -70,7 +69,7 @@ func NewGetTransactionOK() *GetTransactionOK {
 	return &GetTransactionOK{}
 }
 
-/*GetTransactionOK handles this case with default header values.
+/* GetTransactionOK describes a response with status code 200, with default header values.
 
 Returns a transaction if a valid transaction ID was provided.
 */
@@ -81,7 +80,6 @@ type GetTransactionOK struct {
 func (o *GetTransactionOK) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/transactions/{transactionId}][%d] getTransactionOK  %+v", 200, o.Payload)
 }
-
 func (o *GetTransactionOK) GetPayload() *models.TransactionData {
 	return o.Payload
 }
@@ -103,7 +101,7 @@ func NewGetTransactionBadRequest() *GetTransactionBadRequest {
 	return &GetTransactionBadRequest{}
 }
 
-/*GetTransactionBadRequest handles this case with default header values.
+/* GetTransactionBadRequest describes a response with status code 400, with default header values.
 
 Returns error that server cannot or will not process the request due to something that is perceived to be a client error.
 */
@@ -114,7 +112,6 @@ type GetTransactionBadRequest struct {
 func (o *GetTransactionBadRequest) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/transactions/{transactionId}][%d] getTransactionBadRequest  %+v", 400, o.Payload)
 }
-
 func (o *GetTransactionBadRequest) GetPayload() *models.BadRequestError {
 	return o.Payload
 }
@@ -136,7 +133,7 @@ func NewGetTransactionForbidden() *GetTransactionForbidden {
 	return &GetTransactionForbidden{}
 }
 
-/*GetTransactionForbidden handles this case with default header values.
+/* GetTransactionForbidden describes a response with status code 403, with default header values.
 
 Error that access is forbidden and tied to the application logic, such as insufficient rights to a resource.
 */
@@ -147,7 +144,6 @@ type GetTransactionForbidden struct {
 func (o *GetTransactionForbidden) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/transactions/{transactionId}][%d] getTransactionForbidden  %+v", 403, o.Payload)
 }
-
 func (o *GetTransactionForbidden) GetPayload() *models.ForbiddenAccessError {
 	return o.Payload
 }
@@ -169,7 +165,7 @@ func NewGetTransactionNotFound() *GetTransactionNotFound {
 	return &GetTransactionNotFound{}
 }
 
-/*GetTransactionNotFound handles this case with default header values.
+/* GetTransactionNotFound describes a response with status code 404, with default header values.
 
 Returns error indicating that server can't find requested resource.
 */
@@ -180,7 +176,6 @@ type GetTransactionNotFound struct {
 func (o *GetTransactionNotFound) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/transactions/{transactionId}][%d] getTransactionNotFound  %+v", 404, o.Payload)
 }
-
 func (o *GetTransactionNotFound) GetPayload() *models.NotFoundError {
 	return o.Payload
 }
@@ -202,7 +197,7 @@ func NewGetTransactionInternalServerError() *GetTransactionInternalServerError {
 	return &GetTransactionInternalServerError{}
 }
 
-/*GetTransactionInternalServerError handles this case with default header values.
+/* GetTransactionInternalServerError describes a response with status code 500, with default header values.
 
 Returns error response code indicates that the server encountered an unexpected condition that prevented it from fulfilling the request.
 */
@@ -213,7 +208,6 @@ type GetTransactionInternalServerError struct {
 func (o *GetTransactionInternalServerError) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/transactions/{transactionId}][%d] getTransactionInternalServerError  %+v", 500, o.Payload)
 }
-
 func (o *GetTransactionInternalServerError) GetPayload() *models.InternalServerError {
 	return o.Payload
 }
@@ -235,7 +229,7 @@ func NewGetTransactionServiceUnavailable() *GetTransactionServiceUnavailable {
 	return &GetTransactionServiceUnavailable{}
 }
 
-/*GetTransactionServiceUnavailable handles this case with default header values.
+/* GetTransactionServiceUnavailable describes a response with status code 503, with default header values.
 
 Returns error response code indicates that the server is not ready to handle the request.
 */
@@ -246,7 +240,6 @@ type GetTransactionServiceUnavailable struct {
 func (o *GetTransactionServiceUnavailable) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/transactions/{transactionId}][%d] getTransactionServiceUnavailable  %+v", 503, o.Payload)
 }
-
 func (o *GetTransactionServiceUnavailable) GetPayload() *models.StatusServiceUnavailableError {
 	return o.Payload
 }

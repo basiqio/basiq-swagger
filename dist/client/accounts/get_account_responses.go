@@ -53,9 +53,8 @@ func (o *GetAccountReader) ReadResponse(response runtime.ClientResponse, consume
 			return nil, err
 		}
 		return nil, result
-
 	default:
-		return nil, runtime.NewAPIError("unknown error", response, response.Code())
+		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
 }
 
@@ -64,7 +63,7 @@ func NewGetAccountOK() *GetAccountOK {
 	return &GetAccountOK{}
 }
 
-/*GetAccountOK handles this case with default header values.
+/* GetAccountOK describes a response with status code 200, with default header values.
 
 Returns a account with details.
 */
@@ -75,7 +74,6 @@ type GetAccountOK struct {
 func (o *GetAccountOK) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/accounts/{accountId}][%d] getAccountOK  %+v", 200, o.Payload)
 }
-
 func (o *GetAccountOK) GetPayload() *models.AccountResponseResource {
 	return o.Payload
 }
@@ -97,7 +95,7 @@ func NewGetAccountBadRequest() *GetAccountBadRequest {
 	return &GetAccountBadRequest{}
 }
 
-/*GetAccountBadRequest handles this case with default header values.
+/* GetAccountBadRequest describes a response with status code 400, with default header values.
 
 Returns error that server cannot or will not process the request due to something that is perceived to be a client error
 */
@@ -108,7 +106,6 @@ type GetAccountBadRequest struct {
 func (o *GetAccountBadRequest) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/accounts/{accountId}][%d] getAccountBadRequest  %+v", 400, o.Payload)
 }
-
 func (o *GetAccountBadRequest) GetPayload() *models.BadRequestError {
 	return o.Payload
 }
@@ -130,7 +127,7 @@ func NewGetAccountForbidden() *GetAccountForbidden {
 	return &GetAccountForbidden{}
 }
 
-/*GetAccountForbidden handles this case with default header values.
+/* GetAccountForbidden describes a response with status code 403, with default header values.
 
 Error that access is forbidden and tied to the application logic, such as insufficient rights to a resource.
 */
@@ -141,7 +138,6 @@ type GetAccountForbidden struct {
 func (o *GetAccountForbidden) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/accounts/{accountId}][%d] getAccountForbidden  %+v", 403, o.Payload)
 }
-
 func (o *GetAccountForbidden) GetPayload() *models.ForbiddenAccessError {
 	return o.Payload
 }
@@ -163,7 +159,7 @@ func NewGetAccountNotFound() *GetAccountNotFound {
 	return &GetAccountNotFound{}
 }
 
-/*GetAccountNotFound handles this case with default header values.
+/* GetAccountNotFound describes a response with status code 404, with default header values.
 
 Returns error indicating that server can't find requested resource.
 */
@@ -174,7 +170,6 @@ type GetAccountNotFound struct {
 func (o *GetAccountNotFound) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/accounts/{accountId}][%d] getAccountNotFound  %+v", 404, o.Payload)
 }
-
 func (o *GetAccountNotFound) GetPayload() *models.NotFoundError {
 	return o.Payload
 }
@@ -196,7 +191,7 @@ func NewGetAccountInternalServerError() *GetAccountInternalServerError {
 	return &GetAccountInternalServerError{}
 }
 
-/*GetAccountInternalServerError handles this case with default header values.
+/* GetAccountInternalServerError describes a response with status code 500, with default header values.
 
 Returns error response code indicates that the server encountered an unexpected condition that prevented it from fulfilling the request.
 */
@@ -207,7 +202,6 @@ type GetAccountInternalServerError struct {
 func (o *GetAccountInternalServerError) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/accounts/{accountId}][%d] getAccountInternalServerError  %+v", 500, o.Payload)
 }
-
 func (o *GetAccountInternalServerError) GetPayload() *models.InternalServerError {
 	return o.Payload
 }

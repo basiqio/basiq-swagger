@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
@@ -16,17 +18,25 @@ import (
 type IncomePostRequest struct {
 
 	// The list of accounts to be included in the income otherwise all the user accounts will be included in the report
+	// Example: ["s55bf3","s55bf4"]
 	Accounts []string `json:"accounts"`
 
 	// The first/start month to be included in the affordability output e.g. "fromMonth":"2019-05". Resulting income resource will be based on data between fromMonth and toMonth
+	// Example: 2019-05
 	FromMonth string `json:"fromMonth,omitempty"`
 
 	// The first/start month to be included in the affordability output e.g. "fromMonth":"2019-05". Resulting income resource will be based on data between fromMonth and toMonth
+	// Example: 2019-09
 	ToMonth string `json:"toMonth,omitempty"`
 }
 
 // Validate validates this income post request
 func (m *IncomePostRequest) Validate(formats strfmt.Registry) error {
+	return nil
+}
+
+// ContextValidate validates this income post request based on context it is used
+func (m *IncomePostRequest) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

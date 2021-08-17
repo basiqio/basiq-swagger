@@ -16,59 +16,73 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewGetInstitutionParams creates a new GetInstitutionParams object
-// with the default values initialized.
+// NewGetInstitutionParams creates a new GetInstitutionParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewGetInstitutionParams() *GetInstitutionParams {
-	var ()
 	return &GetInstitutionParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewGetInstitutionParamsWithTimeout creates a new GetInstitutionParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewGetInstitutionParamsWithTimeout(timeout time.Duration) *GetInstitutionParams {
-	var ()
 	return &GetInstitutionParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewGetInstitutionParamsWithContext creates a new GetInstitutionParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewGetInstitutionParamsWithContext(ctx context.Context) *GetInstitutionParams {
-	var ()
 	return &GetInstitutionParams{
-
 		Context: ctx,
 	}
 }
 
 // NewGetInstitutionParamsWithHTTPClient creates a new GetInstitutionParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewGetInstitutionParamsWithHTTPClient(client *http.Client) *GetInstitutionParams {
-	var ()
 	return &GetInstitutionParams{
 		HTTPClient: client,
 	}
 }
 
-/*GetInstitutionParams contains all the parameters to send to the API endpoint
-for the get institution operation typically these are written to a http.Request
+/* GetInstitutionParams contains all the parameters to send to the API endpoint
+   for the get institution operation.
+
+   Typically these are written to a http.Request.
 */
 type GetInstitutionParams struct {
 
-	/*InstitutionID
-	  Institution ID
+	/* InstitutionID.
 
+	   Institution ID
 	*/
 	InstitutionID string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the get institution params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetInstitutionParams) WithDefaults() *GetInstitutionParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the get institution params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetInstitutionParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the get institution params

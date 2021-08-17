@@ -6,6 +6,7 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"encoding/json"
 
 	"github.com/go-openapi/errors"
@@ -20,20 +21,24 @@ import (
 type ChangeHistoryAffordabilityData struct {
 
 	// Amount loan-interest or loan-repayment
+	// Example: 5768.00
 	// Required: true
 	Amount *string `json:"amount"`
 
 	// Date
+	// Example: 2019-03-31
 	// Required: true
 	// Format: date
 	Date *strfmt.Date `json:"date"`
 
 	// Debit or Credit
+	// Example: credit
 	// Required: true
 	// Enum: [debit credit]
 	Direction *string `json:"direction"`
 
 	// Cleaned transaction description
+	// Example: Transfer Platnm Homeloan 346454
 	// Required: true
 	Source *string `json:"source"`
 }
@@ -109,7 +114,7 @@ const (
 
 // prop value enum
 func (m *ChangeHistoryAffordabilityData) validateDirectionEnum(path, location string, value string) error {
-	if err := validate.Enum(path, location, value, changeHistoryAffordabilityDataTypeDirectionPropEnum); err != nil {
+	if err := validate.EnumCase(path, location, value, changeHistoryAffordabilityDataTypeDirectionPropEnum, true); err != nil {
 		return err
 	}
 	return nil
@@ -135,6 +140,11 @@ func (m *ChangeHistoryAffordabilityData) validateSource(formats strfmt.Registry)
 		return err
 	}
 
+	return nil
+}
+
+// ContextValidate validates this change history affordability data based on context it is used
+func (m *ChangeHistoryAffordabilityData) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

@@ -6,6 +6,7 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"strconv"
 
 	"github.com/go-openapi/errors"
@@ -22,6 +23,7 @@ import (
 type TransactionsGetResource struct {
 
 	// Count of the transactions in the response.
+	// Example: 100
 	// Required: true
 	Count *int64 `json:"count"`
 
@@ -33,10 +35,12 @@ type TransactionsGetResource struct {
 	Links *TransactionsGetLinks `json:"links,omitempty"`
 
 	// size
+	// Example: 500
 	// Required: true
 	Size *int64 `json:"size"`
 
 	// Value is "list".
+	// Example: list
 	// Required: true
 	Type *string `json:"type"`
 }
@@ -106,7 +110,6 @@ func (m *TransactionsGetResource) validateData(formats strfmt.Registry) error {
 }
 
 func (m *TransactionsGetResource) validateLinks(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Links) { // not required
 		return nil
 	}
@@ -136,6 +139,56 @@ func (m *TransactionsGetResource) validateType(formats strfmt.Registry) error {
 
 	if err := validate.Required("type", "body", m.Type); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+// ContextValidate validate this transactions get resource based on the context it is used
+func (m *TransactionsGetResource) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateData(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateLinks(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *TransactionsGetResource) contextValidateData(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Data); i++ {
+
+		if m.Data[i] != nil {
+			if err := m.Data[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("data" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *TransactionsGetResource) contextValidateLinks(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Links != nil {
+		if err := m.Links.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("links")
+			}
+			return err
+		}
 	}
 
 	return nil

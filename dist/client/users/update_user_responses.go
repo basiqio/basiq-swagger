@@ -53,9 +53,8 @@ func (o *UpdateUserReader) ReadResponse(response runtime.ClientResponse, consume
 			return nil, err
 		}
 		return nil, result
-
 	default:
-		return nil, runtime.NewAPIError("unknown error", response, response.Code())
+		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
 }
 
@@ -64,7 +63,7 @@ func NewUpdateUserOK() *UpdateUserOK {
 	return &UpdateUserOK{}
 }
 
-/*UpdateUserOK handles this case with default header values.
+/* UpdateUserOK describes a response with status code 200, with default header values.
 
 Returns the user object if the update succeeded.
 */
@@ -75,7 +74,6 @@ type UpdateUserOK struct {
 func (o *UpdateUserOK) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}][%d] updateUserOK  %+v", 200, o.Payload)
 }
-
 func (o *UpdateUserOK) GetPayload() *models.UserPostResponse {
 	return o.Payload
 }
@@ -97,7 +95,7 @@ func NewUpdateUserBadRequest() *UpdateUserBadRequest {
 	return &UpdateUserBadRequest{}
 }
 
-/*UpdateUserBadRequest handles this case with default header values.
+/* UpdateUserBadRequest describes a response with status code 400, with default header values.
 
 Returns error that server cannot or will not process the request due to something that is perceived to be a client error.
 */
@@ -108,7 +106,6 @@ type UpdateUserBadRequest struct {
 func (o *UpdateUserBadRequest) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}][%d] updateUserBadRequest  %+v", 400, o.Payload)
 }
-
 func (o *UpdateUserBadRequest) GetPayload() *models.BadRequestError {
 	return o.Payload
 }
@@ -130,7 +127,7 @@ func NewUpdateUserForbidden() *UpdateUserForbidden {
 	return &UpdateUserForbidden{}
 }
 
-/*UpdateUserForbidden handles this case with default header values.
+/* UpdateUserForbidden describes a response with status code 403, with default header values.
 
 Error that access is forbidden and tied to the application logic, such as insufficient rights to a resource.
 */
@@ -141,7 +138,6 @@ type UpdateUserForbidden struct {
 func (o *UpdateUserForbidden) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}][%d] updateUserForbidden  %+v", 403, o.Payload)
 }
-
 func (o *UpdateUserForbidden) GetPayload() *models.ForbiddenAccessError {
 	return o.Payload
 }
@@ -163,7 +159,7 @@ func NewUpdateUserNotFound() *UpdateUserNotFound {
 	return &UpdateUserNotFound{}
 }
 
-/*UpdateUserNotFound handles this case with default header values.
+/* UpdateUserNotFound describes a response with status code 404, with default header values.
 
 Returns error indicating that server can't find requested resource.
 */
@@ -174,7 +170,6 @@ type UpdateUserNotFound struct {
 func (o *UpdateUserNotFound) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}][%d] updateUserNotFound  %+v", 404, o.Payload)
 }
-
 func (o *UpdateUserNotFound) GetPayload() *models.NotFoundError {
 	return o.Payload
 }
@@ -196,7 +191,7 @@ func NewUpdateUserInternalServerError() *UpdateUserInternalServerError {
 	return &UpdateUserInternalServerError{}
 }
 
-/*UpdateUserInternalServerError handles this case with default header values.
+/* UpdateUserInternalServerError describes a response with status code 500, with default header values.
 
 Returns error response code indicates that the server encountered an unexpected condition that prevented it from fulfilling the request.
 */
@@ -207,7 +202,6 @@ type UpdateUserInternalServerError struct {
 func (o *UpdateUserInternalServerError) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}][%d] updateUserInternalServerError  %+v", 500, o.Payload)
 }
-
 func (o *UpdateUserInternalServerError) GetPayload() *models.InternalServerError {
 	return o.Payload
 }

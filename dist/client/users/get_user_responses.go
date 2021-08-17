@@ -59,9 +59,8 @@ func (o *GetUserReader) ReadResponse(response runtime.ClientResponse, consumer r
 			return nil, err
 		}
 		return nil, result
-
 	default:
-		return nil, runtime.NewAPIError("unknown error", response, response.Code())
+		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
 }
 
@@ -70,7 +69,7 @@ func NewGetUserOK() *GetUserOK {
 	return &GetUserOK{}
 }
 
-/*GetUserOK handles this case with default header values.
+/* GetUserOK describes a response with status code 200, with default header values.
 
 Returns a user if a valid user ID was provided.
 */
@@ -81,7 +80,6 @@ type GetUserOK struct {
 func (o *GetUserOK) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}][%d] getUserOK  %+v", 200, o.Payload)
 }
-
 func (o *GetUserOK) GetPayload() *models.UserGetResponse {
 	return o.Payload
 }
@@ -103,7 +101,7 @@ func NewGetUserBadRequest() *GetUserBadRequest {
 	return &GetUserBadRequest{}
 }
 
-/*GetUserBadRequest handles this case with default header values.
+/* GetUserBadRequest describes a response with status code 400, with default header values.
 
 Returns error that server cannot or will not process the request due to something that is perceived to be a client error.
 */
@@ -114,7 +112,6 @@ type GetUserBadRequest struct {
 func (o *GetUserBadRequest) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}][%d] getUserBadRequest  %+v", 400, o.Payload)
 }
-
 func (o *GetUserBadRequest) GetPayload() *models.BadRequestError {
 	return o.Payload
 }
@@ -136,7 +133,7 @@ func NewGetUserUnauthorized() *GetUserUnauthorized {
 	return &GetUserUnauthorized{}
 }
 
-/*GetUserUnauthorized handles this case with default header values.
+/* GetUserUnauthorized describes a response with status code 401, with default header values.
 
 Error status response code indicates that the request has not been applied because it lacks valid authentication credentials for the target resource.
 */
@@ -147,7 +144,6 @@ type GetUserUnauthorized struct {
 func (o *GetUserUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}][%d] getUserUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *GetUserUnauthorized) GetPayload() *models.UnauthorizedError {
 	return o.Payload
 }
@@ -169,7 +165,7 @@ func NewGetUserForbidden() *GetUserForbidden {
 	return &GetUserForbidden{}
 }
 
-/*GetUserForbidden handles this case with default header values.
+/* GetUserForbidden describes a response with status code 403, with default header values.
 
 Error that access is forbidden and tied to the application logic, such as insufficient rights to a resource.
 */
@@ -180,7 +176,6 @@ type GetUserForbidden struct {
 func (o *GetUserForbidden) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}][%d] getUserForbidden  %+v", 403, o.Payload)
 }
-
 func (o *GetUserForbidden) GetPayload() *models.ForbiddenAccessError {
 	return o.Payload
 }
@@ -202,7 +197,7 @@ func NewGetUserNotFound() *GetUserNotFound {
 	return &GetUserNotFound{}
 }
 
-/*GetUserNotFound handles this case with default header values.
+/* GetUserNotFound describes a response with status code 404, with default header values.
 
 Returns error indicating that server can't find requested resource.
 */
@@ -213,7 +208,6 @@ type GetUserNotFound struct {
 func (o *GetUserNotFound) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}][%d] getUserNotFound  %+v", 404, o.Payload)
 }
-
 func (o *GetUserNotFound) GetPayload() *models.NotFoundError {
 	return o.Payload
 }
@@ -235,7 +229,7 @@ func NewGetUserInternalServerError() *GetUserInternalServerError {
 	return &GetUserInternalServerError{}
 }
 
-/*GetUserInternalServerError handles this case with default header values.
+/* GetUserInternalServerError describes a response with status code 500, with default header values.
 
 Returns error response code indicates that the server encountered an unexpected condition that prevented it from fulfilling the request.
 */
@@ -246,7 +240,6 @@ type GetUserInternalServerError struct {
 func (o *GetUserInternalServerError) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}][%d] getUserInternalServerError  %+v", 500, o.Payload)
 }
-
 func (o *GetUserInternalServerError) GetPayload() *models.InternalServerError {
 	return o.Payload
 }

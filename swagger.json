@@ -2153,7 +2153,7 @@
         "parameters": [
           {
             "type": "string",
-            "description": "Filter parameter can be used to filter institution list by institution property. This parameter should contain comma separated list of filter statements.</br>\nFilter statement is composed from entity name (in this case it is always `institution`), property name (e.g. `stage`), filter operator (e.g. `eq`) and quoted string value in parentasis (e.g. `('live')`). </br>\nThe Following list of regular expressions descirbes acceptable filter statements: </br>\n• `institution\\.country\\.(eq|ne)\\(('Australia'|'New Zealand')\\)` </br>\n• `institution\\.country\\.in\\(([\\w\\W]+)\\)` </br>\n• `institution\\.tier\\.(eq|ne)\\(('1'|'2'|'3'|'4')\\)` </br>\n• `institution\\.tier\\.in\\('[1-4]'(,'[1-4]')*\\)` </br>\n• `institution\\.authorization\\.(eq|ne)\\(('user'|'other')\\)` </br>\n• `institution\\.serviceType\\.(eq|ne)\\(('Personal Banking'|'Business Banking'|'Card Access'|'Test')\\)` </br>\n• `institution\\.institutionType\\.(eq|ne)\\(('Bank'|'Bank \\(Foreign\\)'|'Test Bank'|'Credit Union'|'Financial Services'|'Superannuation')\\)` </br>\n• `institution\\.stage\\.(eq|ne)\\(('live'|'beta'|'alpha')\\)` </br>\nMultiple filter definitions should be separated with comma (`,`). </br>\nFor example, this is filter statement will keep only live tier 1 and tier 2 institutions: `filter=institution.stage.eq('live'),institution.tier.in('1','2')` </br>",
+            "description": "Filter parameter can be used to filter institution list by institution property. This parameter should contain comma separated list of filter statements.</br>\nFilter statement is composed from entity name (in this case it is always `institution`), property name (e.g. `stage`), filter operator (e.g. `eq`) and quoted string value in parentasis (e.g. `('live')`). </br>\nThe Following list of regular expressions descirbes acceptable filter statements: </br>\n• `institution\\.country\\.(eq|ne)\\(('Australia'|'New Zealand')\\)` </br>\n• `institution\\.country\\.in\\(([\\w\\W]+)\\)` </br>\n• `institution\\.tier\\.(eq|ne)\\(('1'|'2'|'3'|'4')\\)` </br>\n• `institution\\.tier\\.in\\('[1-4]'(,'[1-4]')*\\)` </br>\n• `institution\\.authorization\\.(eq|ne)\\(('user'|'other'|'token'|'user-mfa-intermittent'|'user-mfa')\\)` </br>\n• `institution\\.authorization\\.in\\(([\\w-', ]+)\\)` </br>\n• `institution\\.serviceType\\.(eq|ne)\\(('Personal Banking'|'Business Banking'|'Card Access'|'Test')\\)` </br>\n• `institution\\.institutionType\\.(eq|ne)\\(('Bank'|'Bank \\(Foreign\\)'|'Test Bank'|'Credit Union'|'Financial Services'|'Superannuation')\\)` </br>\n• `institution\\.stage\\.(eq|ne)\\(('live'|'beta'|'alpha')\\)` </br>\nMultiple filter definitions should be separated with comma (`,`). </br>\nFor example, this is filter statement will keep only live tier 1 and tier 2 institutions: `filter=institution.stage.eq('live'),institution.tier.in('1','2')` </br>",
             "name": "filter",
             "in": "query"
           }
@@ -2262,7 +2262,7 @@
         "parameters": [
           {
             "type": "string",
-            "description": "Filter parameter can be used to filter institution list by institution property. This parameter should contain comma separated list of filter statements.</br>\nFilter statement is composed from entity name (in this case it is always `institution`), property name (e.g. `stage`), filter operator (e.g. `eq`) and quoted string value in parentasis (e.g. `('live')`). </br>\nThe Following list of regular expressions descirbes acceptable filter statements: </br>\n• `institution\\.country\\.(eq|ne)\\(('Australia'|'New Zealand')\\)` </br>\n• `institution\\.country\\.in\\(([\\w\\W]+)\\)` </br>\n• `institution\\.tier\\.(eq|ne)\\(('1'|'2'|'3'|'4')\\)` </br>\n• `institution\\.tier\\.in\\('[1-4]'(,'[1-4]')*\\)` </br>\n• `institution\\.authorization\\.(eq|ne)\\(('user'|'other')\\)` </br>\n• `institution\\.serviceType\\.(eq|ne)\\(('Personal Banking'|'Business Banking'|'Card Access'|'Test')\\)` </br>\n• `institution\\.institutionType\\.(eq|ne)\\(('Bank'|'Bank \\(Foreign\\)'|'Test Bank'|'Credit Union'|'Financial Services'|'Superannuation')\\)` </br>\n• `institution\\.stage\\.(eq|ne)\\(('live'|'beta'|'alpha')\\)` </br>\nMultiple filter definitions should be separated with comma (`,`). </br>\nFor example, this is filter statement will keep only live tier 1 and tier 2 institutions: `filter=institution.stage.eq('live'),institution.tier.in('1','2')` </br>",
+            "description": "Filter parameter can be used to filter institution list by institution property. This parameter should contain comma separated list of filter statements.</br>\nFilter statement is composed from entity name (in this case it is always `institution`), property name (e.g. `stage`), filter operator (e.g. `eq`) and quoted string value in parentasis (e.g. `('live')`). </br>\nThe Following list of regular expressions descirbes acceptable filter statements: </br>\n• `institution\\.country\\.(eq|ne)\\(('Australia'|'New Zealand')\\)` </br>\n• `institution\\.country\\.in\\(([\\w\\W]+)\\)` </br>\n• `institution\\.tier\\.(eq|ne)\\(('1'|'2'|'3'|'4')\\)` </br>\n• `institution\\.tier\\.in\\('[1-4]'(,'[1-4]')*\\)` </br>\n• `institution\\.authorization\\.(eq|ne)\\(('user'|'other'|'token'|'user-mfa-intermittent'|'user-mfa')\\)` </br>\n• `institution\\.authorization\\.in\\(([\\w-', ]+)\\)` </br>\n• `institution\\.serviceType\\.(eq|ne)\\(('Personal Banking'|'Business Banking'|'Card Access'|'Test')\\)` </br>\n• `institution\\.institutionType\\.(eq|ne)\\(('Bank'|'Bank \\(Foreign\\)'|'Test Bank'|'Credit Union'|'Financial Services'|'Superannuation')\\)` </br>\n• `institution\\.stage\\.(eq|ne)\\(('live'|'beta'|'alpha')\\)` </br>\nMultiple filter definitions should be separated with comma (`,`). </br>\nFor example, this is filter statement will keep only live tier 1 and tier 2 institutions: `filter=institution.stage.eq('live'),institution.tier.in('1','2')` </br>",
             "name": "filter",
             "in": "query"
           }
@@ -6590,6 +6590,12 @@
             "web"
           ]
         },
+        "mfaChallenge": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SourceName"
+          }
+        },
         "profile": {
           "$ref": "#/definitions/ProfileFeatures"
         },
@@ -6610,8 +6616,6 @@
         "country",
         "serviceName",
         "serviceType",
-        "loginIdCaption",
-        "passwordCaption",
         "tier",
         "authorization",
         "features",
@@ -6627,7 +6631,10 @@
           "type": "string",
           "enum": [
             "user",
-            "other"
+            "token",
+            "other",
+            "user-mfa",
+            "user-mfa-intermittent"
           ],
           "example": "user"
         },
@@ -6725,8 +6732,8 @@
           "type": "string",
           "enum": [
             "live",
-            "alpha",
-            "beta"
+            "beta",
+            "alpha"
           ],
           "example": "live"
         },
@@ -6754,6 +6761,11 @@
             "institution"
           ],
           "example": "institution"
+        },
+        "userTokenCaption": {
+          "description": "User token caption that should be shown on UI",
+          "type": "string",
+          "example": "User token"
         }
       }
     },

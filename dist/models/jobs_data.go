@@ -6,6 +6,7 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"strconv"
 
 	"github.com/go-openapi/errors"
@@ -22,10 +23,12 @@ import (
 type JobsData struct {
 
 	// The date time when the job was created.
+	// Example: 2020-06-10T09:59:00Z
 	// Required: true
 	Created *string `json:"created"`
 
 	// A string that uniquely identifies the job.
+	// Example: e9132638
 	// Required: true
 	ID *string `json:"id"`
 
@@ -41,9 +44,11 @@ type JobsData struct {
 	Steps []*JobsStep `json:"steps"`
 
 	// Value is "job".
+	// Example: job
 	Type string `json:"type,omitempty"`
 
 	// The date time when the job was last updated.
+	// Example: 2020-06-10T09:59:00Z
 	// Required: true
 	Updated *string `json:"updated"`
 }
@@ -119,7 +124,6 @@ func (m *JobsData) validateInstitution(formats strfmt.Registry) error {
 }
 
 func (m *JobsData) validateLinks(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Links) { // not required
 		return nil
 	}
@@ -165,6 +169,74 @@ func (m *JobsData) validateUpdated(formats strfmt.Registry) error {
 
 	if err := validate.Required("updated", "body", m.Updated); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+// ContextValidate validate this jobs data based on the context it is used
+func (m *JobsData) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateInstitution(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateLinks(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateSteps(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *JobsData) contextValidateInstitution(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Institution != nil {
+		if err := m.Institution.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("institution")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *JobsData) contextValidateLinks(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Links != nil {
+		if err := m.Links.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("links")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *JobsData) contextValidateSteps(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Steps); i++ {
+
+		if m.Steps[i] != nil {
+			if err := m.Steps[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("steps" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
 	}
 
 	return nil

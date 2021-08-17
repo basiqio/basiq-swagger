@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -20,6 +22,7 @@ import (
 type JobsLinks struct {
 
 	// URL of the resource
+	// Example: /jobs/61723
 	// Required: true
 	Self *string `json:"self"`
 
@@ -47,6 +50,11 @@ func (m *JobsLinks) validateSelf(formats strfmt.Registry) error {
 		return err
 	}
 
+	return nil
+}
+
+// ContextValidate validates this jobs links based on context it is used
+func (m *JobsLinks) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

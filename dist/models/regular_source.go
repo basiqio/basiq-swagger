@@ -6,6 +6,7 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"encoding/json"
 	"strconv"
 
@@ -21,6 +22,7 @@ import (
 type RegularSource struct {
 
 	// Duration regular income (number days from first to last occurrence) returned as an integer with values zero or greater
+	// Example: 334
 	// Required: true
 	AgeDays *int64 `json:"ageDays"`
 
@@ -33,6 +35,7 @@ type RegularSource struct {
 	Current *CurrentRegularSource `json:"current"`
 
 	// Enum detailing frequency regular income
+	// Example: monthly
 	// Required: true
 	// Enum: [daily weekly bi-weekly monthly bi-monthly quarterly half-year yearly]
 	Frequency *string `json:"frequency"`
@@ -46,6 +49,7 @@ type RegularSource struct {
 	Previous3Months *Previous3MonthsIncome `json:"previous3Months"`
 
 	// Source regular income (cleaned transaction description).
+	// Example: payroll wfrms 15439393
 	// Required: true
 	Source *string `json:"source"`
 }
@@ -160,20 +164,20 @@ const (
 	// RegularSourceFrequencyWeekly captures enum value "weekly"
 	RegularSourceFrequencyWeekly string = "weekly"
 
-	// RegularSourceFrequencyBiWeekly captures enum value "bi-weekly"
-	RegularSourceFrequencyBiWeekly string = "bi-weekly"
+	// RegularSourceFrequencyBiDashWeekly captures enum value "bi-weekly"
+	RegularSourceFrequencyBiDashWeekly string = "bi-weekly"
 
 	// RegularSourceFrequencyMonthly captures enum value "monthly"
 	RegularSourceFrequencyMonthly string = "monthly"
 
-	// RegularSourceFrequencyBiMonthly captures enum value "bi-monthly"
-	RegularSourceFrequencyBiMonthly string = "bi-monthly"
+	// RegularSourceFrequencyBiDashMonthly captures enum value "bi-monthly"
+	RegularSourceFrequencyBiDashMonthly string = "bi-monthly"
 
 	// RegularSourceFrequencyQuarterly captures enum value "quarterly"
 	RegularSourceFrequencyQuarterly string = "quarterly"
 
-	// RegularSourceFrequencyHalfYear captures enum value "half-year"
-	RegularSourceFrequencyHalfYear string = "half-year"
+	// RegularSourceFrequencyHalfDashYear captures enum value "half-year"
+	RegularSourceFrequencyHalfDashYear string = "half-year"
 
 	// RegularSourceFrequencyYearly captures enum value "yearly"
 	RegularSourceFrequencyYearly string = "yearly"
@@ -181,7 +185,7 @@ const (
 
 // prop value enum
 func (m *RegularSource) validateFrequencyEnum(path, location string, value string) error {
-	if err := validate.Enum(path, location, value, regularSourceTypeFrequencyPropEnum); err != nil {
+	if err := validate.EnumCase(path, location, value, regularSourceTypeFrequencyPropEnum, true); err != nil {
 		return err
 	}
 	return nil
@@ -241,6 +245,92 @@ func (m *RegularSource) validateSource(formats strfmt.Registry) error {
 
 	if err := validate.Required("source", "body", m.Source); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+// ContextValidate validate this regular source based on the context it is used
+func (m *RegularSource) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateChangeHistory(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateCurrent(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateIrregularity(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidatePrevious3Months(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *RegularSource) contextValidateChangeHistory(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.ChangeHistory); i++ {
+
+		if m.ChangeHistory[i] != nil {
+			if err := m.ChangeHistory[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("changeHistory" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *RegularSource) contextValidateCurrent(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Current != nil {
+		if err := m.Current.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("current")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *RegularSource) contextValidateIrregularity(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Irregularity != nil {
+		if err := m.Irregularity.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("irregularity")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *RegularSource) contextValidatePrevious3Months(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Previous3Months != nil {
+		if err := m.Previous3Months.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("previous3Months")
+			}
+			return err
+		}
 	}
 
 	return nil

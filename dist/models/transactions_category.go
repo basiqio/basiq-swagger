@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -35,13 +37,40 @@ func (m *TransactionsCategory) Validate(formats strfmt.Registry) error {
 }
 
 func (m *TransactionsCategory) validateAnzsic(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Anzsic) { // not required
 		return nil
 	}
 
 	if m.Anzsic != nil {
 		if err := m.Anzsic.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("anzsic")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// ContextValidate validate this transactions category based on the context it is used
+func (m *TransactionsCategory) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateAnzsic(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *TransactionsCategory) contextValidateAnzsic(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Anzsic != nil {
+		if err := m.Anzsic.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("anzsic")
 			}

@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
@@ -16,14 +18,21 @@ import (
 type TransactionsPhoneNumber struct {
 
 	// International Phone Number
+	// Example: +61 2 9977 0707
 	International string `json:"international,omitempty"`
 
 	// Local Phone Number
+	// Example: (02) 9977 0707
 	Local string `json:"local,omitempty"`
 }
 
 // Validate validates this transactions phone number
 func (m *TransactionsPhoneNumber) Validate(formats strfmt.Registry) error {
+	return nil
+}
+
+// ContextValidate validates this transactions phone number based on context it is used
+func (m *TransactionsPhoneNumber) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

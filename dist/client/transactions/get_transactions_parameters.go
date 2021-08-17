@@ -17,81 +17,99 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// NewGetTransactionsParams creates a new GetTransactionsParams object
-// with the default values initialized.
+// NewGetTransactionsParams creates a new GetTransactionsParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewGetTransactionsParams() *GetTransactionsParams {
-	var (
-		limitDefault = int64(500)
-	)
 	return &GetTransactionsParams{
-		Limit: &limitDefault,
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewGetTransactionsParamsWithTimeout creates a new GetTransactionsParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewGetTransactionsParamsWithTimeout(timeout time.Duration) *GetTransactionsParams {
-	var (
-		limitDefault = int64(500)
-	)
 	return &GetTransactionsParams{
-		Limit: &limitDefault,
-
 		timeout: timeout,
 	}
 }
 
 // NewGetTransactionsParamsWithContext creates a new GetTransactionsParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewGetTransactionsParamsWithContext(ctx context.Context) *GetTransactionsParams {
-	var (
-		limitDefault = int64(500)
-	)
 	return &GetTransactionsParams{
-		Limit: &limitDefault,
-
 		Context: ctx,
 	}
 }
 
 // NewGetTransactionsParamsWithHTTPClient creates a new GetTransactionsParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewGetTransactionsParamsWithHTTPClient(client *http.Client) *GetTransactionsParams {
-	var (
-		limitDefault = int64(500)
-	)
 	return &GetTransactionsParams{
-		Limit:      &limitDefault,
 		HTTPClient: client,
 	}
 }
 
-/*GetTransactionsParams contains all the parameters to send to the API endpoint
-for the get transactions operation typically these are written to a http.Request
+/* GetTransactionsParams contains all the parameters to send to the API endpoint
+   for the get transactions operation.
+
+   Typically these are written to a http.Request.
 */
 type GetTransactionsParams struct {
 
-	/*Filter
-	  Transaction filters.
+	/* Filter.
 
+	   Transaction filters.
 	*/
 	Filter *string
-	/*Limit
-	  This represents the maximum number of items that may be included in the response (maximum of 500). Note that by default 500 items are returned if this value is not specified.
 
+	/* Limit.
+
+	   This represents the maximum number of items that may be included in the response (maximum of 500). Note that by default 500 items are returned if this value is not specified.
+
+	   Format: int64
+	   Default: 500
 	*/
 	Limit *int64
-	/*UserID
-	  User identifier.
 
+	/* UserID.
+
+	   User identifier.
 	*/
 	UserID string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the get transactions params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetTransactionsParams) WithDefaults() *GetTransactionsParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the get transactions params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetTransactionsParams) SetDefaults() {
+	var (
+		limitDefault = int64(500)
+	)
+
+	val := GetTransactionsParams{
+		Limit: &limitDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the get transactions params
@@ -172,32 +190,34 @@ func (o *GetTransactionsParams) WriteToRequest(r runtime.ClientRequest, reg strf
 
 		// query param filter
 		var qrFilter string
+
 		if o.Filter != nil {
 			qrFilter = *o.Filter
 		}
 		qFilter := qrFilter
 		if qFilter != "" {
+
 			if err := r.SetQueryParam("filter", qFilter); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	if o.Limit != nil {
 
 		// query param limit
 		var qrLimit int64
+
 		if o.Limit != nil {
 			qrLimit = *o.Limit
 		}
 		qLimit := swag.FormatInt64(qrLimit)
 		if qLimit != "" {
+
 			if err := r.SetQueryParam("limit", qLimit); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	// path param userId

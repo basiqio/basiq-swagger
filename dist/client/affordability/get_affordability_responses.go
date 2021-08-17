@@ -53,9 +53,8 @@ func (o *GetAffordabilityReader) ReadResponse(response runtime.ClientResponse, c
 			return nil, err
 		}
 		return nil, result
-
 	default:
-		return nil, runtime.NewAPIError("unknown error", response, response.Code())
+		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
 }
 
@@ -64,7 +63,7 @@ func NewGetAffordabilityOK() *GetAffordabilityOK {
 	return &GetAffordabilityOK{}
 }
 
-/*GetAffordabilityOK handles this case with default header values.
+/* GetAffordabilityOK describes a response with status code 200, with default header values.
 
 Returns a saved affordability resource JSON or PDF report file, if the operation succeeded.
 */
@@ -75,7 +74,6 @@ type GetAffordabilityOK struct {
 func (o *GetAffordabilityOK) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/affordability/{snapshotId}][%d] getAffordabilityOK  %+v", 200, o.Payload)
 }
-
 func (o *GetAffordabilityOK) GetPayload() *models.AffordabilityResponse {
 	return o.Payload
 }
@@ -97,7 +95,7 @@ func NewGetAffordabilityBadRequest() *GetAffordabilityBadRequest {
 	return &GetAffordabilityBadRequest{}
 }
 
-/*GetAffordabilityBadRequest handles this case with default header values.
+/* GetAffordabilityBadRequest describes a response with status code 400, with default header values.
 
 Returns error that server cannot or will not process the request due to something that is perceived to be a client error.
 */
@@ -108,7 +106,6 @@ type GetAffordabilityBadRequest struct {
 func (o *GetAffordabilityBadRequest) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/affordability/{snapshotId}][%d] getAffordabilityBadRequest  %+v", 400, o.Payload)
 }
-
 func (o *GetAffordabilityBadRequest) GetPayload() *models.BadRequestError {
 	return o.Payload
 }
@@ -130,7 +127,7 @@ func NewGetAffordabilityForbidden() *GetAffordabilityForbidden {
 	return &GetAffordabilityForbidden{}
 }
 
-/*GetAffordabilityForbidden handles this case with default header values.
+/* GetAffordabilityForbidden describes a response with status code 403, with default header values.
 
 Error that access is forbidden and tied to the application logic, such as insufficient rights to a resource.
 */
@@ -141,7 +138,6 @@ type GetAffordabilityForbidden struct {
 func (o *GetAffordabilityForbidden) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/affordability/{snapshotId}][%d] getAffordabilityForbidden  %+v", 403, o.Payload)
 }
-
 func (o *GetAffordabilityForbidden) GetPayload() *models.ForbiddenAccessError {
 	return o.Payload
 }
@@ -163,7 +159,7 @@ func NewGetAffordabilityNotFound() *GetAffordabilityNotFound {
 	return &GetAffordabilityNotFound{}
 }
 
-/*GetAffordabilityNotFound handles this case with default header values.
+/* GetAffordabilityNotFound describes a response with status code 404, with default header values.
 
 Returns error indicating that server can't find requested resource.
 */
@@ -174,7 +170,6 @@ type GetAffordabilityNotFound struct {
 func (o *GetAffordabilityNotFound) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/affordability/{snapshotId}][%d] getAffordabilityNotFound  %+v", 404, o.Payload)
 }
-
 func (o *GetAffordabilityNotFound) GetPayload() *models.NotFoundError {
 	return o.Payload
 }
@@ -196,7 +191,7 @@ func NewGetAffordabilityInternalServerError() *GetAffordabilityInternalServerErr
 	return &GetAffordabilityInternalServerError{}
 }
 
-/*GetAffordabilityInternalServerError handles this case with default header values.
+/* GetAffordabilityInternalServerError describes a response with status code 500, with default header values.
 
 Returns error response code indicates that the server encountered an unexpected condition that prevented it from fulfilling the request.
 */
@@ -207,7 +202,6 @@ type GetAffordabilityInternalServerError struct {
 func (o *GetAffordabilityInternalServerError) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/affordability/{snapshotId}][%d] getAffordabilityInternalServerError  %+v", 500, o.Payload)
 }
-
 func (o *GetAffordabilityInternalServerError) GetPayload() *models.InternalServerError {
 	return o.Payload
 }

@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -18,15 +20,18 @@ import (
 type ChangeHistoryExternal struct {
 
 	// Amount of payment
+	// Example: -146.50
 	// Required: true
 	Amount *string `json:"amount"`
 
 	// Date
+	// Example: 2019-03-31
 	// Required: true
 	// Format: date
 	Date *strfmt.Date `json:"date"`
 
 	// Full transaction description
+	// Example: AFTERPAY MELBOURNE VI AUS Card xx3854 Value Date: 10/11/2019
 	// Required: true
 	Source *string `json:"source"`
 }
@@ -81,6 +86,11 @@ func (m *ChangeHistoryExternal) validateSource(formats strfmt.Registry) error {
 		return err
 	}
 
+	return nil
+}
+
+// ContextValidate validates this change history external based on context it is used
+func (m *ChangeHistoryExternal) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

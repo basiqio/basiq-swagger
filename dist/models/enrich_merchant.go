@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -18,6 +20,7 @@ import (
 type EnrichMerchant struct {
 
 	// Merchant name
+	// Example: Garfish Manly
 	// Required: true
 	BusinessName *string `json:"businessName"`
 
@@ -25,6 +28,7 @@ type EnrichMerchant struct {
 	PhoneNumber *EnrichPhoneNumber `json:"phoneNumber,omitempty"`
 
 	// Merchant Website
+	// Example: http://garfish.com.au/garfish-manly/
 	// Required: true
 	Website *string `json:"website"`
 }
@@ -61,7 +65,6 @@ func (m *EnrichMerchant) validateBusinessName(formats strfmt.Registry) error {
 }
 
 func (m *EnrichMerchant) validatePhoneNumber(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.PhoneNumber) { // not required
 		return nil
 	}
@@ -82,6 +85,34 @@ func (m *EnrichMerchant) validateWebsite(formats strfmt.Registry) error {
 
 	if err := validate.Required("website", "body", m.Website); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+// ContextValidate validate this enrich merchant based on the context it is used
+func (m *EnrichMerchant) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidatePhoneNumber(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *EnrichMerchant) contextValidatePhoneNumber(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.PhoneNumber != nil {
+		if err := m.PhoneNumber.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("phoneNumber")
+			}
+			return err
+		}
 	}
 
 	return nil

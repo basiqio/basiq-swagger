@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/strfmt"
 )
 
@@ -16,5 +18,10 @@ type ResponseFormat string
 
 // Validate validates this response format
 func (m ResponseFormat) Validate(formats strfmt.Registry) error {
+	return nil
+}
+
+// ContextValidate validates this response format based on context it is used
+func (m ResponseFormat) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }

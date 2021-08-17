@@ -16,64 +16,79 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewGetIncomeParams creates a new GetIncomeParams object
-// with the default values initialized.
+// NewGetIncomeParams creates a new GetIncomeParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewGetIncomeParams() *GetIncomeParams {
-	var ()
 	return &GetIncomeParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewGetIncomeParamsWithTimeout creates a new GetIncomeParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewGetIncomeParamsWithTimeout(timeout time.Duration) *GetIncomeParams {
-	var ()
 	return &GetIncomeParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewGetIncomeParamsWithContext creates a new GetIncomeParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewGetIncomeParamsWithContext(ctx context.Context) *GetIncomeParams {
-	var ()
 	return &GetIncomeParams{
-
 		Context: ctx,
 	}
 }
 
 // NewGetIncomeParamsWithHTTPClient creates a new GetIncomeParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewGetIncomeParamsWithHTTPClient(client *http.Client) *GetIncomeParams {
-	var ()
 	return &GetIncomeParams{
 		HTTPClient: client,
 	}
 }
 
-/*GetIncomeParams contains all the parameters to send to the API endpoint
-for the get income operation typically these are written to a http.Request
+/* GetIncomeParams contains all the parameters to send to the API endpoint
+   for the get income operation.
+
+   Typically these are written to a http.Request.
 */
 type GetIncomeParams struct {
 
-	/*SnapshotID
-	  The identifier of the income report to be retrieved.
+	/* SnapshotID.
 
+	   The identifier of the income report to be retrieved.
 	*/
 	SnapshotID string
-	/*UserID
-	  The identifier of the user.
 
+	/* UserID.
+
+	   The identifier of the user.
 	*/
 	UserID string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the get income params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetIncomeParams) WithDefaults() *GetIncomeParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the get income params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetIncomeParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the get income params

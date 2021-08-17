@@ -6,6 +6,7 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"encoding/json"
 	"strconv"
 
@@ -21,6 +22,7 @@ import (
 type GoneError struct {
 
 	// Unique identifier for this particular occurrence of the problem.
+	// Example: ac5ah5i
 	// Required: true
 	CorrelationID *string `json:"correlationId"`
 
@@ -29,6 +31,7 @@ type GoneError struct {
 	Data []*GoneErrorDataItems0 `json:"data"`
 
 	// Always "list".
+	// Example: list
 	// Required: true
 	Type *string `json:"type"`
 }
@@ -98,6 +101,38 @@ func (m *GoneError) validateType(formats strfmt.Registry) error {
 	return nil
 }
 
+// ContextValidate validate this gone error based on the context it is used
+func (m *GoneError) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateData(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *GoneError) contextValidateData(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Data); i++ {
+
+		if m.Data[i] != nil {
+			if err := m.Data[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("data" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
 // MarshalBinary interface implementation
 func (m *GoneError) MarshalBinary() ([]byte, error) {
 	if m == nil {
@@ -122,6 +157,7 @@ func (m *GoneError) UnmarshalBinary(b []byte) error {
 type GoneErrorDataItems0 struct {
 
 	// Application-specific error code, expressed as a string value.
+	// Example: resource-no-longer-available
 	// Required: true
 	// Enum: [resource-no-longer-available]
 	Code *string `json:"code"`
@@ -133,6 +169,7 @@ type GoneErrorDataItems0 struct {
 	Title string `json:"title,omitempty"`
 
 	// Type of the response, always "error"
+	// Example: error
 	// Required: true
 	Type *string `json:"type"`
 }
@@ -169,13 +206,13 @@ func init() {
 
 const (
 
-	// GoneErrorDataItems0CodeResourceNoLongerAvailable captures enum value "resource-no-longer-available"
-	GoneErrorDataItems0CodeResourceNoLongerAvailable string = "resource-no-longer-available"
+	// GoneErrorDataItems0CodeResourceDashNoDashLongerDashAvailable captures enum value "resource-no-longer-available"
+	GoneErrorDataItems0CodeResourceDashNoDashLongerDashAvailable string = "resource-no-longer-available"
 )
 
 // prop value enum
 func (m *GoneErrorDataItems0) validateCodeEnum(path, location string, value string) error {
-	if err := validate.Enum(path, location, value, goneErrorDataItems0TypeCodePropEnum); err != nil {
+	if err := validate.EnumCase(path, location, value, goneErrorDataItems0TypeCodePropEnum, true); err != nil {
 		return err
 	}
 	return nil
@@ -201,6 +238,11 @@ func (m *GoneErrorDataItems0) validateType(formats strfmt.Registry) error {
 		return err
 	}
 
+	return nil
+}
+
+// ContextValidate validates this gone error data items0 based on context it is used
+func (m *GoneErrorDataItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

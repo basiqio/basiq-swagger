@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -56,7 +58,6 @@ func (m *TransactionsAnzsic) Validate(formats strfmt.Registry) error {
 }
 
 func (m *TransactionsAnzsic) validateClass(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Class) { // not required
 		return nil
 	}
@@ -74,7 +75,6 @@ func (m *TransactionsAnzsic) validateClass(formats strfmt.Registry) error {
 }
 
 func (m *TransactionsAnzsic) validateDivision(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Division) { // not required
 		return nil
 	}
@@ -92,7 +92,6 @@ func (m *TransactionsAnzsic) validateDivision(formats strfmt.Registry) error {
 }
 
 func (m *TransactionsAnzsic) validateGroup(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Group) { // not required
 		return nil
 	}
@@ -110,13 +109,94 @@ func (m *TransactionsAnzsic) validateGroup(formats strfmt.Registry) error {
 }
 
 func (m *TransactionsAnzsic) validateSubdivision(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Subdivision) { // not required
 		return nil
 	}
 
 	if m.Subdivision != nil {
 		if err := m.Subdivision.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("subdivision")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// ContextValidate validate this transactions anzsic based on the context it is used
+func (m *TransactionsAnzsic) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateClass(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateDivision(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateGroup(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateSubdivision(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *TransactionsAnzsic) contextValidateClass(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Class != nil {
+		if err := m.Class.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("class")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *TransactionsAnzsic) contextValidateDivision(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Division != nil {
+		if err := m.Division.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("division")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *TransactionsAnzsic) contextValidateGroup(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Group != nil {
+		if err := m.Group.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("group")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *TransactionsAnzsic) contextValidateSubdivision(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Subdivision != nil {
+		if err := m.Subdivision.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("subdivision")
 			}

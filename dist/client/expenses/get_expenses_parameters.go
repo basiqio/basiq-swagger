@@ -16,64 +16,79 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewGetExpensesParams creates a new GetExpensesParams object
-// with the default values initialized.
+// NewGetExpensesParams creates a new GetExpensesParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewGetExpensesParams() *GetExpensesParams {
-	var ()
 	return &GetExpensesParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewGetExpensesParamsWithTimeout creates a new GetExpensesParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewGetExpensesParamsWithTimeout(timeout time.Duration) *GetExpensesParams {
-	var ()
 	return &GetExpensesParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewGetExpensesParamsWithContext creates a new GetExpensesParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewGetExpensesParamsWithContext(ctx context.Context) *GetExpensesParams {
-	var ()
 	return &GetExpensesParams{
-
 		Context: ctx,
 	}
 }
 
 // NewGetExpensesParamsWithHTTPClient creates a new GetExpensesParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewGetExpensesParamsWithHTTPClient(client *http.Client) *GetExpensesParams {
-	var ()
 	return &GetExpensesParams{
 		HTTPClient: client,
 	}
 }
 
-/*GetExpensesParams contains all the parameters to send to the API endpoint
-for the get expenses operation typically these are written to a http.Request
+/* GetExpensesParams contains all the parameters to send to the API endpoint
+   for the get expenses operation.
+
+   Typically these are written to a http.Request.
 */
 type GetExpensesParams struct {
 
-	/*SnapshotID
-	  The identifier of the expenses report to be retrieved.
+	/* SnapshotID.
 
+	   The identifier of the expenses report to be retrieved.
 	*/
 	SnapshotID string
-	/*UserID
-	  The identifier of the user.
 
+	/* UserID.
+
+	   The identifier of the user.
 	*/
 	UserID string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the get expenses params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetExpensesParams) WithDefaults() *GetExpensesParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the get expenses params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetExpensesParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the get expenses params

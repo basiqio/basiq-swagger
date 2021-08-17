@@ -59,9 +59,8 @@ func (o *DeleteUserReader) ReadResponse(response runtime.ClientResponse, consume
 			return nil, err
 		}
 		return nil, result
-
 	default:
-		return nil, runtime.NewAPIError("unknown error", response, response.Code())
+		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
 }
 
@@ -70,7 +69,7 @@ func NewDeleteUserNoContent() *DeleteUserNoContent {
 	return &DeleteUserNoContent{}
 }
 
-/*DeleteUserNoContent handles this case with default header values.
+/* DeleteUserNoContent describes a response with status code 204, with default header values.
 
 Deletion succeeded.
 */
@@ -91,7 +90,7 @@ func NewDeleteUserBadRequest() *DeleteUserBadRequest {
 	return &DeleteUserBadRequest{}
 }
 
-/*DeleteUserBadRequest handles this case with default header values.
+/* DeleteUserBadRequest describes a response with status code 400, with default header values.
 
 Returns error that server cannot or will not process the request due to something that is perceived to be a client error.
 */
@@ -102,7 +101,6 @@ type DeleteUserBadRequest struct {
 func (o *DeleteUserBadRequest) Error() string {
 	return fmt.Sprintf("[DELETE /users/{userId}][%d] deleteUserBadRequest  %+v", 400, o.Payload)
 }
-
 func (o *DeleteUserBadRequest) GetPayload() *models.BadRequestError {
 	return o.Payload
 }
@@ -124,7 +122,7 @@ func NewDeleteUserForbidden() *DeleteUserForbidden {
 	return &DeleteUserForbidden{}
 }
 
-/*DeleteUserForbidden handles this case with default header values.
+/* DeleteUserForbidden describes a response with status code 403, with default header values.
 
 Error that access is forbidden and tied to the application logic, such as insufficient rights to a resource.
 */
@@ -135,7 +133,6 @@ type DeleteUserForbidden struct {
 func (o *DeleteUserForbidden) Error() string {
 	return fmt.Sprintf("[DELETE /users/{userId}][%d] deleteUserForbidden  %+v", 403, o.Payload)
 }
-
 func (o *DeleteUserForbidden) GetPayload() *models.ForbiddenAccessError {
 	return o.Payload
 }
@@ -157,7 +154,7 @@ func NewDeleteUserNotFound() *DeleteUserNotFound {
 	return &DeleteUserNotFound{}
 }
 
-/*DeleteUserNotFound handles this case with default header values.
+/* DeleteUserNotFound describes a response with status code 404, with default header values.
 
 Returns error indicating that server can't find requested resource.
 */
@@ -168,7 +165,6 @@ type DeleteUserNotFound struct {
 func (o *DeleteUserNotFound) Error() string {
 	return fmt.Sprintf("[DELETE /users/{userId}][%d] deleteUserNotFound  %+v", 404, o.Payload)
 }
-
 func (o *DeleteUserNotFound) GetPayload() *models.NotFoundError {
 	return o.Payload
 }
@@ -190,7 +186,7 @@ func NewDeleteUserInternalServerError() *DeleteUserInternalServerError {
 	return &DeleteUserInternalServerError{}
 }
 
-/*DeleteUserInternalServerError handles this case with default header values.
+/* DeleteUserInternalServerError describes a response with status code 500, with default header values.
 
 Returns error response code indicates that the server encountered an unexpected condition that prevented it from fulfilling the request.
 */
@@ -201,7 +197,6 @@ type DeleteUserInternalServerError struct {
 func (o *DeleteUserInternalServerError) Error() string {
 	return fmt.Sprintf("[DELETE /users/{userId}][%d] deleteUserInternalServerError  %+v", 500, o.Payload)
 }
-
 func (o *DeleteUserInternalServerError) GetPayload() *models.InternalServerError {
 	return o.Payload
 }
@@ -223,7 +218,7 @@ func NewDeleteUserServiceUnavailable() *DeleteUserServiceUnavailable {
 	return &DeleteUserServiceUnavailable{}
 }
 
-/*DeleteUserServiceUnavailable handles this case with default header values.
+/* DeleteUserServiceUnavailable describes a response with status code 503, with default header values.
 
 Returns error response code indicates that the server is not ready to handle the request.
 */
@@ -234,7 +229,6 @@ type DeleteUserServiceUnavailable struct {
 func (o *DeleteUserServiceUnavailable) Error() string {
 	return fmt.Sprintf("[DELETE /users/{userId}][%d] deleteUserServiceUnavailable  %+v", 503, o.Payload)
 }
-
 func (o *DeleteUserServiceUnavailable) GetPayload() *models.StatusServiceUnavailableError {
 	return o.Payload
 }

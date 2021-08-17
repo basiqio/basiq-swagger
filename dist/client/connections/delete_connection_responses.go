@@ -59,9 +59,8 @@ func (o *DeleteConnectionReader) ReadResponse(response runtime.ClientResponse, c
 			return nil, err
 		}
 		return nil, result
-
 	default:
-		return nil, runtime.NewAPIError("unknown error", response, response.Code())
+		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
 }
 
@@ -70,7 +69,7 @@ func NewDeleteConnectionNoContent() *DeleteConnectionNoContent {
 	return &DeleteConnectionNoContent{}
 }
 
-/*DeleteConnectionNoContent handles this case with default header values.
+/* DeleteConnectionNoContent describes a response with status code 204, with default header values.
 
 Returns an empty body if the delete succeeded.
 */
@@ -91,7 +90,7 @@ func NewDeleteConnectionBadRequest() *DeleteConnectionBadRequest {
 	return &DeleteConnectionBadRequest{}
 }
 
-/*DeleteConnectionBadRequest handles this case with default header values.
+/* DeleteConnectionBadRequest describes a response with status code 400, with default header values.
 
 Returns error that server cannot or will not process the request due to something that is perceived to be a client error
 */
@@ -102,7 +101,6 @@ type DeleteConnectionBadRequest struct {
 func (o *DeleteConnectionBadRequest) Error() string {
 	return fmt.Sprintf("[DELETE /users/{userId}/connections/{connectionId}][%d] deleteConnectionBadRequest  %+v", 400, o.Payload)
 }
-
 func (o *DeleteConnectionBadRequest) GetPayload() *models.BadRequestError {
 	return o.Payload
 }
@@ -124,7 +122,7 @@ func NewDeleteConnectionForbidden() *DeleteConnectionForbidden {
 	return &DeleteConnectionForbidden{}
 }
 
-/*DeleteConnectionForbidden handles this case with default header values.
+/* DeleteConnectionForbidden describes a response with status code 403, with default header values.
 
 Error that access is forbidden and tied to the application logic, such as insufficient rights to a resource.
 */
@@ -135,7 +133,6 @@ type DeleteConnectionForbidden struct {
 func (o *DeleteConnectionForbidden) Error() string {
 	return fmt.Sprintf("[DELETE /users/{userId}/connections/{connectionId}][%d] deleteConnectionForbidden  %+v", 403, o.Payload)
 }
-
 func (o *DeleteConnectionForbidden) GetPayload() *models.ForbiddenAccessError {
 	return o.Payload
 }
@@ -157,7 +154,7 @@ func NewDeleteConnectionNotFound() *DeleteConnectionNotFound {
 	return &DeleteConnectionNotFound{}
 }
 
-/*DeleteConnectionNotFound handles this case with default header values.
+/* DeleteConnectionNotFound describes a response with status code 404, with default header values.
 
 Returns error indicating that server can't find requested resource.
 */
@@ -168,7 +165,6 @@ type DeleteConnectionNotFound struct {
 func (o *DeleteConnectionNotFound) Error() string {
 	return fmt.Sprintf("[DELETE /users/{userId}/connections/{connectionId}][%d] deleteConnectionNotFound  %+v", 404, o.Payload)
 }
-
 func (o *DeleteConnectionNotFound) GetPayload() *models.NotFoundError {
 	return o.Payload
 }
@@ -190,7 +186,7 @@ func NewDeleteConnectionInternalServerError() *DeleteConnectionInternalServerErr
 	return &DeleteConnectionInternalServerError{}
 }
 
-/*DeleteConnectionInternalServerError handles this case with default header values.
+/* DeleteConnectionInternalServerError describes a response with status code 500, with default header values.
 
 Returns error response code indicates that the server encountered an unexpected condition that prevented it from fulfilling the request.
 */
@@ -201,7 +197,6 @@ type DeleteConnectionInternalServerError struct {
 func (o *DeleteConnectionInternalServerError) Error() string {
 	return fmt.Sprintf("[DELETE /users/{userId}/connections/{connectionId}][%d] deleteConnectionInternalServerError  %+v", 500, o.Payload)
 }
-
 func (o *DeleteConnectionInternalServerError) GetPayload() *models.InternalServerError {
 	return o.Payload
 }
@@ -223,7 +218,7 @@ func NewDeleteConnectionServiceUnavailable() *DeleteConnectionServiceUnavailable
 	return &DeleteConnectionServiceUnavailable{}
 }
 
-/*DeleteConnectionServiceUnavailable handles this case with default header values.
+/* DeleteConnectionServiceUnavailable describes a response with status code 503, with default header values.
 
 Returns error response code indicates that the server is not ready to handle the request.
 */
@@ -234,7 +229,6 @@ type DeleteConnectionServiceUnavailable struct {
 func (o *DeleteConnectionServiceUnavailable) Error() string {
 	return fmt.Sprintf("[DELETE /users/{userId}/connections/{connectionId}][%d] deleteConnectionServiceUnavailable  %+v", 503, o.Payload)
 }
-
 func (o *DeleteConnectionServiceUnavailable) GetPayload() *models.StatusServiceUnavailableError {
 	return o.Payload
 }
