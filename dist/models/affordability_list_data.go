@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -18,21 +20,26 @@ import (
 type AffordabilityListData struct {
 
 	// Number of days covered by the report
+	// Example: 392
 	CoverageDays int64 `json:"coverageDays,omitempty"`
 
 	// Start month for the period for which the Affordability summary is generated. The period of time relates to the account and transaction data used as input into the report.
+	// Example: 2019-03
 	// Required: true
 	FromMonth *string `json:"fromMonth"`
 
 	// Date the report was generated.
+	// Example: 2020-03-26T06:56:44
 	// Required: true
 	GeneratedDate *string `json:"generatedDate"`
 
 	// Uniquely identifies the affordability report.
+	// Example: s55bf3
 	// Required: true
 	ID *string `json:"id"`
 
 	// An array of institution ids to indicate the sources of transaction data, aggregated to generate the affordability resource.
+	// Example: ["AU00000"]
 	Institutions []string `json:"institutions"`
 
 	// links
@@ -40,10 +47,12 @@ type AffordabilityListData struct {
 	Links *AffordabilityLinksInList `json:"links"`
 
 	// End month (usually the current month) for the period for which the Affordability summary is generated.
+	// Example: 2020-03
 	// Required: true
 	ToMonth *string `json:"toMonth"`
 
 	// Always "affordability".
+	// Example: affordability
 	// Required: true
 	Type *string `json:"type"`
 }
@@ -140,6 +149,34 @@ func (m *AffordabilityListData) validateType(formats strfmt.Registry) error {
 
 	if err := validate.Required("type", "body", m.Type); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+// ContextValidate validate this affordability list data based on the context it is used
+func (m *AffordabilityListData) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateLinks(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *AffordabilityListData) contextValidateLinks(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Links != nil {
+		if err := m.Links.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("links")
+			}
+			return err
+		}
 	}
 
 	return nil

@@ -25,15 +25,18 @@ type Client struct {
 	formats   strfmt.Registry
 }
 
+// ClientOption is the option for Client methods
+type ClientOption func(*runtime.ClientOperation)
+
 // ClientService is the interface for Client methods
 type ClientService interface {
-	CreateUser(params *CreateUserParams, authInfo runtime.ClientAuthInfoWriter) (*CreateUserCreated, error)
+	CreateUser(params *CreateUserParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateUserCreated, error)
 
-	DeleteUser(params *DeleteUserParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserNoContent, error)
+	DeleteUser(params *DeleteUserParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteUserNoContent, error)
 
-	GetUser(params *GetUserParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserOK, error)
+	GetUser(params *GetUserParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetUserOK, error)
 
-	UpdateUser(params *UpdateUserParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateUserOK, error)
+	UpdateUser(params *UpdateUserParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateUserOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -41,13 +44,12 @@ type ClientService interface {
 /*
   CreateUser uses this to create a new user object
 */
-func (a *Client) CreateUser(params *CreateUserParams, authInfo runtime.ClientAuthInfoWriter) (*CreateUserCreated, error) {
+func (a *Client) CreateUser(params *CreateUserParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateUserCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCreateUserParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "createUser",
 		Method:             "POST",
 		PathPattern:        "/users",
@@ -59,7 +61,12 @@ func (a *Client) CreateUser(params *CreateUserParams, authInfo runtime.ClientAut
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -78,13 +85,12 @@ func (a *Client) CreateUser(params *CreateUserParams, authInfo runtime.ClientAut
 
   Permanently deletes a user along with all of their associated connection details. All data associated with this user will deleted. You need only supply the unique user identifier that was returned upon user creation.
 */
-func (a *Client) DeleteUser(params *DeleteUserParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteUserNoContent, error) {
+func (a *Client) DeleteUser(params *DeleteUserParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteUserNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteUserParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "deleteUser",
 		Method:             "DELETE",
 		PathPattern:        "/users/{userId}",
@@ -96,7 +102,12 @@ func (a *Client) DeleteUser(params *DeleteUserParams, authInfo runtime.ClientAut
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -113,13 +124,12 @@ func (a *Client) DeleteUser(params *DeleteUserParams, authInfo runtime.ClientAut
 /*
   GetUser retrieves the details of an existing user you need only supply the unique user identifier that was returned upon user creation
 */
-func (a *Client) GetUser(params *GetUserParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserOK, error) {
+func (a *Client) GetUser(params *GetUserParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetUserOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetUserParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "getUser",
 		Method:             "GET",
 		PathPattern:        "/users/{userId}",
@@ -131,7 +141,12 @@ func (a *Client) GetUser(params *GetUserParams, authInfo runtime.ClientAuthInfoW
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -148,13 +163,12 @@ func (a *Client) GetUser(params *GetUserParams, authInfo runtime.ClientAuthInfoW
 /*
   UpdateUser updates the specified user by setting the values of the parameters passed any parameters not provided will be left unchanged
 */
-func (a *Client) UpdateUser(params *UpdateUserParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateUserOK, error) {
+func (a *Client) UpdateUser(params *UpdateUserParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateUserOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewUpdateUserParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "updateUser",
 		Method:             "POST",
 		PathPattern:        "/users/{userId}",
@@ -166,7 +180,12 @@ func (a *Client) UpdateUser(params *UpdateUserParams, authInfo runtime.ClientAut
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}

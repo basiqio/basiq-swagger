@@ -25,11 +25,14 @@ type Client struct {
 	formats   strfmt.Registry
 }
 
+// ClientOption is the option for Client methods
+type ClientOption func(*runtime.ClientOperation)
+
 // ClientService is the interface for Client methods
 type ClientService interface {
-	GetJobs(params *GetJobsParams, authInfo runtime.ClientAuthInfoWriter) (*GetJobsOK, error)
+	GetJobs(params *GetJobsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetJobsOK, error)
 
-	GetUserJobs(params *GetUserJobsParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserJobsOK, error)
+	GetUserJobs(params *GetUserJobsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetUserJobsOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -46,13 +49,12 @@ Depending on the job being executed, some jobs will have multiple steps which ne
 <li>Fetch latest list of transactions</li></ol>
 You can keep track of the steps that have been completed by observing the results array property. As each step is successfully completed, its status will be updated and a result object with the link to the affected resource will be present. In the event that a step has failed, the result object will contain an embedded error object.
 */
-func (a *Client) GetJobs(params *GetJobsParams, authInfo runtime.ClientAuthInfoWriter) (*GetJobsOK, error) {
+func (a *Client) GetJobs(params *GetJobsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetJobsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetJobsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "getJobs",
 		Method:             "GET",
 		PathPattern:        "/jobs/{jobId}",
@@ -64,7 +66,12 @@ func (a *Client) GetJobs(params *GetJobsParams, authInfo runtime.ClientAuthInfoW
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -90,13 +97,12 @@ Depending on the job being executed, some jobs will have multiple steps which ne
 <li>Fetch latest list of transactions</li></ol>
 You can keep track of the steps that have been completed by observing the results array property. As each step is successfully completed, its status will be updated and a result object with the link to the affected resource will be present. In the event that a step has failed, the result object will contain an embedded error object.
 */
-func (a *Client) GetUserJobs(params *GetUserJobsParams, authInfo runtime.ClientAuthInfoWriter) (*GetUserJobsOK, error) {
+func (a *Client) GetUserJobs(params *GetUserJobsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetUserJobsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetUserJobsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "getUserJobs",
 		Method:             "GET",
 		PathPattern:        "/users/{userId}/jobs",
@@ -108,7 +114,12 @@ func (a *Client) GetUserJobs(params *GetUserJobsParams, authInfo runtime.ClientA
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}

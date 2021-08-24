@@ -25,11 +25,14 @@ type Client struct {
 	formats   strfmt.Registry
 }
 
+// ClientOption is the option for Client methods
+type ClientOption func(*runtime.ClientOperation)
+
 // ClientService is the interface for Client methods
 type ClientService interface {
-	GetExpenses(params *GetExpensesParams, authInfo runtime.ClientAuthInfoWriter) (*GetExpensesOK, error)
+	GetExpenses(params *GetExpensesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetExpensesOK, error)
 
-	PostExpenses(params *PostExpensesParams, authInfo runtime.ClientAuthInfoWriter) (*PostExpensesOK, *PostExpensesNoContent, error)
+	PostExpenses(params *PostExpensesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostExpensesOK, *PostExpensesNoContent, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -37,13 +40,12 @@ type ClientService interface {
 /*
   GetExpenses retrieves the details of an expenses summary you need only supply the unique expenses identifier
 */
-func (a *Client) GetExpenses(params *GetExpensesParams, authInfo runtime.ClientAuthInfoWriter) (*GetExpensesOK, error) {
+func (a *Client) GetExpenses(params *GetExpensesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetExpensesOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetExpensesParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "getExpenses",
 		Method:             "GET",
 		PathPattern:        "/users/{userId}/expenses/{snapshotId}",
@@ -55,7 +57,12 @@ func (a *Client) GetExpenses(params *GetExpensesParams, authInfo runtime.ClientA
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -72,13 +79,12 @@ func (a *Client) GetExpenses(params *GetExpensesParams, authInfo runtime.ClientA
 /*
   PostExpenses uses this to create a new expenses report
 */
-func (a *Client) PostExpenses(params *PostExpensesParams, authInfo runtime.ClientAuthInfoWriter) (*PostExpensesOK, *PostExpensesNoContent, error) {
+func (a *Client) PostExpenses(params *PostExpensesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostExpensesOK, *PostExpensesNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPostExpensesParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "postExpenses",
 		Method:             "POST",
 		PathPattern:        "/users/{userId}/expenses",
@@ -90,7 +96,12 @@ func (a *Client) PostExpenses(params *PostExpensesParams, authInfo runtime.Clien
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, nil, err
 	}

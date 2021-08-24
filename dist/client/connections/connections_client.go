@@ -25,21 +25,24 @@ type Client struct {
 	formats   strfmt.Registry
 }
 
+// ClientOption is the option for Client methods
+type ClientOption func(*runtime.ClientOperation)
+
 // ClientService is the interface for Client methods
 type ClientService interface {
-	DeleteConnection(params *DeleteConnectionParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteConnectionNoContent, error)
+	DeleteConnection(params *DeleteConnectionParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteConnectionNoContent, error)
 
-	GetConnection(params *GetConnectionParams, authInfo runtime.ClientAuthInfoWriter) (*GetConnectionOK, error)
+	GetConnection(params *GetConnectionParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetConnectionOK, error)
 
-	GetConnections(params *GetConnectionsParams, authInfo runtime.ClientAuthInfoWriter) (*GetConnectionsOK, error)
+	GetConnections(params *GetConnectionsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetConnectionsOK, error)
 
-	PostConnection(params *PostConnectionParams, authInfo runtime.ClientAuthInfoWriter) (*PostConnectionAccepted, error)
+	PostConnection(params *PostConnectionParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostConnectionAccepted, error)
 
-	RefreshConnection(params *RefreshConnectionParams, authInfo runtime.ClientAuthInfoWriter) (*RefreshConnectionAccepted, error)
+	RefreshConnection(params *RefreshConnectionParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RefreshConnectionAccepted, error)
 
-	RefreshConnections(params *RefreshConnectionsParams, authInfo runtime.ClientAuthInfoWriter) (*RefreshConnectionsAccepted, error)
+	RefreshConnections(params *RefreshConnectionsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RefreshConnectionsAccepted, error)
 
-	UpdateConnection(params *UpdateConnectionParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateConnectionAccepted, error)
+	UpdateConnection(params *UpdateConnectionParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateConnectionAccepted, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -50,13 +53,12 @@ type ClientService interface {
   Once the connection has been deleted, all of the associated financial data e.g. accounts and transactions can still be accessed via the users end-point.
 Note that this action cannot be undone.
 */
-func (a *Client) DeleteConnection(params *DeleteConnectionParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteConnectionNoContent, error) {
+func (a *Client) DeleteConnection(params *DeleteConnectionParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteConnectionNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteConnectionParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "deleteConnection",
 		Method:             "DELETE",
 		PathPattern:        "/users/{userId}/connections/{connectionId}",
@@ -68,7 +70,12 @@ func (a *Client) DeleteConnection(params *DeleteConnectionParams, authInfo runti
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -91,13 +98,12 @@ The status property of the connection object identifies the state of the connect
 Note that due to security the loginId, password, securityCode are never returned.
 Profile data represents the name, phone, email and address of the logged in user or data sharer. Only data made available by institution can be returned. An institution may offer the option for a customer to hide all personal data or add 2FA to access the data - in this case no data would be returned for all data points. Note, that when a Connection is deleted - the profile data will also be deleted. If a phone number or email address is masked by the institution - the string will be shown exactly as it is provided by the institution.
 */
-func (a *Client) GetConnection(params *GetConnectionParams, authInfo runtime.ClientAuthInfoWriter) (*GetConnectionOK, error) {
+func (a *Client) GetConnection(params *GetConnectionParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetConnectionOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetConnectionParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "getConnection",
 		Method:             "GET",
 		PathPattern:        "/users/{userId}/connections/{connectionId}",
@@ -109,7 +115,12 @@ func (a *Client) GetConnection(params *GetConnectionParams, authInfo runtime.Cli
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -128,13 +139,12 @@ func (a *Client) GetConnection(params *GetConnectionParams, authInfo runtime.Cli
 
   Returns a list with a data property that contains an array of connections. Each entry in the array is a separate object. If no data is returned, the resulting array will be empty.
 */
-func (a *Client) GetConnections(params *GetConnectionsParams, authInfo runtime.ClientAuthInfoWriter) (*GetConnectionsOK, error) {
+func (a *Client) GetConnections(params *GetConnectionsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetConnectionsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetConnectionsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "getConnections",
 		Method:             "GET",
 		PathPattern:        "/users/{userId}/connections",
@@ -146,7 +156,12 @@ func (a *Client) GetConnections(params *GetConnectionsParams, authInfo runtime.C
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -197,13 +212,12 @@ The server will fetch the associated transactions for each of the accounts.
 <br/>
 Note that the time it takes to complete the processes above will vary depending on the volume of data along with the general latency between our servers and the financial institution. As a rough guide this entire process could take anywhere between 3 - 30 secs.
 */
-func (a *Client) PostConnection(params *PostConnectionParams, authInfo runtime.ClientAuthInfoWriter) (*PostConnectionAccepted, error) {
+func (a *Client) PostConnection(params *PostConnectionParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostConnectionAccepted, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPostConnectionParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "postConnection",
 		Method:             "POST",
 		PathPattern:        "/users/{userId}/connections",
@@ -215,7 +229,12 @@ func (a *Client) PostConnection(params *PostConnectionParams, authInfo runtime.C
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -243,13 +262,12 @@ The server will retrieve the complete list of accounts and their details e.g. ac
 <tr><td>3</td><td>retrieve-transactions</td><td>The server will fetch the associated transactions for each of the accounts.</td></tr>
 </table>
 */
-func (a *Client) RefreshConnection(params *RefreshConnectionParams, authInfo runtime.ClientAuthInfoWriter) (*RefreshConnectionAccepted, error) {
+func (a *Client) RefreshConnection(params *RefreshConnectionParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RefreshConnectionAccepted, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewRefreshConnectionParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "refreshConnection",
 		Method:             "POST",
 		PathPattern:        "/users/{userId}/connections/{connectionId}/refresh",
@@ -261,7 +279,12 @@ func (a *Client) RefreshConnection(params *RefreshConnectionParams, authInfo run
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -278,13 +301,12 @@ func (a *Client) RefreshConnection(params *RefreshConnectionParams, authInfo run
 /*
   RefreshConnections uses this to refresh of all connections
 */
-func (a *Client) RefreshConnections(params *RefreshConnectionsParams, authInfo runtime.ClientAuthInfoWriter) (*RefreshConnectionsAccepted, error) {
+func (a *Client) RefreshConnections(params *RefreshConnectionsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RefreshConnectionsAccepted, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewRefreshConnectionsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "refreshConnections",
 		Method:             "POST",
 		PathPattern:        "/users/{userId}/connections/refresh",
@@ -296,7 +318,12 @@ func (a *Client) RefreshConnections(params *RefreshConnectionsParams, authInfo r
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -313,13 +340,12 @@ func (a *Client) RefreshConnections(params *RefreshConnectionsParams, authInfo r
 /*
   UpdateConnection uses this to update the details of a specific connection
 */
-func (a *Client) UpdateConnection(params *UpdateConnectionParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateConnectionAccepted, error) {
+func (a *Client) UpdateConnection(params *UpdateConnectionParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateConnectionAccepted, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewUpdateConnectionParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "updateConnection",
 		Method:             "POST",
 		PathPattern:        "/users/{userId}/connections/{connectionId}",
@@ -331,7 +357,12 @@ func (a *Client) UpdateConnection(params *UpdateConnectionParams, authInfo runti
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}

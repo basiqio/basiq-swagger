@@ -6,6 +6,7 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"strconv"
 
 	"github.com/go-openapi/errors"
@@ -30,6 +31,7 @@ type AffordabilityListResponse struct {
 	Links *AffordabilityListLinks `json:"links"`
 
 	// Always "List".
+	// Example: list
 	// Required: true
 	Type *string `json:"type"`
 }
@@ -103,6 +105,56 @@ func (m *AffordabilityListResponse) validateType(formats strfmt.Registry) error 
 
 	if err := validate.Required("type", "body", m.Type); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+// ContextValidate validate this affordability list response based on the context it is used
+func (m *AffordabilityListResponse) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateData(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateLinks(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *AffordabilityListResponse) contextValidateData(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Data); i++ {
+
+		if m.Data[i] != nil {
+			if err := m.Data[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("data" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *AffordabilityListResponse) contextValidateLinks(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Links != nil {
+		if err := m.Links.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("links")
+			}
+			return err
+		}
 	}
 
 	return nil

@@ -47,9 +47,8 @@ func (o *GetAffordabilityListReader) ReadResponse(response runtime.ClientRespons
 			return nil, err
 		}
 		return nil, result
-
 	default:
-		return nil, runtime.NewAPIError("unknown error", response, response.Code())
+		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
 }
 
@@ -58,7 +57,7 @@ func NewGetAffordabilityListOK() *GetAffordabilityListOK {
 	return &GetAffordabilityListOK{}
 }
 
-/*GetAffordabilityListOK handles this case with default header values.
+/* GetAffordabilityListOK describes a response with status code 200, with default header values.
 
 Returns a list with a data property that contains an array of affordability resources.
 */
@@ -69,7 +68,6 @@ type GetAffordabilityListOK struct {
 func (o *GetAffordabilityListOK) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/affordability][%d] getAffordabilityListOK  %+v", 200, o.Payload)
 }
-
 func (o *GetAffordabilityListOK) GetPayload() *models.AffordabilityListResponse {
 	return o.Payload
 }
@@ -91,7 +89,7 @@ func NewGetAffordabilityListBadRequest() *GetAffordabilityListBadRequest {
 	return &GetAffordabilityListBadRequest{}
 }
 
-/*GetAffordabilityListBadRequest handles this case with default header values.
+/* GetAffordabilityListBadRequest describes a response with status code 400, with default header values.
 
 Returns error that server cannot or will not process the request due to something that is perceived to be a client error.
 */
@@ -102,7 +100,6 @@ type GetAffordabilityListBadRequest struct {
 func (o *GetAffordabilityListBadRequest) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/affordability][%d] getAffordabilityListBadRequest  %+v", 400, o.Payload)
 }
-
 func (o *GetAffordabilityListBadRequest) GetPayload() *models.BadRequestError {
 	return o.Payload
 }
@@ -124,7 +121,7 @@ func NewGetAffordabilityListNotFound() *GetAffordabilityListNotFound {
 	return &GetAffordabilityListNotFound{}
 }
 
-/*GetAffordabilityListNotFound handles this case with default header values.
+/* GetAffordabilityListNotFound describes a response with status code 404, with default header values.
 
 Returns error indicating that server can't find requested resource.
 */
@@ -135,7 +132,6 @@ type GetAffordabilityListNotFound struct {
 func (o *GetAffordabilityListNotFound) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/affordability][%d] getAffordabilityListNotFound  %+v", 404, o.Payload)
 }
-
 func (o *GetAffordabilityListNotFound) GetPayload() *models.NotFoundError {
 	return o.Payload
 }
@@ -157,7 +153,7 @@ func NewGetAffordabilityListInternalServerError() *GetAffordabilityListInternalS
 	return &GetAffordabilityListInternalServerError{}
 }
 
-/*GetAffordabilityListInternalServerError handles this case with default header values.
+/* GetAffordabilityListInternalServerError describes a response with status code 500, with default header values.
 
 Returns error response code indicates that the server encountered an unexpected condition that prevented it from fulfilling the request.
 */
@@ -168,7 +164,6 @@ type GetAffordabilityListInternalServerError struct {
 func (o *GetAffordabilityListInternalServerError) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/affordability][%d] getAffordabilityListInternalServerError  %+v", 500, o.Payload)
 }
-
 func (o *GetAffordabilityListInternalServerError) GetPayload() *models.InternalServerError {
 	return o.Payload
 }

@@ -25,13 +25,16 @@ type Client struct {
 	formats   strfmt.Registry
 }
 
+// ClientOption is the option for Client methods
+type ClientOption func(*runtime.ClientOperation)
+
 // ClientService is the interface for Client methods
 type ClientService interface {
-	DeleteAuthLink(params *DeleteAuthLinkParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteAuthLinkNoContent, error)
+	DeleteAuthLink(params *DeleteAuthLinkParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteAuthLinkNoContent, error)
 
-	GetAuthLink(params *GetAuthLinkParams, authInfo runtime.ClientAuthInfoWriter) (*GetAuthLinkOK, error)
+	GetAuthLink(params *GetAuthLinkParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAuthLinkOK, error)
 
-	PostAuthLink(params *PostAuthLinkParams, authInfo runtime.ClientAuthInfoWriter) (*PostAuthLinkCreated, error)
+	PostAuthLink(params *PostAuthLinkParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostAuthLinkCreated, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -45,13 +48,12 @@ type ClientService interface {
 
 Returns an empty body if the delete succeeded. Otherwise, this call returns an error in the event of a failure.
 */
-func (a *Client) DeleteAuthLink(params *DeleteAuthLinkParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteAuthLinkNoContent, error) {
+func (a *Client) DeleteAuthLink(params *DeleteAuthLinkParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteAuthLinkNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteAuthLinkParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "deleteAuthLink",
 		Method:             "DELETE",
 		PathPattern:        "/users/{userId}/auth_link",
@@ -63,7 +65,12 @@ func (a *Client) DeleteAuthLink(params *DeleteAuthLinkParams, authInfo runtime.C
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -82,13 +89,12 @@ func (a *Client) DeleteAuthLink(params *DeleteAuthLinkParams, authInfo runtime.C
 
   Returns the latest/last auth_link generated for the specified user. Returns an error otherwise.
 */
-func (a *Client) GetAuthLink(params *GetAuthLinkParams, authInfo runtime.ClientAuthInfoWriter) (*GetAuthLinkOK, error) {
+func (a *Client) GetAuthLink(params *GetAuthLinkParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAuthLinkOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetAuthLinkParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "getAuthLink",
 		Method:             "GET",
 		PathPattern:        "/users/{userId}/auth_link",
@@ -100,7 +106,12 @@ func (a *Client) GetAuthLink(params *GetAuthLinkParams, authInfo runtime.ClientA
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -121,13 +132,12 @@ func (a *Client) GetAuthLink(params *GetAuthLinkParams, authInfo runtime.ClientA
 
 Returns a created auth_link resource, if the operation succeeded. Returns an error if the post failed (e.g. not supplying required properties).
 */
-func (a *Client) PostAuthLink(params *PostAuthLinkParams, authInfo runtime.ClientAuthInfoWriter) (*PostAuthLinkCreated, error) {
+func (a *Client) PostAuthLink(params *PostAuthLinkParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostAuthLinkCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPostAuthLinkParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "postAuthLink",
 		Method:             "POST",
 		PathPattern:        "/users/{userId}/auth_link",
@@ -139,7 +149,12 @@ func (a *Client) PostAuthLink(params *PostAuthLinkParams, authInfo runtime.Clien
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}

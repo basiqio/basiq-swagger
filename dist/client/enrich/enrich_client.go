@@ -25,9 +25,12 @@ type Client struct {
 	formats   strfmt.Registry
 }
 
+// ClientOption is the option for Client methods
+type ClientOption func(*runtime.ClientOperation)
+
 // ClientService is the interface for Client methods
 type ClientService interface {
-	GetEnrich(params *GetEnrichParams, authInfo runtime.ClientAuthInfoWriter) (*GetEnrichOK, error)
+	GetEnrich(params *GetEnrichParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetEnrichOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -35,13 +38,12 @@ type ClientService interface {
 /*
   GetEnrich thes enrich resource enables you to retrieve details by passing in a search query containing a bank transaction description
 */
-func (a *Client) GetEnrich(params *GetEnrichParams, authInfo runtime.ClientAuthInfoWriter) (*GetEnrichOK, error) {
+func (a *Client) GetEnrich(params *GetEnrichParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetEnrichOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetEnrichParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "getEnrich",
 		Method:             "GET",
 		PathPattern:        "/enrich",
@@ -53,7 +55,12 @@ func (a *Client) GetEnrich(params *GetEnrichParams, authInfo runtime.ClientAuthI
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}

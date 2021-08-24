@@ -25,13 +25,16 @@ type Client struct {
 	formats   strfmt.Registry
 }
 
+// ClientOption is the option for Client methods
+type ClientOption func(*runtime.ClientOperation)
+
 // ClientService is the interface for Client methods
 type ClientService interface {
-	GetInstitution(params *GetInstitutionParams, authInfo runtime.ClientAuthInfoWriter) (*GetInstitutionOK, error)
+	GetInstitution(params *GetInstitutionParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInstitutionOK, error)
 
-	GetInstitutions(params *GetInstitutionsParams, authInfo runtime.ClientAuthInfoWriter) (*GetInstitutionsOK, error)
+	GetInstitutions(params *GetInstitutionsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInstitutionsOK, error)
 
-	GetPublicInstitutions(params *GetPublicInstitutionsParams) (*GetPublicInstitutionsOK, error)
+	GetPublicInstitutions(params *GetPublicInstitutionsParams, opts ...ClientOption) (*GetPublicInstitutionsOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -41,13 +44,12 @@ type ClientService interface {
 
   NOTE: This end point requires authentication.
 */
-func (a *Client) GetInstitution(params *GetInstitutionParams, authInfo runtime.ClientAuthInfoWriter) (*GetInstitutionOK, error) {
+func (a *Client) GetInstitution(params *GetInstitutionParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInstitutionOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetInstitutionParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "getInstitution",
 		Method:             "GET",
 		PathPattern:        "/institutions/{institutionID}",
@@ -59,7 +61,12 @@ func (a *Client) GetInstitution(params *GetInstitutionParams, authInfo runtime.C
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -78,13 +85,12 @@ func (a *Client) GetInstitution(params *GetInstitutionParams, authInfo runtime.C
 
   NOTE: This end point requires authentication.
 */
-func (a *Client) GetInstitutions(params *GetInstitutionsParams, authInfo runtime.ClientAuthInfoWriter) (*GetInstitutionsOK, error) {
+func (a *Client) GetInstitutions(params *GetInstitutionsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInstitutionsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetInstitutionsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "getInstitutions",
 		Method:             "GET",
 		PathPattern:        "/institutions",
@@ -96,7 +102,12 @@ func (a *Client) GetInstitutions(params *GetInstitutionsParams, authInfo runtime
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -113,13 +124,12 @@ func (a *Client) GetInstitutions(params *GetInstitutionsParams, authInfo runtime
 /*
   GetPublicInstitutions retrieves publically availiable no authentication required institutions list
 */
-func (a *Client) GetPublicInstitutions(params *GetPublicInstitutionsParams) (*GetPublicInstitutionsOK, error) {
+func (a *Client) GetPublicInstitutions(params *GetPublicInstitutionsParams, opts ...ClientOption) (*GetPublicInstitutionsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetPublicInstitutionsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "getPublicInstitutions",
 		Method:             "GET",
 		PathPattern:        "/public/institutions",
@@ -130,7 +140,12 @@ func (a *Client) GetPublicInstitutions(params *GetPublicInstitutionsParams) (*Ge
 		Reader:             &GetPublicInstitutionsReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}

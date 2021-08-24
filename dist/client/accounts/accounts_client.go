@@ -25,11 +25,14 @@ type Client struct {
 	formats   strfmt.Registry
 }
 
+// ClientOption is the option for Client methods
+type ClientOption func(*runtime.ClientOperation)
+
 // ClientService is the interface for Client methods
 type ClientService interface {
-	GetAccount(params *GetAccountParams, authInfo runtime.ClientAuthInfoWriter) (*GetAccountOK, error)
+	GetAccount(params *GetAccountParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAccountOK, error)
 
-	GetAccounts(params *GetAccountsParams, authInfo runtime.ClientAuthInfoWriter) (*GetAccountsOK, error)
+	GetAccounts(params *GetAccountsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAccountsOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -39,13 +42,12 @@ type ClientService interface {
 
   Returns an account if a valid account ID was provided. Returns an error otherwise.
 */
-func (a *Client) GetAccount(params *GetAccountParams, authInfo runtime.ClientAuthInfoWriter) (*GetAccountOK, error) {
+func (a *Client) GetAccount(params *GetAccountParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAccountOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetAccountParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "getAccount",
 		Method:             "GET",
 		PathPattern:        "/users/{userId}/accounts/{accountId}",
@@ -57,7 +59,12 @@ func (a *Client) GetAccount(params *GetAccountParams, authInfo runtime.ClientAut
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -76,13 +83,12 @@ func (a *Client) GetAccount(params *GetAccountParams, authInfo runtime.ClientAut
 
   Returns a list with a data property that contains an array of accounts. Each entry in the array is a separate object. If no data is returned, the resulting array will be empty. Otherwise, this call returns an error in the event of1 a failure.
 */
-func (a *Client) GetAccounts(params *GetAccountsParams, authInfo runtime.ClientAuthInfoWriter) (*GetAccountsOK, error) {
+func (a *Client) GetAccounts(params *GetAccountsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAccountsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetAccountsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "getAccounts",
 		Method:             "GET",
 		PathPattern:        "/users/{userId}/accounts",
@@ -94,7 +100,12 @@ func (a *Client) GetAccounts(params *GetAccountsParams, authInfo runtime.ClientA
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}

@@ -25,11 +25,14 @@ type Client struct {
 	formats   strfmt.Registry
 }
 
+// ClientOption is the option for Client methods
+type ClientOption func(*runtime.ClientOperation)
+
 // ClientService is the interface for Client methods
 type ClientService interface {
-	GetIncome(params *GetIncomeParams, authInfo runtime.ClientAuthInfoWriter) (*GetIncomeOK, error)
+	GetIncome(params *GetIncomeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetIncomeOK, error)
 
-	PostIncome(params *PostIncomeParams, authInfo runtime.ClientAuthInfoWriter) (*PostIncomeOK, *PostIncomeNoContent, error)
+	PostIncome(params *PostIncomeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostIncomeOK, *PostIncomeNoContent, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -37,13 +40,12 @@ type ClientService interface {
 /*
   GetIncome retrieves the details of an income summary you need only supply the unique income identifier
 */
-func (a *Client) GetIncome(params *GetIncomeParams, authInfo runtime.ClientAuthInfoWriter) (*GetIncomeOK, error) {
+func (a *Client) GetIncome(params *GetIncomeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetIncomeOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetIncomeParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "getIncome",
 		Method:             "GET",
 		PathPattern:        "/users/{userId}/income/{snapshotId}",
@@ -55,7 +57,12 @@ func (a *Client) GetIncome(params *GetIncomeParams, authInfo runtime.ClientAuthI
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -72,13 +79,12 @@ func (a *Client) GetIncome(params *GetIncomeParams, authInfo runtime.ClientAuthI
 /*
   PostIncome uses this to create a new income report
 */
-func (a *Client) PostIncome(params *PostIncomeParams, authInfo runtime.ClientAuthInfoWriter) (*PostIncomeOK, *PostIncomeNoContent, error) {
+func (a *Client) PostIncome(params *PostIncomeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostIncomeOK, *PostIncomeNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPostIncomeParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "postIncome",
 		Method:             "POST",
 		PathPattern:        "/users/{userId}/income",
@@ -90,7 +96,12 @@ func (a *Client) PostIncome(params *PostIncomeParams, authInfo runtime.ClientAut
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, nil, err
 	}
