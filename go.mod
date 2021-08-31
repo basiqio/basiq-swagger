@@ -9,4 +9,5 @@ require (
 	github.com/go-openapi/swag v0.19.9
 	github.com/go-openapi/validate v0.19.10
 	github.com/onsi/gomega v1.10.2
+	github.com/stretchr/testify v1.6.1
 )
