@@ -4,8 +4,8 @@
     "category": {
       "anzsic": {
         "class": {
-          "code": "4511",
-          "title": "Cafes and Restaurants"
+          "code": "4512",
+          "title": "Takeaway Food Services"
         },
         "division": {
           "code": "H",
@@ -22,12 +22,25 @@
       }
     },
     "location": {
-      "geometry": {}
+      "country": "Australia",
+      "formattedAddress": "Eastland Shopping Centre, 171 - 175 Maroondah Hwy, Ringwood VIC 3134",
+      "geometry": {
+        "lat": "-37.8114604",
+        "lng": "145.230375"
+      },
+      "postalCode": "3134",
+      "route": "Maroondah Hwy",
+      "routeNo": "171 - 175",
+      "state": "VIC",
+      "suburb": "Ringwood"
     },
     "merchant": {
       "businessName": "Starbucks",
-      "phoneNumber": {},
-      "website": ""
+      "phoneNumber": {
+        "international": "+61 3 8845 7002",
+        "local": "(03) 8845 7002"
+      },
+      "website": "http://www.starbucks.com.au/"
     }
   },
   "direction": "debit",
