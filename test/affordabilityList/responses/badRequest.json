@@ -1,0 +1,15 @@
+{
+  "type": "list",
+  "correlationId": "e6b937bb-4815-44ec-a6b3-2bcfa7496245",
+  "data": [
+    {
+      "type": "error",
+      "code": "path-parameter-not-valid",
+      "title": "Parameter value is not valid",
+      "detail": "User ID value is not valid",
+      "source": {
+        "parameter": "userId"
+      }
+    }
+  ]
+}

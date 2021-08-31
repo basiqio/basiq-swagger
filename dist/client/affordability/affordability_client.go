@@ -25,13 +25,18 @@ type Client struct {
 	formats   strfmt.Registry
 }
 
+// ClientOption is the option for Client methods
+type ClientOption func(*runtime.ClientOperation)
+
 // ClientService is the interface for Client methods
 type ClientService interface {
-	GetAffordability(params *GetAffordabilityParams, authInfo runtime.ClientAuthInfoWriter) (*GetAffordabilityOK, error)
+	GetAffordability(params *GetAffordabilityParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAffordabilityOK, error)
 
-	GetAffordabilitySnapshotTransactions(params *GetAffordabilitySnapshotTransactionsParams, authInfo runtime.ClientAuthInfoWriter) (*GetAffordabilitySnapshotTransactionsOK, error)
+	GetAffordabilityList(params *GetAffordabilityListParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAffordabilityListOK, error)
 
-	PostAffordability(params *PostAffordabilityParams, authInfo runtime.ClientAuthInfoWriter) (*PostAffordabilityOK, *PostAffordabilityCreated, *PostAffordabilityNoContent, error)
+	GetAffordabilitySnapshotTransactions(params *GetAffordabilitySnapshotTransactionsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAffordabilitySnapshotTransactionsOK, error)
+
+	PostAffordability(params *PostAffordabilityParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostAffordabilityOK, *PostAffordabilityCreated, *PostAffordabilityNoContent, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -39,13 +44,12 @@ type ClientService interface {
 /*
   GetAffordability retrieves the details of an affordability summary you need only supply the unique affordability identifier
 */
-func (a *Client) GetAffordability(params *GetAffordabilityParams, authInfo runtime.ClientAuthInfoWriter) (*GetAffordabilityOK, error) {
+func (a *Client) GetAffordability(params *GetAffordabilityParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAffordabilityOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetAffordabilityParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "getAffordability",
 		Method:             "GET",
 		PathPattern:        "/users/{userId}/affordability/{snapshotId}",
@@ -57,7 +61,12 @@ func (a *Client) GetAffordability(params *GetAffordabilityParams, authInfo runti
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -72,15 +81,53 @@ func (a *Client) GetAffordability(params *GetAffordabilityParams, authInfo runti
 }
 
 /*
+  GetAffordabilityList returns a list with a data property that contains an array of affordability resources
+*/
+func (a *Client) GetAffordabilityList(params *GetAffordabilityListParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAffordabilityListOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetAffordabilityListParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "getAffordabilityList",
+		Method:             "GET",
+		PathPattern:        "/users/{userId}/affordability",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetAffordabilityListReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetAffordabilityListOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for getAffordabilityList: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
   GetAffordabilitySnapshotTransactions returns a paginated list with a data property that contains an array of transactions from the affordability snapshot
 */
-func (a *Client) GetAffordabilitySnapshotTransactions(params *GetAffordabilitySnapshotTransactionsParams, authInfo runtime.ClientAuthInfoWriter) (*GetAffordabilitySnapshotTransactionsOK, error) {
+func (a *Client) GetAffordabilitySnapshotTransactions(params *GetAffordabilitySnapshotTransactionsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAffordabilitySnapshotTransactionsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetAffordabilitySnapshotTransactionsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "getAffordabilitySnapshotTransactions",
 		Method:             "GET",
 		PathPattern:        "/users/{userId}/affordability/{snapshotId}/transactions",
@@ -92,7 +139,12 @@ func (a *Client) GetAffordabilitySnapshotTransactions(params *GetAffordabilitySn
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -109,13 +161,12 @@ func (a *Client) GetAffordabilitySnapshotTransactions(params *GetAffordabilitySn
 /*
   PostAffordability uses this to create a new affordability report
 */
-func (a *Client) PostAffordability(params *PostAffordabilityParams, authInfo runtime.ClientAuthInfoWriter) (*PostAffordabilityOK, *PostAffordabilityCreated, *PostAffordabilityNoContent, error) {
+func (a *Client) PostAffordability(params *PostAffordabilityParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostAffordabilityOK, *PostAffordabilityCreated, *PostAffordabilityNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPostAffordabilityParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "postAffordability",
 		Method:             "POST",
 		PathPattern:        "/users/{userId}/affordability",
@@ -127,7 +178,12 @@ func (a *Client) PostAffordability(params *PostAffordabilityParams, authInfo run
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, nil, nil, err
 	}

@@ -25,9 +25,12 @@ type Client struct {
 	formats   strfmt.Registry
 }
 
+// ClientOption is the option for Client methods
+type ClientOption func(*runtime.ClientOperation)
+
 // ClientService is the interface for Client methods
 type ClientService interface {
-	PostToken(params *PostTokenParams, authInfo runtime.ClientAuthInfoWriter) (*PostTokenOK, error)
+	PostToken(params *PostTokenParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostTokenOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -35,13 +38,12 @@ type ClientService interface {
 /*
   PostToken Use this endpoint to retrieve token that will be passed as authorization header for Basiq API
 */
-func (a *Client) PostToken(params *PostTokenParams, authInfo runtime.ClientAuthInfoWriter) (*PostTokenOK, error) {
+func (a *Client) PostToken(params *PostTokenParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostTokenOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPostTokenParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "postToken",
 		Method:             "POST",
 		PathPattern:        "/token",
@@ -53,7 +55,12 @@ func (a *Client) PostToken(params *PostTokenParams, authInfo runtime.ClientAuthI
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}

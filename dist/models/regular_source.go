@@ -16,7 +16,8 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// RegularSource Our complex income algorithm uses over 50 rules to identify different types of income sources. For example, to identify a regular income source - the fortnightly salary should have a minimum of 5 credits across a 90 day time period with regular intervals. Additionally, tolerances are applied based on confidence in identified income source patterns (by amount and frequency).
+// RegularSource RegularSource
+// Our complex income algorithm uses over 50 rules to identify different types of income sources. For example, to identify a regular income source - the fortnightly salary should have a minimum of 5 credits across a 90 day time period with regular intervals. Additionally, tolerances are applied based on confidence in identified income source patterns (by amount and frequency).
 //
 // swagger:model RegularSource
 type RegularSource struct {

@@ -1,0 +1,56 @@
+{
+  "type": "list",
+  "data": [
+    {
+      "type": "affordability",
+      "id": "8786198a-6de6-4cd6-ad9d-a1c2b7ce9c74",
+      "fromMonth": "2018-10",
+      "toMonth": "2019-10",
+      "coverageDays": 395,
+      "generatedDate": "2021-04-13T10:36:35",
+      "institutions": [
+        "AU00000"
+      ],
+      "links": {
+        "self": "https://au-api.basiq.io/users/53078a89-8267-4883-9169-9a652805a2c8/affordability/8786198a-6de6-4cd6-ad9d-a1c2b7ce9c74",
+        "income": "https://au-api.basiq.io/users/53078a89-8267-4883-9169-9a652805a2c8/income/8786198a-6de6-4cd6-ad9d-a1c2b7ce9c74",
+        "expenses": "https://au-api.basiq.io/users/53078a89-8267-4883-9169-9a652805a2c8/expenses/8786198a-6de6-4cd6-ad9d-a1c2b7ce9c74"
+      }
+    },
+    {
+      "type": "affordability",
+      "id": "858297cb-a211-4a54-9e32-2b2a9618613d",
+      "fromMonth": "2019-10",
+      "toMonth": "2020-09",
+      "coverageDays": 364,
+      "generatedDate": "2021-04-13T10:36:20",
+      "institutions": [
+        "AU00000"
+      ],
+      "links": {
+        "self": "https://au-api.basiq.io/users/53078a89-8267-4883-9169-9a652805a2c8/affordability/858297cb-a211-4a54-9e32-2b2a9618613d",
+        "income": "https://au-api.basiq.io/users/53078a89-8267-4883-9169-9a652805a2c8/income/858297cb-a211-4a54-9e32-2b2a9618613d",
+        "expenses": "https://au-api.basiq.io/users/53078a89-8267-4883-9169-9a652805a2c8/expenses/858297cb-a211-4a54-9e32-2b2a9618613d"
+      }
+    },
+    {
+      "type": "affordability",
+      "id": "09f863b5-3be2-4642-81d9-917888cf8108",
+      "fromMonth": "2019-10",
+      "toMonth": "2020-09",
+      "coverageDays": 364,
+      "generatedDate": "2021-04-13T10:36:48",
+      "institutions": [
+        "AU00000"
+      ],
+      "links": {
+        "self": "https://au-api.basiq.io/users/53078a89-8267-4883-9169-9a652805a2c8/affordability/09f863b5-3be2-4642-81d9-917888cf8108",
+        "income": "https://au-api.basiq.io/users/53078a89-8267-4883-9169-9a652805a2c8/income/09f863b5-3be2-4642-81d9-917888cf8108",
+        "expenses": "https://au-api.basiq.io/users/53078a89-8267-4883-9169-9a652805a2c8/expenses/09f863b5-3be2-4642-81d9-917888cf8108"
+      }
+    }
+  ],
+  "links": {
+    "self": "https://au-api.basiq.io/users/53078a89-8267-4883-9169-9a652805a2c8/affordability"
+  }
+}

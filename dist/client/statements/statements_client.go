@@ -25,9 +25,12 @@ type Client struct {
 	formats   strfmt.Registry
 }
 
+// ClientOption is the option for Client methods
+type ClientOption func(*runtime.ClientOperation)
+
 // ClientService is the interface for Client methods
 type ClientService interface {
-	CreateStatement(params *CreateStatementParams, authInfo runtime.ClientAuthInfoWriter) (*CreateStatementAccepted, error)
+	CreateStatement(params *CreateStatementParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateStatementAccepted, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -49,13 +52,12 @@ Create a new statement by uploading an official pdf bank statement or csv file s
 
 You can check the status of each step by querying the job resource (returned when the statement is created).
 */
-func (a *Client) CreateStatement(params *CreateStatementParams, authInfo runtime.ClientAuthInfoWriter) (*CreateStatementAccepted, error) {
+func (a *Client) CreateStatement(params *CreateStatementParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateStatementAccepted, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCreateStatementParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "createStatement",
 		Method:             "POST",
 		PathPattern:        "/users/{userId}/statements",
@@ -67,7 +69,12 @@ func (a *Client) CreateStatement(params *CreateStatementParams, authInfo runtime
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}

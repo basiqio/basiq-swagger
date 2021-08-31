@@ -25,11 +25,14 @@ type Client struct {
 	formats   strfmt.Registry
 }
 
+// ClientOption is the option for Client methods
+type ClientOption func(*runtime.ClientOperation)
+
 // ClientService is the interface for Client methods
 type ClientService interface {
-	GetTransaction(params *GetTransactionParams, authInfo runtime.ClientAuthInfoWriter) (*GetTransactionOK, error)
+	GetTransaction(params *GetTransactionParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetTransactionOK, error)
 
-	GetTransactions(params *GetTransactionsParams, authInfo runtime.ClientAuthInfoWriter) (*GetTransactionsOK, error)
+	GetTransactions(params *GetTransactionsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetTransactionsOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -39,13 +42,12 @@ type ClientService interface {
 
   You need only supply the unique transaction identifier.
 */
-func (a *Client) GetTransaction(params *GetTransactionParams, authInfo runtime.ClientAuthInfoWriter) (*GetTransactionOK, error) {
+func (a *Client) GetTransaction(params *GetTransactionParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetTransactionOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetTransactionParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "getTransaction",
 		Method:             "GET",
 		PathPattern:        "/users/{userId}/transactions/{transactionId}",
@@ -57,7 +59,12 @@ func (a *Client) GetTransaction(params *GetTransactionParams, authInfo runtime.C
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -76,13 +83,12 @@ func (a *Client) GetTransaction(params *GetTransactionParams, authInfo runtime.C
 
   The transactions are returned sorted by account and then posted date descending order - with pending transactions appearing first. Transactions are paginated in chunks of 500. Absence of next link means that there are no more pages to retrieve.
 */
-func (a *Client) GetTransactions(params *GetTransactionsParams, authInfo runtime.ClientAuthInfoWriter) (*GetTransactionsOK, error) {
+func (a *Client) GetTransactions(params *GetTransactionsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetTransactionsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetTransactionsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "getTransactions",
 		Method:             "GET",
 		PathPattern:        "/users/{userId}/transactions",
@@ -94,7 +100,12 @@ func (a *Client) GetTransactions(params *GetTransactionsParams, authInfo runtime
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
