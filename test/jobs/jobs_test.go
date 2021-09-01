@@ -58,13 +58,13 @@ func TestGetJobs(t *testing.T) {
 	}
 
 	var jobsPayload *models.JobsResponseResource
-	for i := 0; i <= 15; i++ {
+	for i := 0; i < 15; i++ {
 		jobsPayload, err = getJobsPayload(userID, token)
 		if err != nil {
 			t.Fatalf("Error getting user jobs: %v", err)
 		}
 		if *jobsPayload.Data[0].Steps[2].Status == models.JobsStepStatusSuccess {
-			continue
+			break
 		}
 		time.Sleep(1 * time.Second)
 	}
