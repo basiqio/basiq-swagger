@@ -3,14 +3,15 @@ package jobs
 import (
 	"context"
 	"encoding/json"
-	"strings"
-	"testing"
-
 	"github.com/basiqio/basiq-swagger/dist/client/connections"
 	"github.com/basiqio/basiq-swagger/dist/client/jobs"
 	"github.com/basiqio/basiq-swagger/dist/models"
 	"github.com/basiqio/basiq-swagger/test"
+	"github.com/go-openapi/runtime"
 	httptransport "github.com/go-openapi/runtime/client"
+	"strings"
+	"testing"
+	"time"
 )
 
 func TestGetJob(t *testing.T) {
@@ -56,21 +57,16 @@ func TestGetJobs(t *testing.T) {
 		t.Fatalf("Error posting connection, Error: %v", err)
 	}
 
-	jobsParams := &jobs.GetUserJobsParams{
-		UserID:  userID,
-		Context: context.TODO(),
-	}
-
-	jobsRsp, err := test.Client.Jobs.GetUserJobs(jobsParams, token)
-	if err != nil {
-		t.Fatalf("Error getting user jobs: %v", err)
-	}
-
-	jobsPayload := jobsRsp.GetPayload()
-
-	e, err := json.Marshal(jobsPayload)
-	if err != nil {
-		t.Fatalf("Error: %v", err)
+	var jobsPayload *models.JobsResponseResource
+	for i := 0; i < 15; i++ {
+		jobsPayload, err = getJobsPayload(userID, token)
+		if err != nil {
+			t.Fatalf("Error getting user jobs: %v", err)
+		}
+		if *jobsPayload.Data[0].Steps[2].Status == models.JobsStepStatusSuccess {
+			break
+		}
+		time.Sleep(1 * time.Second)
 	}
 
 	s := test.GetJsonResponse("./responses/getJobs.json", t)
@@ -80,5 +76,23 @@ func TestGetJobs(t *testing.T) {
 	s = strings.Replace(s, "2020-09-21T11:19:11Z", *jobsPayload.Data[0].Updated, 1)
 	s = strings.Replace(s, "{source}", jobsPayload.Data[0].Links.Source, 1)
 	s = strings.Replace(s, "{url}", jobsPayload.Data[0].Steps[0].Result.URL, 1)
+
+	e, err := json.Marshal(jobsPayload)
+	if err != nil {
+		t.Fatalf("Error: %v", err)
+	}
 	test.AssertJson(t, s, string(e))
+}
+
+func getJobsPayload(userID string, token runtime.ClientAuthInfoWriter) (*models.JobsResponseResource, error) {
+	jobsParams := &jobs.GetUserJobsParams{
+		UserID:  userID,
+		Context: context.TODO(),
+	}
+	jobsRsp, err := test.Client.Jobs.GetUserJobs(jobsParams, token)
+	if err != nil {
+		return nil, err
+	}
+
+	return jobsRsp.GetPayload(), nil
 }
