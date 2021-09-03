@@ -1,24 +1,31 @@
 # Basiq-swagger
-Basiq API documentation.
+Use this repository to generate a client using the Basiq Swagger/Open API spec and `go-swagger`. `go-swagger` brings to the `go` community a complete suite of fully-featured, high-performance, API components to work with a Swagger API: server, client and data model.
 
-### Installation
-The main step is to create a client using Swagger, and with a client you call all Basiq endpoints.
+## Usage
+### Install dependencies
+Firstly make sure you have go-swagger installed (https://goswagger.io).
 
-### Install packages
-To build sdk use ./build.sh script. Before building the sdk make sure you have goswagger installed (https://goswagger.io).
+Installation of the `go-swagger` tool:
 
-Installation of the goswagger tool:
+`go get -u github.com/go-swagger/go-swagger/cmd/swagger`
 
-go get -u github.com/go-swagger/go-swagger/cmd/swagger 
+### Testing
+The build script runs tests against the newly generated SDK. 
+In the `/test` directory there is a `config.json` file with three properties; 
+```json
+{
+  "ApiKey": "",
+  "DeletedApiKey": "",
+  "ExpiredToken": ""
+}
+```
+You need to populate these with their relevant values in order for the tests to pass. The sdk will still be generated even if the tests fail, however we strongly encourage you to ensure all tests are passing before proceeding. 
 
-For this generation to compile you need to have some packages in your GOPATH:
+### Build
+To generate the sdk, run the build script:  `./build.sh`
+The output will be the `dist` directory. 
 
-        * github.com/go-openapi/errors
-        * github.com/go-openapi/runtime
-        * github.com/go-openapi/runtime/client
-        * github.com/go-openapi/strfmt
-
-#### Quick start
+### Quick start
 To run these examples just create main.go in the root of the project. 
 
 #### Example GET Token:
