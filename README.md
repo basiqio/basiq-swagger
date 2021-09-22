@@ -1,9 +1,9 @@
 # Basiq-swagger
-Use this repository to generate a client using the Basiq Swagger/Open API spec and `go-swagger`. `go-swagger` brings to the `go` community a complete suite of fully-featured, high-performance, API components to work with a Swagger API: server, client and data model.
+You can use this repository to generate a client using the Basiq Swagger/Open API spec and `go-swagger`. `go-swagger` brings to the `go` community a complete suite of fully-featured, high-performance, API components to work with a Swagger API: server, client and data model.
 
 ## Usage
 ### Install dependencies
-Firstly make sure you have go-swagger installed (https://goswagger.io).
+To generate, make sure you have go-swagger installed (https://goswagger.io).
 
 Installation of the `go-swagger` tool:
 
@@ -25,7 +25,7 @@ You need to populate these with their relevant values in order for the tests to 
 To generate the sdk, run the build script:  `./build.sh`
 The output will be the `dist` directory. 
 
-### Quick start
+### Quick start using the SDK
 To run these examples just create main.go in the root of the project. 
 
 #### Example GET Token:
