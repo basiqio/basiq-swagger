@@ -159,7 +159,7 @@ type BadRequestErrorDataItems0 struct {
 	// Application-specific error code, expressed as a string value.
 	// Example: parameter-not-valid
 	// Required: true
-	// Enum: [parameter-not-supplied parameter-not-valid unsupported-accept invalid-content institution-not-supported temporary-unavailable invalid-credentials]
+	// Enum: [parameter-not-supplied parameter-not-valid unsupported-accept invalid-content institution-not-supported invalid-credentials]
 	Code *string `json:"code"`
 
 	// Human-readable explanation specific to this occurrence of the problem.
@@ -205,7 +205,7 @@ var badRequestErrorDataItems0TypeCodePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["parameter-not-supplied","parameter-not-valid","unsupported-accept","invalid-content","institution-not-supported","temporary-unavailable","invalid-credentials"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["parameter-not-supplied","parameter-not-valid","unsupported-accept","invalid-content","institution-not-supported","invalid-credentials"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -229,9 +229,6 @@ const (
 
 	// BadRequestErrorDataItems0CodeInstitutionDashNotDashSupported captures enum value "institution-not-supported"
 	BadRequestErrorDataItems0CodeInstitutionDashNotDashSupported string = "institution-not-supported"
-
-	// BadRequestErrorDataItems0CodeTemporaryDashUnavailable captures enum value "temporary-unavailable"
-	BadRequestErrorDataItems0CodeTemporaryDashUnavailable string = "temporary-unavailable"
 
 	// BadRequestErrorDataItems0CodeInvalidDashCredentials captures enum value "invalid-credentials"
 	BadRequestErrorDataItems0CodeInvalidDashCredentials string = "invalid-credentials"
