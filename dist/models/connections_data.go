@@ -42,6 +42,9 @@ type ConnectionsData struct {
 	// Required: true
 	Links *GetConnectionsLinks `json:"links"`
 
+	// Indicates whether MFA (multi factor authentication) is enabled for this connection. Where the value is true then expect an additional step in the Jobs response. Otherwise value is false.
+	MfaEnabled bool `json:"mfaEnabled,omitempty"`
+
 	// Connection status, available only for SERVER_SCOPE.
 	// Example: active
 	// Enum: [active pending invalid]

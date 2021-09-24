@@ -40,7 +40,7 @@ type JobsStep struct {
 
 	// Name of the step the job needs to complete.
 	// Example: retrieve-accounts
-	// Enum: [verify-credentials retrieve-accounts retrieve-transactions retrieve-statements]
+	// Enum: [verify-credentials retrieve-accounts retrieve-transactions retrieve-statements mfa-challenge]
 	Title string `json:"title,omitempty"`
 }
 
@@ -137,7 +137,7 @@ var jobsStepTypeTitlePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["verify-credentials","retrieve-accounts","retrieve-transactions","retrieve-statements"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["verify-credentials","retrieve-accounts","retrieve-transactions","retrieve-statements","mfa-challenge"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -158,6 +158,9 @@ const (
 
 	// JobsStepTitleRetrieveDashStatements captures enum value "retrieve-statements"
 	JobsStepTitleRetrieveDashStatements string = "retrieve-statements"
+
+	// JobsStepTitleMfaDashChallenge captures enum value "mfa-challenge"
+	JobsStepTitleMfaDashChallenge string = "mfa-challenge"
 )
 
 // prop value enum
