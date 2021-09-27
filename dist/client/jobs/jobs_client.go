@@ -34,6 +34,8 @@ type ClientService interface {
 
 	GetUserJobs(params *GetUserJobsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetUserJobsOK, error)
 
+	PostJobMfa(params *PostJobMfaParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostJobMfaAccepted, error)
+
 	SetTransport(transport runtime.ClientTransport)
 }
 
@@ -45,6 +47,7 @@ Every step of the job has a status property that depicts its current state.<br/>
 <b>Find out what steps have been completed</b><br/>
 Depending on the job being executed, some jobs will have multiple steps which need to be executed, for e.g. refreshing a connection requires the following steps to be completed:
 <ol><li>Establish successful authentication with institution</li>
+<li>Optional: mfa-challenge only appears in MFA challenge flow.</li>
 <li>Fetch latest list of accounts</li>
 <li>Fetch latest list of transactions</li></ol>
 You can keep track of the steps that have been completed by observing the results array property. As each step is successfully completed, its status will be updated and a result object with the link to the affected resource will be present. In the event that a step has failed, the result object will contain an embedded error object.
@@ -130,6 +133,48 @@ func (a *Client) GetUserJobs(params *GetUserJobsParams, authInfo runtime.ClientA
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for getUserJobs: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  PostJobMfa uses this to create a new m f a challenge response to job step mfa challenge
+
+  Ensure that you generate an authentication token with
+scope = CLIENT_ACCESS and basiq-version = 2.1 to create this resource
+*/
+func (a *Client) PostJobMfa(params *PostJobMfaParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostJobMfaAccepted, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPostJobMfaParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "postJobMfa",
+		Method:             "POST",
+		PathPattern:        "/jobs/{jobId}/mfa",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PostJobMfaReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*PostJobMfaAccepted)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for postJobMfa: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
