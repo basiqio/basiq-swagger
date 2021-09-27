@@ -130,47 +130,43 @@ func TestPostJobsMfa(t *testing.T) {
 				t.Fatalf("Error getting the job, Error: %v", err)
 			}
 
-			if isMfaStepInJob(jobsResponse.Payload.Steps) {
-				postJobMfaParams := jobs.PostJobMfaParams{
-					JobID:   *jobsResponse.Payload.ID,
-					Context: context.TODO(),
-					JobPostRequest: &models.JobPostRequest{
-						MfaResponse: []string{"Hooli"},
-					},
-				}
-				tokenClientScope := httptransport.BearerToken(test.GetTokenWithClientScope(t))
-
-				postJobMfaResponse, err := test.Client.Jobs.PostJobMfa(&postJobMfaParams, tokenClientScope)
-				if err != nil {
-					t.Fatalf("Error on POST user job mfa: %v", err)
-				}
-
-				assert.Equal(t, jobsResponse.Payload.ID, postJobMfaResponse.Payload.ID, "Should be the same job ID")
-
-				s := test.GetJsonResponse("./responses/postMfa.json", t)
-				s = strings.Replace(s, "25689822-63db-4e51-bb67-6091c2d4f2e9", *postJobMfaResponse.Payload.ID, 2)
-				s = strings.Replace(s, "{self}", *postJobMfaResponse.Payload.Links.Self, 1)
-
-				e, err := json.Marshal(postJobMfaResponse.Payload)
-				if err != nil {
-					t.Fatalf("Error: %v", err)
-				}
-				test.AssertJson(t, s, string(e))
-
-				jobRsp, err := test.Client.Jobs.GetJobs(jobParams, token)
-				if err != nil {
-					t.Fatalf("Error getting job: %v", err)
-				}
-
-				if isMfaStepSuccess(jobRsp.Payload.Steps) {
-					allStepsSuccess = true
-					ticker.Stop()
-					end.Stop()
-					break
-				}
+			if !isMfaStepInJob(jobsResponse.Payload.Steps) {
+				js, _ := json.Marshal(jobsResponse.Payload.Steps)
+				t.Fatalf("No mfa-challenge found %s", string(js))
 			}
-			js, _ := json.Marshal(jobsResponse.Payload.Steps)
-			t.Fatalf("No mfa-challenge found %s", string(js))
+
+			if isMfaStepSuccess(jobsResponse.Payload.Steps) {
+				allStepsSuccess = true
+				ticker.Stop()
+				end.Stop()
+				break
+			}
+
+			postJobMfaParams := jobs.PostJobMfaParams{
+				JobID:   *connectionPostRsp.Payload.ID,
+				Context: context.TODO(),
+				JobPostRequest: &models.JobPostRequest{
+					MfaResponse: []string{"Hooli"},
+				},
+			}
+			tokenClientScope := httptransport.BearerToken(test.GetTokenWithClientScope(t))
+
+			postJobMfaResponse, err := test.Client.Jobs.PostJobMfa(&postJobMfaParams, tokenClientScope)
+			if err != nil {
+				t.Fatalf("Error on POST user job mfa: %v", err)
+			}
+
+			assert.Equal(t, jobsResponse.Payload.ID, postJobMfaResponse.Payload.ID, "Should be the same job ID")
+
+			s := test.GetJsonResponse("./responses/postMfa.json", t)
+			s = strings.Replace(s, "25689822-63db-4e51-bb67-6091c2d4f2e9", *postJobMfaResponse.Payload.ID, 2)
+			s = strings.Replace(s, "{self}", *postJobMfaResponse.Payload.Links.Self, 1)
+
+			e, err := json.Marshal(postJobMfaResponse.Payload)
+			if err != nil {
+				t.Fatalf("Error: %v", err)
+			}
+			test.AssertJson(t, s, string(e))
 		}
 	}
 }
