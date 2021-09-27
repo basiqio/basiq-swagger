@@ -16,7 +16,7 @@
     "login": [
       "web"
     ],
-    "mfaChallenge": null,
+    "mfaChallenge": ["web"],
     "accounts": {
       "balance": [
         "web"

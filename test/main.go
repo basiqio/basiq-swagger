@@ -27,7 +27,7 @@ type Token interface {
 	getToken(t *testing.T) string
 }
 
-var Client *client2.Basiq200
+var Client *client2.Basiq210
 var Cfg Config
 var TokenHolder InMemoryToken
 
@@ -42,10 +42,29 @@ func init() {
 	Client = client2.New(httptransport.New(client2.DefaultHost, client2.DefaultBasePath, nil), strfmt.Default)
 }
 
+func GetTokenWithClientScope(t *testing.T) string {
+	var token InMemoryToken
+	clientScope := "CLIENT_ACCESS"
+	tokenReq := token2.NewPostTokenParamsWithContext(context.TODO())
+	tokenReq.SetBasiqVersion("2.1")
+	tokenReq.SetScope(&clientScope)
+	tokenOK, err := Client.Token.PostToken(tokenReq, httptransport.APIKeyAuth("Authorization", "header", "Basic "+Cfg.ApiKey))
+
+	if err != nil {
+		t.Fatalf("Error getting token : %v", err)
+	}
+
+	token.token = *tokenOK.Payload.AccessToken
+	token.expiresIn = *tokenOK.Payload.ExpiresIn
+	time := time.Now()
+	token.timeElapsed = &time
+	return token.token
+}
+
 func (token *InMemoryToken) GetToken(t *testing.T) string {
 	if token.timeElapsed == nil || int64(time.Now().Sub(*token.timeElapsed).Seconds()) >= token.expiresIn {
 		tokenReq := token2.NewPostTokenParamsWithContext(context.TODO())
-		tokenReq.SetBasiqVersion("2.0")
+		tokenReq.SetBasiqVersion("2.1")
 		tokenOK, err := Client.Token.PostToken(tokenReq, httptransport.APIKeyAuth("Authorization", "header", "Basic "+Cfg.ApiKey))
 
 		if err != nil {

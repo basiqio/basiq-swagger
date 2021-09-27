@@ -25,7 +25,7 @@ import (
 	"github.com/basiqio/basiq-swagger/dist/client/users"
 )
 
-// Default basiq200 HTTP client.
+// Default basiq210 HTTP client.
 var Default = NewHTTPClient(nil)
 
 const (
@@ -40,14 +40,14 @@ const (
 // DefaultSchemes are the default schemes found in Meta (info) section of spec file
 var DefaultSchemes = []string{"https"}
 
-// NewHTTPClient creates a new basiq200 HTTP client.
-func NewHTTPClient(formats strfmt.Registry) *Basiq200 {
+// NewHTTPClient creates a new basiq210 HTTP client.
+func NewHTTPClient(formats strfmt.Registry) *Basiq210 {
 	return NewHTTPClientWithConfig(formats, nil)
 }
 
-// NewHTTPClientWithConfig creates a new basiq200 HTTP client,
+// NewHTTPClientWithConfig creates a new basiq210 HTTP client,
 // using a customizable transport config.
-func NewHTTPClientWithConfig(formats strfmt.Registry, cfg *TransportConfig) *Basiq200 {
+func NewHTTPClientWithConfig(formats strfmt.Registry, cfg *TransportConfig) *Basiq210 {
 	// ensure nullable parameters have default
 	if cfg == nil {
 		cfg = DefaultTransportConfig()
@@ -58,14 +58,14 @@ func NewHTTPClientWithConfig(formats strfmt.Registry, cfg *TransportConfig) *Bas
 	return New(transport, formats)
 }
 
-// New creates a new basiq200 client
-func New(transport runtime.ClientTransport, formats strfmt.Registry) *Basiq200 {
+// New creates a new basiq210 client
+func New(transport runtime.ClientTransport, formats strfmt.Registry) *Basiq210 {
 	// ensure nullable parameters have default
 	if formats == nil {
 		formats = strfmt.Default
 	}
 
-	cli := new(Basiq200)
+	cli := new(Basiq210)
 	cli.Transport = transport
 	cli.Accounts = accounts.New(transport, formats)
 	cli.Affordability = affordability.New(transport, formats)
@@ -122,8 +122,8 @@ func (cfg *TransportConfig) WithSchemes(schemes []string) *TransportConfig {
 	return cfg
 }
 
-// Basiq200 is a client for basiq200
-type Basiq200 struct {
+// Basiq210 is a client for basiq210
+type Basiq210 struct {
 	Accounts accounts.ClientService
 
 	Affordability affordability.ClientService
@@ -154,7 +154,7 @@ type Basiq200 struct {
 }
 
 // SetTransport changes the transport on the client and all its subresources
-func (c *Basiq200) SetTransport(transport runtime.ClientTransport) {
+func (c *Basiq210) SetTransport(transport runtime.ClientTransport) {
 	c.Transport = transport
 	c.Accounts.SetTransport(transport)
 	c.Affordability.SetTransport(transport)
