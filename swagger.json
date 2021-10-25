@@ -6025,7 +6025,8 @@
       "required": [
         "merchant",
         "location",
-        "category"
+        "category",
+        "links"
       ],
       "properties": {
         "category": {
@@ -6036,6 +6037,9 @@
         },
         "merchant": {
           "$ref": "#/definitions/TransactionsMerchant"
+        },
+        "links": {
+          "$ref": "#/definitions/TransactionsLinks"
         }
       }
     },
@@ -6187,6 +6191,24 @@
           "description": "Merchant Website",
           "type": "string",
           "example": "http://garfish.com.au/garfish-manly/"
+        }
+      }
+    },
+    "TransactionsLinks": {
+      "type": "object",
+      "required": [
+        "logo-master",
+        "logo-thumb"
+      ],
+      "properties": {
+        "logo-master": {
+          "description": "Link to logo master image",
+          "type": "string"
+        },
+
+        "logo-thumb": {
+          "description": "Link to logo thumbnail",
+          "type": "string"
         }
       }
     },
