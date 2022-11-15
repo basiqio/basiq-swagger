@@ -63,7 +63,8 @@ func NewGetAffordabilitySnapshotTransactionsOK() *GetAffordabilitySnapshotTransa
 	return &GetAffordabilitySnapshotTransactionsOK{}
 }
 
-/* GetAffordabilitySnapshotTransactionsOK describes a response with status code 200, with default header values.
+/*
+GetAffordabilitySnapshotTransactionsOK describes a response with status code 200, with default header values.
 
 Returns a affordability resource transactions JSON or CSV file, if the operation succeeded.
 */
@@ -71,9 +72,39 @@ type GetAffordabilitySnapshotTransactionsOK struct {
 	Payload *models.AffordabilityTransactionsResponse
 }
 
+// IsSuccess returns true when this get affordability snapshot transactions o k response has a 2xx status code
+func (o *GetAffordabilitySnapshotTransactionsOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this get affordability snapshot transactions o k response has a 3xx status code
+func (o *GetAffordabilitySnapshotTransactionsOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get affordability snapshot transactions o k response has a 4xx status code
+func (o *GetAffordabilitySnapshotTransactionsOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get affordability snapshot transactions o k response has a 5xx status code
+func (o *GetAffordabilitySnapshotTransactionsOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get affordability snapshot transactions o k response a status code equal to that given
+func (o *GetAffordabilitySnapshotTransactionsOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *GetAffordabilitySnapshotTransactionsOK) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/affordability/{snapshotId}/transactions][%d] getAffordabilitySnapshotTransactionsOK  %+v", 200, o.Payload)
 }
+
+func (o *GetAffordabilitySnapshotTransactionsOK) String() string {
+	return fmt.Sprintf("[GET /users/{userId}/affordability/{snapshotId}/transactions][%d] getAffordabilitySnapshotTransactionsOK  %+v", 200, o.Payload)
+}
+
 func (o *GetAffordabilitySnapshotTransactionsOK) GetPayload() *models.AffordabilityTransactionsResponse {
 	return o.Payload
 }
@@ -95,7 +126,8 @@ func NewGetAffordabilitySnapshotTransactionsBadRequest() *GetAffordabilitySnapsh
 	return &GetAffordabilitySnapshotTransactionsBadRequest{}
 }
 
-/* GetAffordabilitySnapshotTransactionsBadRequest describes a response with status code 400, with default header values.
+/*
+GetAffordabilitySnapshotTransactionsBadRequest describes a response with status code 400, with default header values.
 
 Returns error that server cannot or will not process the request due to something that is perceived to be a client error.
 */
@@ -103,9 +135,39 @@ type GetAffordabilitySnapshotTransactionsBadRequest struct {
 	Payload *models.BadRequestError
 }
 
+// IsSuccess returns true when this get affordability snapshot transactions bad request response has a 2xx status code
+func (o *GetAffordabilitySnapshotTransactionsBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get affordability snapshot transactions bad request response has a 3xx status code
+func (o *GetAffordabilitySnapshotTransactionsBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get affordability snapshot transactions bad request response has a 4xx status code
+func (o *GetAffordabilitySnapshotTransactionsBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get affordability snapshot transactions bad request response has a 5xx status code
+func (o *GetAffordabilitySnapshotTransactionsBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get affordability snapshot transactions bad request response a status code equal to that given
+func (o *GetAffordabilitySnapshotTransactionsBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *GetAffordabilitySnapshotTransactionsBadRequest) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/affordability/{snapshotId}/transactions][%d] getAffordabilitySnapshotTransactionsBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *GetAffordabilitySnapshotTransactionsBadRequest) String() string {
+	return fmt.Sprintf("[GET /users/{userId}/affordability/{snapshotId}/transactions][%d] getAffordabilitySnapshotTransactionsBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *GetAffordabilitySnapshotTransactionsBadRequest) GetPayload() *models.BadRequestError {
 	return o.Payload
 }
@@ -127,7 +189,8 @@ func NewGetAffordabilitySnapshotTransactionsForbidden() *GetAffordabilitySnapsho
 	return &GetAffordabilitySnapshotTransactionsForbidden{}
 }
 
-/* GetAffordabilitySnapshotTransactionsForbidden describes a response with status code 403, with default header values.
+/*
+GetAffordabilitySnapshotTransactionsForbidden describes a response with status code 403, with default header values.
 
 Error that access is forbidden and tied to the application logic, such as insufficient rights to a resource.
 */
@@ -135,9 +198,39 @@ type GetAffordabilitySnapshotTransactionsForbidden struct {
 	Payload *models.ForbiddenAccessError
 }
 
+// IsSuccess returns true when this get affordability snapshot transactions forbidden response has a 2xx status code
+func (o *GetAffordabilitySnapshotTransactionsForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get affordability snapshot transactions forbidden response has a 3xx status code
+func (o *GetAffordabilitySnapshotTransactionsForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get affordability snapshot transactions forbidden response has a 4xx status code
+func (o *GetAffordabilitySnapshotTransactionsForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get affordability snapshot transactions forbidden response has a 5xx status code
+func (o *GetAffordabilitySnapshotTransactionsForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get affordability snapshot transactions forbidden response a status code equal to that given
+func (o *GetAffordabilitySnapshotTransactionsForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *GetAffordabilitySnapshotTransactionsForbidden) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/affordability/{snapshotId}/transactions][%d] getAffordabilitySnapshotTransactionsForbidden  %+v", 403, o.Payload)
 }
+
+func (o *GetAffordabilitySnapshotTransactionsForbidden) String() string {
+	return fmt.Sprintf("[GET /users/{userId}/affordability/{snapshotId}/transactions][%d] getAffordabilitySnapshotTransactionsForbidden  %+v", 403, o.Payload)
+}
+
 func (o *GetAffordabilitySnapshotTransactionsForbidden) GetPayload() *models.ForbiddenAccessError {
 	return o.Payload
 }
@@ -159,7 +252,8 @@ func NewGetAffordabilitySnapshotTransactionsNotFound() *GetAffordabilitySnapshot
 	return &GetAffordabilitySnapshotTransactionsNotFound{}
 }
 
-/* GetAffordabilitySnapshotTransactionsNotFound describes a response with status code 404, with default header values.
+/*
+GetAffordabilitySnapshotTransactionsNotFound describes a response with status code 404, with default header values.
 
 Returns error indicating that server can't find requested resource.
 */
@@ -167,9 +261,39 @@ type GetAffordabilitySnapshotTransactionsNotFound struct {
 	Payload *models.NotFoundError
 }
 
+// IsSuccess returns true when this get affordability snapshot transactions not found response has a 2xx status code
+func (o *GetAffordabilitySnapshotTransactionsNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get affordability snapshot transactions not found response has a 3xx status code
+func (o *GetAffordabilitySnapshotTransactionsNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get affordability snapshot transactions not found response has a 4xx status code
+func (o *GetAffordabilitySnapshotTransactionsNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get affordability snapshot transactions not found response has a 5xx status code
+func (o *GetAffordabilitySnapshotTransactionsNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get affordability snapshot transactions not found response a status code equal to that given
+func (o *GetAffordabilitySnapshotTransactionsNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *GetAffordabilitySnapshotTransactionsNotFound) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/affordability/{snapshotId}/transactions][%d] getAffordabilitySnapshotTransactionsNotFound  %+v", 404, o.Payload)
 }
+
+func (o *GetAffordabilitySnapshotTransactionsNotFound) String() string {
+	return fmt.Sprintf("[GET /users/{userId}/affordability/{snapshotId}/transactions][%d] getAffordabilitySnapshotTransactionsNotFound  %+v", 404, o.Payload)
+}
+
 func (o *GetAffordabilitySnapshotTransactionsNotFound) GetPayload() *models.NotFoundError {
 	return o.Payload
 }
@@ -191,7 +315,8 @@ func NewGetAffordabilitySnapshotTransactionsInternalServerError() *GetAffordabil
 	return &GetAffordabilitySnapshotTransactionsInternalServerError{}
 }
 
-/* GetAffordabilitySnapshotTransactionsInternalServerError describes a response with status code 500, with default header values.
+/*
+GetAffordabilitySnapshotTransactionsInternalServerError describes a response with status code 500, with default header values.
 
 Returns error response code indicates that the server encountered an unexpected condition that prevented it from fulfilling the request.
 */
@@ -199,9 +324,39 @@ type GetAffordabilitySnapshotTransactionsInternalServerError struct {
 	Payload *models.InternalServerError
 }
 
+// IsSuccess returns true when this get affordability snapshot transactions internal server error response has a 2xx status code
+func (o *GetAffordabilitySnapshotTransactionsInternalServerError) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get affordability snapshot transactions internal server error response has a 3xx status code
+func (o *GetAffordabilitySnapshotTransactionsInternalServerError) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get affordability snapshot transactions internal server error response has a 4xx status code
+func (o *GetAffordabilitySnapshotTransactionsInternalServerError) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get affordability snapshot transactions internal server error response has a 5xx status code
+func (o *GetAffordabilitySnapshotTransactionsInternalServerError) IsServerError() bool {
+	return true
+}
+
+// IsCode returns true when this get affordability snapshot transactions internal server error response a status code equal to that given
+func (o *GetAffordabilitySnapshotTransactionsInternalServerError) IsCode(code int) bool {
+	return code == 500
+}
+
 func (o *GetAffordabilitySnapshotTransactionsInternalServerError) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/affordability/{snapshotId}/transactions][%d] getAffordabilitySnapshotTransactionsInternalServerError  %+v", 500, o.Payload)
 }
+
+func (o *GetAffordabilitySnapshotTransactionsInternalServerError) String() string {
+	return fmt.Sprintf("[GET /users/{userId}/affordability/{snapshotId}/transactions][%d] getAffordabilitySnapshotTransactionsInternalServerError  %+v", 500, o.Payload)
+}
+
 func (o *GetAffordabilitySnapshotTransactionsInternalServerError) GetPayload() *models.InternalServerError {
 	return o.Payload
 }

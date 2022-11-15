@@ -53,10 +53,12 @@ func NewGetAffordabilitySnapshotTransactionsParamsWithHTTPClient(client *http.Cl
 	}
 }
 
-/* GetAffordabilitySnapshotTransactionsParams contains all the parameters to send to the API endpoint
-   for the get affordability snapshot transactions operation.
+/*
+GetAffordabilitySnapshotTransactionsParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get affordability snapshot transactions operation.
+
+	Typically these are written to a http.Request.
 */
 type GetAffordabilitySnapshotTransactionsParams struct {
 

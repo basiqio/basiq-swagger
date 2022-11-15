@@ -38,7 +38,7 @@ type ClientService interface {
 }
 
 /*
-  GetIncome retrieves the details of an income summary you need only supply the unique income identifier
+GetIncome retrieves the details of an income summary you need only supply the unique income identifier
 */
 func (a *Client) GetIncome(params *GetIncomeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetIncomeOK, error) {
 	// TODO: Validate the params before sending
@@ -77,7 +77,7 @@ func (a *Client) GetIncome(params *GetIncomeParams, authInfo runtime.ClientAuthI
 }
 
 /*
-  PostIncome uses this to create a new income report
+PostIncome uses this to create a new income report
 */
 func (a *Client) PostIncome(params *PostIncomeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostIncomeOK, *PostIncomeNoContent, error) {
 	// TODO: Validate the params before sending

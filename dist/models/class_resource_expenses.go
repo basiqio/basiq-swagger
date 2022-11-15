@@ -81,6 +81,8 @@ func (m *ClassResourceExpenses) validateChangeHistory(formats strfmt.Registry) e
 			if err := m.ChangeHistory[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("changeHistory" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("changeHistory" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -122,6 +124,8 @@ func (m *ClassResourceExpenses) contextValidateChangeHistory(ctx context.Context
 			if err := m.ChangeHistory[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("changeHistory" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("changeHistory" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

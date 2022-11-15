@@ -73,6 +73,8 @@ func (m *EnrichMerchant) validatePhoneNumber(formats strfmt.Registry) error {
 		if err := m.PhoneNumber.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("phoneNumber")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("phoneNumber")
 			}
 			return err
 		}
@@ -110,6 +112,8 @@ func (m *EnrichMerchant) contextValidatePhoneNumber(ctx context.Context, formats
 		if err := m.PhoneNumber.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("phoneNumber")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("phoneNumber")
 			}
 			return err
 		}

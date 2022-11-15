@@ -63,7 +63,8 @@ func NewGetExpensesOK() *GetExpensesOK {
 	return &GetExpensesOK{}
 }
 
-/* GetExpensesOK describes a response with status code 200, with default header values.
+/*
+GetExpensesOK describes a response with status code 200, with default header values.
 
 Returns a saved expenses resource, if the operation succeeded.
 */
@@ -71,9 +72,39 @@ type GetExpensesOK struct {
 	Payload *models.ExpensesResponse
 }
 
+// IsSuccess returns true when this get expenses o k response has a 2xx status code
+func (o *GetExpensesOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this get expenses o k response has a 3xx status code
+func (o *GetExpensesOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get expenses o k response has a 4xx status code
+func (o *GetExpensesOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get expenses o k response has a 5xx status code
+func (o *GetExpensesOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get expenses o k response a status code equal to that given
+func (o *GetExpensesOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *GetExpensesOK) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/expenses/{snapshotId}][%d] getExpensesOK  %+v", 200, o.Payload)
 }
+
+func (o *GetExpensesOK) String() string {
+	return fmt.Sprintf("[GET /users/{userId}/expenses/{snapshotId}][%d] getExpensesOK  %+v", 200, o.Payload)
+}
+
 func (o *GetExpensesOK) GetPayload() *models.ExpensesResponse {
 	return o.Payload
 }
@@ -95,7 +126,8 @@ func NewGetExpensesBadRequest() *GetExpensesBadRequest {
 	return &GetExpensesBadRequest{}
 }
 
-/* GetExpensesBadRequest describes a response with status code 400, with default header values.
+/*
+GetExpensesBadRequest describes a response with status code 400, with default header values.
 
 Returns error that server cannot or will not process the request due to something that is perceived to be a client error.
 */
@@ -103,9 +135,39 @@ type GetExpensesBadRequest struct {
 	Payload *models.BadRequestError
 }
 
+// IsSuccess returns true when this get expenses bad request response has a 2xx status code
+func (o *GetExpensesBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get expenses bad request response has a 3xx status code
+func (o *GetExpensesBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get expenses bad request response has a 4xx status code
+func (o *GetExpensesBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get expenses bad request response has a 5xx status code
+func (o *GetExpensesBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get expenses bad request response a status code equal to that given
+func (o *GetExpensesBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *GetExpensesBadRequest) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/expenses/{snapshotId}][%d] getExpensesBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *GetExpensesBadRequest) String() string {
+	return fmt.Sprintf("[GET /users/{userId}/expenses/{snapshotId}][%d] getExpensesBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *GetExpensesBadRequest) GetPayload() *models.BadRequestError {
 	return o.Payload
 }
@@ -127,7 +189,8 @@ func NewGetExpensesForbidden() *GetExpensesForbidden {
 	return &GetExpensesForbidden{}
 }
 
-/* GetExpensesForbidden describes a response with status code 403, with default header values.
+/*
+GetExpensesForbidden describes a response with status code 403, with default header values.
 
 Error that access is forbidden and tied to the application logic, such as insufficient rights to a resource.
 */
@@ -135,9 +198,39 @@ type GetExpensesForbidden struct {
 	Payload *models.ForbiddenAccessError
 }
 
+// IsSuccess returns true when this get expenses forbidden response has a 2xx status code
+func (o *GetExpensesForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get expenses forbidden response has a 3xx status code
+func (o *GetExpensesForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get expenses forbidden response has a 4xx status code
+func (o *GetExpensesForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get expenses forbidden response has a 5xx status code
+func (o *GetExpensesForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get expenses forbidden response a status code equal to that given
+func (o *GetExpensesForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *GetExpensesForbidden) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/expenses/{snapshotId}][%d] getExpensesForbidden  %+v", 403, o.Payload)
 }
+
+func (o *GetExpensesForbidden) String() string {
+	return fmt.Sprintf("[GET /users/{userId}/expenses/{snapshotId}][%d] getExpensesForbidden  %+v", 403, o.Payload)
+}
+
 func (o *GetExpensesForbidden) GetPayload() *models.ForbiddenAccessError {
 	return o.Payload
 }
@@ -159,7 +252,8 @@ func NewGetExpensesNotFound() *GetExpensesNotFound {
 	return &GetExpensesNotFound{}
 }
 
-/* GetExpensesNotFound describes a response with status code 404, with default header values.
+/*
+GetExpensesNotFound describes a response with status code 404, with default header values.
 
 Returns error indicating that server can't find requested resource.
 */
@@ -167,9 +261,39 @@ type GetExpensesNotFound struct {
 	Payload *models.NotFoundError
 }
 
+// IsSuccess returns true when this get expenses not found response has a 2xx status code
+func (o *GetExpensesNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get expenses not found response has a 3xx status code
+func (o *GetExpensesNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get expenses not found response has a 4xx status code
+func (o *GetExpensesNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get expenses not found response has a 5xx status code
+func (o *GetExpensesNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get expenses not found response a status code equal to that given
+func (o *GetExpensesNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *GetExpensesNotFound) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/expenses/{snapshotId}][%d] getExpensesNotFound  %+v", 404, o.Payload)
 }
+
+func (o *GetExpensesNotFound) String() string {
+	return fmt.Sprintf("[GET /users/{userId}/expenses/{snapshotId}][%d] getExpensesNotFound  %+v", 404, o.Payload)
+}
+
 func (o *GetExpensesNotFound) GetPayload() *models.NotFoundError {
 	return o.Payload
 }
@@ -191,7 +315,8 @@ func NewGetExpensesInternalServerError() *GetExpensesInternalServerError {
 	return &GetExpensesInternalServerError{}
 }
 
-/* GetExpensesInternalServerError describes a response with status code 500, with default header values.
+/*
+GetExpensesInternalServerError describes a response with status code 500, with default header values.
 
 Returns error response code indicates that the server encountered an unexpected condition that prevented it from fulfilling the request.
 */
@@ -199,9 +324,39 @@ type GetExpensesInternalServerError struct {
 	Payload *models.InternalServerError
 }
 
+// IsSuccess returns true when this get expenses internal server error response has a 2xx status code
+func (o *GetExpensesInternalServerError) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get expenses internal server error response has a 3xx status code
+func (o *GetExpensesInternalServerError) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get expenses internal server error response has a 4xx status code
+func (o *GetExpensesInternalServerError) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get expenses internal server error response has a 5xx status code
+func (o *GetExpensesInternalServerError) IsServerError() bool {
+	return true
+}
+
+// IsCode returns true when this get expenses internal server error response a status code equal to that given
+func (o *GetExpensesInternalServerError) IsCode(code int) bool {
+	return code == 500
+}
+
 func (o *GetExpensesInternalServerError) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/expenses/{snapshotId}][%d] getExpensesInternalServerError  %+v", 500, o.Payload)
 }
+
+func (o *GetExpensesInternalServerError) String() string {
+	return fmt.Sprintf("[GET /users/{userId}/expenses/{snapshotId}][%d] getExpensesInternalServerError  %+v", 500, o.Payload)
+}
+
 func (o *GetExpensesInternalServerError) GetPayload() *models.InternalServerError {
 	return o.Payload
 }

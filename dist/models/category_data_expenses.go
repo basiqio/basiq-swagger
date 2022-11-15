@@ -48,6 +48,8 @@ func (m *CategoryDataExpenses) validateExpenseClass(formats strfmt.Registry) err
 		if err := m.ExpenseClass.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("expenseClass")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("expenseClass")
 			}
 			return err
 		}
@@ -76,6 +78,8 @@ func (m *CategoryDataExpenses) contextValidateExpenseClass(ctx context.Context, 
 		if err := m.ExpenseClass.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("expenseClass")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("expenseClass")
 			}
 			return err
 		}

@@ -336,6 +336,8 @@ func (m *TransactionData) validateEnrich(formats strfmt.Registry) error {
 		if err := m.Enrich.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("enrich")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("enrich")
 			}
 			return err
 		}
@@ -372,6 +374,8 @@ func (m *TransactionData) validateLinks(formats strfmt.Registry) error {
 		if err := m.Links.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("links")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("links")
 			}
 			return err
 		}
@@ -442,6 +446,8 @@ func (m *TransactionData) validateSubClass(formats strfmt.Registry) error {
 		if err := m.SubClass.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("subClass")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("subClass")
 			}
 			return err
 		}
@@ -496,6 +502,8 @@ func (m *TransactionData) contextValidateEnrich(ctx context.Context, formats str
 		if err := m.Enrich.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("enrich")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("enrich")
 			}
 			return err
 		}
@@ -510,6 +518,8 @@ func (m *TransactionData) contextValidateLinks(ctx context.Context, formats strf
 		if err := m.Links.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("links")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("links")
 			}
 			return err
 		}
@@ -524,6 +534,8 @@ func (m *TransactionData) contextValidateSubClass(ctx context.Context, formats s
 		if err := m.SubClass.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("subClass")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("subClass")
 			}
 			return err
 		}

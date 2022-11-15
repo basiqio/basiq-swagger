@@ -54,10 +54,12 @@ func NewPostJobMfaParamsWithHTTPClient(client *http.Client) *PostJobMfaParams {
 	}
 }
 
-/* PostJobMfaParams contains all the parameters to send to the API endpoint
-   for the post job mfa operation.
+/*
+PostJobMfaParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the post job mfa operation.
+
+	Typically these are written to a http.Request.
 */
 type PostJobMfaParams struct {
 

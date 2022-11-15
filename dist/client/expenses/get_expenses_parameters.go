@@ -52,10 +52,12 @@ func NewGetExpensesParamsWithHTTPClient(client *http.Client) *GetExpensesParams 
 	}
 }
 
-/* GetExpensesParams contains all the parameters to send to the API endpoint
-   for the get expenses operation.
+/*
+GetExpensesParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get expenses operation.
+
+	Typically these are written to a http.Request.
 */
 type GetExpensesParams struct {
 

@@ -21,6 +21,11 @@ import (
 type Institution struct {
 
 	// Institution authorization identifier
+	// user AuthorizationUser  AuthorizationUser "User" authorization type identifier
+	// token AuthorizationToken AuthorizationToken "Token" authorization type identifier
+	// other AuthorizationOther  AuthorizationOther "Other" authorization type identifier
+	// user-mfa AuthorizationUserMfa  AuthorizationUserMfa "UserMfa" authorization type identifier
+	// user-mfa-intermittent AuthorizationUserMfaIntermittent  AuthorizationUserMfaIntermittent "UserMfaIntermittent" authorization type identifier
 	// Example: user
 	// Required: true
 	// Enum: [user token other user-mfa user-mfa-intermittent]
@@ -48,9 +53,17 @@ type Institution struct {
 	ID *string `json:"id"`
 
 	// Institution type identifier
+	// Bank BankInstitutionType  BankInstitutionType institution type identifier for Banks
+	// Bank (Foreign) BankForeignInstitutionType  BankForeignInstitutionType institution type identifier for Foreign banks
+	// Test Bank TestBankInstitutionType  TestBankInstitutionType institution type identifier for Test banks
+	// Credit Union CreditUnionInstitutionType  CreditUnionInstitutionType institution type identifier for Credit union institutions
+	// Financial Services FinancialServicesInstitutionType  FinancialServicesInstitutionType institution type identifier for Financial service institutions
+	// Superannuation SuperannuationInstitutionType  SuperannuationInstitutionType institution type identifier for Superannuation institutions
+	// Building Society BuildingSociety  BuildingSociety institution type identifier for Building Society institutions
+	// Government Government  Government institution type identifier for Government institutions
 	// Example: Bank
 	// Required: true
-	// Enum: [Bank Bank (Foreign) Test Bank Credit Union Financial Services Superannuation Building Society]
+	// Enum: [Bank Bank (Foreign) Test Bank Credit Union Financial Services Superannuation Building Society Government]
 	InstitutionType *string `json:"institutionType"`
 
 	// links
@@ -88,9 +101,15 @@ type Institution struct {
 	ServiceName *string `json:"serviceName"`
 
 	// Institution service name
+	// Personal Banking PersonalBankingService  PersonalBankingService personal banking service type identifier
+	// Business Banking BusinessBankingService  BusinessBankingService business banking service type identifier
+	// Card Access CardAccessService  CardAccessService card access service type identifier
+	// Test TestService  TestService test service type identifier
+	// Superannuation SuperannuationService  SuperannuationService superannuation service type identifier
+	// Government Services GovernmentService  GovernmentService government services type identifier
 	// Example: Personal Banking
 	// Required: true
-	// Enum: [Personal Banking Business Banking Card Access Test Superannuation]
+	// Enum: [Personal Banking Business Banking Card Access Test Superannuation Government Services]
 	ServiceType *string `json:"serviceType"`
 
 	// Institution short name
@@ -99,6 +118,9 @@ type Institution struct {
 	ShortName *string `json:"shortName"`
 
 	// Institution stage identifier
+	// live StageLive  StageLive live institution stage identifier
+	// beta StageBeta  StageBeta beta institution stage identifier
+	// alpha StageAlpha  StageAlpha alpha institution stage identifier (login shells)
 	// Example: live
 	// Required: true
 	// Enum: [live beta alpha]
@@ -113,12 +135,17 @@ type Institution struct {
 	Status *FeatureCondition `json:"status"`
 
 	// Institution tier identifier
+	// 1 TierOne  TierOne tier identifier for tier1 institution
+	// 2 TierTwo  TierTwo tier identifier for tier2 institution
+	// 3 TierThree  TierThree tier identifier for tier3 institution
+	// 4 TierFour  TierFour tier identifier for tier4 institution
 	// Example: 3
 	// Required: true
 	// Enum: [1 2 3 4]
 	Tier *string `json:"tier"`
 
 	// Resource type identifier. It is always "institution" for this model.
+	// institution InstitutionEntityType
 	// Example: institution
 	// Required: true
 	// Enum: [institution]
@@ -274,6 +301,8 @@ func (m *Institution) validateFeatures(formats strfmt.Registry) error {
 		if err := m.Features.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("features")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("features")
 			}
 			return err
 		}
@@ -307,7 +336,7 @@ var institutionTypeInstitutionTypePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["Bank","Bank (Foreign)","Test Bank","Credit Union","Financial Services","Superannuation","Building Society"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["Bank","Bank (Foreign)","Test Bank","Credit Union","Financial Services","Superannuation","Building Society","Government"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -337,6 +366,9 @@ const (
 
 	// InstitutionInstitutionTypeBuildingSociety captures enum value "Building Society"
 	InstitutionInstitutionTypeBuildingSociety string = "Building Society"
+
+	// InstitutionInstitutionTypeGovernment captures enum value "Government"
+	InstitutionInstitutionTypeGovernment string = "Government"
 )
 
 // prop value enum
@@ -371,6 +403,8 @@ func (m *Institution) validateLinks(formats strfmt.Registry) error {
 		if err := m.Links.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("links")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("links")
 			}
 			return err
 		}
@@ -389,6 +423,8 @@ func (m *Institution) validateLogo(formats strfmt.Registry) error {
 		if err := m.Logo.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("logo")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("logo")
 			}
 			return err
 		}
@@ -419,7 +455,7 @@ var institutionTypeServiceTypePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["Personal Banking","Business Banking","Card Access","Test","Superannuation"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["Personal Banking","Business Banking","Card Access","Test","Superannuation","Government Services"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -443,6 +479,9 @@ const (
 
 	// InstitutionServiceTypeSuperannuation captures enum value "Superannuation"
 	InstitutionServiceTypeSuperannuation string = "Superannuation"
+
+	// InstitutionServiceTypeGovernmentServices captures enum value "Government Services"
+	InstitutionServiceTypeGovernmentServices string = "Government Services"
 )
 
 // prop value enum
@@ -532,6 +571,8 @@ func (m *Institution) validateStats(formats strfmt.Registry) error {
 		if err := m.Stats.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("stats")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("stats")
 			}
 			return err
 		}
@@ -554,6 +595,8 @@ func (m *Institution) validateStatus(formats strfmt.Registry) error {
 		if err := m.Status.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("status")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status")
 			}
 			return err
 		}
@@ -687,6 +730,8 @@ func (m *Institution) contextValidateFeatures(ctx context.Context, formats strfm
 		if err := m.Features.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("features")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("features")
 			}
 			return err
 		}
@@ -701,6 +746,8 @@ func (m *Institution) contextValidateLinks(ctx context.Context, formats strfmt.R
 		if err := m.Links.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("links")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("links")
 			}
 			return err
 		}
@@ -715,6 +762,8 @@ func (m *Institution) contextValidateLogo(ctx context.Context, formats strfmt.Re
 		if err := m.Logo.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("logo")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("logo")
 			}
 			return err
 		}
@@ -729,6 +778,8 @@ func (m *Institution) contextValidateStats(ctx context.Context, formats strfmt.R
 		if err := m.Stats.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("stats")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("stats")
 			}
 			return err
 		}
@@ -743,6 +794,8 @@ func (m *Institution) contextValidateStatus(ctx context.Context, formats strfmt.
 		if err := m.Status.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("status")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status")
 			}
 			return err
 		}

@@ -54,10 +54,12 @@ func NewPostAffordabilityParamsWithHTTPClient(client *http.Client) *PostAffordab
 	}
 }
 
-/* PostAffordabilityParams contains all the parameters to send to the API endpoint
-   for the post affordability operation.
+/*
+PostAffordabilityParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the post affordability operation.
+
+	Typically these are written to a http.Request.
 */
 type PostAffordabilityParams struct {
 

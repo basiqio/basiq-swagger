@@ -42,7 +42,7 @@ type ClientService interface {
 }
 
 /*
-  CreateUser uses this to create a new user object
+CreateUser uses this to create a new user object
 */
 func (a *Client) CreateUser(params *CreateUserParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateUserCreated, error) {
 	// TODO: Validate the params before sending
@@ -81,9 +81,9 @@ func (a *Client) CreateUser(params *CreateUserParams, authInfo runtime.ClientAut
 }
 
 /*
-  DeleteUser deletes a user
+DeleteUser deletes a user
 
-  Permanently deletes a user along with all of their associated connection details. All data associated with this user will deleted. You need only supply the unique user identifier that was returned upon user creation.
+Permanently deletes a user along with all of their associated connection details. All data associated with this user will deleted. You need only supply the unique user identifier that was returned upon user creation.
 */
 func (a *Client) DeleteUser(params *DeleteUserParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteUserNoContent, error) {
 	// TODO: Validate the params before sending
@@ -122,7 +122,7 @@ func (a *Client) DeleteUser(params *DeleteUserParams, authInfo runtime.ClientAut
 }
 
 /*
-  GetUser retrieves the details of an existing user you need only supply the unique user identifier that was returned upon user creation
+GetUser retrieves the details of an existing user you need only supply the unique user identifier that was returned upon user creation
 */
 func (a *Client) GetUser(params *GetUserParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetUserOK, error) {
 	// TODO: Validate the params before sending
@@ -161,7 +161,7 @@ func (a *Client) GetUser(params *GetUserParams, authInfo runtime.ClientAuthInfoW
 }
 
 /*
-  UpdateUser updates the specified user by setting the values of the parameters passed any parameters not provided will be left unchanged
+UpdateUser updates the specified user by setting the values of the parameters passed any parameters not provided will be left unchanged
 */
 func (a *Client) UpdateUser(params *UpdateUserParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateUserOK, error) {
 	// TODO: Validate the params before sending

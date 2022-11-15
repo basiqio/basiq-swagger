@@ -140,6 +140,8 @@ func (m *ExpensesResponse) validateBankFees(formats strfmt.Registry) error {
 		if err := m.BankFees.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("bankFees")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("bankFees")
 			}
 			return err
 		}
@@ -158,6 +160,8 @@ func (m *ExpensesResponse) validateCashWithdrawals(formats strfmt.Registry) erro
 		if err := m.CashWithdrawals.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("cashWithdrawals")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cashWithdrawals")
 			}
 			return err
 		}
@@ -176,6 +180,8 @@ func (m *ExpensesResponse) validateExternalTransfers(formats strfmt.Registry) er
 		if err := m.ExternalTransfers.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("externalTransfers")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("externalTransfers")
 			}
 			return err
 		}
@@ -211,6 +217,8 @@ func (m *ExpensesResponse) validateLinks(formats strfmt.Registry) error {
 		if err := m.Links.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("links")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("links")
 			}
 			return err
 		}
@@ -229,6 +237,8 @@ func (m *ExpensesResponse) validateLoanInterests(formats strfmt.Registry) error 
 		if err := m.LoanInterests.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("loanInterests")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("loanInterests")
 			}
 			return err
 		}
@@ -247,6 +257,8 @@ func (m *ExpensesResponse) validateLoanRepayments(formats strfmt.Registry) error
 		if err := m.LoanRepayments.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("loanRepayments")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("loanRepayments")
 			}
 			return err
 		}
@@ -270,6 +282,8 @@ func (m *ExpensesResponse) validatePayments(formats strfmt.Registry) error {
 			if err := m.Payments[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("payments" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("payments" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -342,6 +356,8 @@ func (m *ExpensesResponse) contextValidateBankFees(ctx context.Context, formats 
 		if err := m.BankFees.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("bankFees")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("bankFees")
 			}
 			return err
 		}
@@ -356,6 +372,8 @@ func (m *ExpensesResponse) contextValidateCashWithdrawals(ctx context.Context, f
 		if err := m.CashWithdrawals.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("cashWithdrawals")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cashWithdrawals")
 			}
 			return err
 		}
@@ -370,6 +388,8 @@ func (m *ExpensesResponse) contextValidateExternalTransfers(ctx context.Context,
 		if err := m.ExternalTransfers.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("externalTransfers")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("externalTransfers")
 			}
 			return err
 		}
@@ -384,6 +404,8 @@ func (m *ExpensesResponse) contextValidateLinks(ctx context.Context, formats str
 		if err := m.Links.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("links")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("links")
 			}
 			return err
 		}
@@ -398,6 +420,8 @@ func (m *ExpensesResponse) contextValidateLoanInterests(ctx context.Context, for
 		if err := m.LoanInterests.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("loanInterests")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("loanInterests")
 			}
 			return err
 		}
@@ -412,6 +436,8 @@ func (m *ExpensesResponse) contextValidateLoanRepayments(ctx context.Context, fo
 		if err := m.LoanRepayments.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("loanRepayments")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("loanRepayments")
 			}
 			return err
 		}
@@ -428,6 +454,8 @@ func (m *ExpensesResponse) contextValidatePayments(ctx context.Context, formats 
 			if err := m.Payments[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("payments" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("payments" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

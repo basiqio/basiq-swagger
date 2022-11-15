@@ -69,7 +69,8 @@ func NewGetConnectionsOK() *GetConnectionsOK {
 	return &GetConnectionsOK{}
 }
 
-/* GetConnectionsOK describes a response with status code 200, with default header values.
+/*
+GetConnectionsOK describes a response with status code 200, with default header values.
 
 Returns details of connections.
 */
@@ -77,9 +78,39 @@ type GetConnectionsOK struct {
 	Payload *models.ConnectionsGetResponseResource
 }
 
+// IsSuccess returns true when this get connections o k response has a 2xx status code
+func (o *GetConnectionsOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this get connections o k response has a 3xx status code
+func (o *GetConnectionsOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get connections o k response has a 4xx status code
+func (o *GetConnectionsOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get connections o k response has a 5xx status code
+func (o *GetConnectionsOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get connections o k response a status code equal to that given
+func (o *GetConnectionsOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *GetConnectionsOK) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/connections][%d] getConnectionsOK  %+v", 200, o.Payload)
 }
+
+func (o *GetConnectionsOK) String() string {
+	return fmt.Sprintf("[GET /users/{userId}/connections][%d] getConnectionsOK  %+v", 200, o.Payload)
+}
+
 func (o *GetConnectionsOK) GetPayload() *models.ConnectionsGetResponseResource {
 	return o.Payload
 }
@@ -101,7 +132,8 @@ func NewGetConnectionsBadRequest() *GetConnectionsBadRequest {
 	return &GetConnectionsBadRequest{}
 }
 
-/* GetConnectionsBadRequest describes a response with status code 400, with default header values.
+/*
+GetConnectionsBadRequest describes a response with status code 400, with default header values.
 
 Returns error that server cannot or will not process the request due to something that is perceived to be a client error.
 */
@@ -109,9 +141,39 @@ type GetConnectionsBadRequest struct {
 	Payload *models.BadRequestError
 }
 
+// IsSuccess returns true when this get connections bad request response has a 2xx status code
+func (o *GetConnectionsBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get connections bad request response has a 3xx status code
+func (o *GetConnectionsBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get connections bad request response has a 4xx status code
+func (o *GetConnectionsBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get connections bad request response has a 5xx status code
+func (o *GetConnectionsBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get connections bad request response a status code equal to that given
+func (o *GetConnectionsBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *GetConnectionsBadRequest) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/connections][%d] getConnectionsBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *GetConnectionsBadRequest) String() string {
+	return fmt.Sprintf("[GET /users/{userId}/connections][%d] getConnectionsBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *GetConnectionsBadRequest) GetPayload() *models.BadRequestError {
 	return o.Payload
 }
@@ -133,7 +195,8 @@ func NewGetConnectionsForbidden() *GetConnectionsForbidden {
 	return &GetConnectionsForbidden{}
 }
 
-/* GetConnectionsForbidden describes a response with status code 403, with default header values.
+/*
+GetConnectionsForbidden describes a response with status code 403, with default header values.
 
 Error that access is forbidden and tied to the application logic, such as insufficient rights to a resource.
 */
@@ -141,9 +204,39 @@ type GetConnectionsForbidden struct {
 	Payload *models.ForbiddenAccessError
 }
 
+// IsSuccess returns true when this get connections forbidden response has a 2xx status code
+func (o *GetConnectionsForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get connections forbidden response has a 3xx status code
+func (o *GetConnectionsForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get connections forbidden response has a 4xx status code
+func (o *GetConnectionsForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get connections forbidden response has a 5xx status code
+func (o *GetConnectionsForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get connections forbidden response a status code equal to that given
+func (o *GetConnectionsForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *GetConnectionsForbidden) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/connections][%d] getConnectionsForbidden  %+v", 403, o.Payload)
 }
+
+func (o *GetConnectionsForbidden) String() string {
+	return fmt.Sprintf("[GET /users/{userId}/connections][%d] getConnectionsForbidden  %+v", 403, o.Payload)
+}
+
 func (o *GetConnectionsForbidden) GetPayload() *models.ForbiddenAccessError {
 	return o.Payload
 }
@@ -165,7 +258,8 @@ func NewGetConnectionsNotFound() *GetConnectionsNotFound {
 	return &GetConnectionsNotFound{}
 }
 
-/* GetConnectionsNotFound describes a response with status code 404, with default header values.
+/*
+GetConnectionsNotFound describes a response with status code 404, with default header values.
 
 Returns error indicating that server can't find requested resource.
 */
@@ -173,9 +267,39 @@ type GetConnectionsNotFound struct {
 	Payload *models.NotFoundError
 }
 
+// IsSuccess returns true when this get connections not found response has a 2xx status code
+func (o *GetConnectionsNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get connections not found response has a 3xx status code
+func (o *GetConnectionsNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get connections not found response has a 4xx status code
+func (o *GetConnectionsNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get connections not found response has a 5xx status code
+func (o *GetConnectionsNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get connections not found response a status code equal to that given
+func (o *GetConnectionsNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *GetConnectionsNotFound) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/connections][%d] getConnectionsNotFound  %+v", 404, o.Payload)
 }
+
+func (o *GetConnectionsNotFound) String() string {
+	return fmt.Sprintf("[GET /users/{userId}/connections][%d] getConnectionsNotFound  %+v", 404, o.Payload)
+}
+
 func (o *GetConnectionsNotFound) GetPayload() *models.NotFoundError {
 	return o.Payload
 }
@@ -197,7 +321,8 @@ func NewGetConnectionsInternalServerError() *GetConnectionsInternalServerError {
 	return &GetConnectionsInternalServerError{}
 }
 
-/* GetConnectionsInternalServerError describes a response with status code 500, with default header values.
+/*
+GetConnectionsInternalServerError describes a response with status code 500, with default header values.
 
 Returns error response code indicates that the server encountered an unexpected condition that prevented it from fulfilling the request.
 */
@@ -205,9 +330,39 @@ type GetConnectionsInternalServerError struct {
 	Payload *models.InternalServerError
 }
 
+// IsSuccess returns true when this get connections internal server error response has a 2xx status code
+func (o *GetConnectionsInternalServerError) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get connections internal server error response has a 3xx status code
+func (o *GetConnectionsInternalServerError) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get connections internal server error response has a 4xx status code
+func (o *GetConnectionsInternalServerError) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get connections internal server error response has a 5xx status code
+func (o *GetConnectionsInternalServerError) IsServerError() bool {
+	return true
+}
+
+// IsCode returns true when this get connections internal server error response a status code equal to that given
+func (o *GetConnectionsInternalServerError) IsCode(code int) bool {
+	return code == 500
+}
+
 func (o *GetConnectionsInternalServerError) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/connections][%d] getConnectionsInternalServerError  %+v", 500, o.Payload)
 }
+
+func (o *GetConnectionsInternalServerError) String() string {
+	return fmt.Sprintf("[GET /users/{userId}/connections][%d] getConnectionsInternalServerError  %+v", 500, o.Payload)
+}
+
 func (o *GetConnectionsInternalServerError) GetPayload() *models.InternalServerError {
 	return o.Payload
 }
@@ -229,7 +384,8 @@ func NewGetConnectionsServiceUnavailable() *GetConnectionsServiceUnavailable {
 	return &GetConnectionsServiceUnavailable{}
 }
 
-/* GetConnectionsServiceUnavailable describes a response with status code 503, with default header values.
+/*
+GetConnectionsServiceUnavailable describes a response with status code 503, with default header values.
 
 Returns error response code indicates that the server is not ready to handle the request.
 */
@@ -237,9 +393,39 @@ type GetConnectionsServiceUnavailable struct {
 	Payload *models.StatusServiceUnavailableError
 }
 
+// IsSuccess returns true when this get connections service unavailable response has a 2xx status code
+func (o *GetConnectionsServiceUnavailable) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get connections service unavailable response has a 3xx status code
+func (o *GetConnectionsServiceUnavailable) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get connections service unavailable response has a 4xx status code
+func (o *GetConnectionsServiceUnavailable) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get connections service unavailable response has a 5xx status code
+func (o *GetConnectionsServiceUnavailable) IsServerError() bool {
+	return true
+}
+
+// IsCode returns true when this get connections service unavailable response a status code equal to that given
+func (o *GetConnectionsServiceUnavailable) IsCode(code int) bool {
+	return code == 503
+}
+
 func (o *GetConnectionsServiceUnavailable) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/connections][%d] getConnectionsServiceUnavailable  %+v", 503, o.Payload)
 }
+
+func (o *GetConnectionsServiceUnavailable) String() string {
+	return fmt.Sprintf("[GET /users/{userId}/connections][%d] getConnectionsServiceUnavailable  %+v", 503, o.Payload)
+}
+
 func (o *GetConnectionsServiceUnavailable) GetPayload() *models.StatusServiceUnavailableError {
 	return o.Payload
 }

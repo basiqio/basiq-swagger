@@ -48,9 +48,10 @@ type ClientService interface {
 }
 
 /*
-  DeleteConnection permanentlies deletes a connection
+	DeleteConnection permanentlies deletes a connection
 
-  Once the connection has been deleted, all of the associated financial data e.g. accounts and transactions can still be accessed via the users end-point.
+	Once the connection has been deleted, all of the associated financial data e.g. accounts and transactions can still be accessed via the users end-point.
+
 Note that this action cannot be undone.
 */
 func (a *Client) DeleteConnection(params *DeleteConnectionParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteConnectionNoContent, error) {
@@ -90,9 +91,10 @@ func (a *Client) DeleteConnection(params *DeleteConnectionParams, authInfo runti
 }
 
 /*
-  GetConnection uses this to retrieve details of a specific connection
+	GetConnection uses this to retrieve details of a specific connection
 
-  This request will return back a connection object with most of the fields that were submitted when the connection was first created. The connection object will also return a list of URLs to the associated account, transaction and institution objects.
+	This request will return back a connection object with most of the fields that were submitted when the connection was first created. The connection object will also return a list of URLs to the associated account, transaction and institution objects.
+
 The status property of the connection object identifies the state of the connection. Use this to work out if the connection is still valid, or whether to take further action (e.g. if the connection credentials are no longer valid you may ask the user to re-submit their details).
 <br/>
 Note that due to security the loginId, password, securityCode are never returned.
@@ -135,9 +137,9 @@ func (a *Client) GetConnection(params *GetConnectionParams, authInfo runtime.Cli
 }
 
 /*
-  GetConnections uses this to retrieve details of the connections
+GetConnections uses this to retrieve details of the connections
 
-  Returns a list with a data property that contains an array of connections. Each entry in the array is a separate object. If no data is returned, the resulting array will be empty.
+Returns a list with a data property that contains an array of connections. Each entry in the array is a separate object. If no data is returned, the resulting array will be empty.
 */
 func (a *Client) GetConnections(params *GetConnectionsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetConnectionsOK, error) {
 	// TODO: Validate the params before sending
@@ -176,9 +178,10 @@ func (a *Client) GetConnections(params *GetConnectionsParams, authInfo runtime.C
 }
 
 /*
-  PostConnection uses this to create a new connection
+	PostConnection uses this to create a new connection
 
-  When a new connection request is made the server will create a job that will process the following steps:
+	When a new connection request is made the server will create a job that will process the following steps:
+
 <table>
 <thead>
 <tr><td>#</td><td>Step</td><td>Description</td></tr>
@@ -249,9 +252,10 @@ func (a *Client) PostConnection(params *PostConnectionParams, authInfo runtime.C
 }
 
 /*
-  RefreshConnection uses this to retrieve the latest financial data
+	RefreshConnection uses this to retrieve the latest financial data
 
-  Similar to when a connection is first created, the refresh resource will initiate the following series of steps to retrieve the latest financial data from the target institution:
+	Similar to when a connection is first created, the refresh resource will initiate the following series of steps to retrieve the latest financial data from the target institution:
+
 <table>
 <thead>
 <tr><td>#</td><td>Step</td><td>Description</td></tr>
@@ -299,7 +303,7 @@ func (a *Client) RefreshConnection(params *RefreshConnectionParams, authInfo run
 }
 
 /*
-  RefreshConnections uses this to refresh of all connections
+RefreshConnections uses this to refresh of all connections
 */
 func (a *Client) RefreshConnections(params *RefreshConnectionsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RefreshConnectionsAccepted, error) {
 	// TODO: Validate the params before sending
@@ -338,7 +342,7 @@ func (a *Client) RefreshConnections(params *RefreshConnectionsParams, authInfo r
 }
 
 /*
-  UpdateConnection uses this to update the details of a specific connection
+UpdateConnection uses this to update the details of a specific connection
 */
 func (a *Client) UpdateConnection(params *UpdateConnectionParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateConnectionAccepted, error) {
 	// TODO: Validate the params before sending

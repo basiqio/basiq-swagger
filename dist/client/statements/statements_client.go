@@ -36,9 +36,9 @@ type ClientService interface {
 }
 
 /*
-  CreateStatement as user can choose to share their financial data by uploading official pdf bank statements instead of creating a bank connection once the statement object is successfully created you can use it to obtain the user s latest financial data extracted from the bank statement i e accounts and transactions
+	CreateStatement as user can choose to share their financial data by uploading official pdf bank statements instead of creating a bank connection once the statement object is successfully created you can use it to obtain the user s latest financial data extracted from the bank statement i e accounts and transactions
 
-  <blockquote>The endpoint also accepts csv files conforming to our file specification. Contact us directly for more details.</blockquote>
+	<blockquote>The endpoint also accepts csv files conforming to our file specification. Contact us directly for more details.</blockquote>
 
 Create a new statement by uploading an official pdf bank statement or csv file statement. When a new statement request is made, the server will create a job that will process the following steps:
 <table>

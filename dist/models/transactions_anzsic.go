@@ -66,6 +66,8 @@ func (m *TransactionsAnzsic) validateClass(formats strfmt.Registry) error {
 		if err := m.Class.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("class")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("class")
 			}
 			return err
 		}
@@ -83,6 +85,8 @@ func (m *TransactionsAnzsic) validateDivision(formats strfmt.Registry) error {
 		if err := m.Division.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("division")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("division")
 			}
 			return err
 		}
@@ -100,6 +104,8 @@ func (m *TransactionsAnzsic) validateGroup(formats strfmt.Registry) error {
 		if err := m.Group.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("group")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("group")
 			}
 			return err
 		}
@@ -117,6 +123,8 @@ func (m *TransactionsAnzsic) validateSubdivision(formats strfmt.Registry) error 
 		if err := m.Subdivision.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("subdivision")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("subdivision")
 			}
 			return err
 		}
@@ -157,6 +165,8 @@ func (m *TransactionsAnzsic) contextValidateClass(ctx context.Context, formats s
 		if err := m.Class.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("class")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("class")
 			}
 			return err
 		}
@@ -171,6 +181,8 @@ func (m *TransactionsAnzsic) contextValidateDivision(ctx context.Context, format
 		if err := m.Division.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("division")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("division")
 			}
 			return err
 		}
@@ -185,6 +197,8 @@ func (m *TransactionsAnzsic) contextValidateGroup(ctx context.Context, formats s
 		if err := m.Group.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("group")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("group")
 			}
 			return err
 		}
@@ -199,6 +213,8 @@ func (m *TransactionsAnzsic) contextValidateSubdivision(ctx context.Context, for
 		if err := m.Subdivision.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("subdivision")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("subdivision")
 			}
 			return err
 		}

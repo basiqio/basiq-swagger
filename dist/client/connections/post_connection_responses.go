@@ -81,7 +81,8 @@ func NewPostConnectionAccepted() *PostConnectionAccepted {
 	return &PostConnectionAccepted{}
 }
 
-/* PostConnectionAccepted describes a response with status code 202, with default header values.
+/*
+PostConnectionAccepted describes a response with status code 202, with default header values.
 
 Returns the job object if the creation succeeded.
 */
@@ -89,9 +90,39 @@ type PostConnectionAccepted struct {
 	Payload *models.ConnectionResponseResource
 }
 
+// IsSuccess returns true when this post connection accepted response has a 2xx status code
+func (o *PostConnectionAccepted) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this post connection accepted response has a 3xx status code
+func (o *PostConnectionAccepted) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this post connection accepted response has a 4xx status code
+func (o *PostConnectionAccepted) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this post connection accepted response has a 5xx status code
+func (o *PostConnectionAccepted) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this post connection accepted response a status code equal to that given
+func (o *PostConnectionAccepted) IsCode(code int) bool {
+	return code == 202
+}
+
 func (o *PostConnectionAccepted) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}/connections][%d] postConnectionAccepted  %+v", 202, o.Payload)
 }
+
+func (o *PostConnectionAccepted) String() string {
+	return fmt.Sprintf("[POST /users/{userId}/connections][%d] postConnectionAccepted  %+v", 202, o.Payload)
+}
+
 func (o *PostConnectionAccepted) GetPayload() *models.ConnectionResponseResource {
 	return o.Payload
 }
@@ -113,7 +144,8 @@ func NewPostConnectionBadRequest() *PostConnectionBadRequest {
 	return &PostConnectionBadRequest{}
 }
 
-/* PostConnectionBadRequest describes a response with status code 400, with default header values.
+/*
+PostConnectionBadRequest describes a response with status code 400, with default header values.
 
 Returns error that server cannot or will not process the request due to something that is perceived to be a client error
 */
@@ -121,9 +153,39 @@ type PostConnectionBadRequest struct {
 	Payload *models.BadRequestError
 }
 
+// IsSuccess returns true when this post connection bad request response has a 2xx status code
+func (o *PostConnectionBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this post connection bad request response has a 3xx status code
+func (o *PostConnectionBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this post connection bad request response has a 4xx status code
+func (o *PostConnectionBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this post connection bad request response has a 5xx status code
+func (o *PostConnectionBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this post connection bad request response a status code equal to that given
+func (o *PostConnectionBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *PostConnectionBadRequest) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}/connections][%d] postConnectionBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *PostConnectionBadRequest) String() string {
+	return fmt.Sprintf("[POST /users/{userId}/connections][%d] postConnectionBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *PostConnectionBadRequest) GetPayload() *models.BadRequestError {
 	return o.Payload
 }
@@ -145,7 +207,8 @@ func NewPostConnectionUnauthorized() *PostConnectionUnauthorized {
 	return &PostConnectionUnauthorized{}
 }
 
-/* PostConnectionUnauthorized describes a response with status code 401, with default header values.
+/*
+PostConnectionUnauthorized describes a response with status code 401, with default header values.
 
 Error status response code indicates that the request has not been applied because it lacks valid authentication credentials for the target resource.
 */
@@ -153,9 +216,39 @@ type PostConnectionUnauthorized struct {
 	Payload *models.UnauthorizedError
 }
 
+// IsSuccess returns true when this post connection unauthorized response has a 2xx status code
+func (o *PostConnectionUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this post connection unauthorized response has a 3xx status code
+func (o *PostConnectionUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this post connection unauthorized response has a 4xx status code
+func (o *PostConnectionUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this post connection unauthorized response has a 5xx status code
+func (o *PostConnectionUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this post connection unauthorized response a status code equal to that given
+func (o *PostConnectionUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *PostConnectionUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}/connections][%d] postConnectionUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *PostConnectionUnauthorized) String() string {
+	return fmt.Sprintf("[POST /users/{userId}/connections][%d] postConnectionUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *PostConnectionUnauthorized) GetPayload() *models.UnauthorizedError {
 	return o.Payload
 }
@@ -177,7 +270,8 @@ func NewPostConnectionForbidden() *PostConnectionForbidden {
 	return &PostConnectionForbidden{}
 }
 
-/* PostConnectionForbidden describes a response with status code 403, with default header values.
+/*
+PostConnectionForbidden describes a response with status code 403, with default header values.
 
 Error that access is forbidden and tied to the application logic, such as insufficient rights to a resource.
 */
@@ -185,9 +279,39 @@ type PostConnectionForbidden struct {
 	Payload *models.ForbiddenAccessError
 }
 
+// IsSuccess returns true when this post connection forbidden response has a 2xx status code
+func (o *PostConnectionForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this post connection forbidden response has a 3xx status code
+func (o *PostConnectionForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this post connection forbidden response has a 4xx status code
+func (o *PostConnectionForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this post connection forbidden response has a 5xx status code
+func (o *PostConnectionForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this post connection forbidden response a status code equal to that given
+func (o *PostConnectionForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *PostConnectionForbidden) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}/connections][%d] postConnectionForbidden  %+v", 403, o.Payload)
 }
+
+func (o *PostConnectionForbidden) String() string {
+	return fmt.Sprintf("[POST /users/{userId}/connections][%d] postConnectionForbidden  %+v", 403, o.Payload)
+}
+
 func (o *PostConnectionForbidden) GetPayload() *models.ForbiddenAccessError {
 	return o.Payload
 }
@@ -209,7 +333,8 @@ func NewPostConnectionNotFound() *PostConnectionNotFound {
 	return &PostConnectionNotFound{}
 }
 
-/* PostConnectionNotFound describes a response with status code 404, with default header values.
+/*
+PostConnectionNotFound describes a response with status code 404, with default header values.
 
 Returns error indicating that server can't find requested resource.
 */
@@ -217,9 +342,39 @@ type PostConnectionNotFound struct {
 	Payload *models.NotFoundError
 }
 
+// IsSuccess returns true when this post connection not found response has a 2xx status code
+func (o *PostConnectionNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this post connection not found response has a 3xx status code
+func (o *PostConnectionNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this post connection not found response has a 4xx status code
+func (o *PostConnectionNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this post connection not found response has a 5xx status code
+func (o *PostConnectionNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this post connection not found response a status code equal to that given
+func (o *PostConnectionNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *PostConnectionNotFound) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}/connections][%d] postConnectionNotFound  %+v", 404, o.Payload)
 }
+
+func (o *PostConnectionNotFound) String() string {
+	return fmt.Sprintf("[POST /users/{userId}/connections][%d] postConnectionNotFound  %+v", 404, o.Payload)
+}
+
 func (o *PostConnectionNotFound) GetPayload() *models.NotFoundError {
 	return o.Payload
 }
@@ -241,7 +396,8 @@ func NewPostConnectionUnsupportedMediaType() *PostConnectionUnsupportedMediaType
 	return &PostConnectionUnsupportedMediaType{}
 }
 
-/* PostConnectionUnsupportedMediaType describes a response with status code 415, with default header values.
+/*
+PostConnectionUnsupportedMediaType describes a response with status code 415, with default header values.
 
 Returns error response code that indicates that the server refuses to accept the request because the payload format is in an unsupported format.
 */
@@ -249,9 +405,39 @@ type PostConnectionUnsupportedMediaType struct {
 	Payload *models.UnsupportedMediaTypeError
 }
 
+// IsSuccess returns true when this post connection unsupported media type response has a 2xx status code
+func (o *PostConnectionUnsupportedMediaType) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this post connection unsupported media type response has a 3xx status code
+func (o *PostConnectionUnsupportedMediaType) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this post connection unsupported media type response has a 4xx status code
+func (o *PostConnectionUnsupportedMediaType) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this post connection unsupported media type response has a 5xx status code
+func (o *PostConnectionUnsupportedMediaType) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this post connection unsupported media type response a status code equal to that given
+func (o *PostConnectionUnsupportedMediaType) IsCode(code int) bool {
+	return code == 415
+}
+
 func (o *PostConnectionUnsupportedMediaType) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}/connections][%d] postConnectionUnsupportedMediaType  %+v", 415, o.Payload)
 }
+
+func (o *PostConnectionUnsupportedMediaType) String() string {
+	return fmt.Sprintf("[POST /users/{userId}/connections][%d] postConnectionUnsupportedMediaType  %+v", 415, o.Payload)
+}
+
 func (o *PostConnectionUnsupportedMediaType) GetPayload() *models.UnsupportedMediaTypeError {
 	return o.Payload
 }
@@ -273,7 +459,8 @@ func NewPostConnectionInternalServerError() *PostConnectionInternalServerError {
 	return &PostConnectionInternalServerError{}
 }
 
-/* PostConnectionInternalServerError describes a response with status code 500, with default header values.
+/*
+PostConnectionInternalServerError describes a response with status code 500, with default header values.
 
 Returns error response code indicates that the server encountered an unexpected condition that prevented it from fulfilling the request.
 */
@@ -281,9 +468,39 @@ type PostConnectionInternalServerError struct {
 	Payload *models.InternalServerError
 }
 
+// IsSuccess returns true when this post connection internal server error response has a 2xx status code
+func (o *PostConnectionInternalServerError) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this post connection internal server error response has a 3xx status code
+func (o *PostConnectionInternalServerError) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this post connection internal server error response has a 4xx status code
+func (o *PostConnectionInternalServerError) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this post connection internal server error response has a 5xx status code
+func (o *PostConnectionInternalServerError) IsServerError() bool {
+	return true
+}
+
+// IsCode returns true when this post connection internal server error response a status code equal to that given
+func (o *PostConnectionInternalServerError) IsCode(code int) bool {
+	return code == 500
+}
+
 func (o *PostConnectionInternalServerError) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}/connections][%d] postConnectionInternalServerError  %+v", 500, o.Payload)
 }
+
+func (o *PostConnectionInternalServerError) String() string {
+	return fmt.Sprintf("[POST /users/{userId}/connections][%d] postConnectionInternalServerError  %+v", 500, o.Payload)
+}
+
 func (o *PostConnectionInternalServerError) GetPayload() *models.InternalServerError {
 	return o.Payload
 }
@@ -305,7 +522,8 @@ func NewPostConnectionServiceUnavailable() *PostConnectionServiceUnavailable {
 	return &PostConnectionServiceUnavailable{}
 }
 
-/* PostConnectionServiceUnavailable describes a response with status code 503, with default header values.
+/*
+PostConnectionServiceUnavailable describes a response with status code 503, with default header values.
 
 Returns error response code indicates that the server is not ready to handle the request.
 */
@@ -313,9 +531,39 @@ type PostConnectionServiceUnavailable struct {
 	Payload *models.StatusServiceUnavailableError
 }
 
+// IsSuccess returns true when this post connection service unavailable response has a 2xx status code
+func (o *PostConnectionServiceUnavailable) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this post connection service unavailable response has a 3xx status code
+func (o *PostConnectionServiceUnavailable) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this post connection service unavailable response has a 4xx status code
+func (o *PostConnectionServiceUnavailable) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this post connection service unavailable response has a 5xx status code
+func (o *PostConnectionServiceUnavailable) IsServerError() bool {
+	return true
+}
+
+// IsCode returns true when this post connection service unavailable response a status code equal to that given
+func (o *PostConnectionServiceUnavailable) IsCode(code int) bool {
+	return code == 503
+}
+
 func (o *PostConnectionServiceUnavailable) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}/connections][%d] postConnectionServiceUnavailable  %+v", 503, o.Payload)
 }
+
+func (o *PostConnectionServiceUnavailable) String() string {
+	return fmt.Sprintf("[POST /users/{userId}/connections][%d] postConnectionServiceUnavailable  %+v", 503, o.Payload)
+}
+
 func (o *PostConnectionServiceUnavailable) GetPayload() *models.StatusServiceUnavailableError {
 	return o.Payload
 }

@@ -38,7 +38,7 @@ type ClientService interface {
 }
 
 /*
-  GetExpenses retrieves the details of an expenses summary you need only supply the unique expenses identifier
+GetExpenses retrieves the details of an expenses summary you need only supply the unique expenses identifier
 */
 func (a *Client) GetExpenses(params *GetExpensesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetExpensesOK, error) {
 	// TODO: Validate the params before sending
@@ -77,7 +77,7 @@ func (a *Client) GetExpenses(params *GetExpensesParams, authInfo runtime.ClientA
 }
 
 /*
-  PostExpenses uses this to create a new expenses report
+PostExpenses uses this to create a new expenses report
 */
 func (a *Client) PostExpenses(params *PostExpensesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostExpensesOK, *PostExpensesNoContent, error) {
 	// TODO: Validate the params before sending

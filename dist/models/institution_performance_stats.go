@@ -45,6 +45,8 @@ func (m *InstitutionPerformanceStats) validateAverageDurationMs(formats strfmt.R
 		if err := m.AverageDurationMs.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("averageDurationMs")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("averageDurationMs")
 			}
 			return err
 		}
@@ -73,6 +75,8 @@ func (m *InstitutionPerformanceStats) contextValidateAverageDurationMs(ctx conte
 		if err := m.AverageDurationMs.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("averageDurationMs")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("averageDurationMs")
 			}
 			return err
 		}

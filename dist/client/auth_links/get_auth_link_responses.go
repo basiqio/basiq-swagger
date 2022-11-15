@@ -75,7 +75,8 @@ func NewGetAuthLinkOK() *GetAuthLinkOK {
 	return &GetAuthLinkOK{}
 }
 
-/* GetAuthLinkOK describes a response with status code 200, with default header values.
+/*
+GetAuthLinkOK describes a response with status code 200, with default header values.
 
 Returns details of a connection.
 */
@@ -83,9 +84,39 @@ type GetAuthLinkOK struct {
 	Payload *models.AuthLinksResponseResource
 }
 
+// IsSuccess returns true when this get auth link o k response has a 2xx status code
+func (o *GetAuthLinkOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this get auth link o k response has a 3xx status code
+func (o *GetAuthLinkOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get auth link o k response has a 4xx status code
+func (o *GetAuthLinkOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get auth link o k response has a 5xx status code
+func (o *GetAuthLinkOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get auth link o k response a status code equal to that given
+func (o *GetAuthLinkOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *GetAuthLinkOK) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/auth_link][%d] getAuthLinkOK  %+v", 200, o.Payload)
 }
+
+func (o *GetAuthLinkOK) String() string {
+	return fmt.Sprintf("[GET /users/{userId}/auth_link][%d] getAuthLinkOK  %+v", 200, o.Payload)
+}
+
 func (o *GetAuthLinkOK) GetPayload() *models.AuthLinksResponseResource {
 	return o.Payload
 }
@@ -107,7 +138,8 @@ func NewGetAuthLinkBadRequest() *GetAuthLinkBadRequest {
 	return &GetAuthLinkBadRequest{}
 }
 
-/* GetAuthLinkBadRequest describes a response with status code 400, with default header values.
+/*
+GetAuthLinkBadRequest describes a response with status code 400, with default header values.
 
 Returns error that server cannot or will not process the request due to something that is perceived to be a client error
 */
@@ -115,9 +147,39 @@ type GetAuthLinkBadRequest struct {
 	Payload *models.BadRequestError
 }
 
+// IsSuccess returns true when this get auth link bad request response has a 2xx status code
+func (o *GetAuthLinkBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get auth link bad request response has a 3xx status code
+func (o *GetAuthLinkBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get auth link bad request response has a 4xx status code
+func (o *GetAuthLinkBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get auth link bad request response has a 5xx status code
+func (o *GetAuthLinkBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get auth link bad request response a status code equal to that given
+func (o *GetAuthLinkBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *GetAuthLinkBadRequest) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/auth_link][%d] getAuthLinkBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *GetAuthLinkBadRequest) String() string {
+	return fmt.Sprintf("[GET /users/{userId}/auth_link][%d] getAuthLinkBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *GetAuthLinkBadRequest) GetPayload() *models.BadRequestError {
 	return o.Payload
 }
@@ -139,7 +201,8 @@ func NewGetAuthLinkForbidden() *GetAuthLinkForbidden {
 	return &GetAuthLinkForbidden{}
 }
 
-/* GetAuthLinkForbidden describes a response with status code 403, with default header values.
+/*
+GetAuthLinkForbidden describes a response with status code 403, with default header values.
 
 Error that access is forbidden and tied to the application logic, such as insufficient rights to a resource.
 */
@@ -147,9 +210,39 @@ type GetAuthLinkForbidden struct {
 	Payload *models.ForbiddenAccessError
 }
 
+// IsSuccess returns true when this get auth link forbidden response has a 2xx status code
+func (o *GetAuthLinkForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get auth link forbidden response has a 3xx status code
+func (o *GetAuthLinkForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get auth link forbidden response has a 4xx status code
+func (o *GetAuthLinkForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get auth link forbidden response has a 5xx status code
+func (o *GetAuthLinkForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get auth link forbidden response a status code equal to that given
+func (o *GetAuthLinkForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *GetAuthLinkForbidden) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/auth_link][%d] getAuthLinkForbidden  %+v", 403, o.Payload)
 }
+
+func (o *GetAuthLinkForbidden) String() string {
+	return fmt.Sprintf("[GET /users/{userId}/auth_link][%d] getAuthLinkForbidden  %+v", 403, o.Payload)
+}
+
 func (o *GetAuthLinkForbidden) GetPayload() *models.ForbiddenAccessError {
 	return o.Payload
 }
@@ -171,7 +264,8 @@ func NewGetAuthLinkNotFound() *GetAuthLinkNotFound {
 	return &GetAuthLinkNotFound{}
 }
 
-/* GetAuthLinkNotFound describes a response with status code 404, with default header values.
+/*
+GetAuthLinkNotFound describes a response with status code 404, with default header values.
 
 Returns error indicating that server can't find requested resource.
 */
@@ -179,9 +273,39 @@ type GetAuthLinkNotFound struct {
 	Payload *models.NotFoundError
 }
 
+// IsSuccess returns true when this get auth link not found response has a 2xx status code
+func (o *GetAuthLinkNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get auth link not found response has a 3xx status code
+func (o *GetAuthLinkNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get auth link not found response has a 4xx status code
+func (o *GetAuthLinkNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get auth link not found response has a 5xx status code
+func (o *GetAuthLinkNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get auth link not found response a status code equal to that given
+func (o *GetAuthLinkNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *GetAuthLinkNotFound) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/auth_link][%d] getAuthLinkNotFound  %+v", 404, o.Payload)
 }
+
+func (o *GetAuthLinkNotFound) String() string {
+	return fmt.Sprintf("[GET /users/{userId}/auth_link][%d] getAuthLinkNotFound  %+v", 404, o.Payload)
+}
+
 func (o *GetAuthLinkNotFound) GetPayload() *models.NotFoundError {
 	return o.Payload
 }
@@ -203,7 +327,8 @@ func NewGetAuthLinkGone() *GetAuthLinkGone {
 	return &GetAuthLinkGone{}
 }
 
-/* GetAuthLinkGone describes a response with status code 410, with default header values.
+/*
+GetAuthLinkGone describes a response with status code 410, with default header values.
 
 Returns error indicating that access to the target resource is no longer available at the origin server and that this condition is likely to be permanent.
 */
@@ -211,9 +336,39 @@ type GetAuthLinkGone struct {
 	Payload *models.GoneError
 }
 
+// IsSuccess returns true when this get auth link gone response has a 2xx status code
+func (o *GetAuthLinkGone) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get auth link gone response has a 3xx status code
+func (o *GetAuthLinkGone) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get auth link gone response has a 4xx status code
+func (o *GetAuthLinkGone) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get auth link gone response has a 5xx status code
+func (o *GetAuthLinkGone) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get auth link gone response a status code equal to that given
+func (o *GetAuthLinkGone) IsCode(code int) bool {
+	return code == 410
+}
+
 func (o *GetAuthLinkGone) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/auth_link][%d] getAuthLinkGone  %+v", 410, o.Payload)
 }
+
+func (o *GetAuthLinkGone) String() string {
+	return fmt.Sprintf("[GET /users/{userId}/auth_link][%d] getAuthLinkGone  %+v", 410, o.Payload)
+}
+
 func (o *GetAuthLinkGone) GetPayload() *models.GoneError {
 	return o.Payload
 }
@@ -235,7 +390,8 @@ func NewGetAuthLinkInternalServerError() *GetAuthLinkInternalServerError {
 	return &GetAuthLinkInternalServerError{}
 }
 
-/* GetAuthLinkInternalServerError describes a response with status code 500, with default header values.
+/*
+GetAuthLinkInternalServerError describes a response with status code 500, with default header values.
 
 Returns error response code indicates that the server encountered an unexpected condition that prevented it from fulfilling the request.
 */
@@ -243,9 +399,39 @@ type GetAuthLinkInternalServerError struct {
 	Payload *models.InternalServerError
 }
 
+// IsSuccess returns true when this get auth link internal server error response has a 2xx status code
+func (o *GetAuthLinkInternalServerError) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get auth link internal server error response has a 3xx status code
+func (o *GetAuthLinkInternalServerError) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get auth link internal server error response has a 4xx status code
+func (o *GetAuthLinkInternalServerError) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get auth link internal server error response has a 5xx status code
+func (o *GetAuthLinkInternalServerError) IsServerError() bool {
+	return true
+}
+
+// IsCode returns true when this get auth link internal server error response a status code equal to that given
+func (o *GetAuthLinkInternalServerError) IsCode(code int) bool {
+	return code == 500
+}
+
 func (o *GetAuthLinkInternalServerError) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/auth_link][%d] getAuthLinkInternalServerError  %+v", 500, o.Payload)
 }
+
+func (o *GetAuthLinkInternalServerError) String() string {
+	return fmt.Sprintf("[GET /users/{userId}/auth_link][%d] getAuthLinkInternalServerError  %+v", 500, o.Payload)
+}
+
 func (o *GetAuthLinkInternalServerError) GetPayload() *models.InternalServerError {
 	return o.Payload
 }
@@ -267,7 +453,8 @@ func NewGetAuthLinkServiceUnavailable() *GetAuthLinkServiceUnavailable {
 	return &GetAuthLinkServiceUnavailable{}
 }
 
-/* GetAuthLinkServiceUnavailable describes a response with status code 503, with default header values.
+/*
+GetAuthLinkServiceUnavailable describes a response with status code 503, with default header values.
 
 Returns error response code indicates that the server is not ready to handle the request.
 */
@@ -275,9 +462,39 @@ type GetAuthLinkServiceUnavailable struct {
 	Payload *models.StatusServiceUnavailableError
 }
 
+// IsSuccess returns true when this get auth link service unavailable response has a 2xx status code
+func (o *GetAuthLinkServiceUnavailable) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get auth link service unavailable response has a 3xx status code
+func (o *GetAuthLinkServiceUnavailable) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get auth link service unavailable response has a 4xx status code
+func (o *GetAuthLinkServiceUnavailable) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get auth link service unavailable response has a 5xx status code
+func (o *GetAuthLinkServiceUnavailable) IsServerError() bool {
+	return true
+}
+
+// IsCode returns true when this get auth link service unavailable response a status code equal to that given
+func (o *GetAuthLinkServiceUnavailable) IsCode(code int) bool {
+	return code == 503
+}
+
 func (o *GetAuthLinkServiceUnavailable) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/auth_link][%d] getAuthLinkServiceUnavailable  %+v", 503, o.Payload)
 }
+
+func (o *GetAuthLinkServiceUnavailable) String() string {
+	return fmt.Sprintf("[GET /users/{userId}/auth_link][%d] getAuthLinkServiceUnavailable  %+v", 503, o.Payload)
+}
+
 func (o *GetAuthLinkServiceUnavailable) GetPayload() *models.StatusServiceUnavailableError {
 	return o.Payload
 }

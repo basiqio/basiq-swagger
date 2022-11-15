@@ -27,7 +27,8 @@ type InstitutionLogoResource struct {
 	// Required: true
 	Links *LogoResourceLinks `json:"links"`
 
-	// Type resource type identifier
+	// Resource type identifier.
+	// image ImageResourceType
 	// Example: image
 	// Required: true
 	// Enum: [image]
@@ -65,6 +66,8 @@ func (m *InstitutionLogoResource) validateColors(formats strfmt.Registry) error 
 		if err := m.Colors.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("colors")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("colors")
 			}
 			return err
 		}
@@ -83,6 +86,8 @@ func (m *InstitutionLogoResource) validateLinks(formats strfmt.Registry) error {
 		if err := m.Links.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("links")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("links")
 			}
 			return err
 		}
@@ -155,6 +160,8 @@ func (m *InstitutionLogoResource) contextValidateColors(ctx context.Context, for
 		if err := m.Colors.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("colors")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("colors")
 			}
 			return err
 		}
@@ -169,6 +176,8 @@ func (m *InstitutionLogoResource) contextValidateLinks(ctx context.Context, form
 		if err := m.Links.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("links")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("links")
 			}
 			return err
 		}

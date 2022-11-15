@@ -76,6 +76,8 @@ func (m *JobsStep) validateResult(formats strfmt.Registry) error {
 		if err := m.Result.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("result")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("result")
 			}
 			return err
 		}
@@ -204,6 +206,8 @@ func (m *JobsStep) contextValidateResult(ctx context.Context, formats strfmt.Reg
 		if err := m.Result.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("result")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("result")
 			}
 			return err
 		}

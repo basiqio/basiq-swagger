@@ -73,6 +73,8 @@ func (m *EnrichLocation) validateGeometry(formats strfmt.Registry) error {
 		if err := m.Geometry.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("geometry")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("geometry")
 			}
 			return err
 		}
@@ -101,6 +103,8 @@ func (m *EnrichLocation) contextValidateGeometry(ctx context.Context, formats st
 		if err := m.Geometry.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("geometry")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("geometry")
 			}
 			return err
 		}

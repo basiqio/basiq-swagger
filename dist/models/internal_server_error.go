@@ -16,13 +16,13 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// InternalServerError internal server error
+// InternalServerError InternalServerError error type returned when an error unexpected occurs on server side
 //
 // swagger:model InternalServerError
 type InternalServerError struct {
 
-	// Unique identifier for this particular occurrence of the problem.
-	// Example: ac5ah5i
+	// Unique identifier of concrete request.
+	// Example: b26bb88d-4622-4005-a906-f1ca62fca5b7
 	// Required: true
 	CorrelationID *string `json:"correlationId"`
 
@@ -30,10 +30,9 @@ type InternalServerError struct {
 	// Required: true
 	Data []*InternalServerErrorDataItems0 `json:"data"`
 
-	// Always "list".
-	// Example: list
+	// type
 	// Required: true
-	Type *string `json:"type"`
+	Type *ResponseFormat `json:"type"`
 }
 
 // Validate validates this internal server error
@@ -82,6 +81,8 @@ func (m *InternalServerError) validateData(formats strfmt.Registry) error {
 			if err := m.Data[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("data" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("data" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -98,6 +99,21 @@ func (m *InternalServerError) validateType(formats strfmt.Registry) error {
 		return err
 	}
 
+	if err := validate.Required("type", "body", m.Type); err != nil {
+		return err
+	}
+
+	if m.Type != nil {
+		if err := m.Type.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("type")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -106,6 +122,10 @@ func (m *InternalServerError) ContextValidate(ctx context.Context, formats strfm
 	var res []error
 
 	if err := m.contextValidateData(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateType(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -123,11 +143,29 @@ func (m *InternalServerError) contextValidateData(ctx context.Context, formats s
 			if err := m.Data[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("data" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("data" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *InternalServerError) contextValidateType(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Type != nil {
+		if err := m.Type.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("type")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -157,6 +195,7 @@ func (m *InternalServerError) UnmarshalBinary(b []byte) error {
 type InternalServerErrorDataItems0 struct {
 
 	// Application-specific error code, expressed as a string value.
+	// internal-server-error InternalServerCode
 	// Example: internal-server-error
 	// Required: true
 	// Enum: [internal-server-error]

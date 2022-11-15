@@ -69,7 +69,8 @@ func NewPostExpensesOK() *PostExpensesOK {
 	return &PostExpensesOK{}
 }
 
-/* PostExpensesOK describes a response with status code 200, with default header values.
+/*
+PostExpensesOK describes a response with status code 200, with default header values.
 
 Returns a created expenses resource, if the operation succeeded.
 */
@@ -77,9 +78,39 @@ type PostExpensesOK struct {
 	Payload *models.ExpensesResponse
 }
 
+// IsSuccess returns true when this post expenses o k response has a 2xx status code
+func (o *PostExpensesOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this post expenses o k response has a 3xx status code
+func (o *PostExpensesOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this post expenses o k response has a 4xx status code
+func (o *PostExpensesOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this post expenses o k response has a 5xx status code
+func (o *PostExpensesOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this post expenses o k response a status code equal to that given
+func (o *PostExpensesOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *PostExpensesOK) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}/expenses][%d] postExpensesOK  %+v", 200, o.Payload)
 }
+
+func (o *PostExpensesOK) String() string {
+	return fmt.Sprintf("[POST /users/{userId}/expenses][%d] postExpensesOK  %+v", 200, o.Payload)
+}
+
 func (o *PostExpensesOK) GetPayload() *models.ExpensesResponse {
 	return o.Payload
 }
@@ -101,14 +132,44 @@ func NewPostExpensesNoContent() *PostExpensesNoContent {
 	return &PostExpensesNoContent{}
 }
 
-/* PostExpensesNoContent describes a response with status code 204, with default header values.
+/*
+PostExpensesNoContent describes a response with status code 204, with default header values.
 
 Returns no content if there are none transactions for the requested period.
 */
 type PostExpensesNoContent struct {
 }
 
+// IsSuccess returns true when this post expenses no content response has a 2xx status code
+func (o *PostExpensesNoContent) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this post expenses no content response has a 3xx status code
+func (o *PostExpensesNoContent) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this post expenses no content response has a 4xx status code
+func (o *PostExpensesNoContent) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this post expenses no content response has a 5xx status code
+func (o *PostExpensesNoContent) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this post expenses no content response a status code equal to that given
+func (o *PostExpensesNoContent) IsCode(code int) bool {
+	return code == 204
+}
+
 func (o *PostExpensesNoContent) Error() string {
+	return fmt.Sprintf("[POST /users/{userId}/expenses][%d] postExpensesNoContent ", 204)
+}
+
+func (o *PostExpensesNoContent) String() string {
 	return fmt.Sprintf("[POST /users/{userId}/expenses][%d] postExpensesNoContent ", 204)
 }
 
@@ -122,7 +183,8 @@ func NewPostExpensesBadRequest() *PostExpensesBadRequest {
 	return &PostExpensesBadRequest{}
 }
 
-/* PostExpensesBadRequest describes a response with status code 400, with default header values.
+/*
+PostExpensesBadRequest describes a response with status code 400, with default header values.
 
 Returns error that server cannot or will not process the request due to something that is perceived to be a client error.
 */
@@ -130,9 +192,39 @@ type PostExpensesBadRequest struct {
 	Payload *models.BadRequestError
 }
 
+// IsSuccess returns true when this post expenses bad request response has a 2xx status code
+func (o *PostExpensesBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this post expenses bad request response has a 3xx status code
+func (o *PostExpensesBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this post expenses bad request response has a 4xx status code
+func (o *PostExpensesBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this post expenses bad request response has a 5xx status code
+func (o *PostExpensesBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this post expenses bad request response a status code equal to that given
+func (o *PostExpensesBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *PostExpensesBadRequest) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}/expenses][%d] postExpensesBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *PostExpensesBadRequest) String() string {
+	return fmt.Sprintf("[POST /users/{userId}/expenses][%d] postExpensesBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *PostExpensesBadRequest) GetPayload() *models.BadRequestError {
 	return o.Payload
 }
@@ -154,7 +246,8 @@ func NewPostExpensesForbidden() *PostExpensesForbidden {
 	return &PostExpensesForbidden{}
 }
 
-/* PostExpensesForbidden describes a response with status code 403, with default header values.
+/*
+PostExpensesForbidden describes a response with status code 403, with default header values.
 
 Error that access is forbidden and tied to the application logic, such as insufficient rights to a resource.
 */
@@ -162,9 +255,39 @@ type PostExpensesForbidden struct {
 	Payload *models.ForbiddenAccessError
 }
 
+// IsSuccess returns true when this post expenses forbidden response has a 2xx status code
+func (o *PostExpensesForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this post expenses forbidden response has a 3xx status code
+func (o *PostExpensesForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this post expenses forbidden response has a 4xx status code
+func (o *PostExpensesForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this post expenses forbidden response has a 5xx status code
+func (o *PostExpensesForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this post expenses forbidden response a status code equal to that given
+func (o *PostExpensesForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *PostExpensesForbidden) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}/expenses][%d] postExpensesForbidden  %+v", 403, o.Payload)
 }
+
+func (o *PostExpensesForbidden) String() string {
+	return fmt.Sprintf("[POST /users/{userId}/expenses][%d] postExpensesForbidden  %+v", 403, o.Payload)
+}
+
 func (o *PostExpensesForbidden) GetPayload() *models.ForbiddenAccessError {
 	return o.Payload
 }
@@ -186,7 +309,8 @@ func NewPostExpensesNotFound() *PostExpensesNotFound {
 	return &PostExpensesNotFound{}
 }
 
-/* PostExpensesNotFound describes a response with status code 404, with default header values.
+/*
+PostExpensesNotFound describes a response with status code 404, with default header values.
 
 Returns error indicating that server can't find requested resource.
 */
@@ -194,9 +318,39 @@ type PostExpensesNotFound struct {
 	Payload *models.NotFoundError
 }
 
+// IsSuccess returns true when this post expenses not found response has a 2xx status code
+func (o *PostExpensesNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this post expenses not found response has a 3xx status code
+func (o *PostExpensesNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this post expenses not found response has a 4xx status code
+func (o *PostExpensesNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this post expenses not found response has a 5xx status code
+func (o *PostExpensesNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this post expenses not found response a status code equal to that given
+func (o *PostExpensesNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *PostExpensesNotFound) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}/expenses][%d] postExpensesNotFound  %+v", 404, o.Payload)
 }
+
+func (o *PostExpensesNotFound) String() string {
+	return fmt.Sprintf("[POST /users/{userId}/expenses][%d] postExpensesNotFound  %+v", 404, o.Payload)
+}
+
 func (o *PostExpensesNotFound) GetPayload() *models.NotFoundError {
 	return o.Payload
 }
@@ -218,7 +372,8 @@ func NewPostExpensesInternalServerError() *PostExpensesInternalServerError {
 	return &PostExpensesInternalServerError{}
 }
 
-/* PostExpensesInternalServerError describes a response with status code 500, with default header values.
+/*
+PostExpensesInternalServerError describes a response with status code 500, with default header values.
 
 Returns error response code indicates that the server encountered an unexpected condition that prevented it from fulfilling the request.
 */
@@ -226,9 +381,39 @@ type PostExpensesInternalServerError struct {
 	Payload *models.InternalServerError
 }
 
+// IsSuccess returns true when this post expenses internal server error response has a 2xx status code
+func (o *PostExpensesInternalServerError) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this post expenses internal server error response has a 3xx status code
+func (o *PostExpensesInternalServerError) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this post expenses internal server error response has a 4xx status code
+func (o *PostExpensesInternalServerError) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this post expenses internal server error response has a 5xx status code
+func (o *PostExpensesInternalServerError) IsServerError() bool {
+	return true
+}
+
+// IsCode returns true when this post expenses internal server error response a status code equal to that given
+func (o *PostExpensesInternalServerError) IsCode(code int) bool {
+	return code == 500
+}
+
 func (o *PostExpensesInternalServerError) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}/expenses][%d] postExpensesInternalServerError  %+v", 500, o.Payload)
 }
+
+func (o *PostExpensesInternalServerError) String() string {
+	return fmt.Sprintf("[POST /users/{userId}/expenses][%d] postExpensesInternalServerError  %+v", 500, o.Payload)
+}
+
 func (o *PostExpensesInternalServerError) GetPayload() *models.InternalServerError {
 	return o.Payload
 }

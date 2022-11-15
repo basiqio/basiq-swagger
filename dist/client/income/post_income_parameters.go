@@ -54,10 +54,12 @@ func NewPostIncomeParamsWithHTTPClient(client *http.Client) *PostIncomeParams {
 	}
 }
 
-/* PostIncomeParams contains all the parameters to send to the API endpoint
-   for the post income operation.
+/*
+PostIncomeParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the post income operation.
+
+	Typically these are written to a http.Request.
 */
 type PostIncomeParams struct {
 

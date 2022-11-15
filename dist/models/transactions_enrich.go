@@ -64,6 +64,8 @@ func (m *TransactionsEnrich) validateCategory(formats strfmt.Registry) error {
 		if err := m.Category.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("category")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("category")
 			}
 			return err
 		}
@@ -82,6 +84,8 @@ func (m *TransactionsEnrich) validateLocation(formats strfmt.Registry) error {
 		if err := m.Location.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("location")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("location")
 			}
 			return err
 		}
@@ -100,6 +104,8 @@ func (m *TransactionsEnrich) validateMerchant(formats strfmt.Registry) error {
 		if err := m.Merchant.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("merchant")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("merchant")
 			}
 			return err
 		}
@@ -136,6 +142,8 @@ func (m *TransactionsEnrich) contextValidateCategory(ctx context.Context, format
 		if err := m.Category.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("category")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("category")
 			}
 			return err
 		}
@@ -150,6 +158,8 @@ func (m *TransactionsEnrich) contextValidateLocation(ctx context.Context, format
 		if err := m.Location.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("location")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("location")
 			}
 			return err
 		}
@@ -164,6 +174,8 @@ func (m *TransactionsEnrich) contextValidateMerchant(ctx context.Context, format
 		if err := m.Merchant.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("merchant")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("merchant")
 			}
 			return err
 		}

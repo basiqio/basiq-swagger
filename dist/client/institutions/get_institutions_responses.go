@@ -57,7 +57,8 @@ func NewGetInstitutionsOK() *GetInstitutionsOK {
 	return &GetInstitutionsOK{}
 }
 
-/* GetInstitutionsOK describes a response with status code 200, with default header values.
+/*
+GetInstitutionsOK describes a response with status code 200, with default header values.
 
 Returns data of single institution.
 */
@@ -65,9 +66,39 @@ type GetInstitutionsOK struct {
 	Payload *models.InstitutionsList
 }
 
+// IsSuccess returns true when this get institutions o k response has a 2xx status code
+func (o *GetInstitutionsOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this get institutions o k response has a 3xx status code
+func (o *GetInstitutionsOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get institutions o k response has a 4xx status code
+func (o *GetInstitutionsOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get institutions o k response has a 5xx status code
+func (o *GetInstitutionsOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get institutions o k response a status code equal to that given
+func (o *GetInstitutionsOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *GetInstitutionsOK) Error() string {
 	return fmt.Sprintf("[GET /institutions][%d] getInstitutionsOK  %+v", 200, o.Payload)
 }
+
+func (o *GetInstitutionsOK) String() string {
+	return fmt.Sprintf("[GET /institutions][%d] getInstitutionsOK  %+v", 200, o.Payload)
+}
+
 func (o *GetInstitutionsOK) GetPayload() *models.InstitutionsList {
 	return o.Payload
 }
@@ -89,7 +120,8 @@ func NewGetInstitutionsBadRequest() *GetInstitutionsBadRequest {
 	return &GetInstitutionsBadRequest{}
 }
 
-/* GetInstitutionsBadRequest describes a response with status code 400, with default header values.
+/*
+GetInstitutionsBadRequest describes a response with status code 400, with default header values.
 
 Returns error that server cannot or will not process the request due to something that is perceived to be a client error.
 */
@@ -97,9 +129,39 @@ type GetInstitutionsBadRequest struct {
 	Payload *models.BadRequestError
 }
 
+// IsSuccess returns true when this get institutions bad request response has a 2xx status code
+func (o *GetInstitutionsBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get institutions bad request response has a 3xx status code
+func (o *GetInstitutionsBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get institutions bad request response has a 4xx status code
+func (o *GetInstitutionsBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get institutions bad request response has a 5xx status code
+func (o *GetInstitutionsBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get institutions bad request response a status code equal to that given
+func (o *GetInstitutionsBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *GetInstitutionsBadRequest) Error() string {
 	return fmt.Sprintf("[GET /institutions][%d] getInstitutionsBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *GetInstitutionsBadRequest) String() string {
+	return fmt.Sprintf("[GET /institutions][%d] getInstitutionsBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *GetInstitutionsBadRequest) GetPayload() *models.BadRequestError {
 	return o.Payload
 }
@@ -121,7 +183,8 @@ func NewGetInstitutionsUnauthorized() *GetInstitutionsUnauthorized {
 	return &GetInstitutionsUnauthorized{}
 }
 
-/* GetInstitutionsUnauthorized describes a response with status code 401, with default header values.
+/*
+GetInstitutionsUnauthorized describes a response with status code 401, with default header values.
 
 Returns error that indicates unauthorized access.
 */
@@ -129,9 +192,39 @@ type GetInstitutionsUnauthorized struct {
 	Payload *models.UnauthorizedError
 }
 
+// IsSuccess returns true when this get institutions unauthorized response has a 2xx status code
+func (o *GetInstitutionsUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get institutions unauthorized response has a 3xx status code
+func (o *GetInstitutionsUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get institutions unauthorized response has a 4xx status code
+func (o *GetInstitutionsUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get institutions unauthorized response has a 5xx status code
+func (o *GetInstitutionsUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get institutions unauthorized response a status code equal to that given
+func (o *GetInstitutionsUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *GetInstitutionsUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /institutions][%d] getInstitutionsUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *GetInstitutionsUnauthorized) String() string {
+	return fmt.Sprintf("[GET /institutions][%d] getInstitutionsUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *GetInstitutionsUnauthorized) GetPayload() *models.UnauthorizedError {
 	return o.Payload
 }
@@ -153,7 +246,8 @@ func NewGetInstitutionsInternalServerError() *GetInstitutionsInternalServerError
 	return &GetInstitutionsInternalServerError{}
 }
 
-/* GetInstitutionsInternalServerError describes a response with status code 500, with default header values.
+/*
+GetInstitutionsInternalServerError describes a response with status code 500, with default header values.
 
 Returns error response code indicates that the server encountered an unexpected condition that prevented it from fulfilling the request.
 */
@@ -161,9 +255,39 @@ type GetInstitutionsInternalServerError struct {
 	Payload *models.InternalServerError
 }
 
+// IsSuccess returns true when this get institutions internal server error response has a 2xx status code
+func (o *GetInstitutionsInternalServerError) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get institutions internal server error response has a 3xx status code
+func (o *GetInstitutionsInternalServerError) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get institutions internal server error response has a 4xx status code
+func (o *GetInstitutionsInternalServerError) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get institutions internal server error response has a 5xx status code
+func (o *GetInstitutionsInternalServerError) IsServerError() bool {
+	return true
+}
+
+// IsCode returns true when this get institutions internal server error response a status code equal to that given
+func (o *GetInstitutionsInternalServerError) IsCode(code int) bool {
+	return code == 500
+}
+
 func (o *GetInstitutionsInternalServerError) Error() string {
 	return fmt.Sprintf("[GET /institutions][%d] getInstitutionsInternalServerError  %+v", 500, o.Payload)
 }
+
+func (o *GetInstitutionsInternalServerError) String() string {
+	return fmt.Sprintf("[GET /institutions][%d] getInstitutionsInternalServerError  %+v", 500, o.Payload)
+}
+
 func (o *GetInstitutionsInternalServerError) GetPayload() *models.InternalServerError {
 	return o.Payload
 }

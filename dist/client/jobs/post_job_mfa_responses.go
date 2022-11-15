@@ -63,7 +63,8 @@ func NewPostJobMfaAccepted() *PostJobMfaAccepted {
 	return &PostJobMfaAccepted{}
 }
 
-/* PostJobMfaAccepted describes a response with status code 202, with default header values.
+/*
+PostJobMfaAccepted describes a response with status code 202, with default header values.
 
 Returns a job if MFA response was correct. Returns an error otherwise.
 */
@@ -71,9 +72,39 @@ type PostJobMfaAccepted struct {
 	Payload *models.ConnectionResponseResource
 }
 
+// IsSuccess returns true when this post job mfa accepted response has a 2xx status code
+func (o *PostJobMfaAccepted) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this post job mfa accepted response has a 3xx status code
+func (o *PostJobMfaAccepted) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this post job mfa accepted response has a 4xx status code
+func (o *PostJobMfaAccepted) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this post job mfa accepted response has a 5xx status code
+func (o *PostJobMfaAccepted) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this post job mfa accepted response a status code equal to that given
+func (o *PostJobMfaAccepted) IsCode(code int) bool {
+	return code == 202
+}
+
 func (o *PostJobMfaAccepted) Error() string {
 	return fmt.Sprintf("[POST /jobs/{jobId}/mfa][%d] postJobMfaAccepted  %+v", 202, o.Payload)
 }
+
+func (o *PostJobMfaAccepted) String() string {
+	return fmt.Sprintf("[POST /jobs/{jobId}/mfa][%d] postJobMfaAccepted  %+v", 202, o.Payload)
+}
+
 func (o *PostJobMfaAccepted) GetPayload() *models.ConnectionResponseResource {
 	return o.Payload
 }
@@ -95,7 +126,8 @@ func NewPostJobMfaBadRequest() *PostJobMfaBadRequest {
 	return &PostJobMfaBadRequest{}
 }
 
-/* PostJobMfaBadRequest describes a response with status code 400, with default header values.
+/*
+PostJobMfaBadRequest describes a response with status code 400, with default header values.
 
 Returns error that server cannot or will not process the request due to something that is perceived to be a client error
 */
@@ -103,9 +135,39 @@ type PostJobMfaBadRequest struct {
 	Payload *models.BadRequestError
 }
 
+// IsSuccess returns true when this post job mfa bad request response has a 2xx status code
+func (o *PostJobMfaBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this post job mfa bad request response has a 3xx status code
+func (o *PostJobMfaBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this post job mfa bad request response has a 4xx status code
+func (o *PostJobMfaBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this post job mfa bad request response has a 5xx status code
+func (o *PostJobMfaBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this post job mfa bad request response a status code equal to that given
+func (o *PostJobMfaBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *PostJobMfaBadRequest) Error() string {
 	return fmt.Sprintf("[POST /jobs/{jobId}/mfa][%d] postJobMfaBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *PostJobMfaBadRequest) String() string {
+	return fmt.Sprintf("[POST /jobs/{jobId}/mfa][%d] postJobMfaBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *PostJobMfaBadRequest) GetPayload() *models.BadRequestError {
 	return o.Payload
 }
@@ -127,7 +189,8 @@ func NewPostJobMfaForbidden() *PostJobMfaForbidden {
 	return &PostJobMfaForbidden{}
 }
 
-/* PostJobMfaForbidden describes a response with status code 403, with default header values.
+/*
+PostJobMfaForbidden describes a response with status code 403, with default header values.
 
 Error that access is forbidden and tied to the application logic, such as insufficient rights to a resource.
 */
@@ -135,9 +198,39 @@ type PostJobMfaForbidden struct {
 	Payload *models.ForbiddenAccessError
 }
 
+// IsSuccess returns true when this post job mfa forbidden response has a 2xx status code
+func (o *PostJobMfaForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this post job mfa forbidden response has a 3xx status code
+func (o *PostJobMfaForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this post job mfa forbidden response has a 4xx status code
+func (o *PostJobMfaForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this post job mfa forbidden response has a 5xx status code
+func (o *PostJobMfaForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this post job mfa forbidden response a status code equal to that given
+func (o *PostJobMfaForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *PostJobMfaForbidden) Error() string {
 	return fmt.Sprintf("[POST /jobs/{jobId}/mfa][%d] postJobMfaForbidden  %+v", 403, o.Payload)
 }
+
+func (o *PostJobMfaForbidden) String() string {
+	return fmt.Sprintf("[POST /jobs/{jobId}/mfa][%d] postJobMfaForbidden  %+v", 403, o.Payload)
+}
+
 func (o *PostJobMfaForbidden) GetPayload() *models.ForbiddenAccessError {
 	return o.Payload
 }
@@ -159,7 +252,8 @@ func NewPostJobMfaNotFound() *PostJobMfaNotFound {
 	return &PostJobMfaNotFound{}
 }
 
-/* PostJobMfaNotFound describes a response with status code 404, with default header values.
+/*
+PostJobMfaNotFound describes a response with status code 404, with default header values.
 
 Returns error indicating that server can't find requested resource.
 */
@@ -167,9 +261,39 @@ type PostJobMfaNotFound struct {
 	Payload *models.NotFoundError
 }
 
+// IsSuccess returns true when this post job mfa not found response has a 2xx status code
+func (o *PostJobMfaNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this post job mfa not found response has a 3xx status code
+func (o *PostJobMfaNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this post job mfa not found response has a 4xx status code
+func (o *PostJobMfaNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this post job mfa not found response has a 5xx status code
+func (o *PostJobMfaNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this post job mfa not found response a status code equal to that given
+func (o *PostJobMfaNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *PostJobMfaNotFound) Error() string {
 	return fmt.Sprintf("[POST /jobs/{jobId}/mfa][%d] postJobMfaNotFound  %+v", 404, o.Payload)
 }
+
+func (o *PostJobMfaNotFound) String() string {
+	return fmt.Sprintf("[POST /jobs/{jobId}/mfa][%d] postJobMfaNotFound  %+v", 404, o.Payload)
+}
+
 func (o *PostJobMfaNotFound) GetPayload() *models.NotFoundError {
 	return o.Payload
 }
@@ -191,7 +315,8 @@ func NewPostJobMfaInternalServerError() *PostJobMfaInternalServerError {
 	return &PostJobMfaInternalServerError{}
 }
 
-/* PostJobMfaInternalServerError describes a response with status code 500, with default header values.
+/*
+PostJobMfaInternalServerError describes a response with status code 500, with default header values.
 
 Returns error response code indicates that the server encountered an unexpected condition that prevented it from fulfilling the request.
 */
@@ -199,9 +324,39 @@ type PostJobMfaInternalServerError struct {
 	Payload *models.InternalServerError
 }
 
+// IsSuccess returns true when this post job mfa internal server error response has a 2xx status code
+func (o *PostJobMfaInternalServerError) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this post job mfa internal server error response has a 3xx status code
+func (o *PostJobMfaInternalServerError) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this post job mfa internal server error response has a 4xx status code
+func (o *PostJobMfaInternalServerError) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this post job mfa internal server error response has a 5xx status code
+func (o *PostJobMfaInternalServerError) IsServerError() bool {
+	return true
+}
+
+// IsCode returns true when this post job mfa internal server error response a status code equal to that given
+func (o *PostJobMfaInternalServerError) IsCode(code int) bool {
+	return code == 500
+}
+
 func (o *PostJobMfaInternalServerError) Error() string {
 	return fmt.Sprintf("[POST /jobs/{jobId}/mfa][%d] postJobMfaInternalServerError  %+v", 500, o.Payload)
 }
+
+func (o *PostJobMfaInternalServerError) String() string {
+	return fmt.Sprintf("[POST /jobs/{jobId}/mfa][%d] postJobMfaInternalServerError  %+v", 500, o.Payload)
+}
+
 func (o *PostJobMfaInternalServerError) GetPayload() *models.InternalServerError {
 	return o.Payload
 }

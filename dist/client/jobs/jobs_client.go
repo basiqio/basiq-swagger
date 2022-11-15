@@ -40,9 +40,10 @@ type ClientService interface {
 }
 
 /*
-  GetJobs retrieves the details of an existing job you need only supply the unique job identifier that was returned upon job creation
+	GetJobs retrieves the details of an existing job you need only supply the unique job identifier that was returned upon job creation
 
-  <b>Tracking the status of a job</b><br/>
+	<b>Tracking the status of a job</b><br/>
+
 Every step of the job has a status property that depicts its current state.<br/>
 <b>Find out what steps have been completed</b><br/>
 Depending on the job being executed, some jobs will have multiple steps which need to be executed, for e.g. refreshing a connection requires the following steps to be completed:
@@ -89,9 +90,10 @@ func (a *Client) GetJobs(params *GetJobsParams, authInfo runtime.ClientAuthInfoW
 }
 
 /*
-  GetUserJobs retrieves the details of an existing jobs you need only supply the unique user identifier
+	GetUserJobs retrieves the details of an existing jobs you need only supply the unique user identifier
 
-  <b>Tracking the status of a job</b><br/>
+	<b>Tracking the status of a job</b><br/>
+
 Every step of the job has a status property that depicts its current state.<br/>
 <b>Find out what steps have been completed</b><br/>
 Depending on the job being executed, some jobs will have multiple steps which need to be executed, for e.g. refreshing a connection requires the following steps to be completed:
@@ -137,9 +139,10 @@ func (a *Client) GetUserJobs(params *GetUserJobsParams, authInfo runtime.ClientA
 }
 
 /*
-  PostJobMfa uses this to create a new m f a challenge response to job step mfa challenge
+	PostJobMfa uses this to create a new m f a challenge response to job step mfa challenge
 
-  Ensure that you generate an authentication token with
+	Ensure that you generate an authentication token with
+
 scope = CLIENT_ACCESS and basiq-version = 2.1 to create this resource
 */
 func (a *Client) PostJobMfa(params *PostJobMfaParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostJobMfaAccepted, error) {

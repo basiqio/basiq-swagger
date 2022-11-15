@@ -57,7 +57,8 @@ func NewGetAffordabilityListOK() *GetAffordabilityListOK {
 	return &GetAffordabilityListOK{}
 }
 
-/* GetAffordabilityListOK describes a response with status code 200, with default header values.
+/*
+GetAffordabilityListOK describes a response with status code 200, with default header values.
 
 Returns a list with a data property that contains an array of affordability resources.
 */
@@ -65,9 +66,39 @@ type GetAffordabilityListOK struct {
 	Payload *models.AffordabilityListResponse
 }
 
+// IsSuccess returns true when this get affordability list o k response has a 2xx status code
+func (o *GetAffordabilityListOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this get affordability list o k response has a 3xx status code
+func (o *GetAffordabilityListOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get affordability list o k response has a 4xx status code
+func (o *GetAffordabilityListOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get affordability list o k response has a 5xx status code
+func (o *GetAffordabilityListOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get affordability list o k response a status code equal to that given
+func (o *GetAffordabilityListOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *GetAffordabilityListOK) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/affordability][%d] getAffordabilityListOK  %+v", 200, o.Payload)
 }
+
+func (o *GetAffordabilityListOK) String() string {
+	return fmt.Sprintf("[GET /users/{userId}/affordability][%d] getAffordabilityListOK  %+v", 200, o.Payload)
+}
+
 func (o *GetAffordabilityListOK) GetPayload() *models.AffordabilityListResponse {
 	return o.Payload
 }
@@ -89,7 +120,8 @@ func NewGetAffordabilityListBadRequest() *GetAffordabilityListBadRequest {
 	return &GetAffordabilityListBadRequest{}
 }
 
-/* GetAffordabilityListBadRequest describes a response with status code 400, with default header values.
+/*
+GetAffordabilityListBadRequest describes a response with status code 400, with default header values.
 
 Returns error that server cannot or will not process the request due to something that is perceived to be a client error.
 */
@@ -97,9 +129,39 @@ type GetAffordabilityListBadRequest struct {
 	Payload *models.BadRequestError
 }
 
+// IsSuccess returns true when this get affordability list bad request response has a 2xx status code
+func (o *GetAffordabilityListBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get affordability list bad request response has a 3xx status code
+func (o *GetAffordabilityListBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get affordability list bad request response has a 4xx status code
+func (o *GetAffordabilityListBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get affordability list bad request response has a 5xx status code
+func (o *GetAffordabilityListBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get affordability list bad request response a status code equal to that given
+func (o *GetAffordabilityListBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *GetAffordabilityListBadRequest) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/affordability][%d] getAffordabilityListBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *GetAffordabilityListBadRequest) String() string {
+	return fmt.Sprintf("[GET /users/{userId}/affordability][%d] getAffordabilityListBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *GetAffordabilityListBadRequest) GetPayload() *models.BadRequestError {
 	return o.Payload
 }
@@ -121,7 +183,8 @@ func NewGetAffordabilityListNotFound() *GetAffordabilityListNotFound {
 	return &GetAffordabilityListNotFound{}
 }
 
-/* GetAffordabilityListNotFound describes a response with status code 404, with default header values.
+/*
+GetAffordabilityListNotFound describes a response with status code 404, with default header values.
 
 Returns error indicating that server can't find requested resource.
 */
@@ -129,9 +192,39 @@ type GetAffordabilityListNotFound struct {
 	Payload *models.NotFoundError
 }
 
+// IsSuccess returns true when this get affordability list not found response has a 2xx status code
+func (o *GetAffordabilityListNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get affordability list not found response has a 3xx status code
+func (o *GetAffordabilityListNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get affordability list not found response has a 4xx status code
+func (o *GetAffordabilityListNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get affordability list not found response has a 5xx status code
+func (o *GetAffordabilityListNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get affordability list not found response a status code equal to that given
+func (o *GetAffordabilityListNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *GetAffordabilityListNotFound) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/affordability][%d] getAffordabilityListNotFound  %+v", 404, o.Payload)
 }
+
+func (o *GetAffordabilityListNotFound) String() string {
+	return fmt.Sprintf("[GET /users/{userId}/affordability][%d] getAffordabilityListNotFound  %+v", 404, o.Payload)
+}
+
 func (o *GetAffordabilityListNotFound) GetPayload() *models.NotFoundError {
 	return o.Payload
 }
@@ -153,7 +246,8 @@ func NewGetAffordabilityListInternalServerError() *GetAffordabilityListInternalS
 	return &GetAffordabilityListInternalServerError{}
 }
 
-/* GetAffordabilityListInternalServerError describes a response with status code 500, with default header values.
+/*
+GetAffordabilityListInternalServerError describes a response with status code 500, with default header values.
 
 Returns error response code indicates that the server encountered an unexpected condition that prevented it from fulfilling the request.
 */
@@ -161,9 +255,39 @@ type GetAffordabilityListInternalServerError struct {
 	Payload *models.InternalServerError
 }
 
+// IsSuccess returns true when this get affordability list internal server error response has a 2xx status code
+func (o *GetAffordabilityListInternalServerError) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get affordability list internal server error response has a 3xx status code
+func (o *GetAffordabilityListInternalServerError) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get affordability list internal server error response has a 4xx status code
+func (o *GetAffordabilityListInternalServerError) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get affordability list internal server error response has a 5xx status code
+func (o *GetAffordabilityListInternalServerError) IsServerError() bool {
+	return true
+}
+
+// IsCode returns true when this get affordability list internal server error response a status code equal to that given
+func (o *GetAffordabilityListInternalServerError) IsCode(code int) bool {
+	return code == 500
+}
+
 func (o *GetAffordabilityListInternalServerError) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/affordability][%d] getAffordabilityListInternalServerError  %+v", 500, o.Payload)
 }
+
+func (o *GetAffordabilityListInternalServerError) String() string {
+	return fmt.Sprintf("[GET /users/{userId}/affordability][%d] getAffordabilityListInternalServerError  %+v", 500, o.Payload)
+}
+
 func (o *GetAffordabilityListInternalServerError) GetPayload() *models.InternalServerError {
 	return o.Payload
 }

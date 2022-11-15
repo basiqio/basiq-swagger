@@ -118,6 +118,8 @@ func (m *ConnectionGetResponseResource) validateAccounts(formats strfmt.Registry
 		if err := m.Accounts.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("accounts")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("accounts")
 			}
 			return err
 		}
@@ -154,6 +156,8 @@ func (m *ConnectionGetResponseResource) validateInstitution(formats strfmt.Regis
 		if err := m.Institution.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("institution")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("institution")
 			}
 			return err
 		}
@@ -172,6 +176,8 @@ func (m *ConnectionGetResponseResource) validateLinks(formats strfmt.Registry) e
 		if err := m.Links.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("links")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("links")
 			}
 			return err
 		}
@@ -189,6 +195,8 @@ func (m *ConnectionGetResponseResource) validateProfile(formats strfmt.Registry)
 		if err := m.Profile.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("profile")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("profile")
 			}
 			return err
 		}
@@ -283,6 +291,8 @@ func (m *ConnectionGetResponseResource) contextValidateAccounts(ctx context.Cont
 		if err := m.Accounts.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("accounts")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("accounts")
 			}
 			return err
 		}
@@ -297,6 +307,8 @@ func (m *ConnectionGetResponseResource) contextValidateInstitution(ctx context.C
 		if err := m.Institution.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("institution")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("institution")
 			}
 			return err
 		}
@@ -311,6 +323,8 @@ func (m *ConnectionGetResponseResource) contextValidateLinks(ctx context.Context
 		if err := m.Links.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("links")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("links")
 			}
 			return err
 		}
@@ -325,6 +339,8 @@ func (m *ConnectionGetResponseResource) contextValidateProfile(ctx context.Conte
 		if err := m.Profile.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("profile")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("profile")
 			}
 			return err
 		}

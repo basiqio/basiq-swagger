@@ -40,9 +40,9 @@ type ClientService interface {
 }
 
 /*
-  DeleteAuthLink permanentlies deletes an auth link resource once deleted the URL associated with the deleted object will no longer be valid
+	DeleteAuthLink permanentlies deletes an auth link resource once deleted the URL associated with the deleted object will no longer be valid
 
-  <blockquote>Note that this action cannot be undone.</blockquote>
+	<blockquote>Note that this action cannot be undone.</blockquote>
 
 <blockquote>The auth_link is a URL that directs a User to Basiq's hosted consent workflow to link banks and securely share data. When the user selects 'I have disclosed all my accounts' the auth_link is automatically deleted.</blockquote>
 
@@ -85,9 +85,9 @@ func (a *Client) DeleteAuthLink(params *DeleteAuthLinkParams, authInfo runtime.C
 }
 
 /*
-  GetAuthLink uses this to retrieve the latest last auth link generated for the specified user
+GetAuthLink uses this to retrieve the latest last auth link generated for the specified user
 
-  Returns the latest/last auth_link generated for the specified user. Returns an error otherwise.
+Returns the latest/last auth_link generated for the specified user. Returns an error otherwise.
 */
 func (a *Client) GetAuthLink(params *GetAuthLinkParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAuthLinkOK, error) {
 	// TODO: Validate the params before sending
@@ -126,9 +126,9 @@ func (a *Client) GetAuthLink(params *GetAuthLinkParams, authInfo runtime.ClientA
 }
 
 /*
-  PostAuthLink ans auth link object can be generated to securely capture data from a user using the URL allows data to be captured via the hosted basiq connect consent workflow for a given user
+	PostAuthLink ans auth link object can be generated to securely capture data from a user using the URL allows data to be captured via the hosted basiq connect consent workflow for a given user
 
-  Create a new auth_link object by making a POST request to the auth_link endpoint. The new auth_link will effectively delete previous auth-links for that User/applicant, rendering the previous URL(s) invalid. The 'mobile' attribute is optional. If it is specified this number will take preference over the User object mobile number for 2FA SMS verification.
+	Create a new auth_link object by making a POST request to the auth_link endpoint. The new auth_link will effectively delete previous auth-links for that User/applicant, rendering the previous URL(s) invalid. The 'mobile' attribute is optional. If it is specified this number will take preference over the User object mobile number for 2FA SMS verification.
 
 Returns a created auth_link resource, if the operation succeeded. Returns an error if the post failed (e.g. not supplying required properties).
 */

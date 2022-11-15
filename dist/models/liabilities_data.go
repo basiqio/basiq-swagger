@@ -62,6 +62,8 @@ func (m *LiabilitiesData) validateCredit(formats strfmt.Registry) error {
 			if err := m.Credit[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("credit" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("credit" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -87,6 +89,8 @@ func (m *LiabilitiesData) validateLoan(formats strfmt.Registry) error {
 			if err := m.Loan[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("loan" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("loan" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -123,6 +127,8 @@ func (m *LiabilitiesData) contextValidateCredit(ctx context.Context, formats str
 			if err := m.Credit[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("credit" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("credit" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -141,6 +147,8 @@ func (m *LiabilitiesData) contextValidateLoan(ctx context.Context, formats strfm
 			if err := m.Loan[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("loan" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("loan" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

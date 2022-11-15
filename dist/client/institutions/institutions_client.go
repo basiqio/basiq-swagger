@@ -40,9 +40,9 @@ type ClientService interface {
 }
 
 /*
-  GetInstitution retrieves data for single institution
+GetInstitution retrieves data for single institution
 
-  NOTE: This end point requires authentication.
+NOTE: This end point requires authentication.
 */
 func (a *Client) GetInstitution(params *GetInstitutionParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInstitutionOK, error) {
 	// TODO: Validate the params before sending
@@ -81,9 +81,9 @@ func (a *Client) GetInstitution(params *GetInstitutionParams, authInfo runtime.C
 }
 
 /*
-  GetInstitutions retrieves institutions list
+GetInstitutions retrieves institutions list
 
-  NOTE: This end point requires authentication.
+NOTE: This end point requires authentication.
 */
 func (a *Client) GetInstitutions(params *GetInstitutionsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInstitutionsOK, error) {
 	// TODO: Validate the params before sending
@@ -122,7 +122,7 @@ func (a *Client) GetInstitutions(params *GetInstitutionsParams, authInfo runtime
 }
 
 /*
-  GetPublicInstitutions retrieves publically availiable no authentication required institutions list
+GetPublicInstitutions retrieves publically availiable no authentication required institutions list
 */
 func (a *Client) GetPublicInstitutions(params *GetPublicInstitutionsParams, opts ...ClientOption) (*GetPublicInstitutionsOK, error) {
 	// TODO: Validate the params before sending

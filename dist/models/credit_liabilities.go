@@ -109,6 +109,8 @@ func (m *CreditLiabilities) validateAccount(formats strfmt.Registry) error {
 		if err := m.Account.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("account")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("account")
 			}
 			return err
 		}
@@ -172,6 +174,8 @@ func (m *CreditLiabilities) validatePrevious6Months(formats strfmt.Registry) err
 		if err := m.Previous6Months.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("previous6Months")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("previous6Months")
 			}
 			return err
 		}
@@ -190,6 +194,8 @@ func (m *CreditLiabilities) validatePreviousMonth(formats strfmt.Registry) error
 		if err := m.PreviousMonth.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("previousMonth")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("previousMonth")
 			}
 			return err
 		}
@@ -226,6 +232,8 @@ func (m *CreditLiabilities) contextValidateAccount(ctx context.Context, formats 
 		if err := m.Account.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("account")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("account")
 			}
 			return err
 		}
@@ -240,6 +248,8 @@ func (m *CreditLiabilities) contextValidatePrevious6Months(ctx context.Context, 
 		if err := m.Previous6Months.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("previous6Months")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("previous6Months")
 			}
 			return err
 		}
@@ -254,6 +264,8 @@ func (m *CreditLiabilities) contextValidatePreviousMonth(ctx context.Context, fo
 		if err := m.PreviousMonth.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("previousMonth")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("previousMonth")
 			}
 			return err
 		}

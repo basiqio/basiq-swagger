@@ -52,10 +52,12 @@ func NewPostAuthLinkParamsWithHTTPClient(client *http.Client) *PostAuthLinkParam
 	}
 }
 
-/* PostAuthLinkParams contains all the parameters to send to the API endpoint
-   for the post auth link operation.
+/*
+PostAuthLinkParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the post auth link operation.
+
+	Typically these are written to a http.Request.
 */
 type PostAuthLinkParams struct {
 

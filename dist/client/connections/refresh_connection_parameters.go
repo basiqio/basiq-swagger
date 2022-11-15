@@ -52,10 +52,12 @@ func NewRefreshConnectionParamsWithHTTPClient(client *http.Client) *RefreshConne
 	}
 }
 
-/* RefreshConnectionParams contains all the parameters to send to the API endpoint
-   for the refresh connection operation.
+/*
+RefreshConnectionParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the refresh connection operation.
+
+	Typically these are written to a http.Request.
 */
 type RefreshConnectionParams struct {
 

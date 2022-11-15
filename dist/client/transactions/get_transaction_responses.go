@@ -69,7 +69,8 @@ func NewGetTransactionOK() *GetTransactionOK {
 	return &GetTransactionOK{}
 }
 
-/* GetTransactionOK describes a response with status code 200, with default header values.
+/*
+GetTransactionOK describes a response with status code 200, with default header values.
 
 Returns a transaction if a valid transaction ID was provided.
 */
@@ -77,9 +78,39 @@ type GetTransactionOK struct {
 	Payload *models.TransactionData
 }
 
+// IsSuccess returns true when this get transaction o k response has a 2xx status code
+func (o *GetTransactionOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this get transaction o k response has a 3xx status code
+func (o *GetTransactionOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get transaction o k response has a 4xx status code
+func (o *GetTransactionOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get transaction o k response has a 5xx status code
+func (o *GetTransactionOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get transaction o k response a status code equal to that given
+func (o *GetTransactionOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *GetTransactionOK) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/transactions/{transactionId}][%d] getTransactionOK  %+v", 200, o.Payload)
 }
+
+func (o *GetTransactionOK) String() string {
+	return fmt.Sprintf("[GET /users/{userId}/transactions/{transactionId}][%d] getTransactionOK  %+v", 200, o.Payload)
+}
+
 func (o *GetTransactionOK) GetPayload() *models.TransactionData {
 	return o.Payload
 }
@@ -101,7 +132,8 @@ func NewGetTransactionBadRequest() *GetTransactionBadRequest {
 	return &GetTransactionBadRequest{}
 }
 
-/* GetTransactionBadRequest describes a response with status code 400, with default header values.
+/*
+GetTransactionBadRequest describes a response with status code 400, with default header values.
 
 Returns error that server cannot or will not process the request due to something that is perceived to be a client error.
 */
@@ -109,9 +141,39 @@ type GetTransactionBadRequest struct {
 	Payload *models.BadRequestError
 }
 
+// IsSuccess returns true when this get transaction bad request response has a 2xx status code
+func (o *GetTransactionBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get transaction bad request response has a 3xx status code
+func (o *GetTransactionBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get transaction bad request response has a 4xx status code
+func (o *GetTransactionBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get transaction bad request response has a 5xx status code
+func (o *GetTransactionBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get transaction bad request response a status code equal to that given
+func (o *GetTransactionBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *GetTransactionBadRequest) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/transactions/{transactionId}][%d] getTransactionBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *GetTransactionBadRequest) String() string {
+	return fmt.Sprintf("[GET /users/{userId}/transactions/{transactionId}][%d] getTransactionBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *GetTransactionBadRequest) GetPayload() *models.BadRequestError {
 	return o.Payload
 }
@@ -133,7 +195,8 @@ func NewGetTransactionForbidden() *GetTransactionForbidden {
 	return &GetTransactionForbidden{}
 }
 
-/* GetTransactionForbidden describes a response with status code 403, with default header values.
+/*
+GetTransactionForbidden describes a response with status code 403, with default header values.
 
 Error that access is forbidden and tied to the application logic, such as insufficient rights to a resource.
 */
@@ -141,9 +204,39 @@ type GetTransactionForbidden struct {
 	Payload *models.ForbiddenAccessError
 }
 
+// IsSuccess returns true when this get transaction forbidden response has a 2xx status code
+func (o *GetTransactionForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get transaction forbidden response has a 3xx status code
+func (o *GetTransactionForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get transaction forbidden response has a 4xx status code
+func (o *GetTransactionForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get transaction forbidden response has a 5xx status code
+func (o *GetTransactionForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get transaction forbidden response a status code equal to that given
+func (o *GetTransactionForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *GetTransactionForbidden) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/transactions/{transactionId}][%d] getTransactionForbidden  %+v", 403, o.Payload)
 }
+
+func (o *GetTransactionForbidden) String() string {
+	return fmt.Sprintf("[GET /users/{userId}/transactions/{transactionId}][%d] getTransactionForbidden  %+v", 403, o.Payload)
+}
+
 func (o *GetTransactionForbidden) GetPayload() *models.ForbiddenAccessError {
 	return o.Payload
 }
@@ -165,7 +258,8 @@ func NewGetTransactionNotFound() *GetTransactionNotFound {
 	return &GetTransactionNotFound{}
 }
 
-/* GetTransactionNotFound describes a response with status code 404, with default header values.
+/*
+GetTransactionNotFound describes a response with status code 404, with default header values.
 
 Returns error indicating that server can't find requested resource.
 */
@@ -173,9 +267,39 @@ type GetTransactionNotFound struct {
 	Payload *models.NotFoundError
 }
 
+// IsSuccess returns true when this get transaction not found response has a 2xx status code
+func (o *GetTransactionNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get transaction not found response has a 3xx status code
+func (o *GetTransactionNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get transaction not found response has a 4xx status code
+func (o *GetTransactionNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get transaction not found response has a 5xx status code
+func (o *GetTransactionNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get transaction not found response a status code equal to that given
+func (o *GetTransactionNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *GetTransactionNotFound) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/transactions/{transactionId}][%d] getTransactionNotFound  %+v", 404, o.Payload)
 }
+
+func (o *GetTransactionNotFound) String() string {
+	return fmt.Sprintf("[GET /users/{userId}/transactions/{transactionId}][%d] getTransactionNotFound  %+v", 404, o.Payload)
+}
+
 func (o *GetTransactionNotFound) GetPayload() *models.NotFoundError {
 	return o.Payload
 }
@@ -197,7 +321,8 @@ func NewGetTransactionInternalServerError() *GetTransactionInternalServerError {
 	return &GetTransactionInternalServerError{}
 }
 
-/* GetTransactionInternalServerError describes a response with status code 500, with default header values.
+/*
+GetTransactionInternalServerError describes a response with status code 500, with default header values.
 
 Returns error response code indicates that the server encountered an unexpected condition that prevented it from fulfilling the request.
 */
@@ -205,9 +330,39 @@ type GetTransactionInternalServerError struct {
 	Payload *models.InternalServerError
 }
 
+// IsSuccess returns true when this get transaction internal server error response has a 2xx status code
+func (o *GetTransactionInternalServerError) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get transaction internal server error response has a 3xx status code
+func (o *GetTransactionInternalServerError) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get transaction internal server error response has a 4xx status code
+func (o *GetTransactionInternalServerError) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get transaction internal server error response has a 5xx status code
+func (o *GetTransactionInternalServerError) IsServerError() bool {
+	return true
+}
+
+// IsCode returns true when this get transaction internal server error response a status code equal to that given
+func (o *GetTransactionInternalServerError) IsCode(code int) bool {
+	return code == 500
+}
+
 func (o *GetTransactionInternalServerError) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/transactions/{transactionId}][%d] getTransactionInternalServerError  %+v", 500, o.Payload)
 }
+
+func (o *GetTransactionInternalServerError) String() string {
+	return fmt.Sprintf("[GET /users/{userId}/transactions/{transactionId}][%d] getTransactionInternalServerError  %+v", 500, o.Payload)
+}
+
 func (o *GetTransactionInternalServerError) GetPayload() *models.InternalServerError {
 	return o.Payload
 }
@@ -229,7 +384,8 @@ func NewGetTransactionServiceUnavailable() *GetTransactionServiceUnavailable {
 	return &GetTransactionServiceUnavailable{}
 }
 
-/* GetTransactionServiceUnavailable describes a response with status code 503, with default header values.
+/*
+GetTransactionServiceUnavailable describes a response with status code 503, with default header values.
 
 Returns error response code indicates that the server is not ready to handle the request.
 */
@@ -237,9 +393,39 @@ type GetTransactionServiceUnavailable struct {
 	Payload *models.StatusServiceUnavailableError
 }
 
+// IsSuccess returns true when this get transaction service unavailable response has a 2xx status code
+func (o *GetTransactionServiceUnavailable) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get transaction service unavailable response has a 3xx status code
+func (o *GetTransactionServiceUnavailable) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get transaction service unavailable response has a 4xx status code
+func (o *GetTransactionServiceUnavailable) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get transaction service unavailable response has a 5xx status code
+func (o *GetTransactionServiceUnavailable) IsServerError() bool {
+	return true
+}
+
+// IsCode returns true when this get transaction service unavailable response a status code equal to that given
+func (o *GetTransactionServiceUnavailable) IsCode(code int) bool {
+	return code == 503
+}
+
 func (o *GetTransactionServiceUnavailable) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/transactions/{transactionId}][%d] getTransactionServiceUnavailable  %+v", 503, o.Payload)
 }
+
+func (o *GetTransactionServiceUnavailable) String() string {
+	return fmt.Sprintf("[GET /users/{userId}/transactions/{transactionId}][%d] getTransactionServiceUnavailable  %+v", 503, o.Payload)
+}
+
 func (o *GetTransactionServiceUnavailable) GetPayload() *models.StatusServiceUnavailableError {
 	return o.Payload
 }

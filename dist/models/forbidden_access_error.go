@@ -82,6 +82,8 @@ func (m *ForbiddenAccessError) validateData(formats strfmt.Registry) error {
 			if err := m.Data[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("data" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("data" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -123,6 +125,8 @@ func (m *ForbiddenAccessError) contextValidateData(ctx context.Context, formats 
 			if err := m.Data[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("data" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("data" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -258,6 +262,8 @@ func (m *ForbiddenAccessErrorDataItems0) validateSource(formats strfmt.Registry)
 		if err := m.Source.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("source")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("source")
 			}
 			return err
 		}
@@ -295,6 +301,8 @@ func (m *ForbiddenAccessErrorDataItems0) contextValidateSource(ctx context.Conte
 		if err := m.Source.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("source")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("source")
 			}
 			return err
 		}

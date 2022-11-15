@@ -60,6 +60,8 @@ func (m *IrregularityIncome) validateGaps(formats strfmt.Registry) error {
 		if err := m.Gaps[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("gaps" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("gaps" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
@@ -99,6 +101,8 @@ func (m *IrregularityIncome) contextValidateGaps(ctx context.Context, formats st
 		if err := m.Gaps[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("gaps" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("gaps" + "." + strconv.Itoa(i))
 			}
 			return err
 		}

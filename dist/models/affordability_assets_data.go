@@ -100,6 +100,8 @@ func (m *AffordabilityAssetsData) validateAccount(formats strfmt.Registry) error
 		if err := m.Account.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("account")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("account")
 			}
 			return err
 		}
@@ -154,6 +156,8 @@ func (m *AffordabilityAssetsData) validatePrevious6Months(formats strfmt.Registr
 		if err := m.Previous6Months.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("previous6Months")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("previous6Months")
 			}
 			return err
 		}
@@ -195,6 +199,8 @@ func (m *AffordabilityAssetsData) contextValidateAccount(ctx context.Context, fo
 		if err := m.Account.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("account")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("account")
 			}
 			return err
 		}
@@ -209,6 +215,8 @@ func (m *AffordabilityAssetsData) contextValidatePrevious6Months(ctx context.Con
 		if err := m.Previous6Months.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("previous6Months")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("previous6Months")
 			}
 			return err
 		}

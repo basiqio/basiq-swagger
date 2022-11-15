@@ -75,7 +75,8 @@ func NewPostAffordabilityOK() *PostAffordabilityOK {
 	return &PostAffordabilityOK{}
 }
 
-/* PostAffordabilityOK describes a response with status code 200, with default header values.
+/*
+PostAffordabilityOK describes a response with status code 200, with default header values.
 
 Returns a created affordability resource, if the operation succeeded.
 */
@@ -83,9 +84,39 @@ type PostAffordabilityOK struct {
 	Payload *models.AffordabilityResponse
 }
 
+// IsSuccess returns true when this post affordability o k response has a 2xx status code
+func (o *PostAffordabilityOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this post affordability o k response has a 3xx status code
+func (o *PostAffordabilityOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this post affordability o k response has a 4xx status code
+func (o *PostAffordabilityOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this post affordability o k response has a 5xx status code
+func (o *PostAffordabilityOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this post affordability o k response a status code equal to that given
+func (o *PostAffordabilityOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *PostAffordabilityOK) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}/affordability][%d] postAffordabilityOK  %+v", 200, o.Payload)
 }
+
+func (o *PostAffordabilityOK) String() string {
+	return fmt.Sprintf("[POST /users/{userId}/affordability][%d] postAffordabilityOK  %+v", 200, o.Payload)
+}
+
 func (o *PostAffordabilityOK) GetPayload() *models.AffordabilityResponse {
 	return o.Payload
 }
@@ -107,14 +138,44 @@ func NewPostAffordabilityCreated() *PostAffordabilityCreated {
 	return &PostAffordabilityCreated{}
 }
 
-/* PostAffordabilityCreated describes a response with status code 201, with default header values.
+/*
+PostAffordabilityCreated describes a response with status code 201, with default header values.
 
 Returns a created affordability PDF Report, if the operation succeeded.
 */
 type PostAffordabilityCreated struct {
 }
 
+// IsSuccess returns true when this post affordability created response has a 2xx status code
+func (o *PostAffordabilityCreated) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this post affordability created response has a 3xx status code
+func (o *PostAffordabilityCreated) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this post affordability created response has a 4xx status code
+func (o *PostAffordabilityCreated) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this post affordability created response has a 5xx status code
+func (o *PostAffordabilityCreated) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this post affordability created response a status code equal to that given
+func (o *PostAffordabilityCreated) IsCode(code int) bool {
+	return code == 201
+}
+
 func (o *PostAffordabilityCreated) Error() string {
+	return fmt.Sprintf("[POST /users/{userId}/affordability][%d] postAffordabilityCreated ", 201)
+}
+
+func (o *PostAffordabilityCreated) String() string {
 	return fmt.Sprintf("[POST /users/{userId}/affordability][%d] postAffordabilityCreated ", 201)
 }
 
@@ -128,14 +189,44 @@ func NewPostAffordabilityNoContent() *PostAffordabilityNoContent {
 	return &PostAffordabilityNoContent{}
 }
 
-/* PostAffordabilityNoContent describes a response with status code 204, with default header values.
+/*
+PostAffordabilityNoContent describes a response with status code 204, with default header values.
 
 Returns no content if there are none transactions for the requested period.
 */
 type PostAffordabilityNoContent struct {
 }
 
+// IsSuccess returns true when this post affordability no content response has a 2xx status code
+func (o *PostAffordabilityNoContent) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this post affordability no content response has a 3xx status code
+func (o *PostAffordabilityNoContent) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this post affordability no content response has a 4xx status code
+func (o *PostAffordabilityNoContent) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this post affordability no content response has a 5xx status code
+func (o *PostAffordabilityNoContent) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this post affordability no content response a status code equal to that given
+func (o *PostAffordabilityNoContent) IsCode(code int) bool {
+	return code == 204
+}
+
 func (o *PostAffordabilityNoContent) Error() string {
+	return fmt.Sprintf("[POST /users/{userId}/affordability][%d] postAffordabilityNoContent ", 204)
+}
+
+func (o *PostAffordabilityNoContent) String() string {
 	return fmt.Sprintf("[POST /users/{userId}/affordability][%d] postAffordabilityNoContent ", 204)
 }
 
@@ -149,7 +240,8 @@ func NewPostAffordabilityBadRequest() *PostAffordabilityBadRequest {
 	return &PostAffordabilityBadRequest{}
 }
 
-/* PostAffordabilityBadRequest describes a response with status code 400, with default header values.
+/*
+PostAffordabilityBadRequest describes a response with status code 400, with default header values.
 
 Returns error that server cannot or will not process the request due to something that is perceived to be a client error.
 */
@@ -157,9 +249,39 @@ type PostAffordabilityBadRequest struct {
 	Payload *models.BadRequestError
 }
 
+// IsSuccess returns true when this post affordability bad request response has a 2xx status code
+func (o *PostAffordabilityBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this post affordability bad request response has a 3xx status code
+func (o *PostAffordabilityBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this post affordability bad request response has a 4xx status code
+func (o *PostAffordabilityBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this post affordability bad request response has a 5xx status code
+func (o *PostAffordabilityBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this post affordability bad request response a status code equal to that given
+func (o *PostAffordabilityBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *PostAffordabilityBadRequest) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}/affordability][%d] postAffordabilityBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *PostAffordabilityBadRequest) String() string {
+	return fmt.Sprintf("[POST /users/{userId}/affordability][%d] postAffordabilityBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *PostAffordabilityBadRequest) GetPayload() *models.BadRequestError {
 	return o.Payload
 }
@@ -181,7 +303,8 @@ func NewPostAffordabilityForbidden() *PostAffordabilityForbidden {
 	return &PostAffordabilityForbidden{}
 }
 
-/* PostAffordabilityForbidden describes a response with status code 403, with default header values.
+/*
+PostAffordabilityForbidden describes a response with status code 403, with default header values.
 
 Error that access is forbidden and tied to the application logic, such as insufficient rights to a resource.
 */
@@ -189,9 +312,39 @@ type PostAffordabilityForbidden struct {
 	Payload *models.ForbiddenAccessError
 }
 
+// IsSuccess returns true when this post affordability forbidden response has a 2xx status code
+func (o *PostAffordabilityForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this post affordability forbidden response has a 3xx status code
+func (o *PostAffordabilityForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this post affordability forbidden response has a 4xx status code
+func (o *PostAffordabilityForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this post affordability forbidden response has a 5xx status code
+func (o *PostAffordabilityForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this post affordability forbidden response a status code equal to that given
+func (o *PostAffordabilityForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *PostAffordabilityForbidden) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}/affordability][%d] postAffordabilityForbidden  %+v", 403, o.Payload)
 }
+
+func (o *PostAffordabilityForbidden) String() string {
+	return fmt.Sprintf("[POST /users/{userId}/affordability][%d] postAffordabilityForbidden  %+v", 403, o.Payload)
+}
+
 func (o *PostAffordabilityForbidden) GetPayload() *models.ForbiddenAccessError {
 	return o.Payload
 }
@@ -213,7 +366,8 @@ func NewPostAffordabilityNotFound() *PostAffordabilityNotFound {
 	return &PostAffordabilityNotFound{}
 }
 
-/* PostAffordabilityNotFound describes a response with status code 404, with default header values.
+/*
+PostAffordabilityNotFound describes a response with status code 404, with default header values.
 
 Returns error indicating that server can't find requested resource.
 */
@@ -221,9 +375,39 @@ type PostAffordabilityNotFound struct {
 	Payload *models.NotFoundError
 }
 
+// IsSuccess returns true when this post affordability not found response has a 2xx status code
+func (o *PostAffordabilityNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this post affordability not found response has a 3xx status code
+func (o *PostAffordabilityNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this post affordability not found response has a 4xx status code
+func (o *PostAffordabilityNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this post affordability not found response has a 5xx status code
+func (o *PostAffordabilityNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this post affordability not found response a status code equal to that given
+func (o *PostAffordabilityNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *PostAffordabilityNotFound) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}/affordability][%d] postAffordabilityNotFound  %+v", 404, o.Payload)
 }
+
+func (o *PostAffordabilityNotFound) String() string {
+	return fmt.Sprintf("[POST /users/{userId}/affordability][%d] postAffordabilityNotFound  %+v", 404, o.Payload)
+}
+
 func (o *PostAffordabilityNotFound) GetPayload() *models.NotFoundError {
 	return o.Payload
 }
@@ -245,7 +429,8 @@ func NewPostAffordabilityInternalServerError() *PostAffordabilityInternalServerE
 	return &PostAffordabilityInternalServerError{}
 }
 
-/* PostAffordabilityInternalServerError describes a response with status code 500, with default header values.
+/*
+PostAffordabilityInternalServerError describes a response with status code 500, with default header values.
 
 Returns error response code indicates that the server encountered an unexpected condition that prevented it from fulfilling the request.
 */
@@ -253,9 +438,39 @@ type PostAffordabilityInternalServerError struct {
 	Payload *models.InternalServerError
 }
 
+// IsSuccess returns true when this post affordability internal server error response has a 2xx status code
+func (o *PostAffordabilityInternalServerError) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this post affordability internal server error response has a 3xx status code
+func (o *PostAffordabilityInternalServerError) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this post affordability internal server error response has a 4xx status code
+func (o *PostAffordabilityInternalServerError) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this post affordability internal server error response has a 5xx status code
+func (o *PostAffordabilityInternalServerError) IsServerError() bool {
+	return true
+}
+
+// IsCode returns true when this post affordability internal server error response a status code equal to that given
+func (o *PostAffordabilityInternalServerError) IsCode(code int) bool {
+	return code == 500
+}
+
 func (o *PostAffordabilityInternalServerError) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}/affordability][%d] postAffordabilityInternalServerError  %+v", 500, o.Payload)
 }
+
+func (o *PostAffordabilityInternalServerError) String() string {
+	return fmt.Sprintf("[POST /users/{userId}/affordability][%d] postAffordabilityInternalServerError  %+v", 500, o.Payload)
+}
+
 func (o *PostAffordabilityInternalServerError) GetPayload() *models.InternalServerError {
 	return o.Payload
 }

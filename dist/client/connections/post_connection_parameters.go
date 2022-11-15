@@ -54,10 +54,12 @@ func NewPostConnectionParamsWithHTTPClient(client *http.Client) *PostConnectionP
 	}
 }
 
-/* PostConnectionParams contains all the parameters to send to the API endpoint
-   for the post connection operation.
+/*
+PostConnectionParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the post connection operation.
+
+	Typically these are written to a http.Request.
 */
 type PostConnectionParams struct {
 

@@ -106,6 +106,8 @@ func (m *JobData) validateLinks(formats strfmt.Registry) error {
 		if err := m.Links.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("links")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("links")
 			}
 			return err
 		}
@@ -129,6 +131,8 @@ func (m *JobData) validateSteps(formats strfmt.Registry) error {
 			if err := m.Steps[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("steps" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("steps" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -172,6 +176,8 @@ func (m *JobData) contextValidateLinks(ctx context.Context, formats strfmt.Regis
 		if err := m.Links.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("links")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("links")
 			}
 			return err
 		}
@@ -188,6 +194,8 @@ func (m *JobData) contextValidateSteps(ctx context.Context, formats strfmt.Regis
 			if err := m.Steps[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("steps" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("steps" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

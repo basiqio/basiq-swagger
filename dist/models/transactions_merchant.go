@@ -73,6 +73,8 @@ func (m *TransactionsMerchant) validatePhoneNumber(formats strfmt.Registry) erro
 		if err := m.PhoneNumber.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("phoneNumber")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("phoneNumber")
 			}
 			return err
 		}
@@ -110,6 +112,8 @@ func (m *TransactionsMerchant) contextValidatePhoneNumber(ctx context.Context, f
 		if err := m.PhoneNumber.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("phoneNumber")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("phoneNumber")
 			}
 			return err
 		}

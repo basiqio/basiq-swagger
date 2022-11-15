@@ -52,10 +52,12 @@ func NewGetConnectionsParamsWithHTTPClient(client *http.Client) *GetConnectionsP
 	}
 }
 
-/* GetConnectionsParams contains all the parameters to send to the API endpoint
-   for the get connections operation.
+/*
+GetConnectionsParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get connections operation.
+
+	Typically these are written to a http.Request.
 */
 type GetConnectionsParams struct {
 
