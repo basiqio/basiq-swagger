@@ -69,7 +69,8 @@ func NewRefreshConnectionAccepted() *RefreshConnectionAccepted {
 	return &RefreshConnectionAccepted{}
 }
 
-/* RefreshConnectionAccepted describes a response with status code 202, with default header values.
+/*
+RefreshConnectionAccepted describes a response with status code 202, with default header values.
 
 Returns a created job resource, if the operation succeeded.
 */
@@ -77,9 +78,39 @@ type RefreshConnectionAccepted struct {
 	Payload *models.ConnectionResponseResource
 }
 
+// IsSuccess returns true when this refresh connection accepted response has a 2xx status code
+func (o *RefreshConnectionAccepted) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this refresh connection accepted response has a 3xx status code
+func (o *RefreshConnectionAccepted) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this refresh connection accepted response has a 4xx status code
+func (o *RefreshConnectionAccepted) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this refresh connection accepted response has a 5xx status code
+func (o *RefreshConnectionAccepted) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this refresh connection accepted response a status code equal to that given
+func (o *RefreshConnectionAccepted) IsCode(code int) bool {
+	return code == 202
+}
+
 func (o *RefreshConnectionAccepted) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}/connections/{connectionId}/refresh][%d] refreshConnectionAccepted  %+v", 202, o.Payload)
 }
+
+func (o *RefreshConnectionAccepted) String() string {
+	return fmt.Sprintf("[POST /users/{userId}/connections/{connectionId}/refresh][%d] refreshConnectionAccepted  %+v", 202, o.Payload)
+}
+
 func (o *RefreshConnectionAccepted) GetPayload() *models.ConnectionResponseResource {
 	return o.Payload
 }
@@ -101,7 +132,8 @@ func NewRefreshConnectionBadRequest() *RefreshConnectionBadRequest {
 	return &RefreshConnectionBadRequest{}
 }
 
-/* RefreshConnectionBadRequest describes a response with status code 400, with default header values.
+/*
+RefreshConnectionBadRequest describes a response with status code 400, with default header values.
 
 Returns error that server cannot or will not process the request due to something that is perceived to be a client error
 */
@@ -109,9 +141,39 @@ type RefreshConnectionBadRequest struct {
 	Payload *models.BadRequestError
 }
 
+// IsSuccess returns true when this refresh connection bad request response has a 2xx status code
+func (o *RefreshConnectionBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this refresh connection bad request response has a 3xx status code
+func (o *RefreshConnectionBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this refresh connection bad request response has a 4xx status code
+func (o *RefreshConnectionBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this refresh connection bad request response has a 5xx status code
+func (o *RefreshConnectionBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this refresh connection bad request response a status code equal to that given
+func (o *RefreshConnectionBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *RefreshConnectionBadRequest) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}/connections/{connectionId}/refresh][%d] refreshConnectionBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *RefreshConnectionBadRequest) String() string {
+	return fmt.Sprintf("[POST /users/{userId}/connections/{connectionId}/refresh][%d] refreshConnectionBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *RefreshConnectionBadRequest) GetPayload() *models.BadRequestError {
 	return o.Payload
 }
@@ -133,7 +195,8 @@ func NewRefreshConnectionForbidden() *RefreshConnectionForbidden {
 	return &RefreshConnectionForbidden{}
 }
 
-/* RefreshConnectionForbidden describes a response with status code 403, with default header values.
+/*
+RefreshConnectionForbidden describes a response with status code 403, with default header values.
 
 Error that access is forbidden and tied to the application logic, such as insufficient rights to a resource.
 */
@@ -141,9 +204,39 @@ type RefreshConnectionForbidden struct {
 	Payload *models.ForbiddenAccessError
 }
 
+// IsSuccess returns true when this refresh connection forbidden response has a 2xx status code
+func (o *RefreshConnectionForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this refresh connection forbidden response has a 3xx status code
+func (o *RefreshConnectionForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this refresh connection forbidden response has a 4xx status code
+func (o *RefreshConnectionForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this refresh connection forbidden response has a 5xx status code
+func (o *RefreshConnectionForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this refresh connection forbidden response a status code equal to that given
+func (o *RefreshConnectionForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *RefreshConnectionForbidden) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}/connections/{connectionId}/refresh][%d] refreshConnectionForbidden  %+v", 403, o.Payload)
 }
+
+func (o *RefreshConnectionForbidden) String() string {
+	return fmt.Sprintf("[POST /users/{userId}/connections/{connectionId}/refresh][%d] refreshConnectionForbidden  %+v", 403, o.Payload)
+}
+
 func (o *RefreshConnectionForbidden) GetPayload() *models.ForbiddenAccessError {
 	return o.Payload
 }
@@ -165,7 +258,8 @@ func NewRefreshConnectionNotFound() *RefreshConnectionNotFound {
 	return &RefreshConnectionNotFound{}
 }
 
-/* RefreshConnectionNotFound describes a response with status code 404, with default header values.
+/*
+RefreshConnectionNotFound describes a response with status code 404, with default header values.
 
 Returns error indicating that server can't find requested resource.
 */
@@ -173,9 +267,39 @@ type RefreshConnectionNotFound struct {
 	Payload *models.NotFoundError
 }
 
+// IsSuccess returns true when this refresh connection not found response has a 2xx status code
+func (o *RefreshConnectionNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this refresh connection not found response has a 3xx status code
+func (o *RefreshConnectionNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this refresh connection not found response has a 4xx status code
+func (o *RefreshConnectionNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this refresh connection not found response has a 5xx status code
+func (o *RefreshConnectionNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this refresh connection not found response a status code equal to that given
+func (o *RefreshConnectionNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *RefreshConnectionNotFound) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}/connections/{connectionId}/refresh][%d] refreshConnectionNotFound  %+v", 404, o.Payload)
 }
+
+func (o *RefreshConnectionNotFound) String() string {
+	return fmt.Sprintf("[POST /users/{userId}/connections/{connectionId}/refresh][%d] refreshConnectionNotFound  %+v", 404, o.Payload)
+}
+
 func (o *RefreshConnectionNotFound) GetPayload() *models.NotFoundError {
 	return o.Payload
 }
@@ -197,7 +321,8 @@ func NewRefreshConnectionInternalServerError() *RefreshConnectionInternalServerE
 	return &RefreshConnectionInternalServerError{}
 }
 
-/* RefreshConnectionInternalServerError describes a response with status code 500, with default header values.
+/*
+RefreshConnectionInternalServerError describes a response with status code 500, with default header values.
 
 Returns error response code indicates that the server encountered an unexpected condition that prevented it from fulfilling the request.
 */
@@ -205,9 +330,39 @@ type RefreshConnectionInternalServerError struct {
 	Payload *models.InternalServerError
 }
 
+// IsSuccess returns true when this refresh connection internal server error response has a 2xx status code
+func (o *RefreshConnectionInternalServerError) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this refresh connection internal server error response has a 3xx status code
+func (o *RefreshConnectionInternalServerError) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this refresh connection internal server error response has a 4xx status code
+func (o *RefreshConnectionInternalServerError) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this refresh connection internal server error response has a 5xx status code
+func (o *RefreshConnectionInternalServerError) IsServerError() bool {
+	return true
+}
+
+// IsCode returns true when this refresh connection internal server error response a status code equal to that given
+func (o *RefreshConnectionInternalServerError) IsCode(code int) bool {
+	return code == 500
+}
+
 func (o *RefreshConnectionInternalServerError) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}/connections/{connectionId}/refresh][%d] refreshConnectionInternalServerError  %+v", 500, o.Payload)
 }
+
+func (o *RefreshConnectionInternalServerError) String() string {
+	return fmt.Sprintf("[POST /users/{userId}/connections/{connectionId}/refresh][%d] refreshConnectionInternalServerError  %+v", 500, o.Payload)
+}
+
 func (o *RefreshConnectionInternalServerError) GetPayload() *models.InternalServerError {
 	return o.Payload
 }
@@ -229,7 +384,8 @@ func NewRefreshConnectionServiceUnavailable() *RefreshConnectionServiceUnavailab
 	return &RefreshConnectionServiceUnavailable{}
 }
 
-/* RefreshConnectionServiceUnavailable describes a response with status code 503, with default header values.
+/*
+RefreshConnectionServiceUnavailable describes a response with status code 503, with default header values.
 
 Returns error response code indicates that the server is not ready to handle the request.
 */
@@ -237,9 +393,39 @@ type RefreshConnectionServiceUnavailable struct {
 	Payload *models.StatusServiceUnavailableError
 }
 
+// IsSuccess returns true when this refresh connection service unavailable response has a 2xx status code
+func (o *RefreshConnectionServiceUnavailable) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this refresh connection service unavailable response has a 3xx status code
+func (o *RefreshConnectionServiceUnavailable) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this refresh connection service unavailable response has a 4xx status code
+func (o *RefreshConnectionServiceUnavailable) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this refresh connection service unavailable response has a 5xx status code
+func (o *RefreshConnectionServiceUnavailable) IsServerError() bool {
+	return true
+}
+
+// IsCode returns true when this refresh connection service unavailable response a status code equal to that given
+func (o *RefreshConnectionServiceUnavailable) IsCode(code int) bool {
+	return code == 503
+}
+
 func (o *RefreshConnectionServiceUnavailable) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}/connections/{connectionId}/refresh][%d] refreshConnectionServiceUnavailable  %+v", 503, o.Payload)
 }
+
+func (o *RefreshConnectionServiceUnavailable) String() string {
+	return fmt.Sprintf("[POST /users/{userId}/connections/{connectionId}/refresh][%d] refreshConnectionServiceUnavailable  %+v", 503, o.Payload)
+}
+
 func (o *RefreshConnectionServiceUnavailable) GetPayload() *models.StatusServiceUnavailableError {
 	return o.Payload
 }

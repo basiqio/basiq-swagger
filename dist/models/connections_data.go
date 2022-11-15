@@ -118,6 +118,8 @@ func (m *ConnectionsData) validateInstitution(formats strfmt.Registry) error {
 		if err := m.Institution.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("institution")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("institution")
 			}
 			return err
 		}
@@ -136,6 +138,8 @@ func (m *ConnectionsData) validateLinks(formats strfmt.Registry) error {
 		if err := m.Links.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("links")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("links")
 			}
 			return err
 		}
@@ -222,6 +226,8 @@ func (m *ConnectionsData) contextValidateInstitution(ctx context.Context, format
 		if err := m.Institution.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("institution")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("institution")
 			}
 			return err
 		}
@@ -236,6 +242,8 @@ func (m *ConnectionsData) contextValidateLinks(ctx context.Context, formats strf
 		if err := m.Links.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("links")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("links")
 			}
 			return err
 		}

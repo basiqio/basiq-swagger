@@ -117,6 +117,8 @@ func (m *RegularSource) validateChangeHistory(formats strfmt.Registry) error {
 			if err := m.ChangeHistory[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("changeHistory" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("changeHistory" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -137,6 +139,8 @@ func (m *RegularSource) validateCurrent(formats strfmt.Registry) error {
 		if err := m.Current.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("current")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("current")
 			}
 			return err
 		}
@@ -216,6 +220,8 @@ func (m *RegularSource) validateIrregularity(formats strfmt.Registry) error {
 		if err := m.Irregularity.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("irregularity")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("irregularity")
 			}
 			return err
 		}
@@ -234,6 +240,8 @@ func (m *RegularSource) validatePrevious3Months(formats strfmt.Registry) error {
 		if err := m.Previous3Months.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("previous3Months")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("previous3Months")
 			}
 			return err
 		}
@@ -285,6 +293,8 @@ func (m *RegularSource) contextValidateChangeHistory(ctx context.Context, format
 			if err := m.ChangeHistory[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("changeHistory" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("changeHistory" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -301,6 +311,8 @@ func (m *RegularSource) contextValidateCurrent(ctx context.Context, formats strf
 		if err := m.Current.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("current")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("current")
 			}
 			return err
 		}
@@ -315,6 +327,8 @@ func (m *RegularSource) contextValidateIrregularity(ctx context.Context, formats
 		if err := m.Irregularity.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("irregularity")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("irregularity")
 			}
 			return err
 		}
@@ -329,6 +343,8 @@ func (m *RegularSource) contextValidatePrevious3Months(ctx context.Context, form
 		if err := m.Previous3Months.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("previous3Months")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("previous3Months")
 			}
 			return err
 		}

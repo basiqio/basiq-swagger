@@ -77,6 +77,8 @@ func (m *JobsInstitution) validateLinks(formats strfmt.Registry) error {
 		if err := m.Links.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("links")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("links")
 			}
 			return err
 		}
@@ -114,6 +116,8 @@ func (m *JobsInstitution) contextValidateLinks(ctx context.Context, formats strf
 		if err := m.Links.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("links")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("links")
 			}
 			return err
 		}

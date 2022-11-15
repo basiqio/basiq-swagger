@@ -14,8 +14,11 @@ import (
 	"github.com/basiqio/basiq-swagger/dist/client/affordability"
 	"github.com/basiqio/basiq-swagger/dist/client/auth_links"
 	"github.com/basiqio/basiq-swagger/dist/client/connections"
+	"github.com/basiqio/basiq-swagger/dist/client/connectors"
 	"github.com/basiqio/basiq-swagger/dist/client/enrich"
 	"github.com/basiqio/basiq-swagger/dist/client/expenses"
+	"github.com/basiqio/basiq-swagger/dist/client/identities"
+	"github.com/basiqio/basiq-swagger/dist/client/identity"
 	"github.com/basiqio/basiq-swagger/dist/client/income"
 	"github.com/basiqio/basiq-swagger/dist/client/institutions"
 	"github.com/basiqio/basiq-swagger/dist/client/jobs"
@@ -71,8 +74,11 @@ func New(transport runtime.ClientTransport, formats strfmt.Registry) *Basiq210 {
 	cli.Affordability = affordability.New(transport, formats)
 	cli.AuthLinks = auth_links.New(transport, formats)
 	cli.Connections = connections.New(transport, formats)
+	cli.Connectors = connectors.New(transport, formats)
 	cli.Enrich = enrich.New(transport, formats)
 	cli.Expenses = expenses.New(transport, formats)
+	cli.Identities = identities.New(transport, formats)
+	cli.Identity = identity.New(transport, formats)
 	cli.Income = income.New(transport, formats)
 	cli.Institutions = institutions.New(transport, formats)
 	cli.Jobs = jobs.New(transport, formats)
@@ -132,9 +138,15 @@ type Basiq210 struct {
 
 	Connections connections.ClientService
 
+	Connectors connectors.ClientService
+
 	Enrich enrich.ClientService
 
 	Expenses expenses.ClientService
+
+	Identities identities.ClientService
+
+	Identity identity.ClientService
 
 	Income income.ClientService
 
@@ -160,8 +172,11 @@ func (c *Basiq210) SetTransport(transport runtime.ClientTransport) {
 	c.Affordability.SetTransport(transport)
 	c.AuthLinks.SetTransport(transport)
 	c.Connections.SetTransport(transport)
+	c.Connectors.SetTransport(transport)
 	c.Enrich.SetTransport(transport)
 	c.Expenses.SetTransport(transport)
+	c.Identities.SetTransport(transport)
+	c.Identity.SetTransport(transport)
 	c.Income.SetTransport(transport)
 	c.Institutions.SetTransport(transport)
 	c.Jobs.SetTransport(transport)

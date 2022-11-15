@@ -115,6 +115,8 @@ func (m *JobsData) validateInstitution(formats strfmt.Registry) error {
 		if err := m.Institution.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("institution")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("institution")
 			}
 			return err
 		}
@@ -132,6 +134,8 @@ func (m *JobsData) validateLinks(formats strfmt.Registry) error {
 		if err := m.Links.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("links")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("links")
 			}
 			return err
 		}
@@ -155,6 +159,8 @@ func (m *JobsData) validateSteps(formats strfmt.Registry) error {
 			if err := m.Steps[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("steps" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("steps" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -202,6 +208,8 @@ func (m *JobsData) contextValidateInstitution(ctx context.Context, formats strfm
 		if err := m.Institution.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("institution")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("institution")
 			}
 			return err
 		}
@@ -216,6 +224,8 @@ func (m *JobsData) contextValidateLinks(ctx context.Context, formats strfmt.Regi
 		if err := m.Links.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("links")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("links")
 			}
 			return err
 		}
@@ -232,6 +242,8 @@ func (m *JobsData) contextValidateSteps(ctx context.Context, formats strfmt.Regi
 			if err := m.Steps[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("steps" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("steps" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

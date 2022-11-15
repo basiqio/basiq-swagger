@@ -45,6 +45,8 @@ func (m *TransactionsCategory) validateAnzsic(formats strfmt.Registry) error {
 		if err := m.Anzsic.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("anzsic")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("anzsic")
 			}
 			return err
 		}
@@ -73,6 +75,8 @@ func (m *TransactionsCategory) contextValidateAnzsic(ctx context.Context, format
 		if err := m.Anzsic.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("anzsic")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("anzsic")
 			}
 			return err
 		}

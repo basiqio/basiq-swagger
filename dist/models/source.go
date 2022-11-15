@@ -12,9 +12,7 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// Source Source
-//
-// An object containing references to the source of the error.
+// Source Source contains references on the source of the error.
 //
 // swagger:model Source
 type Source struct {

@@ -105,6 +105,8 @@ func (m *ProfileFeatures) validateEmailAddresses(formats strfmt.Registry) error 
 		if err := m.EmailAddresses[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("emailAddresses" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("emailAddresses" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
@@ -125,6 +127,8 @@ func (m *ProfileFeatures) validateFirstName(formats strfmt.Registry) error {
 		if err := m.FirstName[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("firstName" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("firstName" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
@@ -145,6 +149,8 @@ func (m *ProfileFeatures) validateFullName(formats strfmt.Registry) error {
 		if err := m.FullName[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("fullName" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("fullName" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
@@ -165,6 +171,8 @@ func (m *ProfileFeatures) validateLastName(formats strfmt.Registry) error {
 		if err := m.LastName[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("lastName" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("lastName" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
@@ -185,6 +193,8 @@ func (m *ProfileFeatures) validateMiddleName(formats strfmt.Registry) error {
 		if err := m.MiddleName[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("middleName" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("middleName" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
@@ -205,6 +215,8 @@ func (m *ProfileFeatures) validatePhoneNumbers(formats strfmt.Registry) error {
 		if err := m.PhoneNumbers[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("phoneNumbers" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("phoneNumbers" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
@@ -225,6 +237,8 @@ func (m *ProfileFeatures) validatePhysicalAddresses(formats strfmt.Registry) err
 		if err := m.PhysicalAddresses[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("physicalAddresses" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("physicalAddresses" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
@@ -279,6 +293,8 @@ func (m *ProfileFeatures) contextValidateEmailAddresses(ctx context.Context, for
 		if err := m.EmailAddresses[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("emailAddresses" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("emailAddresses" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
@@ -295,6 +311,8 @@ func (m *ProfileFeatures) contextValidateFirstName(ctx context.Context, formats 
 		if err := m.FirstName[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("firstName" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("firstName" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
@@ -311,6 +329,8 @@ func (m *ProfileFeatures) contextValidateFullName(ctx context.Context, formats s
 		if err := m.FullName[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("fullName" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("fullName" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
@@ -327,6 +347,8 @@ func (m *ProfileFeatures) contextValidateLastName(ctx context.Context, formats s
 		if err := m.LastName[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("lastName" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("lastName" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
@@ -343,6 +365,8 @@ func (m *ProfileFeatures) contextValidateMiddleName(ctx context.Context, formats
 		if err := m.MiddleName[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("middleName" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("middleName" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
@@ -359,6 +383,8 @@ func (m *ProfileFeatures) contextValidatePhoneNumbers(ctx context.Context, forma
 		if err := m.PhoneNumbers[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("phoneNumbers" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("phoneNumbers" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
@@ -375,6 +401,8 @@ func (m *ProfileFeatures) contextValidatePhysicalAddresses(ctx context.Context, 
 		if err := m.PhysicalAddresses[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("physicalAddresses" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("physicalAddresses" + "." + strconv.Itoa(i))
 			}
 			return err
 		}

@@ -72,6 +72,8 @@ func (m *UserConnectionsPostData) validateInstitution(formats strfmt.Registry) e
 		if err := m.Institution.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("institution")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("institution")
 			}
 			return err
 		}
@@ -118,6 +120,8 @@ func (m *UserConnectionsPostData) contextValidateInstitution(ctx context.Context
 		if err := m.Institution.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("institution")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("institution")
 			}
 			return err
 		}

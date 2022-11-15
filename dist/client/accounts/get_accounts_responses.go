@@ -63,7 +63,8 @@ func NewGetAccountsOK() *GetAccountsOK {
 	return &GetAccountsOK{}
 }
 
-/* GetAccountsOK describes a response with status code 200, with default header values.
+/*
+GetAccountsOK describes a response with status code 200, with default header values.
 
 Returns a account with details.
 */
@@ -71,9 +72,39 @@ type GetAccountsOK struct {
 	Payload *models.AccountsResponseResource
 }
 
+// IsSuccess returns true when this get accounts o k response has a 2xx status code
+func (o *GetAccountsOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this get accounts o k response has a 3xx status code
+func (o *GetAccountsOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get accounts o k response has a 4xx status code
+func (o *GetAccountsOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get accounts o k response has a 5xx status code
+func (o *GetAccountsOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get accounts o k response a status code equal to that given
+func (o *GetAccountsOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *GetAccountsOK) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/accounts][%d] getAccountsOK  %+v", 200, o.Payload)
 }
+
+func (o *GetAccountsOK) String() string {
+	return fmt.Sprintf("[GET /users/{userId}/accounts][%d] getAccountsOK  %+v", 200, o.Payload)
+}
+
 func (o *GetAccountsOK) GetPayload() *models.AccountsResponseResource {
 	return o.Payload
 }
@@ -95,7 +126,8 @@ func NewGetAccountsBadRequest() *GetAccountsBadRequest {
 	return &GetAccountsBadRequest{}
 }
 
-/* GetAccountsBadRequest describes a response with status code 400, with default header values.
+/*
+GetAccountsBadRequest describes a response with status code 400, with default header values.
 
 Returns error that server cannot or will not process the request due to something that is perceived to be a client error
 */
@@ -103,9 +135,39 @@ type GetAccountsBadRequest struct {
 	Payload *models.BadRequestError
 }
 
+// IsSuccess returns true when this get accounts bad request response has a 2xx status code
+func (o *GetAccountsBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get accounts bad request response has a 3xx status code
+func (o *GetAccountsBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get accounts bad request response has a 4xx status code
+func (o *GetAccountsBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get accounts bad request response has a 5xx status code
+func (o *GetAccountsBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get accounts bad request response a status code equal to that given
+func (o *GetAccountsBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *GetAccountsBadRequest) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/accounts][%d] getAccountsBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *GetAccountsBadRequest) String() string {
+	return fmt.Sprintf("[GET /users/{userId}/accounts][%d] getAccountsBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *GetAccountsBadRequest) GetPayload() *models.BadRequestError {
 	return o.Payload
 }
@@ -127,7 +189,8 @@ func NewGetAccountsForbidden() *GetAccountsForbidden {
 	return &GetAccountsForbidden{}
 }
 
-/* GetAccountsForbidden describes a response with status code 403, with default header values.
+/*
+GetAccountsForbidden describes a response with status code 403, with default header values.
 
 Error that access is forbidden and tied to the application logic, such as insufficient rights to a resource.
 */
@@ -135,9 +198,39 @@ type GetAccountsForbidden struct {
 	Payload *models.ForbiddenAccessError
 }
 
+// IsSuccess returns true when this get accounts forbidden response has a 2xx status code
+func (o *GetAccountsForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get accounts forbidden response has a 3xx status code
+func (o *GetAccountsForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get accounts forbidden response has a 4xx status code
+func (o *GetAccountsForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get accounts forbidden response has a 5xx status code
+func (o *GetAccountsForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get accounts forbidden response a status code equal to that given
+func (o *GetAccountsForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *GetAccountsForbidden) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/accounts][%d] getAccountsForbidden  %+v", 403, o.Payload)
 }
+
+func (o *GetAccountsForbidden) String() string {
+	return fmt.Sprintf("[GET /users/{userId}/accounts][%d] getAccountsForbidden  %+v", 403, o.Payload)
+}
+
 func (o *GetAccountsForbidden) GetPayload() *models.ForbiddenAccessError {
 	return o.Payload
 }
@@ -159,7 +252,8 @@ func NewGetAccountsNotFound() *GetAccountsNotFound {
 	return &GetAccountsNotFound{}
 }
 
-/* GetAccountsNotFound describes a response with status code 404, with default header values.
+/*
+GetAccountsNotFound describes a response with status code 404, with default header values.
 
 Returns error indicating that server can't find requested resource.
 */
@@ -167,9 +261,39 @@ type GetAccountsNotFound struct {
 	Payload *models.NotFoundError
 }
 
+// IsSuccess returns true when this get accounts not found response has a 2xx status code
+func (o *GetAccountsNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get accounts not found response has a 3xx status code
+func (o *GetAccountsNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get accounts not found response has a 4xx status code
+func (o *GetAccountsNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get accounts not found response has a 5xx status code
+func (o *GetAccountsNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get accounts not found response a status code equal to that given
+func (o *GetAccountsNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *GetAccountsNotFound) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/accounts][%d] getAccountsNotFound  %+v", 404, o.Payload)
 }
+
+func (o *GetAccountsNotFound) String() string {
+	return fmt.Sprintf("[GET /users/{userId}/accounts][%d] getAccountsNotFound  %+v", 404, o.Payload)
+}
+
 func (o *GetAccountsNotFound) GetPayload() *models.NotFoundError {
 	return o.Payload
 }
@@ -191,7 +315,8 @@ func NewGetAccountsInternalServerError() *GetAccountsInternalServerError {
 	return &GetAccountsInternalServerError{}
 }
 
-/* GetAccountsInternalServerError describes a response with status code 500, with default header values.
+/*
+GetAccountsInternalServerError describes a response with status code 500, with default header values.
 
 Returns error response code indicates that the server encountered an unexpected condition that prevented it from fulfilling the request.
 */
@@ -199,9 +324,39 @@ type GetAccountsInternalServerError struct {
 	Payload *models.InternalServerError
 }
 
+// IsSuccess returns true when this get accounts internal server error response has a 2xx status code
+func (o *GetAccountsInternalServerError) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get accounts internal server error response has a 3xx status code
+func (o *GetAccountsInternalServerError) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get accounts internal server error response has a 4xx status code
+func (o *GetAccountsInternalServerError) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get accounts internal server error response has a 5xx status code
+func (o *GetAccountsInternalServerError) IsServerError() bool {
+	return true
+}
+
+// IsCode returns true when this get accounts internal server error response a status code equal to that given
+func (o *GetAccountsInternalServerError) IsCode(code int) bool {
+	return code == 500
+}
+
 func (o *GetAccountsInternalServerError) Error() string {
 	return fmt.Sprintf("[GET /users/{userId}/accounts][%d] getAccountsInternalServerError  %+v", 500, o.Payload)
 }
+
+func (o *GetAccountsInternalServerError) String() string {
+	return fmt.Sprintf("[GET /users/{userId}/accounts][%d] getAccountsInternalServerError  %+v", 500, o.Payload)
+}
+
 func (o *GetAccountsInternalServerError) GetPayload() *models.InternalServerError {
 	return o.Payload
 }

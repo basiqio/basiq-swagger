@@ -63,7 +63,8 @@ func NewGetJobsOK() *GetJobsOK {
 	return &GetJobsOK{}
 }
 
-/* GetJobsOK describes a response with status code 200, with default header values.
+/*
+GetJobsOK describes a response with status code 200, with default header values.
 
 Returns a job details if a valid job ID was provided.
 */
@@ -71,9 +72,39 @@ type GetJobsOK struct {
 	Payload *models.JobData
 }
 
+// IsSuccess returns true when this get jobs o k response has a 2xx status code
+func (o *GetJobsOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this get jobs o k response has a 3xx status code
+func (o *GetJobsOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get jobs o k response has a 4xx status code
+func (o *GetJobsOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get jobs o k response has a 5xx status code
+func (o *GetJobsOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get jobs o k response a status code equal to that given
+func (o *GetJobsOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *GetJobsOK) Error() string {
 	return fmt.Sprintf("[GET /jobs/{jobId}][%d] getJobsOK  %+v", 200, o.Payload)
 }
+
+func (o *GetJobsOK) String() string {
+	return fmt.Sprintf("[GET /jobs/{jobId}][%d] getJobsOK  %+v", 200, o.Payload)
+}
+
 func (o *GetJobsOK) GetPayload() *models.JobData {
 	return o.Payload
 }
@@ -95,7 +126,8 @@ func NewGetJobsBadRequest() *GetJobsBadRequest {
 	return &GetJobsBadRequest{}
 }
 
-/* GetJobsBadRequest describes a response with status code 400, with default header values.
+/*
+GetJobsBadRequest describes a response with status code 400, with default header values.
 
 Returns error that server cannot or will not process the request due to something that is perceived to be a client error
 */
@@ -103,9 +135,39 @@ type GetJobsBadRequest struct {
 	Payload *models.BadRequestError
 }
 
+// IsSuccess returns true when this get jobs bad request response has a 2xx status code
+func (o *GetJobsBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get jobs bad request response has a 3xx status code
+func (o *GetJobsBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get jobs bad request response has a 4xx status code
+func (o *GetJobsBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get jobs bad request response has a 5xx status code
+func (o *GetJobsBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get jobs bad request response a status code equal to that given
+func (o *GetJobsBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *GetJobsBadRequest) Error() string {
 	return fmt.Sprintf("[GET /jobs/{jobId}][%d] getJobsBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *GetJobsBadRequest) String() string {
+	return fmt.Sprintf("[GET /jobs/{jobId}][%d] getJobsBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *GetJobsBadRequest) GetPayload() *models.BadRequestError {
 	return o.Payload
 }
@@ -127,7 +189,8 @@ func NewGetJobsForbidden() *GetJobsForbidden {
 	return &GetJobsForbidden{}
 }
 
-/* GetJobsForbidden describes a response with status code 403, with default header values.
+/*
+GetJobsForbidden describes a response with status code 403, with default header values.
 
 Error that access is forbidden and tied to the application logic, such as insufficient rights to a resource.
 */
@@ -135,9 +198,39 @@ type GetJobsForbidden struct {
 	Payload *models.ForbiddenAccessError
 }
 
+// IsSuccess returns true when this get jobs forbidden response has a 2xx status code
+func (o *GetJobsForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get jobs forbidden response has a 3xx status code
+func (o *GetJobsForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get jobs forbidden response has a 4xx status code
+func (o *GetJobsForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get jobs forbidden response has a 5xx status code
+func (o *GetJobsForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get jobs forbidden response a status code equal to that given
+func (o *GetJobsForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *GetJobsForbidden) Error() string {
 	return fmt.Sprintf("[GET /jobs/{jobId}][%d] getJobsForbidden  %+v", 403, o.Payload)
 }
+
+func (o *GetJobsForbidden) String() string {
+	return fmt.Sprintf("[GET /jobs/{jobId}][%d] getJobsForbidden  %+v", 403, o.Payload)
+}
+
 func (o *GetJobsForbidden) GetPayload() *models.ForbiddenAccessError {
 	return o.Payload
 }
@@ -159,7 +252,8 @@ func NewGetJobsNotFound() *GetJobsNotFound {
 	return &GetJobsNotFound{}
 }
 
-/* GetJobsNotFound describes a response with status code 404, with default header values.
+/*
+GetJobsNotFound describes a response with status code 404, with default header values.
 
 Returns error indicating that server can't find requested resource.
 */
@@ -167,9 +261,39 @@ type GetJobsNotFound struct {
 	Payload *models.NotFoundError
 }
 
+// IsSuccess returns true when this get jobs not found response has a 2xx status code
+func (o *GetJobsNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get jobs not found response has a 3xx status code
+func (o *GetJobsNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get jobs not found response has a 4xx status code
+func (o *GetJobsNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get jobs not found response has a 5xx status code
+func (o *GetJobsNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get jobs not found response a status code equal to that given
+func (o *GetJobsNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *GetJobsNotFound) Error() string {
 	return fmt.Sprintf("[GET /jobs/{jobId}][%d] getJobsNotFound  %+v", 404, o.Payload)
 }
+
+func (o *GetJobsNotFound) String() string {
+	return fmt.Sprintf("[GET /jobs/{jobId}][%d] getJobsNotFound  %+v", 404, o.Payload)
+}
+
 func (o *GetJobsNotFound) GetPayload() *models.NotFoundError {
 	return o.Payload
 }
@@ -191,7 +315,8 @@ func NewGetJobsInternalServerError() *GetJobsInternalServerError {
 	return &GetJobsInternalServerError{}
 }
 
-/* GetJobsInternalServerError describes a response with status code 500, with default header values.
+/*
+GetJobsInternalServerError describes a response with status code 500, with default header values.
 
 Returns error response code indicates that the server encountered an unexpected condition that prevented it from fulfilling the request.
 */
@@ -199,9 +324,39 @@ type GetJobsInternalServerError struct {
 	Payload *models.InternalServerError
 }
 
+// IsSuccess returns true when this get jobs internal server error response has a 2xx status code
+func (o *GetJobsInternalServerError) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get jobs internal server error response has a 3xx status code
+func (o *GetJobsInternalServerError) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get jobs internal server error response has a 4xx status code
+func (o *GetJobsInternalServerError) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get jobs internal server error response has a 5xx status code
+func (o *GetJobsInternalServerError) IsServerError() bool {
+	return true
+}
+
+// IsCode returns true when this get jobs internal server error response a status code equal to that given
+func (o *GetJobsInternalServerError) IsCode(code int) bool {
+	return code == 500
+}
+
 func (o *GetJobsInternalServerError) Error() string {
 	return fmt.Sprintf("[GET /jobs/{jobId}][%d] getJobsInternalServerError  %+v", 500, o.Payload)
 }
+
+func (o *GetJobsInternalServerError) String() string {
+	return fmt.Sprintf("[GET /jobs/{jobId}][%d] getJobsInternalServerError  %+v", 500, o.Payload)
+}
+
 func (o *GetJobsInternalServerError) GetPayload() *models.InternalServerError {
 	return o.Payload
 }

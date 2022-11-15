@@ -96,6 +96,8 @@ func (m *TransactionsFeatures) validateAmount(formats strfmt.Registry) error {
 		if err := m.Amount[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("amount" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("amount" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
@@ -116,6 +118,8 @@ func (m *TransactionsFeatures) validateBalance(formats strfmt.Registry) error {
 		if err := m.Balance[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("balance" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("balance" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
@@ -136,6 +140,8 @@ func (m *TransactionsFeatures) validateClass(formats strfmt.Registry) error {
 		if err := m.Class[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("class" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("class" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
@@ -156,6 +162,8 @@ func (m *TransactionsFeatures) validateDate(formats strfmt.Registry) error {
 		if err := m.Date[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("date" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("date" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
@@ -176,6 +184,8 @@ func (m *TransactionsFeatures) validateDescription(formats strfmt.Registry) erro
 		if err := m.Description[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("description" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("description" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
@@ -196,6 +206,8 @@ func (m *TransactionsFeatures) validateStatus(formats strfmt.Registry) error {
 		if err := m.Status[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("status" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
@@ -246,6 +258,8 @@ func (m *TransactionsFeatures) contextValidateAmount(ctx context.Context, format
 		if err := m.Amount[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("amount" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("amount" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
@@ -262,6 +276,8 @@ func (m *TransactionsFeatures) contextValidateBalance(ctx context.Context, forma
 		if err := m.Balance[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("balance" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("balance" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
@@ -278,6 +294,8 @@ func (m *TransactionsFeatures) contextValidateClass(ctx context.Context, formats
 		if err := m.Class[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("class" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("class" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
@@ -294,6 +312,8 @@ func (m *TransactionsFeatures) contextValidateDate(ctx context.Context, formats 
 		if err := m.Date[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("date" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("date" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
@@ -310,6 +330,8 @@ func (m *TransactionsFeatures) contextValidateDescription(ctx context.Context, f
 		if err := m.Description[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("description" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("description" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
@@ -326,6 +348,8 @@ func (m *TransactionsFeatures) contextValidateStatus(ctx context.Context, format
 		if err := m.Status[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("status" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status" + "." + strconv.Itoa(i))
 			}
 			return err
 		}

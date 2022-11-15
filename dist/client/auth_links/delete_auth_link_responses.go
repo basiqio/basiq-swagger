@@ -63,14 +63,44 @@ func NewDeleteAuthLinkNoContent() *DeleteAuthLinkNoContent {
 	return &DeleteAuthLinkNoContent{}
 }
 
-/* DeleteAuthLinkNoContent describes a response with status code 204, with default header values.
+/*
+DeleteAuthLinkNoContent describes a response with status code 204, with default header values.
 
 Returns an empty body if the delete succeeded.
 */
 type DeleteAuthLinkNoContent struct {
 }
 
+// IsSuccess returns true when this delete auth link no content response has a 2xx status code
+func (o *DeleteAuthLinkNoContent) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this delete auth link no content response has a 3xx status code
+func (o *DeleteAuthLinkNoContent) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete auth link no content response has a 4xx status code
+func (o *DeleteAuthLinkNoContent) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this delete auth link no content response has a 5xx status code
+func (o *DeleteAuthLinkNoContent) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete auth link no content response a status code equal to that given
+func (o *DeleteAuthLinkNoContent) IsCode(code int) bool {
+	return code == 204
+}
+
 func (o *DeleteAuthLinkNoContent) Error() string {
+	return fmt.Sprintf("[DELETE /users/{userId}/auth_link][%d] deleteAuthLinkNoContent ", 204)
+}
+
+func (o *DeleteAuthLinkNoContent) String() string {
 	return fmt.Sprintf("[DELETE /users/{userId}/auth_link][%d] deleteAuthLinkNoContent ", 204)
 }
 
@@ -84,7 +114,8 @@ func NewDeleteAuthLinkBadRequest() *DeleteAuthLinkBadRequest {
 	return &DeleteAuthLinkBadRequest{}
 }
 
-/* DeleteAuthLinkBadRequest describes a response with status code 400, with default header values.
+/*
+DeleteAuthLinkBadRequest describes a response with status code 400, with default header values.
 
 Returns error that server cannot or will not process the request due to something that is perceived to be a client error
 */
@@ -92,9 +123,39 @@ type DeleteAuthLinkBadRequest struct {
 	Payload *models.BadRequestError
 }
 
+// IsSuccess returns true when this delete auth link bad request response has a 2xx status code
+func (o *DeleteAuthLinkBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete auth link bad request response has a 3xx status code
+func (o *DeleteAuthLinkBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete auth link bad request response has a 4xx status code
+func (o *DeleteAuthLinkBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this delete auth link bad request response has a 5xx status code
+func (o *DeleteAuthLinkBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete auth link bad request response a status code equal to that given
+func (o *DeleteAuthLinkBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *DeleteAuthLinkBadRequest) Error() string {
 	return fmt.Sprintf("[DELETE /users/{userId}/auth_link][%d] deleteAuthLinkBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *DeleteAuthLinkBadRequest) String() string {
+	return fmt.Sprintf("[DELETE /users/{userId}/auth_link][%d] deleteAuthLinkBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *DeleteAuthLinkBadRequest) GetPayload() *models.BadRequestError {
 	return o.Payload
 }
@@ -116,7 +177,8 @@ func NewDeleteAuthLinkNotFound() *DeleteAuthLinkNotFound {
 	return &DeleteAuthLinkNotFound{}
 }
 
-/* DeleteAuthLinkNotFound describes a response with status code 404, with default header values.
+/*
+DeleteAuthLinkNotFound describes a response with status code 404, with default header values.
 
 Returns error indicating that server can't find requested resource.
 */
@@ -124,9 +186,39 @@ type DeleteAuthLinkNotFound struct {
 	Payload *models.NotFoundError
 }
 
+// IsSuccess returns true when this delete auth link not found response has a 2xx status code
+func (o *DeleteAuthLinkNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete auth link not found response has a 3xx status code
+func (o *DeleteAuthLinkNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete auth link not found response has a 4xx status code
+func (o *DeleteAuthLinkNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this delete auth link not found response has a 5xx status code
+func (o *DeleteAuthLinkNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete auth link not found response a status code equal to that given
+func (o *DeleteAuthLinkNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *DeleteAuthLinkNotFound) Error() string {
 	return fmt.Sprintf("[DELETE /users/{userId}/auth_link][%d] deleteAuthLinkNotFound  %+v", 404, o.Payload)
 }
+
+func (o *DeleteAuthLinkNotFound) String() string {
+	return fmt.Sprintf("[DELETE /users/{userId}/auth_link][%d] deleteAuthLinkNotFound  %+v", 404, o.Payload)
+}
+
 func (o *DeleteAuthLinkNotFound) GetPayload() *models.NotFoundError {
 	return o.Payload
 }
@@ -148,7 +240,8 @@ func NewDeleteAuthLinkInternalServerError() *DeleteAuthLinkInternalServerError {
 	return &DeleteAuthLinkInternalServerError{}
 }
 
-/* DeleteAuthLinkInternalServerError describes a response with status code 500, with default header values.
+/*
+DeleteAuthLinkInternalServerError describes a response with status code 500, with default header values.
 
 Returns error response code indicates that the server encountered an unexpected condition that prevented it from fulfilling the request.
 */
@@ -156,9 +249,39 @@ type DeleteAuthLinkInternalServerError struct {
 	Payload *models.InternalServerError
 }
 
+// IsSuccess returns true when this delete auth link internal server error response has a 2xx status code
+func (o *DeleteAuthLinkInternalServerError) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete auth link internal server error response has a 3xx status code
+func (o *DeleteAuthLinkInternalServerError) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete auth link internal server error response has a 4xx status code
+func (o *DeleteAuthLinkInternalServerError) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this delete auth link internal server error response has a 5xx status code
+func (o *DeleteAuthLinkInternalServerError) IsServerError() bool {
+	return true
+}
+
+// IsCode returns true when this delete auth link internal server error response a status code equal to that given
+func (o *DeleteAuthLinkInternalServerError) IsCode(code int) bool {
+	return code == 500
+}
+
 func (o *DeleteAuthLinkInternalServerError) Error() string {
 	return fmt.Sprintf("[DELETE /users/{userId}/auth_link][%d] deleteAuthLinkInternalServerError  %+v", 500, o.Payload)
 }
+
+func (o *DeleteAuthLinkInternalServerError) String() string {
+	return fmt.Sprintf("[DELETE /users/{userId}/auth_link][%d] deleteAuthLinkInternalServerError  %+v", 500, o.Payload)
+}
+
 func (o *DeleteAuthLinkInternalServerError) GetPayload() *models.InternalServerError {
 	return o.Payload
 }
@@ -180,7 +303,8 @@ func NewDeleteAuthLinkServiceUnavailable() *DeleteAuthLinkServiceUnavailable {
 	return &DeleteAuthLinkServiceUnavailable{}
 }
 
-/* DeleteAuthLinkServiceUnavailable describes a response with status code 503, with default header values.
+/*
+DeleteAuthLinkServiceUnavailable describes a response with status code 503, with default header values.
 
 Returns error response code indicates that the server is not ready to handle the request.
 */
@@ -188,9 +312,39 @@ type DeleteAuthLinkServiceUnavailable struct {
 	Payload *models.StatusServiceUnavailableError
 }
 
+// IsSuccess returns true when this delete auth link service unavailable response has a 2xx status code
+func (o *DeleteAuthLinkServiceUnavailable) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete auth link service unavailable response has a 3xx status code
+func (o *DeleteAuthLinkServiceUnavailable) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete auth link service unavailable response has a 4xx status code
+func (o *DeleteAuthLinkServiceUnavailable) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this delete auth link service unavailable response has a 5xx status code
+func (o *DeleteAuthLinkServiceUnavailable) IsServerError() bool {
+	return true
+}
+
+// IsCode returns true when this delete auth link service unavailable response a status code equal to that given
+func (o *DeleteAuthLinkServiceUnavailable) IsCode(code int) bool {
+	return code == 503
+}
+
 func (o *DeleteAuthLinkServiceUnavailable) Error() string {
 	return fmt.Sprintf("[DELETE /users/{userId}/auth_link][%d] deleteAuthLinkServiceUnavailable  %+v", 503, o.Payload)
 }
+
+func (o *DeleteAuthLinkServiceUnavailable) String() string {
+	return fmt.Sprintf("[DELETE /users/{userId}/auth_link][%d] deleteAuthLinkServiceUnavailable  %+v", 503, o.Payload)
+}
+
 func (o *DeleteAuthLinkServiceUnavailable) GetPayload() *models.StatusServiceUnavailableError {
 	return o.Payload
 }

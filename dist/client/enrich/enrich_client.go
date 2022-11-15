@@ -36,7 +36,7 @@ type ClientService interface {
 }
 
 /*
-  GetEnrich thes enrich resource enables you to retrieve details by passing in a search query containing a bank transaction description
+GetEnrich thes enrich resource enables you to retrieve details by passing in a search query containing a bank transaction description
 */
 func (a *Client) GetEnrich(params *GetEnrichParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetEnrichOK, error) {
 	// TODO: Validate the params before sending

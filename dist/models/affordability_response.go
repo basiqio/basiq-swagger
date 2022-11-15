@@ -139,6 +139,8 @@ func (m *AffordabilityResponse) validateAssets(formats strfmt.Registry) error {
 			if err := m.Assets[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("assets" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("assets" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -164,6 +166,8 @@ func (m *AffordabilityResponse) validateExternal(formats strfmt.Registry) error 
 			if err := m.External[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("external" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("external" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -211,6 +215,8 @@ func (m *AffordabilityResponse) validateLiabilities(formats strfmt.Registry) err
 		if err := m.Liabilities.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("liabilities")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("liabilities")
 			}
 			return err
 		}
@@ -229,6 +235,8 @@ func (m *AffordabilityResponse) validateLinks(formats strfmt.Registry) error {
 		if err := m.Links.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("links")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("links")
 			}
 			return err
 		}
@@ -247,6 +255,8 @@ func (m *AffordabilityResponse) validateSummary(formats strfmt.Registry) error {
 		if err := m.Summary.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("summary")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("summary")
 			}
 			return err
 		}
@@ -311,6 +321,8 @@ func (m *AffordabilityResponse) contextValidateAssets(ctx context.Context, forma
 			if err := m.Assets[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("assets" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("assets" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -329,6 +341,8 @@ func (m *AffordabilityResponse) contextValidateExternal(ctx context.Context, for
 			if err := m.External[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("external" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("external" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -345,6 +359,8 @@ func (m *AffordabilityResponse) contextValidateLiabilities(ctx context.Context, 
 		if err := m.Liabilities.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("liabilities")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("liabilities")
 			}
 			return err
 		}
@@ -359,6 +375,8 @@ func (m *AffordabilityResponse) contextValidateLinks(ctx context.Context, format
 		if err := m.Links.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("links")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("links")
 			}
 			return err
 		}
@@ -373,6 +391,8 @@ func (m *AffordabilityResponse) contextValidateSummary(ctx context.Context, form
 		if err := m.Summary.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("summary")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("summary")
 			}
 			return err
 		}

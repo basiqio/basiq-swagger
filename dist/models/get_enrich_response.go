@@ -150,6 +150,8 @@ func (m *GetEnrichResponse) validateData(formats strfmt.Registry) error {
 		if err := m.Data.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data")
 			}
 			return err
 		}
@@ -214,6 +216,8 @@ func (m *GetEnrichResponse) validateLinks(formats strfmt.Registry) error {
 		if err := m.Links.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("links")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("links")
 			}
 			return err
 		}
@@ -255,6 +259,8 @@ func (m *GetEnrichResponse) contextValidateData(ctx context.Context, formats str
 		if err := m.Data.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("data")
 			}
 			return err
 		}
@@ -269,6 +275,8 @@ func (m *GetEnrichResponse) contextValidateLinks(ctx context.Context, formats st
 		if err := m.Links.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("links")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("links")
 			}
 			return err
 		}

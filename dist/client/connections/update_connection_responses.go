@@ -81,7 +81,8 @@ func NewUpdateConnectionAccepted() *UpdateConnectionAccepted {
 	return &UpdateConnectionAccepted{}
 }
 
-/* UpdateConnectionAccepted describes a response with status code 202, with default header values.
+/*
+UpdateConnectionAccepted describes a response with status code 202, with default header values.
 
 Returns a job object if the request succeeded.
 */
@@ -89,9 +90,39 @@ type UpdateConnectionAccepted struct {
 	Payload *models.ConnectionResponseResource
 }
 
+// IsSuccess returns true when this update connection accepted response has a 2xx status code
+func (o *UpdateConnectionAccepted) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this update connection accepted response has a 3xx status code
+func (o *UpdateConnectionAccepted) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update connection accepted response has a 4xx status code
+func (o *UpdateConnectionAccepted) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this update connection accepted response has a 5xx status code
+func (o *UpdateConnectionAccepted) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update connection accepted response a status code equal to that given
+func (o *UpdateConnectionAccepted) IsCode(code int) bool {
+	return code == 202
+}
+
 func (o *UpdateConnectionAccepted) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}/connections/{connectionId}][%d] updateConnectionAccepted  %+v", 202, o.Payload)
 }
+
+func (o *UpdateConnectionAccepted) String() string {
+	return fmt.Sprintf("[POST /users/{userId}/connections/{connectionId}][%d] updateConnectionAccepted  %+v", 202, o.Payload)
+}
+
 func (o *UpdateConnectionAccepted) GetPayload() *models.ConnectionResponseResource {
 	return o.Payload
 }
@@ -113,7 +144,8 @@ func NewUpdateConnectionBadRequest() *UpdateConnectionBadRequest {
 	return &UpdateConnectionBadRequest{}
 }
 
-/* UpdateConnectionBadRequest describes a response with status code 400, with default header values.
+/*
+UpdateConnectionBadRequest describes a response with status code 400, with default header values.
 
 Returns error that server cannot or will not process the request due to something that is perceived to be a client error
 */
@@ -121,9 +153,39 @@ type UpdateConnectionBadRequest struct {
 	Payload *models.BadRequestError
 }
 
+// IsSuccess returns true when this update connection bad request response has a 2xx status code
+func (o *UpdateConnectionBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update connection bad request response has a 3xx status code
+func (o *UpdateConnectionBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update connection bad request response has a 4xx status code
+func (o *UpdateConnectionBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update connection bad request response has a 5xx status code
+func (o *UpdateConnectionBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update connection bad request response a status code equal to that given
+func (o *UpdateConnectionBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *UpdateConnectionBadRequest) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}/connections/{connectionId}][%d] updateConnectionBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *UpdateConnectionBadRequest) String() string {
+	return fmt.Sprintf("[POST /users/{userId}/connections/{connectionId}][%d] updateConnectionBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *UpdateConnectionBadRequest) GetPayload() *models.BadRequestError {
 	return o.Payload
 }
@@ -145,7 +207,8 @@ func NewUpdateConnectionUnauthorized() *UpdateConnectionUnauthorized {
 	return &UpdateConnectionUnauthorized{}
 }
 
-/* UpdateConnectionUnauthorized describes a response with status code 401, with default header values.
+/*
+UpdateConnectionUnauthorized describes a response with status code 401, with default header values.
 
 Error status response code indicates that the request has not been applied because it lacks valid authentication credentials for the target resource.
 */
@@ -153,9 +216,39 @@ type UpdateConnectionUnauthorized struct {
 	Payload *models.UnauthorizedError
 }
 
+// IsSuccess returns true when this update connection unauthorized response has a 2xx status code
+func (o *UpdateConnectionUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update connection unauthorized response has a 3xx status code
+func (o *UpdateConnectionUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update connection unauthorized response has a 4xx status code
+func (o *UpdateConnectionUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update connection unauthorized response has a 5xx status code
+func (o *UpdateConnectionUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update connection unauthorized response a status code equal to that given
+func (o *UpdateConnectionUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *UpdateConnectionUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}/connections/{connectionId}][%d] updateConnectionUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *UpdateConnectionUnauthorized) String() string {
+	return fmt.Sprintf("[POST /users/{userId}/connections/{connectionId}][%d] updateConnectionUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *UpdateConnectionUnauthorized) GetPayload() *models.UnauthorizedError {
 	return o.Payload
 }
@@ -177,7 +270,8 @@ func NewUpdateConnectionForbidden() *UpdateConnectionForbidden {
 	return &UpdateConnectionForbidden{}
 }
 
-/* UpdateConnectionForbidden describes a response with status code 403, with default header values.
+/*
+UpdateConnectionForbidden describes a response with status code 403, with default header values.
 
 Error that access is forbidden and tied to the application logic, such as insufficient rights to a resource.
 */
@@ -185,9 +279,39 @@ type UpdateConnectionForbidden struct {
 	Payload *models.ForbiddenAccessError
 }
 
+// IsSuccess returns true when this update connection forbidden response has a 2xx status code
+func (o *UpdateConnectionForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update connection forbidden response has a 3xx status code
+func (o *UpdateConnectionForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update connection forbidden response has a 4xx status code
+func (o *UpdateConnectionForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update connection forbidden response has a 5xx status code
+func (o *UpdateConnectionForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update connection forbidden response a status code equal to that given
+func (o *UpdateConnectionForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *UpdateConnectionForbidden) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}/connections/{connectionId}][%d] updateConnectionForbidden  %+v", 403, o.Payload)
 }
+
+func (o *UpdateConnectionForbidden) String() string {
+	return fmt.Sprintf("[POST /users/{userId}/connections/{connectionId}][%d] updateConnectionForbidden  %+v", 403, o.Payload)
+}
+
 func (o *UpdateConnectionForbidden) GetPayload() *models.ForbiddenAccessError {
 	return o.Payload
 }
@@ -209,7 +333,8 @@ func NewUpdateConnectionNotFound() *UpdateConnectionNotFound {
 	return &UpdateConnectionNotFound{}
 }
 
-/* UpdateConnectionNotFound describes a response with status code 404, with default header values.
+/*
+UpdateConnectionNotFound describes a response with status code 404, with default header values.
 
 Returns error indicating that server can't find requested resource.
 */
@@ -217,9 +342,39 @@ type UpdateConnectionNotFound struct {
 	Payload *models.NotFoundError
 }
 
+// IsSuccess returns true when this update connection not found response has a 2xx status code
+func (o *UpdateConnectionNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update connection not found response has a 3xx status code
+func (o *UpdateConnectionNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update connection not found response has a 4xx status code
+func (o *UpdateConnectionNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update connection not found response has a 5xx status code
+func (o *UpdateConnectionNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update connection not found response a status code equal to that given
+func (o *UpdateConnectionNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *UpdateConnectionNotFound) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}/connections/{connectionId}][%d] updateConnectionNotFound  %+v", 404, o.Payload)
 }
+
+func (o *UpdateConnectionNotFound) String() string {
+	return fmt.Sprintf("[POST /users/{userId}/connections/{connectionId}][%d] updateConnectionNotFound  %+v", 404, o.Payload)
+}
+
 func (o *UpdateConnectionNotFound) GetPayload() *models.NotFoundError {
 	return o.Payload
 }
@@ -241,7 +396,8 @@ func NewUpdateConnectionUnsupportedMediaType() *UpdateConnectionUnsupportedMedia
 	return &UpdateConnectionUnsupportedMediaType{}
 }
 
-/* UpdateConnectionUnsupportedMediaType describes a response with status code 415, with default header values.
+/*
+UpdateConnectionUnsupportedMediaType describes a response with status code 415, with default header values.
 
 Returns error response code that indicates that the server refuses to accept the request because the payload format is in an unsupported format.
 */
@@ -249,9 +405,39 @@ type UpdateConnectionUnsupportedMediaType struct {
 	Payload *models.UnsupportedMediaTypeError
 }
 
+// IsSuccess returns true when this update connection unsupported media type response has a 2xx status code
+func (o *UpdateConnectionUnsupportedMediaType) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update connection unsupported media type response has a 3xx status code
+func (o *UpdateConnectionUnsupportedMediaType) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update connection unsupported media type response has a 4xx status code
+func (o *UpdateConnectionUnsupportedMediaType) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update connection unsupported media type response has a 5xx status code
+func (o *UpdateConnectionUnsupportedMediaType) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update connection unsupported media type response a status code equal to that given
+func (o *UpdateConnectionUnsupportedMediaType) IsCode(code int) bool {
+	return code == 415
+}
+
 func (o *UpdateConnectionUnsupportedMediaType) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}/connections/{connectionId}][%d] updateConnectionUnsupportedMediaType  %+v", 415, o.Payload)
 }
+
+func (o *UpdateConnectionUnsupportedMediaType) String() string {
+	return fmt.Sprintf("[POST /users/{userId}/connections/{connectionId}][%d] updateConnectionUnsupportedMediaType  %+v", 415, o.Payload)
+}
+
 func (o *UpdateConnectionUnsupportedMediaType) GetPayload() *models.UnsupportedMediaTypeError {
 	return o.Payload
 }
@@ -273,7 +459,8 @@ func NewUpdateConnectionInternalServerError() *UpdateConnectionInternalServerErr
 	return &UpdateConnectionInternalServerError{}
 }
 
-/* UpdateConnectionInternalServerError describes a response with status code 500, with default header values.
+/*
+UpdateConnectionInternalServerError describes a response with status code 500, with default header values.
 
 Returns error response code indicates that the server encountered an unexpected condition that prevented it from fulfilling the request.
 */
@@ -281,9 +468,39 @@ type UpdateConnectionInternalServerError struct {
 	Payload *models.InternalServerError
 }
 
+// IsSuccess returns true when this update connection internal server error response has a 2xx status code
+func (o *UpdateConnectionInternalServerError) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update connection internal server error response has a 3xx status code
+func (o *UpdateConnectionInternalServerError) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update connection internal server error response has a 4xx status code
+func (o *UpdateConnectionInternalServerError) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this update connection internal server error response has a 5xx status code
+func (o *UpdateConnectionInternalServerError) IsServerError() bool {
+	return true
+}
+
+// IsCode returns true when this update connection internal server error response a status code equal to that given
+func (o *UpdateConnectionInternalServerError) IsCode(code int) bool {
+	return code == 500
+}
+
 func (o *UpdateConnectionInternalServerError) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}/connections/{connectionId}][%d] updateConnectionInternalServerError  %+v", 500, o.Payload)
 }
+
+func (o *UpdateConnectionInternalServerError) String() string {
+	return fmt.Sprintf("[POST /users/{userId}/connections/{connectionId}][%d] updateConnectionInternalServerError  %+v", 500, o.Payload)
+}
+
 func (o *UpdateConnectionInternalServerError) GetPayload() *models.InternalServerError {
 	return o.Payload
 }
@@ -305,7 +522,8 @@ func NewUpdateConnectionServiceUnavailable() *UpdateConnectionServiceUnavailable
 	return &UpdateConnectionServiceUnavailable{}
 }
 
-/* UpdateConnectionServiceUnavailable describes a response with status code 503, with default header values.
+/*
+UpdateConnectionServiceUnavailable describes a response with status code 503, with default header values.
 
 Returns error response code indicates that the server is not ready to handle the request.
 */
@@ -313,9 +531,39 @@ type UpdateConnectionServiceUnavailable struct {
 	Payload *models.StatusServiceUnavailableError
 }
 
+// IsSuccess returns true when this update connection service unavailable response has a 2xx status code
+func (o *UpdateConnectionServiceUnavailable) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update connection service unavailable response has a 3xx status code
+func (o *UpdateConnectionServiceUnavailable) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update connection service unavailable response has a 4xx status code
+func (o *UpdateConnectionServiceUnavailable) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this update connection service unavailable response has a 5xx status code
+func (o *UpdateConnectionServiceUnavailable) IsServerError() bool {
+	return true
+}
+
+// IsCode returns true when this update connection service unavailable response a status code equal to that given
+func (o *UpdateConnectionServiceUnavailable) IsCode(code int) bool {
+	return code == 503
+}
+
 func (o *UpdateConnectionServiceUnavailable) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}/connections/{connectionId}][%d] updateConnectionServiceUnavailable  %+v", 503, o.Payload)
 }
+
+func (o *UpdateConnectionServiceUnavailable) String() string {
+	return fmt.Sprintf("[POST /users/{userId}/connections/{connectionId}][%d] updateConnectionServiceUnavailable  %+v", 503, o.Payload)
+}
+
 func (o *UpdateConnectionServiceUnavailable) GetPayload() *models.StatusServiceUnavailableError {
 	return o.Payload
 }

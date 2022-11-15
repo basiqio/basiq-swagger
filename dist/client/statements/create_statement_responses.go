@@ -69,7 +69,8 @@ func NewCreateStatementAccepted() *CreateStatementAccepted {
 	return &CreateStatementAccepted{}
 }
 
-/* CreateStatementAccepted describes a response with status code 202, with default header values.
+/*
+CreateStatementAccepted describes a response with status code 202, with default header values.
 
 Returns a job details if a valid job ID was provided.
 */
@@ -77,9 +78,39 @@ type CreateStatementAccepted struct {
 	Payload *models.StatementUploadResource
 }
 
+// IsSuccess returns true when this create statement accepted response has a 2xx status code
+func (o *CreateStatementAccepted) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this create statement accepted response has a 3xx status code
+func (o *CreateStatementAccepted) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create statement accepted response has a 4xx status code
+func (o *CreateStatementAccepted) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this create statement accepted response has a 5xx status code
+func (o *CreateStatementAccepted) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create statement accepted response a status code equal to that given
+func (o *CreateStatementAccepted) IsCode(code int) bool {
+	return code == 202
+}
+
 func (o *CreateStatementAccepted) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}/statements][%d] createStatementAccepted  %+v", 202, o.Payload)
 }
+
+func (o *CreateStatementAccepted) String() string {
+	return fmt.Sprintf("[POST /users/{userId}/statements][%d] createStatementAccepted  %+v", 202, o.Payload)
+}
+
 func (o *CreateStatementAccepted) GetPayload() *models.StatementUploadResource {
 	return o.Payload
 }
@@ -101,7 +132,8 @@ func NewCreateStatementBadRequest() *CreateStatementBadRequest {
 	return &CreateStatementBadRequest{}
 }
 
-/* CreateStatementBadRequest describes a response with status code 400, with default header values.
+/*
+CreateStatementBadRequest describes a response with status code 400, with default header values.
 
 Returns error that server cannot or will not process the request due to something that is perceived to be a client error.
 */
@@ -109,9 +141,39 @@ type CreateStatementBadRequest struct {
 	Payload *models.BadRequestError
 }
 
+// IsSuccess returns true when this create statement bad request response has a 2xx status code
+func (o *CreateStatementBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create statement bad request response has a 3xx status code
+func (o *CreateStatementBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create statement bad request response has a 4xx status code
+func (o *CreateStatementBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create statement bad request response has a 5xx status code
+func (o *CreateStatementBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create statement bad request response a status code equal to that given
+func (o *CreateStatementBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *CreateStatementBadRequest) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}/statements][%d] createStatementBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *CreateStatementBadRequest) String() string {
+	return fmt.Sprintf("[POST /users/{userId}/statements][%d] createStatementBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *CreateStatementBadRequest) GetPayload() *models.BadRequestError {
 	return o.Payload
 }
@@ -133,7 +195,8 @@ func NewCreateStatementForbidden() *CreateStatementForbidden {
 	return &CreateStatementForbidden{}
 }
 
-/* CreateStatementForbidden describes a response with status code 403, with default header values.
+/*
+CreateStatementForbidden describes a response with status code 403, with default header values.
 
 Error that access is forbidden and tied to the application logic, such as insufficient rights to a resource.
 */
@@ -141,9 +204,39 @@ type CreateStatementForbidden struct {
 	Payload *models.ForbiddenAccessError
 }
 
+// IsSuccess returns true when this create statement forbidden response has a 2xx status code
+func (o *CreateStatementForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create statement forbidden response has a 3xx status code
+func (o *CreateStatementForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create statement forbidden response has a 4xx status code
+func (o *CreateStatementForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create statement forbidden response has a 5xx status code
+func (o *CreateStatementForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create statement forbidden response a status code equal to that given
+func (o *CreateStatementForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *CreateStatementForbidden) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}/statements][%d] createStatementForbidden  %+v", 403, o.Payload)
 }
+
+func (o *CreateStatementForbidden) String() string {
+	return fmt.Sprintf("[POST /users/{userId}/statements][%d] createStatementForbidden  %+v", 403, o.Payload)
+}
+
 func (o *CreateStatementForbidden) GetPayload() *models.ForbiddenAccessError {
 	return o.Payload
 }
@@ -165,7 +258,8 @@ func NewCreateStatementNotFound() *CreateStatementNotFound {
 	return &CreateStatementNotFound{}
 }
 
-/* CreateStatementNotFound describes a response with status code 404, with default header values.
+/*
+CreateStatementNotFound describes a response with status code 404, with default header values.
 
 Returns error indicating that server can't find requested resource.
 */
@@ -173,9 +267,39 @@ type CreateStatementNotFound struct {
 	Payload *models.NotFoundError
 }
 
+// IsSuccess returns true when this create statement not found response has a 2xx status code
+func (o *CreateStatementNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create statement not found response has a 3xx status code
+func (o *CreateStatementNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create statement not found response has a 4xx status code
+func (o *CreateStatementNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create statement not found response has a 5xx status code
+func (o *CreateStatementNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create statement not found response a status code equal to that given
+func (o *CreateStatementNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *CreateStatementNotFound) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}/statements][%d] createStatementNotFound  %+v", 404, o.Payload)
 }
+
+func (o *CreateStatementNotFound) String() string {
+	return fmt.Sprintf("[POST /users/{userId}/statements][%d] createStatementNotFound  %+v", 404, o.Payload)
+}
+
 func (o *CreateStatementNotFound) GetPayload() *models.NotFoundError {
 	return o.Payload
 }
@@ -197,7 +321,8 @@ func NewCreateStatementInternalServerError() *CreateStatementInternalServerError
 	return &CreateStatementInternalServerError{}
 }
 
-/* CreateStatementInternalServerError describes a response with status code 500, with default header values.
+/*
+CreateStatementInternalServerError describes a response with status code 500, with default header values.
 
 Returns error response code indicates that the server encountered an unexpected condition that prevented it from fulfilling the request.
 */
@@ -205,9 +330,39 @@ type CreateStatementInternalServerError struct {
 	Payload *models.InternalServerError
 }
 
+// IsSuccess returns true when this create statement internal server error response has a 2xx status code
+func (o *CreateStatementInternalServerError) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create statement internal server error response has a 3xx status code
+func (o *CreateStatementInternalServerError) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create statement internal server error response has a 4xx status code
+func (o *CreateStatementInternalServerError) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this create statement internal server error response has a 5xx status code
+func (o *CreateStatementInternalServerError) IsServerError() bool {
+	return true
+}
+
+// IsCode returns true when this create statement internal server error response a status code equal to that given
+func (o *CreateStatementInternalServerError) IsCode(code int) bool {
+	return code == 500
+}
+
 func (o *CreateStatementInternalServerError) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}/statements][%d] createStatementInternalServerError  %+v", 500, o.Payload)
 }
+
+func (o *CreateStatementInternalServerError) String() string {
+	return fmt.Sprintf("[POST /users/{userId}/statements][%d] createStatementInternalServerError  %+v", 500, o.Payload)
+}
+
 func (o *CreateStatementInternalServerError) GetPayload() *models.InternalServerError {
 	return o.Payload
 }
@@ -229,7 +384,8 @@ func NewCreateStatementServiceUnavailable() *CreateStatementServiceUnavailable {
 	return &CreateStatementServiceUnavailable{}
 }
 
-/* CreateStatementServiceUnavailable describes a response with status code 503, with default header values.
+/*
+CreateStatementServiceUnavailable describes a response with status code 503, with default header values.
 
 Returns error response code indicates that the server is not ready to handle the request.
 */
@@ -237,9 +393,39 @@ type CreateStatementServiceUnavailable struct {
 	Payload *models.StatusServiceUnavailableError
 }
 
+// IsSuccess returns true when this create statement service unavailable response has a 2xx status code
+func (o *CreateStatementServiceUnavailable) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create statement service unavailable response has a 3xx status code
+func (o *CreateStatementServiceUnavailable) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create statement service unavailable response has a 4xx status code
+func (o *CreateStatementServiceUnavailable) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this create statement service unavailable response has a 5xx status code
+func (o *CreateStatementServiceUnavailable) IsServerError() bool {
+	return true
+}
+
+// IsCode returns true when this create statement service unavailable response a status code equal to that given
+func (o *CreateStatementServiceUnavailable) IsCode(code int) bool {
+	return code == 503
+}
+
 func (o *CreateStatementServiceUnavailable) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}/statements][%d] createStatementServiceUnavailable  %+v", 503, o.Payload)
 }
+
+func (o *CreateStatementServiceUnavailable) String() string {
+	return fmt.Sprintf("[POST /users/{userId}/statements][%d] createStatementServiceUnavailable  %+v", 503, o.Payload)
+}
+
 func (o *CreateStatementServiceUnavailable) GetPayload() *models.StatusServiceUnavailableError {
 	return o.Payload
 }

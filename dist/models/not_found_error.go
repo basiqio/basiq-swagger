@@ -16,13 +16,13 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// NotFoundError not found error
+// NotFoundError NotFoundError error type returned when requested resource does not exists
 //
 // swagger:model NotFoundError
 type NotFoundError struct {
 
-	// Unique identifier for this particular occurrence of the problem.
-	// Example: ac5ah5i
+	// Unique identifier of concrete request.
+	// Example: b26bb88d-4622-4005-a906-f1ca62fca5b7
 	// Required: true
 	CorrelationID *string `json:"correlationId"`
 
@@ -30,10 +30,9 @@ type NotFoundError struct {
 	// Required: true
 	Data []*NotFoundErrorDataItems0 `json:"data"`
 
-	// Always "list".
-	// Example: list
+	// type
 	// Required: true
-	Type *string `json:"type"`
+	Type *ResponseFormat `json:"type"`
 }
 
 // Validate validates this not found error
@@ -82,6 +81,8 @@ func (m *NotFoundError) validateData(formats strfmt.Registry) error {
 			if err := m.Data[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("data" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("data" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -98,6 +99,21 @@ func (m *NotFoundError) validateType(formats strfmt.Registry) error {
 		return err
 	}
 
+	if err := validate.Required("type", "body", m.Type); err != nil {
+		return err
+	}
+
+	if m.Type != nil {
+		if err := m.Type.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("type")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -106,6 +122,10 @@ func (m *NotFoundError) ContextValidate(ctx context.Context, formats strfmt.Regi
 	var res []error
 
 	if err := m.contextValidateData(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateType(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -123,11 +143,29 @@ func (m *NotFoundError) contextValidateData(ctx context.Context, formats strfmt.
 			if err := m.Data[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("data" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("data" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *NotFoundError) contextValidateType(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Type != nil {
+		if err := m.Type.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("type")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -157,6 +195,7 @@ func (m *NotFoundError) UnmarshalBinary(b []byte) error {
 type NotFoundErrorDataItems0 struct {
 
 	// Application-specific error code, expressed as a string value.
+	// resource-not-found ResourceNotFound
 	// Example: resource-not-found
 	// Required: true
 	// Enum: [resource-not-found]

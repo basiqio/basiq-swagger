@@ -38,9 +38,9 @@ type ClientService interface {
 }
 
 /*
-  GetAccount uses this to retrieve the details of a specific account this request will return back an account object with the latest data since the last refresh if you require the latest account details you will need to call the connection refresh resource
+GetAccount uses this to retrieve the details of a specific account this request will return back an account object with the latest data since the last refresh if you require the latest account details you will need to call the connection refresh resource
 
-  Returns an account if a valid account ID was provided. Returns an error otherwise.
+Returns an account if a valid account ID was provided. Returns an error otherwise.
 */
 func (a *Client) GetAccount(params *GetAccountParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAccountOK, error) {
 	// TODO: Validate the params before sending
@@ -79,9 +79,9 @@ func (a *Client) GetAccount(params *GetAccountParams, authInfo runtime.ClientAut
 }
 
 /*
-  GetAccounts uses this collection to retrieve a list of accounts each entry in the array is a separate account object
+GetAccounts uses this collection to retrieve a list of accounts each entry in the array is a separate account object
 
-  Returns a list with a data property that contains an array of accounts. Each entry in the array is a separate object. If no data is returned, the resulting array will be empty. Otherwise, this call returns an error in the event of1 a failure.
+Returns a list with a data property that contains an array of accounts. Each entry in the array is a separate object. If no data is returned, the resulting array will be empty. Otherwise, this call returns an error in the event of1 a failure.
 */
 func (a *Client) GetAccounts(params *GetAccountsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAccountsOK, error) {
 	// TODO: Validate the params before sending

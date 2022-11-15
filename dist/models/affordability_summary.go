@@ -183,6 +183,8 @@ func (m *AffordabilitySummary) validateRegularIncome(formats strfmt.Registry) er
 		if err := m.RegularIncome.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("regularIncome")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("regularIncome")
 			}
 			return err
 		}
@@ -220,6 +222,8 @@ func (m *AffordabilitySummary) contextValidateRegularIncome(ctx context.Context,
 		if err := m.RegularIncome.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("regularIncome")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("regularIncome")
 			}
 			return err
 		}

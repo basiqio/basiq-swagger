@@ -145,6 +145,8 @@ func (m *OtherCreditSource) validateChangeHistory(formats strfmt.Registry) error
 			if err := m.ChangeHistory[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("changeHistory" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("changeHistory" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -165,6 +167,8 @@ func (m *OtherCreditSource) validateCurrent(formats strfmt.Registry) error {
 		if err := m.Current.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("current")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("current")
 			}
 			return err
 		}
@@ -284,6 +288,8 @@ func (m *OtherCreditSource) contextValidateChangeHistory(ctx context.Context, fo
 			if err := m.ChangeHistory[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("changeHistory" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("changeHistory" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -300,6 +306,8 @@ func (m *OtherCreditSource) contextValidateCurrent(ctx context.Context, formats 
 		if err := m.Current.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("current")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("current")
 			}
 			return err
 		}

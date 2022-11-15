@@ -218,6 +218,8 @@ func (m *AccountResponseResource) validateClass(formats strfmt.Registry) error {
 		if err := m.Class.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("class")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("class")
 			}
 			return err
 		}
@@ -281,6 +283,8 @@ func (m *AccountResponseResource) validateLinks(formats strfmt.Registry) error {
 		if err := m.Links.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("links")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("links")
 			}
 			return err
 		}
@@ -356,6 +360,8 @@ func (m *AccountResponseResource) validateTransactionIntervals(formats strfmt.Re
 			if err := m.TransactionIntervals[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("transactionIntervals" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("transactionIntervals" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -403,6 +409,8 @@ func (m *AccountResponseResource) contextValidateClass(ctx context.Context, form
 		if err := m.Class.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("class")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("class")
 			}
 			return err
 		}
@@ -417,6 +425,8 @@ func (m *AccountResponseResource) contextValidateLinks(ctx context.Context, form
 		if err := m.Links.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("links")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("links")
 			}
 			return err
 		}
@@ -433,6 +443,8 @@ func (m *AccountResponseResource) contextValidateTransactionIntervals(ctx contex
 			if err := m.TransactionIntervals[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("transactionIntervals" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("transactionIntervals" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

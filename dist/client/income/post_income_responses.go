@@ -69,7 +69,8 @@ func NewPostIncomeOK() *PostIncomeOK {
 	return &PostIncomeOK{}
 }
 
-/* PostIncomeOK describes a response with status code 200, with default header values.
+/*
+PostIncomeOK describes a response with status code 200, with default header values.
 
 Returns a created income resource, if the operation succeeded.
 */
@@ -77,9 +78,39 @@ type PostIncomeOK struct {
 	Payload *models.IncomeResponse
 }
 
+// IsSuccess returns true when this post income o k response has a 2xx status code
+func (o *PostIncomeOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this post income o k response has a 3xx status code
+func (o *PostIncomeOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this post income o k response has a 4xx status code
+func (o *PostIncomeOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this post income o k response has a 5xx status code
+func (o *PostIncomeOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this post income o k response a status code equal to that given
+func (o *PostIncomeOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *PostIncomeOK) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}/income][%d] postIncomeOK  %+v", 200, o.Payload)
 }
+
+func (o *PostIncomeOK) String() string {
+	return fmt.Sprintf("[POST /users/{userId}/income][%d] postIncomeOK  %+v", 200, o.Payload)
+}
+
 func (o *PostIncomeOK) GetPayload() *models.IncomeResponse {
 	return o.Payload
 }
@@ -101,14 +132,44 @@ func NewPostIncomeNoContent() *PostIncomeNoContent {
 	return &PostIncomeNoContent{}
 }
 
-/* PostIncomeNoContent describes a response with status code 204, with default header values.
+/*
+PostIncomeNoContent describes a response with status code 204, with default header values.
 
 Returns no content if there are none transactions for the requested period.
 */
 type PostIncomeNoContent struct {
 }
 
+// IsSuccess returns true when this post income no content response has a 2xx status code
+func (o *PostIncomeNoContent) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this post income no content response has a 3xx status code
+func (o *PostIncomeNoContent) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this post income no content response has a 4xx status code
+func (o *PostIncomeNoContent) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this post income no content response has a 5xx status code
+func (o *PostIncomeNoContent) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this post income no content response a status code equal to that given
+func (o *PostIncomeNoContent) IsCode(code int) bool {
+	return code == 204
+}
+
 func (o *PostIncomeNoContent) Error() string {
+	return fmt.Sprintf("[POST /users/{userId}/income][%d] postIncomeNoContent ", 204)
+}
+
+func (o *PostIncomeNoContent) String() string {
 	return fmt.Sprintf("[POST /users/{userId}/income][%d] postIncomeNoContent ", 204)
 }
 
@@ -122,7 +183,8 @@ func NewPostIncomeBadRequest() *PostIncomeBadRequest {
 	return &PostIncomeBadRequest{}
 }
 
-/* PostIncomeBadRequest describes a response with status code 400, with default header values.
+/*
+PostIncomeBadRequest describes a response with status code 400, with default header values.
 
 Returns error that server cannot or will not process the request due to something that is perceived to be a client error.
 */
@@ -130,9 +192,39 @@ type PostIncomeBadRequest struct {
 	Payload *models.BadRequestError
 }
 
+// IsSuccess returns true when this post income bad request response has a 2xx status code
+func (o *PostIncomeBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this post income bad request response has a 3xx status code
+func (o *PostIncomeBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this post income bad request response has a 4xx status code
+func (o *PostIncomeBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this post income bad request response has a 5xx status code
+func (o *PostIncomeBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this post income bad request response a status code equal to that given
+func (o *PostIncomeBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *PostIncomeBadRequest) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}/income][%d] postIncomeBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *PostIncomeBadRequest) String() string {
+	return fmt.Sprintf("[POST /users/{userId}/income][%d] postIncomeBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *PostIncomeBadRequest) GetPayload() *models.BadRequestError {
 	return o.Payload
 }
@@ -154,7 +246,8 @@ func NewPostIncomeForbidden() *PostIncomeForbidden {
 	return &PostIncomeForbidden{}
 }
 
-/* PostIncomeForbidden describes a response with status code 403, with default header values.
+/*
+PostIncomeForbidden describes a response with status code 403, with default header values.
 
 Error that access is forbidden and tied to the application logic, such as insufficient rights to a resource.
 */
@@ -162,9 +255,39 @@ type PostIncomeForbidden struct {
 	Payload *models.ForbiddenAccessError
 }
 
+// IsSuccess returns true when this post income forbidden response has a 2xx status code
+func (o *PostIncomeForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this post income forbidden response has a 3xx status code
+func (o *PostIncomeForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this post income forbidden response has a 4xx status code
+func (o *PostIncomeForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this post income forbidden response has a 5xx status code
+func (o *PostIncomeForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this post income forbidden response a status code equal to that given
+func (o *PostIncomeForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *PostIncomeForbidden) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}/income][%d] postIncomeForbidden  %+v", 403, o.Payload)
 }
+
+func (o *PostIncomeForbidden) String() string {
+	return fmt.Sprintf("[POST /users/{userId}/income][%d] postIncomeForbidden  %+v", 403, o.Payload)
+}
+
 func (o *PostIncomeForbidden) GetPayload() *models.ForbiddenAccessError {
 	return o.Payload
 }
@@ -186,7 +309,8 @@ func NewPostIncomeNotFound() *PostIncomeNotFound {
 	return &PostIncomeNotFound{}
 }
 
-/* PostIncomeNotFound describes a response with status code 404, with default header values.
+/*
+PostIncomeNotFound describes a response with status code 404, with default header values.
 
 Returns error indicating that server can't find requested resource.
 */
@@ -194,9 +318,39 @@ type PostIncomeNotFound struct {
 	Payload *models.NotFoundError
 }
 
+// IsSuccess returns true when this post income not found response has a 2xx status code
+func (o *PostIncomeNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this post income not found response has a 3xx status code
+func (o *PostIncomeNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this post income not found response has a 4xx status code
+func (o *PostIncomeNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this post income not found response has a 5xx status code
+func (o *PostIncomeNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this post income not found response a status code equal to that given
+func (o *PostIncomeNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *PostIncomeNotFound) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}/income][%d] postIncomeNotFound  %+v", 404, o.Payload)
 }
+
+func (o *PostIncomeNotFound) String() string {
+	return fmt.Sprintf("[POST /users/{userId}/income][%d] postIncomeNotFound  %+v", 404, o.Payload)
+}
+
 func (o *PostIncomeNotFound) GetPayload() *models.NotFoundError {
 	return o.Payload
 }
@@ -218,7 +372,8 @@ func NewPostIncomeInternalServerError() *PostIncomeInternalServerError {
 	return &PostIncomeInternalServerError{}
 }
 
-/* PostIncomeInternalServerError describes a response with status code 500, with default header values.
+/*
+PostIncomeInternalServerError describes a response with status code 500, with default header values.
 
 Returns error response code indicates that the server encountered an unexpected condition that prevented it from fulfilling the request.
 */
@@ -226,9 +381,39 @@ type PostIncomeInternalServerError struct {
 	Payload *models.InternalServerError
 }
 
+// IsSuccess returns true when this post income internal server error response has a 2xx status code
+func (o *PostIncomeInternalServerError) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this post income internal server error response has a 3xx status code
+func (o *PostIncomeInternalServerError) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this post income internal server error response has a 4xx status code
+func (o *PostIncomeInternalServerError) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this post income internal server error response has a 5xx status code
+func (o *PostIncomeInternalServerError) IsServerError() bool {
+	return true
+}
+
+// IsCode returns true when this post income internal server error response a status code equal to that given
+func (o *PostIncomeInternalServerError) IsCode(code int) bool {
+	return code == 500
+}
+
 func (o *PostIncomeInternalServerError) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}/income][%d] postIncomeInternalServerError  %+v", 500, o.Payload)
 }
+
+func (o *PostIncomeInternalServerError) String() string {
+	return fmt.Sprintf("[POST /users/{userId}/income][%d] postIncomeInternalServerError  %+v", 500, o.Payload)
+}
+
 func (o *PostIncomeInternalServerError) GetPayload() *models.InternalServerError {
 	return o.Payload
 }

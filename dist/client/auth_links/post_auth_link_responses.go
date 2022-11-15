@@ -65,7 +65,8 @@ func NewPostAuthLinkCreated() *PostAuthLinkCreated {
 	return &PostAuthLinkCreated{}
 }
 
-/* PostAuthLinkCreated describes a response with status code 201, with default header values.
+/*
+PostAuthLinkCreated describes a response with status code 201, with default header values.
 
 Returns a created auth_link resource, if the operation succeeded
 */
@@ -73,9 +74,39 @@ type PostAuthLinkCreated struct {
 	Payload *models.AuthLinksPostResponseResource
 }
 
+// IsSuccess returns true when this post auth link created response has a 2xx status code
+func (o *PostAuthLinkCreated) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this post auth link created response has a 3xx status code
+func (o *PostAuthLinkCreated) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this post auth link created response has a 4xx status code
+func (o *PostAuthLinkCreated) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this post auth link created response has a 5xx status code
+func (o *PostAuthLinkCreated) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this post auth link created response a status code equal to that given
+func (o *PostAuthLinkCreated) IsCode(code int) bool {
+	return code == 201
+}
+
 func (o *PostAuthLinkCreated) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}/auth_link][%d] postAuthLinkCreated  %+v", 201, o.Payload)
 }
+
+func (o *PostAuthLinkCreated) String() string {
+	return fmt.Sprintf("[POST /users/{userId}/auth_link][%d] postAuthLinkCreated  %+v", 201, o.Payload)
+}
+
 func (o *PostAuthLinkCreated) GetPayload() *models.AuthLinksPostResponseResource {
 	return o.Payload
 }
@@ -97,7 +128,8 @@ func NewPostAuthLinkBadRequest() *PostAuthLinkBadRequest {
 	return &PostAuthLinkBadRequest{}
 }
 
-/* PostAuthLinkBadRequest describes a response with status code 400, with default header values.
+/*
+PostAuthLinkBadRequest describes a response with status code 400, with default header values.
 
 Returns error that server cannot or will not process the request due to something that is perceived to be a client error
 */
@@ -105,9 +137,39 @@ type PostAuthLinkBadRequest struct {
 	Payload *models.BadRequestError
 }
 
+// IsSuccess returns true when this post auth link bad request response has a 2xx status code
+func (o *PostAuthLinkBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this post auth link bad request response has a 3xx status code
+func (o *PostAuthLinkBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this post auth link bad request response has a 4xx status code
+func (o *PostAuthLinkBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this post auth link bad request response has a 5xx status code
+func (o *PostAuthLinkBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this post auth link bad request response a status code equal to that given
+func (o *PostAuthLinkBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *PostAuthLinkBadRequest) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}/auth_link][%d] postAuthLinkBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *PostAuthLinkBadRequest) String() string {
+	return fmt.Sprintf("[POST /users/{userId}/auth_link][%d] postAuthLinkBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *PostAuthLinkBadRequest) GetPayload() *models.BadRequestError {
 	return o.Payload
 }
@@ -129,7 +191,8 @@ func NewPostAuthLinkForbidden() *PostAuthLinkForbidden {
 	return &PostAuthLinkForbidden{}
 }
 
-/* PostAuthLinkForbidden describes a response with status code 403, with default header values.
+/*
+PostAuthLinkForbidden describes a response with status code 403, with default header values.
 
 Error that access is forbidden and tied to the application logic, such as insufficient rights to a resource.
 */
@@ -137,9 +200,39 @@ type PostAuthLinkForbidden struct {
 	Payload *models.ForbiddenAccessError
 }
 
+// IsSuccess returns true when this post auth link forbidden response has a 2xx status code
+func (o *PostAuthLinkForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this post auth link forbidden response has a 3xx status code
+func (o *PostAuthLinkForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this post auth link forbidden response has a 4xx status code
+func (o *PostAuthLinkForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this post auth link forbidden response has a 5xx status code
+func (o *PostAuthLinkForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this post auth link forbidden response a status code equal to that given
+func (o *PostAuthLinkForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *PostAuthLinkForbidden) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}/auth_link][%d] postAuthLinkForbidden  %+v", 403, o.Payload)
 }
+
+func (o *PostAuthLinkForbidden) String() string {
+	return fmt.Sprintf("[POST /users/{userId}/auth_link][%d] postAuthLinkForbidden  %+v", 403, o.Payload)
+}
+
 func (o *PostAuthLinkForbidden) GetPayload() *models.ForbiddenAccessError {
 	return o.Payload
 }
@@ -161,7 +254,8 @@ func NewPostAuthLinkNotFound() *PostAuthLinkNotFound {
 	return &PostAuthLinkNotFound{}
 }
 
-/* PostAuthLinkNotFound describes a response with status code 404, with default header values.
+/*
+PostAuthLinkNotFound describes a response with status code 404, with default header values.
 
 Returns error indicating that server can't find requested resource.
 */
@@ -169,9 +263,39 @@ type PostAuthLinkNotFound struct {
 	Payload *models.NotFoundError
 }
 
+// IsSuccess returns true when this post auth link not found response has a 2xx status code
+func (o *PostAuthLinkNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this post auth link not found response has a 3xx status code
+func (o *PostAuthLinkNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this post auth link not found response has a 4xx status code
+func (o *PostAuthLinkNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this post auth link not found response has a 5xx status code
+func (o *PostAuthLinkNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this post auth link not found response a status code equal to that given
+func (o *PostAuthLinkNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *PostAuthLinkNotFound) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}/auth_link][%d] postAuthLinkNotFound  %+v", 404, o.Payload)
 }
+
+func (o *PostAuthLinkNotFound) String() string {
+	return fmt.Sprintf("[POST /users/{userId}/auth_link][%d] postAuthLinkNotFound  %+v", 404, o.Payload)
+}
+
 func (o *PostAuthLinkNotFound) GetPayload() *models.NotFoundError {
 	return o.Payload
 }
@@ -193,7 +317,8 @@ func NewPostAuthLinkInternalServerError() *PostAuthLinkInternalServerError {
 	return &PostAuthLinkInternalServerError{}
 }
 
-/* PostAuthLinkInternalServerError describes a response with status code 500, with default header values.
+/*
+PostAuthLinkInternalServerError describes a response with status code 500, with default header values.
 
 Returns error response code indicates that the server encountered an unexpected condition that prevented it from fulfilling the request.
 */
@@ -201,9 +326,39 @@ type PostAuthLinkInternalServerError struct {
 	Payload *models.InternalServerError
 }
 
+// IsSuccess returns true when this post auth link internal server error response has a 2xx status code
+func (o *PostAuthLinkInternalServerError) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this post auth link internal server error response has a 3xx status code
+func (o *PostAuthLinkInternalServerError) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this post auth link internal server error response has a 4xx status code
+func (o *PostAuthLinkInternalServerError) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this post auth link internal server error response has a 5xx status code
+func (o *PostAuthLinkInternalServerError) IsServerError() bool {
+	return true
+}
+
+// IsCode returns true when this post auth link internal server error response a status code equal to that given
+func (o *PostAuthLinkInternalServerError) IsCode(code int) bool {
+	return code == 500
+}
+
 func (o *PostAuthLinkInternalServerError) Error() string {
 	return fmt.Sprintf("[POST /users/{userId}/auth_link][%d] postAuthLinkInternalServerError  %+v", 500, o.Payload)
 }
+
+func (o *PostAuthLinkInternalServerError) String() string {
+	return fmt.Sprintf("[POST /users/{userId}/auth_link][%d] postAuthLinkInternalServerError  %+v", 500, o.Payload)
+}
+
 func (o *PostAuthLinkInternalServerError) GetPayload() *models.InternalServerError {
 	return o.Payload
 }
@@ -220,7 +375,8 @@ func (o *PostAuthLinkInternalServerError) readResponse(response runtime.ClientRe
 	return nil
 }
 
-/*PostAuthLinkBody post auth link body
+/*
+PostAuthLinkBody post auth link body
 swagger:model PostAuthLinkBody
 */
 type PostAuthLinkBody struct {

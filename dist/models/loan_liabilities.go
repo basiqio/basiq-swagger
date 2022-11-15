@@ -109,6 +109,8 @@ func (m *LoanLiabilities) validateAccount(formats strfmt.Registry) error {
 		if err := m.Account.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("account")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("account")
 			}
 			return err
 		}
@@ -150,6 +152,8 @@ func (m *LoanLiabilities) validateChangeHistory(formats strfmt.Registry) error {
 			if err := m.ChangeHistory[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("changeHistory" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("changeHistory" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -188,6 +192,8 @@ func (m *LoanLiabilities) validatePrevious6Months(formats strfmt.Registry) error
 		if err := m.Previous6Months.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("previous6Months")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("previous6Months")
 			}
 			return err
 		}
@@ -206,6 +212,8 @@ func (m *LoanLiabilities) validatePreviousMonth(formats strfmt.Registry) error {
 		if err := m.PreviousMonth.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("previousMonth")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("previousMonth")
 			}
 			return err
 		}
@@ -246,6 +254,8 @@ func (m *LoanLiabilities) contextValidateAccount(ctx context.Context, formats st
 		if err := m.Account.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("account")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("account")
 			}
 			return err
 		}
@@ -262,6 +272,8 @@ func (m *LoanLiabilities) contextValidateChangeHistory(ctx context.Context, form
 			if err := m.ChangeHistory[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("changeHistory" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("changeHistory" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -278,6 +290,8 @@ func (m *LoanLiabilities) contextValidatePrevious6Months(ctx context.Context, fo
 		if err := m.Previous6Months.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("previous6Months")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("previous6Months")
 			}
 			return err
 		}
@@ -292,6 +306,8 @@ func (m *LoanLiabilities) contextValidatePreviousMonth(ctx context.Context, form
 		if err := m.PreviousMonth.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("previousMonth")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("previousMonth")
 			}
 			return err
 		}

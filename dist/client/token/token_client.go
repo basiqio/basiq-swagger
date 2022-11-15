@@ -36,7 +36,7 @@ type ClientService interface {
 }
 
 /*
-  PostToken Use this endpoint to retrieve token that will be passed as authorization header for Basiq API
+PostToken Use this endpoint to retrieve token that will be passed as authorization header for Basiq API
 */
 func (a *Client) PostToken(params *PostTokenParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostTokenOK, error) {
 	// TODO: Validate the params before sending

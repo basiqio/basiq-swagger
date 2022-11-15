@@ -52,10 +52,12 @@ func NewDeleteAuthLinkParamsWithHTTPClient(client *http.Client) *DeleteAuthLinkP
 	}
 }
 
-/* DeleteAuthLinkParams contains all the parameters to send to the API endpoint
-   for the delete auth link operation.
+/*
+DeleteAuthLinkParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the delete auth link operation.
+
+	Typically these are written to a http.Request.
 */
 type DeleteAuthLinkParams struct {
 

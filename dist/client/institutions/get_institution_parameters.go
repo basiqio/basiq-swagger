@@ -52,10 +52,12 @@ func NewGetInstitutionParamsWithHTTPClient(client *http.Client) *GetInstitutionP
 	}
 }
 
-/* GetInstitutionParams contains all the parameters to send to the API endpoint
-   for the get institution operation.
+/*
+GetInstitutionParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get institution operation.
+
+	Typically these are written to a http.Request.
 */
 type GetInstitutionParams struct {
 

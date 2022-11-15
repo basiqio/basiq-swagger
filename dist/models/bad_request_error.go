@@ -16,13 +16,13 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// BadRequestError bad request error
+// BadRequestError BadRequestError error type returned in case of bad request
 //
 // swagger:model BadRequestError
 type BadRequestError struct {
 
-	// Unique identifier for this particular occurrence of the problem.
-	// Example: ac5ah5i
+	// Unique identifier of concrete request.
+	// Example: b26bb88d-4622-4005-a906-f1ca62fca5b7
 	// Required: true
 	CorrelationID *string `json:"correlationId"`
 
@@ -30,10 +30,9 @@ type BadRequestError struct {
 	// Required: true
 	Data []*BadRequestErrorDataItems0 `json:"data"`
 
-	// Always "list".
-	// Example: list
+	// type
 	// Required: true
-	Type *string `json:"type"`
+	Type *ResponseFormat `json:"type"`
 }
 
 // Validate validates this bad request error
@@ -82,6 +81,8 @@ func (m *BadRequestError) validateData(formats strfmt.Registry) error {
 			if err := m.Data[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("data" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("data" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -98,6 +99,21 @@ func (m *BadRequestError) validateType(formats strfmt.Registry) error {
 		return err
 	}
 
+	if err := validate.Required("type", "body", m.Type); err != nil {
+		return err
+	}
+
+	if m.Type != nil {
+		if err := m.Type.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("type")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -106,6 +122,10 @@ func (m *BadRequestError) ContextValidate(ctx context.Context, formats strfmt.Re
 	var res []error
 
 	if err := m.contextValidateData(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateType(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -123,11 +143,29 @@ func (m *BadRequestError) contextValidateData(ctx context.Context, formats strfm
 			if err := m.Data[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("data" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("data" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *BadRequestError) contextValidateType(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Type != nil {
+		if err := m.Type.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("type")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -157,9 +195,13 @@ func (m *BadRequestError) UnmarshalBinary(b []byte) error {
 type BadRequestErrorDataItems0 struct {
 
 	// Application-specific error code, expressed as a string value.
+	// parameter-not-supplied ParameterNotSupplied
+	// parameter-not-valid ParameterNotValid
+	// unsupported-accept UnsupportedAccept
+	// invalid-content InvalidContent
 	// Example: parameter-not-valid
 	// Required: true
-	// Enum: [parameter-not-supplied parameter-not-valid unsupported-accept invalid-content institution-not-supported invalid-credentials]
+	// Enum: [parameter-not-supplied parameter-not-valid unsupported-accept invalid-content]
 	Code *string `json:"code"`
 
 	// Human-readable explanation specific to this occurrence of the problem.
@@ -205,7 +247,7 @@ var badRequestErrorDataItems0TypeCodePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["parameter-not-supplied","parameter-not-valid","unsupported-accept","invalid-content","institution-not-supported","invalid-credentials"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["parameter-not-supplied","parameter-not-valid","unsupported-accept","invalid-content"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -226,12 +268,6 @@ const (
 
 	// BadRequestErrorDataItems0CodeInvalidDashContent captures enum value "invalid-content"
 	BadRequestErrorDataItems0CodeInvalidDashContent string = "invalid-content"
-
-	// BadRequestErrorDataItems0CodeInstitutionDashNotDashSupported captures enum value "institution-not-supported"
-	BadRequestErrorDataItems0CodeInstitutionDashNotDashSupported string = "institution-not-supported"
-
-	// BadRequestErrorDataItems0CodeInvalidDashCredentials captures enum value "invalid-credentials"
-	BadRequestErrorDataItems0CodeInvalidDashCredentials string = "invalid-credentials"
 )
 
 // prop value enum
@@ -265,6 +301,8 @@ func (m *BadRequestErrorDataItems0) validateSource(formats strfmt.Registry) erro
 		if err := m.Source.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("source")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("source")
 			}
 			return err
 		}
@@ -302,6 +340,8 @@ func (m *BadRequestErrorDataItems0) contextValidateSource(ctx context.Context, f
 		if err := m.Source.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("source")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("source")
 			}
 			return err
 		}

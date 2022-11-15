@@ -42,7 +42,7 @@ type ClientService interface {
 }
 
 /*
-  GetAffordability retrieves the details of an affordability summary you need only supply the unique affordability identifier
+GetAffordability retrieves the details of an affordability summary you need only supply the unique affordability identifier
 */
 func (a *Client) GetAffordability(params *GetAffordabilityParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAffordabilityOK, error) {
 	// TODO: Validate the params before sending
@@ -81,7 +81,7 @@ func (a *Client) GetAffordability(params *GetAffordabilityParams, authInfo runti
 }
 
 /*
-  GetAffordabilityList returns a list with a data property that contains an array of affordability resources
+GetAffordabilityList returns a list with a data property that contains an array of affordability resources
 */
 func (a *Client) GetAffordabilityList(params *GetAffordabilityListParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAffordabilityListOK, error) {
 	// TODO: Validate the params before sending
@@ -120,7 +120,7 @@ func (a *Client) GetAffordabilityList(params *GetAffordabilityListParams, authIn
 }
 
 /*
-  GetAffordabilitySnapshotTransactions returns a paginated list with a data property that contains an array of transactions from the affordability snapshot
+GetAffordabilitySnapshotTransactions returns a paginated list with a data property that contains an array of transactions from the affordability snapshot
 */
 func (a *Client) GetAffordabilitySnapshotTransactions(params *GetAffordabilitySnapshotTransactionsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAffordabilitySnapshotTransactionsOK, error) {
 	// TODO: Validate the params before sending
@@ -159,7 +159,7 @@ func (a *Client) GetAffordabilitySnapshotTransactions(params *GetAffordabilitySn
 }
 
 /*
-  PostAffordability uses this to create a new affordability report
+PostAffordability uses this to create a new affordability report
 */
 func (a *Client) PostAffordability(params *PostAffordabilityParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PostAffordabilityOK, *PostAffordabilityCreated, *PostAffordabilityNoContent, error) {
 	// TODO: Validate the params before sending

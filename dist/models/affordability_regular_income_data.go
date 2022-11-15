@@ -48,6 +48,8 @@ func (m *AffordabilityRegularIncomeData) validatePrevious3Months(formats strfmt.
 		if err := m.Previous3Months.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("previous3Months")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("previous3Months")
 			}
 			return err
 		}
@@ -76,6 +78,8 @@ func (m *AffordabilityRegularIncomeData) contextValidatePrevious3Months(ctx cont
 		if err := m.Previous3Months.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("previous3Months")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("previous3Months")
 			}
 			return err
 		}

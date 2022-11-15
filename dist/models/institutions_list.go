@@ -79,6 +79,8 @@ func (m *InstitutionsList) validateData(formats strfmt.Registry) error {
 			if err := m.Data[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("data" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("data" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -99,6 +101,8 @@ func (m *InstitutionsList) validateLinks(formats strfmt.Registry) error {
 		if err := m.Links.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("links")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("links")
 			}
 			return err
 		}
@@ -130,6 +134,8 @@ func (m *InstitutionsList) validateType(formats strfmt.Registry) error {
 		if err := m.Type.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("type")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type")
 			}
 			return err
 		}
@@ -168,6 +174,8 @@ func (m *InstitutionsList) contextValidateData(ctx context.Context, formats strf
 			if err := m.Data[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("data" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("data" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -184,6 +192,8 @@ func (m *InstitutionsList) contextValidateLinks(ctx context.Context, formats str
 		if err := m.Links.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("links")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("links")
 			}
 			return err
 		}
@@ -198,6 +208,8 @@ func (m *InstitutionsList) contextValidateType(ctx context.Context, formats strf
 		if err := m.Type.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("type")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("type")
 			}
 			return err
 		}

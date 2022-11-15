@@ -69,14 +69,44 @@ func NewDeleteConnectionNoContent() *DeleteConnectionNoContent {
 	return &DeleteConnectionNoContent{}
 }
 
-/* DeleteConnectionNoContent describes a response with status code 204, with default header values.
+/*
+DeleteConnectionNoContent describes a response with status code 204, with default header values.
 
 Returns an empty body if the delete succeeded.
 */
 type DeleteConnectionNoContent struct {
 }
 
+// IsSuccess returns true when this delete connection no content response has a 2xx status code
+func (o *DeleteConnectionNoContent) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this delete connection no content response has a 3xx status code
+func (o *DeleteConnectionNoContent) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete connection no content response has a 4xx status code
+func (o *DeleteConnectionNoContent) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this delete connection no content response has a 5xx status code
+func (o *DeleteConnectionNoContent) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete connection no content response a status code equal to that given
+func (o *DeleteConnectionNoContent) IsCode(code int) bool {
+	return code == 204
+}
+
 func (o *DeleteConnectionNoContent) Error() string {
+	return fmt.Sprintf("[DELETE /users/{userId}/connections/{connectionId}][%d] deleteConnectionNoContent ", 204)
+}
+
+func (o *DeleteConnectionNoContent) String() string {
 	return fmt.Sprintf("[DELETE /users/{userId}/connections/{connectionId}][%d] deleteConnectionNoContent ", 204)
 }
 
@@ -90,7 +120,8 @@ func NewDeleteConnectionBadRequest() *DeleteConnectionBadRequest {
 	return &DeleteConnectionBadRequest{}
 }
 
-/* DeleteConnectionBadRequest describes a response with status code 400, with default header values.
+/*
+DeleteConnectionBadRequest describes a response with status code 400, with default header values.
 
 Returns error that server cannot or will not process the request due to something that is perceived to be a client error
 */
@@ -98,9 +129,39 @@ type DeleteConnectionBadRequest struct {
 	Payload *models.BadRequestError
 }
 
+// IsSuccess returns true when this delete connection bad request response has a 2xx status code
+func (o *DeleteConnectionBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete connection bad request response has a 3xx status code
+func (o *DeleteConnectionBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete connection bad request response has a 4xx status code
+func (o *DeleteConnectionBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this delete connection bad request response has a 5xx status code
+func (o *DeleteConnectionBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete connection bad request response a status code equal to that given
+func (o *DeleteConnectionBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *DeleteConnectionBadRequest) Error() string {
 	return fmt.Sprintf("[DELETE /users/{userId}/connections/{connectionId}][%d] deleteConnectionBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *DeleteConnectionBadRequest) String() string {
+	return fmt.Sprintf("[DELETE /users/{userId}/connections/{connectionId}][%d] deleteConnectionBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *DeleteConnectionBadRequest) GetPayload() *models.BadRequestError {
 	return o.Payload
 }
@@ -122,7 +183,8 @@ func NewDeleteConnectionForbidden() *DeleteConnectionForbidden {
 	return &DeleteConnectionForbidden{}
 }
 
-/* DeleteConnectionForbidden describes a response with status code 403, with default header values.
+/*
+DeleteConnectionForbidden describes a response with status code 403, with default header values.
 
 Error that access is forbidden and tied to the application logic, such as insufficient rights to a resource.
 */
@@ -130,9 +192,39 @@ type DeleteConnectionForbidden struct {
 	Payload *models.ForbiddenAccessError
 }
 
+// IsSuccess returns true when this delete connection forbidden response has a 2xx status code
+func (o *DeleteConnectionForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete connection forbidden response has a 3xx status code
+func (o *DeleteConnectionForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete connection forbidden response has a 4xx status code
+func (o *DeleteConnectionForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this delete connection forbidden response has a 5xx status code
+func (o *DeleteConnectionForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete connection forbidden response a status code equal to that given
+func (o *DeleteConnectionForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *DeleteConnectionForbidden) Error() string {
 	return fmt.Sprintf("[DELETE /users/{userId}/connections/{connectionId}][%d] deleteConnectionForbidden  %+v", 403, o.Payload)
 }
+
+func (o *DeleteConnectionForbidden) String() string {
+	return fmt.Sprintf("[DELETE /users/{userId}/connections/{connectionId}][%d] deleteConnectionForbidden  %+v", 403, o.Payload)
+}
+
 func (o *DeleteConnectionForbidden) GetPayload() *models.ForbiddenAccessError {
 	return o.Payload
 }
@@ -154,7 +246,8 @@ func NewDeleteConnectionNotFound() *DeleteConnectionNotFound {
 	return &DeleteConnectionNotFound{}
 }
 
-/* DeleteConnectionNotFound describes a response with status code 404, with default header values.
+/*
+DeleteConnectionNotFound describes a response with status code 404, with default header values.
 
 Returns error indicating that server can't find requested resource.
 */
@@ -162,9 +255,39 @@ type DeleteConnectionNotFound struct {
 	Payload *models.NotFoundError
 }
 
+// IsSuccess returns true when this delete connection not found response has a 2xx status code
+func (o *DeleteConnectionNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete connection not found response has a 3xx status code
+func (o *DeleteConnectionNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete connection not found response has a 4xx status code
+func (o *DeleteConnectionNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this delete connection not found response has a 5xx status code
+func (o *DeleteConnectionNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete connection not found response a status code equal to that given
+func (o *DeleteConnectionNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *DeleteConnectionNotFound) Error() string {
 	return fmt.Sprintf("[DELETE /users/{userId}/connections/{connectionId}][%d] deleteConnectionNotFound  %+v", 404, o.Payload)
 }
+
+func (o *DeleteConnectionNotFound) String() string {
+	return fmt.Sprintf("[DELETE /users/{userId}/connections/{connectionId}][%d] deleteConnectionNotFound  %+v", 404, o.Payload)
+}
+
 func (o *DeleteConnectionNotFound) GetPayload() *models.NotFoundError {
 	return o.Payload
 }
@@ -186,7 +309,8 @@ func NewDeleteConnectionInternalServerError() *DeleteConnectionInternalServerErr
 	return &DeleteConnectionInternalServerError{}
 }
 
-/* DeleteConnectionInternalServerError describes a response with status code 500, with default header values.
+/*
+DeleteConnectionInternalServerError describes a response with status code 500, with default header values.
 
 Returns error response code indicates that the server encountered an unexpected condition that prevented it from fulfilling the request.
 */
@@ -194,9 +318,39 @@ type DeleteConnectionInternalServerError struct {
 	Payload *models.InternalServerError
 }
 
+// IsSuccess returns true when this delete connection internal server error response has a 2xx status code
+func (o *DeleteConnectionInternalServerError) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete connection internal server error response has a 3xx status code
+func (o *DeleteConnectionInternalServerError) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete connection internal server error response has a 4xx status code
+func (o *DeleteConnectionInternalServerError) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this delete connection internal server error response has a 5xx status code
+func (o *DeleteConnectionInternalServerError) IsServerError() bool {
+	return true
+}
+
+// IsCode returns true when this delete connection internal server error response a status code equal to that given
+func (o *DeleteConnectionInternalServerError) IsCode(code int) bool {
+	return code == 500
+}
+
 func (o *DeleteConnectionInternalServerError) Error() string {
 	return fmt.Sprintf("[DELETE /users/{userId}/connections/{connectionId}][%d] deleteConnectionInternalServerError  %+v", 500, o.Payload)
 }
+
+func (o *DeleteConnectionInternalServerError) String() string {
+	return fmt.Sprintf("[DELETE /users/{userId}/connections/{connectionId}][%d] deleteConnectionInternalServerError  %+v", 500, o.Payload)
+}
+
 func (o *DeleteConnectionInternalServerError) GetPayload() *models.InternalServerError {
 	return o.Payload
 }
@@ -218,7 +372,8 @@ func NewDeleteConnectionServiceUnavailable() *DeleteConnectionServiceUnavailable
 	return &DeleteConnectionServiceUnavailable{}
 }
 
-/* DeleteConnectionServiceUnavailable describes a response with status code 503, with default header values.
+/*
+DeleteConnectionServiceUnavailable describes a response with status code 503, with default header values.
 
 Returns error response code indicates that the server is not ready to handle the request.
 */
@@ -226,9 +381,39 @@ type DeleteConnectionServiceUnavailable struct {
 	Payload *models.StatusServiceUnavailableError
 }
 
+// IsSuccess returns true when this delete connection service unavailable response has a 2xx status code
+func (o *DeleteConnectionServiceUnavailable) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete connection service unavailable response has a 3xx status code
+func (o *DeleteConnectionServiceUnavailable) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete connection service unavailable response has a 4xx status code
+func (o *DeleteConnectionServiceUnavailable) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this delete connection service unavailable response has a 5xx status code
+func (o *DeleteConnectionServiceUnavailable) IsServerError() bool {
+	return true
+}
+
+// IsCode returns true when this delete connection service unavailable response a status code equal to that given
+func (o *DeleteConnectionServiceUnavailable) IsCode(code int) bool {
+	return code == 503
+}
+
 func (o *DeleteConnectionServiceUnavailable) Error() string {
 	return fmt.Sprintf("[DELETE /users/{userId}/connections/{connectionId}][%d] deleteConnectionServiceUnavailable  %+v", 503, o.Payload)
 }
+
+func (o *DeleteConnectionServiceUnavailable) String() string {
+	return fmt.Sprintf("[DELETE /users/{userId}/connections/{connectionId}][%d] deleteConnectionServiceUnavailable  %+v", 503, o.Payload)
+}
+
 func (o *DeleteConnectionServiceUnavailable) GetPayload() *models.StatusServiceUnavailableError {
 	return o.Payload
 }

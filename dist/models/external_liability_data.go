@@ -71,6 +71,8 @@ func (m *ExternalLiabilityData) validateChangeHistory(formats strfmt.Registry) e
 			if err := m.ChangeHistory[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("changeHistory" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("changeHistory" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -96,6 +98,8 @@ func (m *ExternalLiabilityData) validatePayments(formats strfmt.Registry) error 
 			if err := m.Payments[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("payments" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("payments" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -141,6 +145,8 @@ func (m *ExternalLiabilityData) contextValidateChangeHistory(ctx context.Context
 			if err := m.ChangeHistory[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("changeHistory" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("changeHistory" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -159,6 +165,8 @@ func (m *ExternalLiabilityData) contextValidatePayments(ctx context.Context, for
 			if err := m.Payments[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("payments" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("payments" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

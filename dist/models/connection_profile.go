@@ -44,7 +44,7 @@ type ConnectionProfile struct {
 	// Required: true
 	MiddleName *string `json:"middleName"`
 
-	// User phone number
+	// User phone numbers
 	// Example: ["XXXX 888 991"]
 	// Required: true
 	PhoneNumbers []string `json:"phoneNumbers"`
@@ -161,6 +161,8 @@ func (m *ConnectionProfile) validatePhysicalAddresses(formats strfmt.Registry) e
 			if err := m.PhysicalAddresses[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("physicalAddresses" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("physicalAddresses" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -193,6 +195,8 @@ func (m *ConnectionProfile) contextValidatePhysicalAddresses(ctx context.Context
 			if err := m.PhysicalAddresses[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("physicalAddresses" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("physicalAddresses" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

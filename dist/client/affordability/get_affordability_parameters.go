@@ -52,10 +52,12 @@ func NewGetAffordabilityParamsWithHTTPClient(client *http.Client) *GetAffordabil
 	}
 }
 
-/* GetAffordabilityParams contains all the parameters to send to the API endpoint
-   for the get affordability operation.
+/*
+GetAffordabilityParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get affordability operation.
+
+	Typically these are written to a http.Request.
 */
 type GetAffordabilityParams struct {
 

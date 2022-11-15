@@ -114,6 +114,8 @@ func (m *AccountsFeatures) validateAccountHolder(formats strfmt.Registry) error 
 		if err := m.AccountHolder[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("accountHolder" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("accountHolder" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
@@ -134,6 +136,8 @@ func (m *AccountsFeatures) validateAccountNo(formats strfmt.Registry) error {
 		if err := m.AccountNo[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("accountNo" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("accountNo" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
@@ -154,6 +158,8 @@ func (m *AccountsFeatures) validateAvailableFunds(formats strfmt.Registry) error
 		if err := m.AvailableFunds[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("availableFunds" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("availableFunds" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
@@ -174,6 +180,8 @@ func (m *AccountsFeatures) validateBalance(formats strfmt.Registry) error {
 		if err := m.Balance[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("balance" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("balance" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
@@ -194,6 +202,8 @@ func (m *AccountsFeatures) validateCurrency(formats strfmt.Registry) error {
 		if err := m.Currency[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("currency" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("currency" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
@@ -214,6 +224,8 @@ func (m *AccountsFeatures) validateLastUpdated(formats strfmt.Registry) error {
 		if err := m.LastUpdated[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("lastUpdated" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("lastUpdated" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
@@ -234,6 +246,8 @@ func (m *AccountsFeatures) validateMeta(formats strfmt.Registry) error {
 		if err := m.Meta[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("meta" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("meta" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
@@ -254,6 +268,8 @@ func (m *AccountsFeatures) validateName(formats strfmt.Registry) error {
 		if err := m.Name[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("name" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("name" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
@@ -312,6 +328,8 @@ func (m *AccountsFeatures) contextValidateAccountHolder(ctx context.Context, for
 		if err := m.AccountHolder[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("accountHolder" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("accountHolder" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
@@ -328,6 +346,8 @@ func (m *AccountsFeatures) contextValidateAccountNo(ctx context.Context, formats
 		if err := m.AccountNo[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("accountNo" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("accountNo" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
@@ -344,6 +364,8 @@ func (m *AccountsFeatures) contextValidateAvailableFunds(ctx context.Context, fo
 		if err := m.AvailableFunds[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("availableFunds" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("availableFunds" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
@@ -360,6 +382,8 @@ func (m *AccountsFeatures) contextValidateBalance(ctx context.Context, formats s
 		if err := m.Balance[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("balance" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("balance" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
@@ -376,6 +400,8 @@ func (m *AccountsFeatures) contextValidateCurrency(ctx context.Context, formats 
 		if err := m.Currency[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("currency" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("currency" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
@@ -392,6 +418,8 @@ func (m *AccountsFeatures) contextValidateLastUpdated(ctx context.Context, forma
 		if err := m.LastUpdated[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("lastUpdated" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("lastUpdated" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
@@ -408,6 +436,8 @@ func (m *AccountsFeatures) contextValidateMeta(ctx context.Context, formats strf
 		if err := m.Meta[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("meta" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("meta" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
@@ -424,6 +454,8 @@ func (m *AccountsFeatures) contextValidateName(ctx context.Context, formats strf
 		if err := m.Name[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("name" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("name" + "." + strconv.Itoa(i))
 			}
 			return err
 		}

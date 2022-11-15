@@ -78,6 +78,8 @@ func (m *Features) validateAccounts(formats strfmt.Registry) error {
 		if err := m.Accounts.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("accounts")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("accounts")
 			}
 			return err
 		}
@@ -97,6 +99,8 @@ func (m *Features) validateLogin(formats strfmt.Registry) error {
 		if err := m.Login[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("login" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("login" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
@@ -116,6 +120,8 @@ func (m *Features) validateMfaChallenge(formats strfmt.Registry) error {
 		if err := m.MfaChallenge[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("mfaChallenge" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("mfaChallenge" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
@@ -134,6 +140,8 @@ func (m *Features) validateProfile(formats strfmt.Registry) error {
 		if err := m.Profile.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("profile")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("profile")
 			}
 			return err
 		}
@@ -151,6 +159,8 @@ func (m *Features) validateTransactions(formats strfmt.Registry) error {
 		if err := m.Transactions.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("transactions")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("transactions")
 			}
 			return err
 		}
@@ -195,6 +205,8 @@ func (m *Features) contextValidateAccounts(ctx context.Context, formats strfmt.R
 		if err := m.Accounts.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("accounts")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("accounts")
 			}
 			return err
 		}
@@ -210,6 +222,8 @@ func (m *Features) contextValidateLogin(ctx context.Context, formats strfmt.Regi
 		if err := m.Login[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("login" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("login" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
@@ -226,6 +240,8 @@ func (m *Features) contextValidateMfaChallenge(ctx context.Context, formats strf
 		if err := m.MfaChallenge[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("mfaChallenge" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("mfaChallenge" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
@@ -241,6 +257,8 @@ func (m *Features) contextValidateProfile(ctx context.Context, formats strfmt.Re
 		if err := m.Profile.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("profile")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("profile")
 			}
 			return err
 		}
@@ -255,6 +273,8 @@ func (m *Features) contextValidateTransactions(ctx context.Context, formats strf
 		if err := m.Transactions.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("transactions")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("transactions")
 			}
 			return err
 		}

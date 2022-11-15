@@ -100,6 +100,8 @@ func (m *AffordabilityTransactionsResponse) validateData(formats strfmt.Registry
 			if err := m.Data[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("data" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("data" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -120,6 +122,8 @@ func (m *AffordabilityTransactionsResponse) validateLinks(formats strfmt.Registr
 		if err := m.Links.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("links")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("links")
 			}
 			return err
 		}
@@ -172,6 +176,8 @@ func (m *AffordabilityTransactionsResponse) contextValidateData(ctx context.Cont
 			if err := m.Data[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("data" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("data" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -188,6 +194,8 @@ func (m *AffordabilityTransactionsResponse) contextValidateLinks(ctx context.Con
 		if err := m.Links.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("links")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("links")
 			}
 			return err
 		}

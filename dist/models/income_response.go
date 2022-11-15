@@ -143,6 +143,8 @@ func (m *IncomeResponse) validateIrregular(formats strfmt.Registry) error {
 			if err := m.Irregular[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("irregular" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("irregular" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -162,6 +164,8 @@ func (m *IncomeResponse) validateLinks(formats strfmt.Registry) error {
 		if err := m.Links.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("links")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("links")
 			}
 			return err
 		}
@@ -184,6 +188,8 @@ func (m *IncomeResponse) validateOtherCredit(formats strfmt.Registry) error {
 			if err := m.OtherCredit[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("otherCredit" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("otherCredit" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -208,6 +214,8 @@ func (m *IncomeResponse) validateRegular(formats strfmt.Registry) error {
 			if err := m.Regular[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("regular" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("regular" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -228,6 +236,8 @@ func (m *IncomeResponse) validateSummary(formats strfmt.Registry) error {
 		if err := m.Summary.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("summary")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("summary")
 			}
 			return err
 		}
@@ -292,6 +302,8 @@ func (m *IncomeResponse) contextValidateIrregular(ctx context.Context, formats s
 			if err := m.Irregular[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("irregular" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("irregular" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -308,6 +320,8 @@ func (m *IncomeResponse) contextValidateLinks(ctx context.Context, formats strfm
 		if err := m.Links.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("links")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("links")
 			}
 			return err
 		}
@@ -324,6 +338,8 @@ func (m *IncomeResponse) contextValidateOtherCredit(ctx context.Context, formats
 			if err := m.OtherCredit[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("otherCredit" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("otherCredit" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -342,6 +358,8 @@ func (m *IncomeResponse) contextValidateRegular(ctx context.Context, formats str
 			if err := m.Regular[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("regular" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("regular" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -358,6 +376,8 @@ func (m *IncomeResponse) contextValidateSummary(ctx context.Context, formats str
 		if err := m.Summary.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("summary")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("summary")
 			}
 			return err
 		}

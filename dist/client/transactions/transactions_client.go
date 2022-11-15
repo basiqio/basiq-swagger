@@ -38,9 +38,9 @@ type ClientService interface {
 }
 
 /*
-  GetTransaction retrieves the details of an existing transaction
+GetTransaction retrieves the details of an existing transaction
 
-  You need only supply the unique transaction identifier.
+You need only supply the unique transaction identifier.
 */
 func (a *Client) GetTransaction(params *GetTransactionParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetTransactionOK, error) {
 	// TODO: Validate the params before sending
@@ -79,9 +79,9 @@ func (a *Client) GetTransaction(params *GetTransactionParams, authInfo runtime.C
 }
 
 /*
-  GetTransactions uses this collection to retrieve a paginated list of transactions
+GetTransactions uses this collection to retrieve a paginated list of transactions
 
-  The transactions are returned sorted by account and then posted date descending order - with pending transactions appearing first. Transactions are paginated in chunks of 500. Absence of next link means that there are no more pages to retrieve.
+The transactions are returned sorted by account and then posted date descending order - with pending transactions appearing first. Transactions are paginated in chunks of 500. Absence of next link means that there are no more pages to retrieve.
 */
 func (a *Client) GetTransactions(params *GetTransactionsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetTransactionsOK, error) {
 	// TODO: Validate the params before sending
