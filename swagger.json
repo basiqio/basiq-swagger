@@ -8120,15 +8120,15 @@
               "type": "string"
             },
             "abn": {
-              "description": "ABN.",
+              "description": "Australian Business Number.",
               "type": "string"
             },
             "acn": {
-              "description": "ACN.",
+              "description": "Australian Company Number.",
               "type": "string"
             },
             "isACNCRegistered": {
-              "description": "IS ACNC Registered.",
+              "description": "Indicates whether is Australian Company Number registered.",
               "type": "boolean"
             },
             "industryCode": {

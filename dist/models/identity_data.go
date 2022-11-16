@@ -321,10 +321,10 @@ func (m *IdentityData) UnmarshalBinary(b []byte) error {
 // swagger:model IdentityDataOrganisation
 type IdentityDataOrganisation struct {
 
-	// ABN.
+	// Australian Business Number.
 	Abn string `json:"abn,omitempty"`
 
-	// ACN.
+	// Australian Company Number.
 	Acn string `json:"acn,omitempty"`
 
 	// Agent first name.
@@ -345,7 +345,7 @@ type IdentityDataOrganisation struct {
 	// Industry Code Version.
 	IndustryCodeVersion string `json:"industryCodeVersion,omitempty"`
 
-	// IS ACNC Registered.
+	// Indicates whether is Australian Company Number registered.
 	IsACNCRegistered bool `json:"isACNCRegistered,omitempty"`
 
 	// Legal name.
