@@ -2277,8 +2277,7 @@
         "parameters": [
           {
             "type": "string",
-            "x-go-name": "Filter",
-            "description": "Filter parameter can be used to filter connector list by connector property. This parameter should contain comma separated list of filter statements.\u003c/br\u003e\nFilter statement is composed from entity name (in this case it is always `institution`), property name (e.g. `stage`), filter operator (e.g. `eq`) and quoted string value in parentasis (e.g. `('live')`). \u003c/br\u003e\nThe Following list of regular expressions descirbes acceptable filter statements: \u003c/br\u003e\n• `(connector).(id).(eq)\\(('[A-Z][A-Z][0-9]{5}')\\)` \u003c/br\u003e\n• `(connector).(method).(eq)\\(('web'||'open-banking'|'pdf'|'csv')\\)` \u003c/br\u003e\n• `(connector).(status).(eq|ne)\\(('operational'|'degraded-performance'|'partial-outage'|'major-outage'|'under-maintenance'|'under-improvement')\\)` \u003c/br\u003e\n• `(connector).(status).(in)\\(([\\w\\W]+)\\)` \u003c/br\u003e\n• `(connector).(stage).(eq|ne)\\(('live'|'beta'|'alpha')\\)` \u003c/br\u003e\n• `(connector).(stage).(in)\\(([\\w\\W]+)\\)` \u003c/br\u003e\n• `(connector).(scopes).(in|eq|ne)\\(([\\w\\W]+)\\)` \u003c/br\u003e\n• `(connector).(institution).(country).(eq|ne)\\(('Australia'|'New Zealand')\\)` \u003c/br\u003e\n• `(connector).(institution).(country).(in)\\(([\\w\\W]+)\\)` \u003c/br\u003e\n• `(connector).(institution).(tier).(eq|ne)\\(('1'|'2'|'3'|'4')\\)` \u003c/br\u003e\n• `(connector).(institution).(tier).(in)\\(([\\W\\d]+)\\)` \u003c/br\u003e\n• `(connector).(institution).(type).(eq|ne)\\(('Bank'|'Bank \\(Foreign\\)'|'Test Bank'|'Credit Union'|'Financial Services'|'Superannuation')\\)` \u003c/br\u003e\n• `(connector).(authorization).(type).(eq|ne)\\(('user'|'user-mfa'|'user-mfa-intermittent'|'other'|'token')\\)` \u003c/br\u003e\n• `(connector).(authorization).(type).(in)\\(([\\w\\W]+)\\)` \u003c/br\u003e\n• `(connector).(connectorCategory).(eq|ne)\\(('chrome'|'node')\\)` \u003c/br\u003e\nMultiple filter definitions should be separated with comma (`,`). \u003c/br\u003e\nFor example, this is filter statement will keep only live tier 1 and tier 2 institutions: `filter=connector.stage.eq('live'),connector.institution.tier.in('1','2')` \u003c/br\u003e",
+            "description": "Filter parameter can be used to filter connector list by connector property. This parameter should contain comma separated list of filter statements.</br>\nFilter statement is composed from entity name (in this case it is always `institution`), property name (e.g. `stage`), filter operator (e.g. `eq`) and quoted string value in parentasis (e.g. `('live')`). </br>\nThe Following list of regular expressions descirbes acceptable filter statements: </br>\n• `(connector).(id).(eq)\\(('[A-Z][A-Z][0-9]{5}')\\)` </br>\n• `(connector).(method).(eq)\\(('web'||'open-banking'|'pdf'|'csv')\\)` </br>\n• `(connector).(status).(eq|ne)\\(('operational'|'degraded-performance'|'partial-outage'|'major-outage'|'under-maintenance'|'under-improvement')\\)` </br>\n• `(connector).(status).(in)\\(([\\w\\W]+)\\)` </br>\n• `(connector).(stage).(eq|ne)\\(('live'|'beta'|'alpha')\\)` </br>\n• `(connector).(stage).(in)\\(([\\w\\W]+)\\)` </br>\n• `(connector).(scopes).(in|eq|ne)\\(([\\w\\W]+)\\)` </br>\n• `(connector).(institution).(country).(eq|ne)\\(('Australia'|'New Zealand')\\)` </br>\n• `(connector).(institution).(country).(in)\\(([\\w\\W]+)\\)` </br>\n• `(connector).(institution).(tier).(eq|ne)\\(('1'|'2'|'3'|'4')\\)` </br>\n• `(connector).(institution).(tier).(in)\\(([\\W\\d]+)\\)` </br>\n• `(connector).(institution).(type).(eq|ne)\\(('Bank'|'Bank \\(Foreign\\)'|'Test Bank'|'Credit Union'|'Financial Services'|'Superannuation')\\)` </br>\n• `(connector).(authorization).(type).(eq|ne)\\(('user'|'user-mfa'|'user-mfa-intermittent'|'other'|'token')\\)` </br>\n• `(connector).(authorization).(type).(in)\\(([\\w\\W]+)\\)` </br>\n• `(connector).(connectorCategory).(eq|ne)\\(('chrome'|'node')\\)` </br>\nMultiple filter definitions should be separated with comma (`,`). </br>\nFor example, this is filter statement will keep only live tier 1 and tier 2 institutions: `filter=connector.stage.eq('live'),connector.institution.tier.in('1','2')` </br>",
             "name": "filter",
             "in": "query"
           }
@@ -2394,8 +2393,7 @@
         "parameters": [
           {
             "type": "string",
-            "x-go-name": "Filter",
-            "description": "Filter parameter can be used to filter connector list by connector property. This parameter should contain comma separated list of filter statements.\u003c/br\u003e\nFilter statement is composed from entity name (in this case it is always `institution`), property name (e.g. `stage`), filter operator (e.g. `eq`) and quoted string value in parentasis (e.g. `('live')`). \u003c/br\u003e\nThe Following list of regular expressions descirbes acceptable filter statements: \u003c/br\u003e\n• `(connector).(id).(eq)\\(('[A-Z][A-Z][0-9]{5}')\\)` \u003c/br\u003e\n• `(connector).(method).(eq)\\(('web'||'open-banking'|'pdf'|'csv')\\)` \u003c/br\u003e\n• `(connector).(status).(eq|ne)\\(('operational'|'degraded-performance'|'partial-outage'|'major-outage'|'under-maintenance'|'under-improvement')\\)` \u003c/br\u003e\n• `(connector).(status).(in)\\(([\\w\\W]+)\\)` \u003c/br\u003e\n• `(connector).(stage).(eq|ne)\\(('live'|'beta'|'alpha')\\)` \u003c/br\u003e\n• `(connector).(stage).(in)\\(([\\w\\W]+)\\)` \u003c/br\u003e\n• `(connector).(scopes).(in|eq|ne)\\(([\\w\\W]+)\\)` \u003c/br\u003e\n• `(connector).(institution).(country).(eq|ne)\\(('Australia'|'New Zealand')\\)` \u003c/br\u003e\n• `(connector).(institution).(country).(in)\\(([\\w\\W]+)\\)` \u003c/br\u003e\n• `(connector).(institution).(tier).(eq|ne)\\(('1'|'2'|'3'|'4')\\)` \u003c/br\u003e\n• `(connector).(institution).(tier).(in)\\(([\\W\\d]+)\\)` \u003c/br\u003e\n• `(connector).(institution).(type).(eq|ne)\\(('Bank'|'Bank \\(Foreign\\)'|'Test Bank'|'Credit Union'|'Financial Services'|'Superannuation')\\)` \u003c/br\u003e\n• `(connector).(authorization).(type).(eq|ne)\\(('user'|'user-mfa'|'user-mfa-intermittent'|'other'|'token')\\)` \u003c/br\u003e\n• `(connector).(authorization).(type).(in)\\(([\\w\\W]+)\\)` \u003c/br\u003e\n• `(connector).(connectorCategory).(eq|ne)\\(('chrome'|'node')\\)` \u003c/br\u003e\nMultiple filter definitions should be separated with comma (`,`). \u003c/br\u003e\nFor example, this is filter statement will keep only live tier 1 and tier 2 institutions: `filter=connector.stage.eq('live'),connector.institution.tier.in('1','2')` \u003c/br\u003e",
+            "description": "Filter parameter can be used to filter connector list by connector property. This parameter should contain comma separated list of filter statements.</br>\nFilter statement is composed from entity name (in this case it is always `institution`), property name (e.g. `stage`), filter operator (e.g. `eq`) and quoted string value in parentasis (e.g. `('live')`). </br>\nThe Following list of regular expressions descirbes acceptable filter statements: </br>\n• `(connector).(id).(eq)\\(('[A-Z][A-Z][0-9]{5}')\\)` </br>\n• `(connector).(method).(eq)\\(('web'||'open-banking'|'pdf'|'csv')\\)` </br>\n• `(connector).(status).(eq|ne)\\(('operational'|'degraded-performance'|'partial-outage'|'major-outage'|'under-maintenance'|'under-improvement')\\)` </br>\n• `(connector).(status).(in)\\(([\\w\\W]+)\\)` </br>\n• `(connector).(stage).(eq|ne)\\(('live'|'beta'|'alpha')\\)` </br>\n• `(connector).(stage).(in)\\(([\\w\\W]+)\\)` </br>\n• `(connector).(scopes).(in|eq|ne)\\(([\\w\\W]+)\\)` </br>\n• `(connector).(institution).(country).(eq|ne)\\(('Australia'|'New Zealand')\\)` </br>\n• `(connector).(institution).(country).(in)\\(([\\w\\W]+)\\)` </br>\n• `(connector).(institution).(tier).(eq|ne)\\(('1'|'2'|'3'|'4')\\)` </br>\n• `(connector).(institution).(tier).(in)\\(([\\W\\d]+)\\)` </br>\n• `(connector).(institution).(type).(eq|ne)\\(('Bank'|'Bank \\(Foreign\\)'|'Test Bank'|'Credit Union'|'Financial Services'|'Superannuation')\\)` </br>\n• `(connector).(authorization).(type).(eq|ne)\\(('user'|'user-mfa'|'user-mfa-intermittent'|'other'|'token')\\)` </br>\n• `(connector).(authorization).(type).(in)\\(([\\w\\W]+)\\)` </br>\n• `(connector).(connectorCategory).(eq|ne)\\(('chrome'|'node')\\)` </br>\nMultiple filter definitions should be separated with comma (`,`). </br>\nFor example, this is filter statement will keep only live tier 1 and tier 2 institutions: `filter=connector.stage.eq('live'),connector.institution.tier.in('1','2')` </br>",
             "name": "filter",
             "in": "query"
           }
@@ -2506,8 +2504,7 @@
         "parameters": [
           {
             "type": "string",
-            "x-go-name": "Filter",
-            "description": "Filter parameter can be used to filter institution list by institution property. This parameter should contain comma separated list of filter statements.\u003c/br\u003e\nFilter statement is composed from entity name (in this case it is always `institution`), property name (e.g. `stage`), filter operator (e.g. `eq`) and quoted string value in parentasis (e.g. `('live')`). \u003c/br\u003e\nThe Following list of regular expressions descirbes acceptable filter statements: \u003c/br\u003e\n• `institution\\.country\\.(eq|ne)\\(('Australia'|'New Zealand')\\)` \u003c/br\u003e\n• `institution\\.country\\.in\\(([\\w\\W]+)\\)` \u003c/br\u003e\n• `institution\\.tier\\.(eq|ne)\\(('1'|'2'|'3'|'4')\\)` \u003c/br\u003e\n• `institution\\.tier\\.in\\('[1-4]'(,'[1-4]')*\\)` \u003c/br\u003e\n• `institution\\.authorization\\.(eq|ne)\\(('user'|'other'|'token'|'user-mfa-intermittent'|'user-mfa')\\)` \u003c/br\u003e\n• `institution\\.authorization\\.in\\(([\\w-', ]+)\\)` \u003c/br\u003e\n• `institution\\.serviceType\\.(eq|ne)\\(('Personal Banking'|'Business Banking'|'Card Access'|'Test')\\)` \u003c/br\u003e\n• `institution\\.institutionType\\.(eq|ne)\\(('Bank'|'Bank \\(Foreign\\)'|'Test Bank'|'Credit Union'|'Financial Services'|'Superannuation')\\)` \u003c/br\u003e\n• `institution\\.stage\\.(eq|ne)\\(('live'|'beta'|'alpha')\\)` \u003c/br\u003e\nMultiple filter definitions should be separated with comma (`,`). \u003c/br\u003e\nFor example, this is filter statement will keep only live tier 1 and tier 2 institutions: `filter=institution.stage.eq('live'),institution.tier.in('1','2')` \u003c/br\u003e",
+            "description": "Filter parameter can be used to filter institution list by institution property. This parameter should contain comma separated list of filter statements.</br>\nFilter statement is composed from entity name (in this case it is always `institution`), property name (e.g. `stage`), filter operator (e.g. `eq`) and quoted string value in parentasis (e.g. `('live')`). </br>\nThe Following list of regular expressions descirbes acceptable filter statements: </br>\n• `institution\\.country\\.(eq|ne)\\(('Australia'|'New Zealand')\\)` </br>\n• `institution\\.country\\.in\\(([\\w\\W]+)\\)` </br>\n• `institution\\.tier\\.(eq|ne)\\(('1'|'2'|'3'|'4')\\)` </br>\n• `institution\\.tier\\.in\\('[1-4]'(,'[1-4]')*\\)` </br>\n• `institution\\.authorization\\.(eq|ne)\\(('user'|'other'|'token'|'user-mfa-intermittent'|'user-mfa')\\)` </br>\n• `institution\\.authorization\\.in\\(([\\w-', ]+)\\)` </br>\n• `institution\\.serviceType\\.(eq|ne)\\(('Personal Banking'|'Business Banking'|'Card Access'|'Test')\\)` </br>\n• `institution\\.institutionType\\.(eq|ne)\\(('Bank'|'Bank \\(Foreign\\)'|'Test Bank'|'Credit Union'|'Financial Services'|'Superannuation')\\)` </br>\n• `institution\\.stage\\.(eq|ne)\\(('live'|'beta'|'alpha')\\)` </br>\nMultiple filter definitions should be separated with comma (`,`). </br>\nFor example, this is filter statement will keep only live tier 1 and tier 2 institutions: `filter=institution.stage.eq('live'),institution.tier.in('1','2')` </br>",
             "name": "filter",
             "in": "query"
           }
@@ -2616,8 +2613,7 @@
         "parameters": [
           {
             "type": "string",
-            "x-go-name": "Filter",
-            "description": "Filter parameter can be used to filter institution list by institution property. This parameter should contain comma separated list of filter statements.\u003c/br\u003e\nFilter statement is composed from entity name (in this case it is always `institution`), property name (e.g. `stage`), filter operator (e.g. `eq`) and quoted string value in parentasis (e.g. `('live')`). \u003c/br\u003e\nThe Following list of regular expressions descirbes acceptable filter statements: \u003c/br\u003e\n• `institution\\.country\\.(eq|ne)\\(('Australia'|'New Zealand')\\)` \u003c/br\u003e\n• `institution\\.country\\.in\\(([\\w\\W]+)\\)` \u003c/br\u003e\n• `institution\\.tier\\.(eq|ne)\\(('1'|'2'|'3'|'4')\\)` \u003c/br\u003e\n• `institution\\.tier\\.in\\('[1-4]'(,'[1-4]')*\\)` \u003c/br\u003e\n• `institution\\.authorization\\.(eq|ne)\\(('user'|'other'|'token'|'user-mfa-intermittent'|'user-mfa')\\)` \u003c/br\u003e\n• `institution\\.authorization\\.in\\(([\\w-', ]+)\\)` \u003c/br\u003e\n• `institution\\.serviceType\\.(eq|ne)\\(('Personal Banking'|'Business Banking'|'Card Access'|'Test')\\)` \u003c/br\u003e\n• `institution\\.institutionType\\.(eq|ne)\\(('Bank'|'Bank \\(Foreign\\)'|'Test Bank'|'Credit Union'|'Financial Services'|'Superannuation')\\)` \u003c/br\u003e\n• `institution\\.stage\\.(eq|ne)\\(('live'|'beta'|'alpha')\\)` \u003c/br\u003e\nMultiple filter definitions should be separated with comma (`,`). \u003c/br\u003e\nFor example, this is filter statement will keep only live tier 1 and tier 2 institutions: `filter=institution.stage.eq('live'),institution.tier.in('1','2')` \u003c/br\u003e",
+            "description": "Filter parameter can be used to filter institution list by institution property. This parameter should contain comma separated list of filter statements.</br>\nFilter statement is composed from entity name (in this case it is always `institution`), property name (e.g. `stage`), filter operator (e.g. `eq`) and quoted string value in parentasis (e.g. `('live')`). </br>\nThe Following list of regular expressions descirbes acceptable filter statements: </br>\n• `institution\\.country\\.(eq|ne)\\(('Australia'|'New Zealand')\\)` </br>\n• `institution\\.country\\.in\\(([\\w\\W]+)\\)` </br>\n• `institution\\.tier\\.(eq|ne)\\(('1'|'2'|'3'|'4')\\)` </br>\n• `institution\\.tier\\.in\\('[1-4]'(,'[1-4]')*\\)` </br>\n• `institution\\.authorization\\.(eq|ne)\\(('user'|'other'|'token'|'user-mfa-intermittent'|'user-mfa')\\)` </br>\n• `institution\\.authorization\\.in\\(([\\w-', ]+)\\)` </br>\n• `institution\\.serviceType\\.(eq|ne)\\(('Personal Banking'|'Business Banking'|'Card Access'|'Test')\\)` </br>\n• `institution\\.institutionType\\.(eq|ne)\\(('Bank'|'Bank \\(Foreign\\)'|'Test Bank'|'Credit Union'|'Financial Services'|'Superannuation')\\)` </br>\n• `institution\\.stage\\.(eq|ne)\\(('live'|'beta'|'alpha')\\)` </br>\nMultiple filter definitions should be separated with comma (`,`). </br>\nFor example, this is filter statement will keep only live tier 1 and tier 2 institutions: `filter=institution.stage.eq('live'),institution.tier.in('1','2')` </br>",
             "name": "filter",
             "in": "query"
           }
@@ -2633,6 +2629,131 @@
             "description": "Returns error that server cannot or will not process the request due to something that is perceived to be a client error.",
             "schema": {
               "$ref": "#/definitions/BadRequestError"
+            }
+          },
+          "500": {
+            "description": "Returns error response code indicates that the server encountered an unexpected condition that prevented it from fulfilling the request.",
+            "schema": {
+              "$ref": "#/definitions/InternalServerError"
+            }
+          }
+        }
+      }
+    },
+    "/users/{userId}/identitites": {
+      "get": {
+        "security": [
+          {
+            "application": [
+              "SERVER_ACCESS",
+              "CLIENT_ACCESS"
+            ]
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "description": "Returns a list with a data property that contains an array of user identities. Each entry in the array is a separate object. If no data is returned, the resulting array will be empty.",
+        "tags": [
+          "Identities"
+        ],
+        "summary": "Use this to retrieve list of identities per user.",
+        "operationId": "getUserIdentities",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "User identifier.",
+            "name": "userId",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns list of identities.",
+            "schema": {
+              "$ref": "#/definitions/IdentitiesGetResponseResource"
+            }
+          },
+          "400": {
+            "description": "Returns error that server cannot or will not process the request due to something that is perceived to be a client error.",
+            "schema": {
+              "$ref": "#/definitions/BadRequestError"
+            }
+          },
+          "403": {
+            "description": "Error that access is forbidden and tied to the application logic, such as insufficient rights to a resource.",
+            "schema": {
+              "$ref": "#/definitions/ForbiddenAccessError"
+            }
+          },
+          "500": {
+            "description": "Returns error response code indicates that the server encountered an unexpected condition that prevented it from fulfilling the request.",
+            "schema": {
+              "$ref": "#/definitions/InternalServerError"
+            }
+          }
+        }
+      }
+    },
+    "/users/{userId}/identitites/{identityId}": {
+      "get": {
+        "security": [
+          {
+            "application": [
+              "SERVER_ACCESS",
+              "CLIENT_ACCESS"
+            ]
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "description": "Returns a specific identity object.",
+        "tags": [
+          "Identity"
+        ],
+        "summary": "Use this to retrieve identity per identity id.",
+        "operationId": "getUserIdentity",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "User identifier.",
+            "name": "userId",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Identity identifier.",
+            "name": "identityId",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns identity.",
+            "schema": {
+              "$ref": "#/definitions/IdentityData"
+            }
+          },
+          "400": {
+            "description": "Returns error that server cannot or will not process the request due to something that is perceived to be a client error.",
+            "schema": {
+              "$ref": "#/definitions/BadRequestError"
+            }
+          },
+          "403": {
+            "description": "Error that access is forbidden and tied to the application logic, such as insufficient rights to a resource.",
+            "schema": {
+              "$ref": "#/definitions/ForbiddenAccessError"
+            }
+          },
+          "404": {
+            "description": "Returns error indicating that server can't find requested resource.",
+            "schema": {
+              "$ref": "#/definitions/NotFoundError"
             }
           },
           "500": {
@@ -3538,7 +3659,6 @@
         "correlationId": {
           "description": "Unique identifier of concrete request.",
           "type": "string",
-          "x-go-name": "CorrelationID",
           "example": "b26bb88d-4622-4005-a906-f1ca62fca5b7"
         },
         "data": {
@@ -3560,14 +3680,11 @@
                   "unsupported-accept",
                   "invalid-content"
                 ],
-                "x-go-enum-desc": "parameter-not-supplied ParameterNotSupplied\nparameter-not-valid ParameterNotValid\nunsupported-accept UnsupportedAccept\ninvalid-content InvalidContent",
-                "x-go-name": "Code",
                 "example": "parameter-not-valid"
               },
               "detail": {
                 "description": "Human-readable explanation specific to this occurrence of the problem.",
                 "type": "string",
-                "x-go-name": "Detail",
                 "example": "ID value is not valid."
               },
               "source": {
@@ -3576,24 +3693,20 @@
               "title": {
                 "description": "Title of the error",
                 "type": "string",
-                "x-go-name": "Title",
                 "example": "Parameter not valid."
               },
               "type": {
                 "description": "Type of the response, always \"error\"",
                 "type": "string",
-                "x-go-name": "Type",
                 "example": "error"
               }
             }
-          },
-          "x-go-name": "Data"
+          }
         },
         "type": {
           "$ref": "#/definitions/ResponseFormat"
         }
-      },
-      "x-go-package": "github.com/basiqio/connect-institution-connector/cmd/institutions/resources/models"
+      }
     },
     "CategoryDataExpenses": {
       "description": "Category data",
@@ -3864,7 +3977,7 @@
           "type": "string"
         },
         "phoneNumbers": {
-          "description": "User phone number",
+          "description": "User phone numbers",
           "type": "array",
           "items": {
             "type": "string"
@@ -4897,7 +5010,6 @@
         "correlationId": {
           "description": "Unique identifier of concrete request.",
           "type": "string",
-          "x-go-name": "CorrelationID",
           "example": "b26bb88d-4622-4005-a906-f1ca62fca5b7"
         },
         "data": {
@@ -4916,37 +5028,30 @@
                 "enum": [
                   "internal-server-error"
                 ],
-                "x-go-enum-desc": "internal-server-error InternalServerCode",
-                "x-go-name": "Code",
                 "example": "internal-server-error"
               },
               "detail": {
                 "description": "Human-readable explanation specific to this occurrence of the problem.",
                 "type": "string",
-                "x-go-name": "Detail",
                 "example": "Internal Server error. Contact support."
               },
               "title": {
                 "description": "Title of the error",
                 "type": "string",
-                "x-go-name": "Title",
                 "example": "Internal Server error."
               },
               "type": {
                 "description": "Type of the response, always \"error\"",
                 "type": "string",
-                "x-go-name": "Type",
                 "example": "error"
               }
             }
-          },
-          "x-go-name": "Data"
+          }
         },
         "type": {
           "$ref": "#/definitions/ResponseFormat"
         }
-      },
-      "x-go-package": "github.com/basiqio/connect-institution-connector/cmd/connectors/resources/models"
+      }
     },
     "IrregularSource": {
       "description": "IrregularSource\nIncome sources typically require at least 5 credits across a minimum 90 day time period",
@@ -5435,7 +5540,6 @@
         "correlationId": {
           "description": "Unique identifier of concrete request.",
           "type": "string",
-          "x-go-name": "CorrelationID",
           "example": "b26bb88d-4622-4005-a906-f1ca62fca5b7"
         },
         "data": {
@@ -5454,37 +5558,30 @@
                 "enum": [
                   "resource-not-found"
                 ],
-                "x-go-enum-desc": "resource-not-found ResourceNotFound",
-                "x-go-name": "Code",
                 "example": "resource-not-found"
               },
               "detail": {
                 "description": "Human-readable explanation specific to this occurrence of the problem.",
                 "type": "string",
-                "x-go-name": "Detail",
                 "example": "Resource not found."
               },
               "title": {
                 "description": "Title of the error",
                 "type": "string",
-                "x-go-name": "Title",
                 "example": "Requested resource is not found."
               },
               "type": {
                 "description": "Type of the response, always \"error\"",
                 "type": "string",
-                "x-go-name": "Type",
                 "example": "error"
               }
             }
-          },
-          "x-go-name": "Data"
+          }
         },
         "type": {
           "$ref": "#/definitions/ResponseFormat"
         }
-      },
-      "x-go-package": "github.com/basiqio/connect-institution-connector/cmd/institutions/resources/models"
+      }
     },
     "OtherCreditSource": {
       "description": "Other Credit Series are series where a pattern of credit is detected but the pattern does not meet the requirements for regular or irregular income, or the income series is too old e.g. former regular income or a potential future income",
@@ -5834,17 +5931,14 @@
         "parameter": {
           "description": "String indicating which URI query parameter caused the error.",
           "type": "string",
-          "x-go-name": "Parameter",
           "example": "userId"
         },
         "pointer": {
           "description": "Location to the object or attribute that the error relates to.",
           "type": "string",
-          "x-go-name": "Pointer",
           "example": "users/userId"
         }
-      },
-      "x-go-package": "github.com/basiqio/connect-institution-connector/cmd/connectors/resources/models"
+      }
     },
     "StatementUploadResource": {
       "description": "Object containing details for statement upload.",
@@ -6483,7 +6577,6 @@
         "correlationId": {
           "description": "Unique identifier of concrete request.",
           "type": "string",
-          "x-go-name": "CorrelationID",
           "example": "b26bb88d-4622-4005-a906-f1ca62fca5b7"
         },
         "data": {
@@ -6502,37 +6595,30 @@
                 "enum": [
                   "unauthorized-access"
                 ],
-                "x-go-enum-desc": "unauthorized-access UnauthorizedCode",
-                "x-go-name": "Code",
                 "example": "unauthorized-access"
               },
               "detail": {
                 "description": "Human-readable explanation specific to this occurrence of the problem.",
                 "type": "string",
-                "x-go-name": "Detail",
                 "example": "You are not authorized to access this resource"
               },
               "title": {
                 "description": "Title of the error",
                 "type": "string",
-                "x-go-name": "Title",
                 "example": "Unauthorized Access"
               },
               "type": {
                 "description": "Type of the response, always \"error\"",
                 "type": "string",
-                "x-go-name": "Type",
                 "example": "error"
               }
             }
-          },
-          "x-go-name": "Data"
+          }
         },
         "type": {
           "$ref": "#/definitions/ResponseFormat"
         }
-      },
-      "x-go-package": "github.com/basiqio/connect-institution-connector/cmd/institutions/resources/models"
+      }
     },
     "UnsupportedMediaTypeError": {
       "type": "object",
@@ -7028,7 +7114,6 @@
           "items": {
             "$ref": "#/definitions/SourceName"
           },
-          "x-go-name": "AccountHolder",
           "example": [
             "web",
             "pdf",
@@ -7041,7 +7126,6 @@
           "items": {
             "$ref": "#/definitions/SourceName"
           },
-          "x-go-name": "AccountNumber",
           "example": [
             "web",
             "pdf",
@@ -7054,7 +7138,6 @@
           "items": {
             "$ref": "#/definitions/SourceName"
           },
-          "x-go-name": "AvailableFunds",
           "example": [
             "web",
             "pdf",
@@ -7067,7 +7150,6 @@
           "items": {
             "$ref": "#/definitions/SourceName"
           },
-          "x-go-name": "AccountBalance",
           "example": [
             "web",
             "pdf",
@@ -7080,7 +7162,6 @@
           "items": {
             "$ref": "#/definitions/SourceName"
           },
-          "x-go-name": "AccountCurrency",
           "example": [
             "web",
             "pdf",
@@ -7093,7 +7174,6 @@
           "items": {
             "$ref": "#/definitions/SourceName"
           },
-          "x-go-name": "LastUpdated",
           "example": [
             "web",
             "pdf",
@@ -7106,7 +7186,6 @@
           "items": {
             "$ref": "#/definitions/SourceName"
           },
-          "x-go-name": "Meta",
           "example": [
             "web",
             "pdf",
@@ -7119,15 +7198,13 @@
           "items": {
             "$ref": "#/definitions/SourceName"
           },
-          "x-go-name": "AccountName",
           "example": [
             "web",
             "pdf",
             "csv"
           ]
         }
-      },
-      "x-go-package": "github.com/basiqio/connect-institution-connector/internal/pkg/institutions/api"
+      }
     },
     "Colors": {
       "description": "Colors contains institution colors type",
@@ -7135,16 +7212,13 @@
       "properties": {
         "primary": {
           "description": "Primary primary institution color",
-          "type": "string",
-          "x-go-name": "Primary"
+          "type": "string"
         }
-      },
-      "x-go-package": "github.com/basiqio/connect-institution-connector/internal/pkg/institutions/api"
+      }
     },
     "FeatureCondition": {
       "description": "FeatureCondition type that describes an feature status for institution",
-      "type": "string",
-      "x-go-package": "github.com/basiqio/connect-institution-connector/internal/pkg/institutions/api"
+      "type": "string"
     },
     "Features": {
       "description": "Features stucture that describes institution features per data source",
@@ -7162,7 +7236,6 @@
           "items": {
             "$ref": "#/definitions/SourceName"
           },
-          "x-go-name": "Login",
           "example": [
             "web"
           ]
@@ -7171,8 +7244,7 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/SourceName"
-          },
-          "x-go-name": "MfaChallenge"
+          }
         },
         "profile": {
           "$ref": "#/definitions/ProfileFeatures"
@@ -7180,8 +7252,7 @@
         "transactions": {
           "$ref": "#/definitions/TransactionsFeatures"
         }
-      },
-      "x-go-package": "github.com/basiqio/connect-institution-connector/internal/pkg/institutions/api"
+      }
     },
     "Connector": {
       "type": "object",
@@ -7208,7 +7279,6 @@
           "minLength": 7,
           "pattern": "^[A-Z]{2}[0-9]{5}$",
           "uniqueItems": true,
-          "x-go-name": "ConnectorID",
           "example": "AU00000"
         },
         "institution": {
@@ -7220,7 +7290,6 @@
         "method": {
           "description": "Current Connector method",
           "type": "string",
-          "x-go-name": "Method",
           "example": "web"
         },
         "scopes": {
@@ -7228,13 +7297,11 @@
           "type": "array",
           "items": {
             "type": "string"
-          },
-          "x-go-name": "Scopes"
+          }
         },
         "stage": {
           "description": "Current Connector stage",
           "type": "string",
-          "x-go-name": "Stage",
           "example": "beta"
         },
         "stats": {
@@ -7249,12 +7316,9 @@
           "enum": [
             "connector"
           ],
-          "x-go-enum-desc": "connector ConnectorEntityType",
-          "x-go-name": "EntityType",
           "example": "connector"
         }
-      },
-      "x-go-package": "github.com/basiqio/connect-institution-connector/cmd/connectors/resources/models"
+      }
     },
     "ConnectorAuthorization": {
       "type": "object",
@@ -7275,12 +7339,9 @@
             "user-mfa",
             "user-mfa-intermittent"
           ],
-          "x-go-enum-desc": "user AuthorizationUser  AuthorizationUser \"User\" authorization type identifier\ntoken AuthorizationToken AuthorizationToken \"Token\" authorization type identifier\nother AuthorizationOther  AuthorizationOther \"Other\" authorization type identifier\nuser-mfa AuthorizationUserMfa  AuthorizationUserMfa \"UserMfa\" authorization type identifier\nuser-mfa-intermittent AuthorizationUserMfaIntermittent  AuthorizationUserMfaIntermittent \"UserMfaIntermittent\" authorization type identifier",
-          "x-go-name": "Type",
           "example": "user"
         }
-      },
-      "x-go-package": "github.com/basiqio/connect-institution-connector/cmd/connectors/resources/models"
+      }
     },
     "ConnectorAuthorizationMeta": {
       "type": "object",
@@ -7288,35 +7349,29 @@
         "forgotten_password_url": {
           "description": "URL to institution forgotten password page",
           "type": "string",
-          "x-go-name": "ForgottenPasswordUrl",
           "example": "https://example.com/forgotten-password"
         },
         "login_id_caption": {
           "description": "Login ID field caption that should be shown on UI",
           "type": "string",
-          "x-go-name": "LoginIdCaption",
           "example": "User name"
         },
         "password_caption": {
           "description": "Password field caption that should be shown on UI",
           "type": "string",
-          "x-go-name": "PasswordCaption",
           "example": "Password"
         },
         "secondary_login_id_caption": {
           "description": "Secondary loginID caption that should be shown on UI",
           "type": "string",
-          "x-go-name": "SecondaryLoginIdCaption",
           "example": "Secondary login id"
         },
         "security_code_caption": {
           "description": "Security code caption that should be shown on UI",
           "type": "string",
-          "x-go-name": "SecurityCodeCaption",
           "example": "Security code"
         }
-      },
-      "x-go-package": "github.com/basiqio/connect-institution-connector/cmd/connectors/resources/models"
+      }
     },
     "ConnectorInstitutionResource": {
       "description": "ConnectorInstitutionResource connector Institution  resource type",
@@ -7333,7 +7388,6 @@
         "country": {
           "description": "Institution country name",
           "type": "string",
-          "x-go-name": "Country",
           "example": "Australia"
         },
         "logo": {
@@ -7342,13 +7396,11 @@
         "name": {
           "description": "Institution name",
           "type": "string",
-          "x-go-name": "Name",
           "example": "Hooli Bank"
         },
         "shortName": {
           "description": "Institution short name",
           "type": "string",
-          "x-go-name": "ShortName",
           "example": "Hooli"
         },
         "tier": {
@@ -7360,8 +7412,6 @@
             "3",
             "4"
           ],
-          "x-go-enum-desc": "1 TierOne  TierOne tier identifier for tier1 institution\n2 TierTwo  TierTwo tier identifier for tier2 institution\n3 TierThree  TierThree tier identifier for tier3 institution\n4 TierFour  TierFour tier identifier for tier4 institution",
-          "x-go-name": "Tier",
           "example": "1"
         },
         "type": {
@@ -7377,12 +7427,9 @@
             "Building Society",
             "Government"
           ],
-          "x-go-enum-desc": "Bank BankInstitutionType  BankInstitutionType institution type identifier for Banks\nBank (Foreign) BankForeignInstitutionType  BankForeignInstitutionType institution type identifier for Foreign banks\nTest Bank TestBankInstitutionType  TestBankInstitutionType institution type identifier for Test banks\nCredit Union CreditUnionInstitutionType  CreditUnionInstitutionType institution type identifier for Credit union institutions\nFinancial Services FinancialServicesInstitutionType  FinancialServicesInstitutionType institution type identifier for Financial service institutions\nSuperannuation SuperannuationInstitutionType  SuperannuationInstitutionType institution type identifier for Superannuation institutions\nBuilding Society BuildingSociety  BuildingSociety institution type identifier for Building Society institutions\nGovernment Government  Government institution type identifier for Government institutions",
-          "x-go-name": "Type",
           "example": "Bank"
         }
-      },
-      "x-go-package": "github.com/basiqio/connect-institution-connector/cmd/connectors/resources/models"
+      }
     },
     "ConnectorsList": {
       "description": "ConnectorsList contains list of connectors data.",
@@ -7399,8 +7446,7 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/Connector"
-          },
-          "x-go-name": "Connectors"
+          }
         },
         "links": {
           "$ref": "#/definitions/ResourceLinks"
@@ -7409,14 +7455,12 @@
           "description": "TotalCount contains total count of connectors",
           "type": "integer",
           "format": "int64",
-          "x-go-name": "TotalCount",
           "example": 1
         },
         "type": {
           "$ref": "#/definitions/ResponseFormat"
         }
-      },
-      "x-go-package": "github.com/basiqio/connect-institution-connector/cmd/connectors/resources/models"
+      }
     },
     "Institution": {
       "description": "Institution contains instution data.",
@@ -7450,14 +7494,11 @@
             "user-mfa",
             "user-mfa-intermittent"
           ],
-          "x-go-enum-desc": "user AuthorizationUser  AuthorizationUser \"User\" authorization type identifier\ntoken AuthorizationToken AuthorizationToken \"Token\" authorization type identifier\nother AuthorizationOther  AuthorizationOther \"Other\" authorization type identifier\nuser-mfa AuthorizationUserMfa  AuthorizationUserMfa \"UserMfa\" authorization type identifier\nuser-mfa-intermittent AuthorizationUserMfaIntermittent  AuthorizationUserMfaIntermittent \"UserMfaIntermittent\" authorization type identifier",
-          "x-go-name": "Authorization",
           "example": "user"
         },
         "country": {
           "description": "Institution country name",
           "type": "string",
-          "x-go-name": "Country",
           "example": "Australia"
         },
         "features": {
@@ -7466,7 +7507,6 @@
         "forgottenPasswordUrl": {
           "description": "URL to institution forgotten password page",
           "type": "string",
-          "x-go-name": "ForgottenPasswordURL",
           "example": "https://example.com/forgotten-password"
         },
         "id": {
@@ -7476,7 +7516,6 @@
           "minLength": 7,
           "pattern": "^[A-Z]{2}[0-9]{5}$",
           "uniqueItems": true,
-          "x-go-name": "InstitutionID",
           "example": "AU00000"
         },
         "institutionType": {
@@ -7492,8 +7531,6 @@
             "Building Society",
             "Government"
           ],
-          "x-go-enum-desc": "Bank BankInstitutionType  BankInstitutionType institution type identifier for Banks\nBank (Foreign) BankForeignInstitutionType  BankForeignInstitutionType institution type identifier for Foreign banks\nTest Bank TestBankInstitutionType  TestBankInstitutionType institution type identifier for Test banks\nCredit Union CreditUnionInstitutionType  CreditUnionInstitutionType institution type identifier for Credit union institutions\nFinancial Services FinancialServicesInstitutionType  FinancialServicesInstitutionType institution type identifier for Financial service institutions\nSuperannuation SuperannuationInstitutionType  SuperannuationInstitutionType institution type identifier for Superannuation institutions\nBuilding Society BuildingSociety  BuildingSociety institution type identifier for Building Society institutions\nGovernment Government  Government institution type identifier for Government institutions",
-          "x-go-name": "InstitutionType",
           "example": "Bank"
         },
         "links": {
@@ -7502,7 +7539,6 @@
         "loginIdCaption": {
           "description": "Login ID field caption that should be shown on UI",
           "type": "string",
-          "x-go-name": "LoginIDCaption",
           "example": "User name"
         },
         "logo": {
@@ -7511,31 +7547,26 @@
         "name": {
           "description": "Institution name",
           "type": "string",
-          "x-go-name": "Name",
           "example": "Hooli Bank"
         },
         "passwordCaption": {
           "description": "Password field caption that should be shown on UI",
           "type": "string",
-          "x-go-name": "PasswordCaption",
           "example": "Password"
         },
         "secondaryLoginIdCaption": {
           "description": "Secondary loginID caption that should be shown on UI",
           "type": "string",
-          "x-go-name": "SecondaryLoginIDCaption",
           "example": "Secondary login id"
         },
         "securityCodeCaption": {
           "description": "Security code caption that should be shown on UI",
           "type": "string",
-          "x-go-name": "SecurityCodeCaption",
           "example": "Security code"
         },
         "serviceName": {
           "description": "Institution service name",
           "type": "string",
-          "x-go-name": "ServiceName",
           "example": "Personal Online Banking"
         },
         "serviceType": {
@@ -7549,14 +7580,11 @@
             "Superannuation",
             "Government Services"
           ],
-          "x-go-enum-desc": "Personal Banking PersonalBankingService  PersonalBankingService personal banking service type identifier\nBusiness Banking BusinessBankingService  BusinessBankingService business banking service type identifier\nCard Access CardAccessService  CardAccessService card access service type identifier\nTest TestService  TestService test service type identifier\nSuperannuation SuperannuationService  SuperannuationService superannuation service type identifier\nGovernment Services GovernmentService  GovernmentService government services type identifier",
-          "x-go-name": "ServiceType",
           "example": "Personal Banking"
         },
         "shortName": {
           "description": "Institution short name",
           "type": "string",
-          "x-go-name": "ShortName",
           "example": "Hooli"
         },
         "stage": {
@@ -7567,8 +7595,6 @@
             "beta",
             "alpha"
           ],
-          "x-go-enum-desc": "live StageLive  StageLive live institution stage identifier\nbeta StageBeta  StageBeta beta institution stage identifier\nalpha StageAlpha  StageAlpha alpha institution stage identifier (login shells)",
-          "x-go-name": "Stage",
           "example": "live"
         },
         "stats": {
@@ -7586,8 +7612,6 @@
             "3",
             "4"
           ],
-          "x-go-enum-desc": "1 TierOne  TierOne tier identifier for tier1 institution\n2 TierTwo  TierTwo tier identifier for tier2 institution\n3 TierThree  TierThree tier identifier for tier3 institution\n4 TierFour  TierFour tier identifier for tier4 institution",
-          "x-go-name": "Tier",
           "example": "3"
         },
         "type": {
@@ -7596,18 +7620,14 @@
           "enum": [
             "institution"
           ],
-          "x-go-enum-desc": "institution InstitutionEntityType",
-          "x-go-name": "EntityType",
           "example": "institution"
         },
         "userTokenCaption": {
           "description": "User token caption that should be shown on UI",
           "type": "string",
-          "x-go-name": "UserTokenCaption",
           "example": "User token"
         }
-      },
-      "x-go-package": "github.com/basiqio/connect-institution-connector/cmd/institutions/resources/models"
+      }
     },
     "InstitutionLogoResource": {
       "description": "InstitutionLogoResource linstitution logo resource type",
@@ -7629,12 +7649,9 @@
           "enum": [
             "image"
           ],
-          "x-go-enum-desc": "image ImageResourceType",
-          "x-go-name": "Type",
           "example": "image"
         }
-      },
-      "x-go-package": "github.com/basiqio/connect-institution-connector/cmd/connectors/resources/models"
+      }
     },
     "InstitutionPerformanceStats": {
       "description": "InstitutionPerformanceStats response type for institution performance stats",
@@ -7645,40 +7662,33 @@
           "type": "object",
           "properties": {
             "retrieveAccounts": {
-              "description": "Connector average duration in milliseconds of \u003cb\u003efetch accounts\u003c/b\u003e step for institution",
+              "description": "Connector average duration in milliseconds of <b>fetch accounts</b> step for institution",
               "type": "integer",
-              "format": "int64",
-              "x-go-name": "RetrieveAccounts"
+              "format": "int64"
             },
             "retrieveMeta": {
-              "description": "Connector average duration in milliseconds of \u003cb\u003efetch metadata\u003c/b\u003e step for institution",
+              "description": "Connector average duration in milliseconds of <b>fetch metadata</b> step for institution",
               "type": "integer",
-              "format": "int64",
-              "x-go-name": "RetrieveMeta"
+              "format": "int64"
             },
             "retrieveTransactions": {
-              "description": "Connector average duration in milliseconds of \u003cb\u003efetch transactions\u003c/b\u003e step for institution",
+              "description": "Connector average duration in milliseconds of <b>fetch transactions</b> step for institution",
               "type": "integer",
-              "format": "int64",
-              "x-go-name": "RetrieveTransactions"
+              "format": "int64"
             },
             "total": {
               "description": "Total connector average duration in milliseconds",
               "type": "integer",
-              "format": "int64",
-              "x-go-name": "Total"
+              "format": "int64"
             },
             "verifyCredentials": {
-              "description": "Connector average duration in milliseconds of \u003cb\u003everifiy credentials\u003c/b\u003e step for institution",
+              "description": "Connector average duration in milliseconds of <b>verifiy credentials</b> step for institution",
               "type": "integer",
-              "format": "int64",
-              "x-go-name": "VerifyCredentials"
+              "format": "int64"
             }
-          },
-          "x-go-name": "AverageDurationMs"
+          }
         }
-      },
-      "x-go-package": "github.com/basiqio/connect-institution-connector/cmd/connectors/resources/models"
+      }
     },
     "InstitutionsList": {
       "description": "InstitutionsList contains list of instutions data.",
@@ -7695,8 +7705,7 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/Institution"
-          },
-          "x-go-name": "Institutions"
+          }
         },
         "links": {
           "$ref": "#/definitions/ResourceLinks"
@@ -7705,14 +7714,12 @@
           "description": "TotalCount contains total count of institutions",
           "type": "integer",
           "format": "int64",
-          "x-go-name": "TotalCount",
           "example": 1
         },
         "type": {
           "$ref": "#/definitions/ResponseFormat"
         }
-      },
-      "x-go-package": "github.com/basiqio/connect-institution-connector/cmd/institutions/resources/models"
+      }
     },
     "LogoResourceLinks": {
       "description": "LogoResourceLinks contains institution logo resource links",
@@ -7725,17 +7732,14 @@
         "full": {
           "description": "URL to full size logo",
           "type": "string",
-          "x-go-name": "Full",
           "example": "https://example.com/AU00000-full.svg"
         },
         "square": {
           "description": "Square formatted logo URL",
           "type": "string",
-          "x-go-name": "Square",
           "example": "https://example.com/AU00000.svg"
         }
-      },
-      "x-go-package": "github.com/basiqio/connect-institution-connector/cmd/connectors/resources/models"
+      }
     },
     "ProfileFeatures": {
       "description": "ProfileFeatures describes set of institution profile features",
@@ -7756,7 +7760,6 @@
           "items": {
             "$ref": "#/definitions/SourceName"
           },
-          "x-go-name": "EmailAddresses",
           "example": [
             "web",
             "pdf",
@@ -7769,7 +7772,6 @@
           "items": {
             "$ref": "#/definitions/SourceName"
           },
-          "x-go-name": "FirstName",
           "example": [
             "web",
             "pdf",
@@ -7782,7 +7784,6 @@
           "items": {
             "$ref": "#/definitions/SourceName"
           },
-          "x-go-name": "FullName",
           "example": [
             "web",
             "pdf",
@@ -7795,7 +7796,6 @@
           "items": {
             "$ref": "#/definitions/SourceName"
           },
-          "x-go-name": "LastName",
           "example": [
             "web",
             "pdf",
@@ -7808,7 +7808,6 @@
           "items": {
             "$ref": "#/definitions/SourceName"
           },
-          "x-go-name": "MiddleName",
           "example": [
             "web",
             "pdf",
@@ -7821,7 +7820,6 @@
           "items": {
             "$ref": "#/definitions/SourceName"
           },
-          "x-go-name": "PhoneNumbers",
           "example": [
             "web",
             "pdf",
@@ -7834,15 +7832,13 @@
           "items": {
             "$ref": "#/definitions/SourceName"
           },
-          "x-go-name": "PhysicalAddresses",
           "example": [
             "web",
             "pdf",
             "csv"
           ]
         }
-      },
-      "x-go-package": "github.com/basiqio/connect-institution-connector/internal/pkg/institutions/api"
+      }
     },
     "ResourceLinks": {
       "description": "ResourceLinks contains resource links",
@@ -7853,21 +7849,17 @@
       "properties": {
         "self": {
           "description": "URL to resource itself",
-          "type": "string",
-          "x-go-name": "Self"
+          "type": "string"
         }
-      },
-      "x-go-package": "github.com/basiqio/connect-institution-connector/cmd/connectors/resources/models"
+      }
     },
     "ResponseFormat": {
       "description": "ResponseFormat identifies response data format",
-      "type": "string",
-      "x-go-package": "github.com/basiqio/connect-institution-connector/cmd/connectors/resources/models"
+      "type": "string"
     },
     "SourceName": {
       "description": "SourceName feature source name",
-      "type": "string",
-      "x-go-package": "github.com/basiqio/connect-institution-connector/internal/pkg/institutions/api"
+      "type": "string"
     },
     "TransactionsFeatures": {
       "description": "TransactionsFeatures describes set of institution transactions features",
@@ -7887,7 +7879,6 @@
           "items": {
             "$ref": "#/definitions/SourceName"
           },
-          "x-go-name": "TransactionAmount",
           "example": [
             "web",
             "pdf",
@@ -7900,7 +7891,6 @@
           "items": {
             "$ref": "#/definitions/SourceName"
           },
-          "x-go-name": "TransactionBalance",
           "example": [
             "web",
             "pdf",
@@ -7913,7 +7903,6 @@
           "items": {
             "$ref": "#/definitions/SourceName"
           },
-          "x-go-name": "Class",
           "example": [
             "web",
             "pdf",
@@ -7926,7 +7915,6 @@
           "items": {
             "$ref": "#/definitions/SourceName"
           },
-          "x-go-name": "TransactionDate",
           "example": [
             "web",
             "pdf",
@@ -7939,7 +7927,6 @@
           "items": {
             "$ref": "#/definitions/SourceName"
           },
-          "x-go-name": "TransactionDescription",
           "example": [
             "web",
             "pdf",
@@ -7952,15 +7939,13 @@
           "items": {
             "$ref": "#/definitions/SourceName"
           },
-          "x-go-name": "TransactionStatus",
           "example": [
             "web",
             "pdf",
             "csv"
           ]
         }
-      },
-      "x-go-package": "github.com/basiqio/connect-institution-connector/internal/pkg/institutions/api"
+      }
     },
     "TokenPostResponse": {
       "type": "object",
@@ -7983,6 +7968,250 @@
         "token_type": {
           "type": "string",
           "example": "Bearer"
+        }
+      }
+    },
+    "IdentitiesGetResponseResource": {
+      "description": "Object containing details for identities.",
+      "type": "object",
+      "title": "IdentitiesGetResponseResource",
+      "required": [
+        "data",
+        "type",
+        "count"
+      ],
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/IdentityData"
+          }
+        },
+        "type": {
+          "description": "Type, always \"list\".",
+          "type": "string",
+          "example": "list"
+        },
+        "count": {
+          "description": "Count of the identities in the response.",
+          "type": "integer",
+          "format": "int64",
+          "example": 100
+        }
+      }
+    },
+    "IdentityData": {
+      "type": "object",
+      "required": [
+        "type",
+        "id",
+        "created",
+        "updated",
+        "links"
+      ],
+      "properties": {
+        "type": {
+          "description": "Type, always \"identity\".",
+          "type": "string",
+          "example": "identity"
+        },
+        "id": {
+          "description": "Identity identification.",
+          "type": "string",
+          "example": "61723"
+        },
+        "created": {
+          "description": "Created date of the identity.",
+          "type": "string",
+          "example": "2019-07-29T07:34:09Z"
+        },
+        "updated": {
+          "description": "Created date of the identity.",
+          "type": "string",
+          "example": "2019-07-29T07:34:09Z"
+        },
+        "links": {
+          "$ref": "#/definitions/IdentityLinks"
+        },
+        "source": {
+          "description": "Data source.",
+          "type": "string",
+          "example": "web"
+        },
+        "fullName": {
+          "description": "FullName of the identity owner.",
+          "type": "string"
+        },
+        "firstName": {
+          "description": "FirstName of the identity owner.",
+          "type": "string"
+        },
+        "lastName": {
+          "description": "LastName of the identity owner.",
+          "type": "string"
+        },
+        "middleName": {
+          "description": "MiddleName of the identity owner.",
+          "type": "string"
+        },
+        "title": {
+          "description": "Title is the prefix to the name of the identity owner.",
+          "type": "string"
+        },
+        "DOB": {
+          "description": "Date of birth of the identity owner.",
+          "type": "string"
+        },
+        "occupationCode": {
+          "description": "Code relating to the occupation held by the identity owner.",
+          "type": "string"
+        },
+        "occupationCodeVersion": {
+          "description": "Occupation Code Version.",
+          "type": "string"
+        },
+        "phoneNumbers": {
+          "description": "List of phone numbers of the identity owner.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "emails": {
+          "description": "List of email addresses of the identity owner.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "physicalAddresses": {
+          "description": "List of physical addresses of the identity owner.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PhysicalAddressData"
+          }
+        },
+        "organisation": {
+          "description": "Organisation data.",
+          "type": "object",
+          "properties": {
+            "agentFirstName": {
+              "description": "Agent first name.",
+              "type": "string"
+            },
+            "agentLastName": {
+              "description": "Agent last name.",
+              "type": "string"
+            },
+            "agentRole": {
+              "description": "Agent role.",
+              "type": "string"
+            },
+            "businessName": {
+              "description": "Business name.",
+              "type": "string"
+            },
+            "legalName": {
+              "description": "Legal name.",
+              "type": "string"
+            },
+            "shortName": {
+              "description": "Short name.",
+              "type": "string"
+            },
+            "abn": {
+              "description": "Australian Business Number.",
+              "type": "string"
+            },
+            "acn": {
+              "description": "Australian Company Number.",
+              "type": "string"
+            },
+            "isACNCRegistered": {
+              "description": "Indicates whether is Australian Company Number registered.",
+              "type": "boolean"
+            },
+            "industryCode": {
+              "description": "Industry Code.",
+              "type": "string"
+            },
+            "industryCodeVersion": {
+              "description": "Industry Code Version.",
+              "type": "string"
+            },
+            "organisationType": {
+              "description": "Organisation Type.",
+              "type": "string"
+            },
+            "registeredCountry": {
+              "description": "Registered Country.",
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "PhysicalAddressData": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "description": "Physical Address Type.",
+          "type": "string"
+        },
+        "addressLine1": {
+          "description": "AddressLine1.",
+          "type": "string"
+        },
+        "addressLine2": {
+          "description": "AddressLine2.",
+          "type": "string"
+        },
+        "addressLine3": {
+          "description": "AddressLine3.",
+          "type": "string"
+        },
+        "postcode": {
+          "description": "Postcode.",
+          "type": "string"
+        },
+        "city": {
+          "description": "City.",
+          "type": "string"
+        },
+        "state": {
+          "description": "State.",
+          "type": "string"
+        },
+        "country": {
+          "description": "Country.",
+          "type": "string"
+        },
+        "countryCode": {
+          "description": "Country Code.",
+          "type": "string"
+        },
+        "formattedAddress": {
+          "description": "Formatted Address.",
+          "type": "string"
+        }
+      }
+    },
+    "IdentityLinks": {
+      "type": "object",
+      "required": [
+        "self",
+        "job"
+      ],
+      "properties": {
+        "self": {
+          "description": "Self link to the requested identity",
+          "type": "string",
+          "example": "https://au-api.basiq.io/users/cd6fbd92/identities/ea3a81"
+        },
+        "job": {
+          "description": "Link to the job associated with this identity",
+          "type": "string",
+          "example": "https://au-api.basiq.io/users/ea3a81/connection/s55bf3"
         }
       }
     }
