@@ -19,7 +19,7 @@ require (
 	github.com/onsi/gomega v1.10.2
 	github.com/stretchr/testify v1.8.1
 	go.mongodb.org/mongo-driver v1.11.0 // indirect
-	golang.org/x/net v0.2.0 // indirect
+	golang.org/x/net v0.7.0 // indirect
 	golang.org/x/xerrors v0.0.0-20220907171357-04be3eba64a2 // indirect
 	google.golang.org/protobuf v1.28.1 // indirect
 )
